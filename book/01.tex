@@ -1,0 +1,31 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\chapter{线性方程组}
+
+\section{解线性方程组——矩阵消元法}
+
+\begin{definition}{线性方程组,系数,常数项}
+	若一个方程组的每个方程中左侧都是未知量 $x_1, \ldots, x_n$ 的一次齐次式，右侧是常数，则称这样的方程组为\emph{线性方程组}。每个未知量前面的数称为\emph{系数}，右端的项称为\emph{常数项}。
+\end{definition}
+
+\begin{definition}{$n$ 元线性方程组}
+	含 $n$ 个未知量的线性方程组称为 $n$ 元线性方程组。
+\end{definition}
+
+\begin{definition}{一个解,解集}
+	对于一个 $n$ 元线性方程组，如果用 $c_1, \ldots, c_n$ 分别代入 $x_1, \ldots, x_n$ 后，每个方程都变成恒等式，那么称 $n$ 元有序数组 $(c_1, c_2, \ldots, c_n)$ 是该线性方程组的\emph{一个解}。该方程组的所有解组成的集合称为这个方程组的\emph{解集}。
+\end{definition}
+
+\begin{definition}{线性方程组的初等变换}
+	称以下三种变换为\emph{线性方程组的初等变换}：
+	\begin{enumerate}
+		\item 把一个方程的倍数加到另一个方程上。例如，将第一个方程的 $-3$ 倍加到第二个方程上，记为 $\circled{2} +\circled{1} \cdot (-3)$。
+		\item 互换两个方程的位置。例如，互换第一个方程和第二个方程的位置，记为 $(\circled{1}, \circled{2})$。
+		\item 用一个非零数乘某一个方程。例如，将第一个方程乘以 $\dfrac{1}{3}$，记为 $\circled{1} \cdot \dfrac{1}{3}$。
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}{同解}
+	两个线性方程组的解集相等，称这两个方程组\emph{同解}。线性方程组经过线性方程组的初等变换得到的方程组与原方程组同解。
+\end{definition}

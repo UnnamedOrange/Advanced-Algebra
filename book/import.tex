@@ -1,0 +1,98 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\documentclass[UTF8, oneside]{book}
+
+\title{高等代数}
+\author{UnnamedOrange}
+
+\usepackage{ctex}
+\usepackage{hyperref}
+\hypersetup
+{
+	pdfauthor = {UnnamedOrange},
+	pdftitle = {高等代数}
+}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{xifthen}
+\usepackage{framed}
+\usepackage{ulem}
+\normalem
+\usepackage{tikz}
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt) circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+
+\usepackage{makeidx}
+\makeindex
+
+% 数集
+\newcommand \N {\mathbb N}
+\newcommand \Q {\mathbb Q}
+\newcommand \R {\mathbb R}
+\newcommand \Z {\mathbb Z}
+\renewcommand \C {\mathbb C}
+
+% index
+\newcommand \idx[1] {#1\index{#1}}
+
+% def
+\makeatletter
+\newcommand \indexer[1]
+{%
+	\@for\@myvar:={#1}\do{\index{\@myvar}}%
+}
+\makeatother
+\newenvironment{definition}[1]
+{
+	\definecolor{shadecolor}{RGB}{233, 233, 243}
+	\begin{shaded*}
+	\indexer{#1}
+	\noindent
+	\textbf{定义} \emph{#1}:%
+}
+{
+	\end{shaded*}
+}
+
+% theorem
+\newcounter{cTheorem}
+\newenvironment{theorem}[1][]
+{
+	\definecolor{shadecolor}{RGB}{243, 233, 233}
+	\begin{shaded*}
+	\noindent
+	\textbf{定理}
+	\ifthenelse{\isempty{#1}}{\stepcounter{cTheorem}\arabic{cTheorem}}{\emph{#1}\index{#1}}:%
+}
+{
+	\end{shaded*}
+}
+
+% proof
+\renewenvironment{proof}[1][]
+{
+	\definecolor{shadecolor}{RGB}{237, 237, 237}
+	\begin{shaded*}
+	{\noindent \textbf{证明}~{#1}}
+
+}
+{
+	\end{shaded*}
+}
+
+% solve
+\newenvironment{solve}[1][]
+{
+	\definecolor{shadecolor}{RGB}{237, 237, 237}
+	\begin{shaded*}
+	{\noindent \textbf{解}~{#1}}
+
+}
+{
+	\end{shaded*}
+}
