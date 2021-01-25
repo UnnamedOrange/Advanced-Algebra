@@ -117,8 +117,8 @@
 
 	设阶梯形方程组有 $n$ 个未知量，它的增广矩阵 $J$ 有 $r$ 个非零行，它的简化行阶梯形矩阵为 $J_1$。
 	\begin{enumerate}
-		\item 阶梯形方程组中出现形如 $0 \ne d \pod{d \ne 0}$ 的方程，则阶梯形方程组无解。
-		\item 阶梯形方程组不出现形如 $0 \ne d \pod{d \ne 0}$ 的方程。由于阶梯形矩阵非零行主元的列指标随行指标的增加严格递增，而 $J$ 的最后一个非零行的主元不能位于第 $n + 1$ 列，因此 $r \le n$。
+		\item 阶梯形方程组中出现形如 $0 = d \pod{d \ne 0}$ 的方程，则阶梯形方程组无解。
+		\item 阶梯形方程组不出现形如 $0 = d \pod{d \ne 0}$ 的方程。由于阶梯形矩阵非零行主元的列指标随行指标的增加严格递增，而 $J$ 的最后一个非零行的主元不能位于第 $n + 1$ 列，因此 $r \le n$。
 		\begin{enumerate}
 			\item 若 $r = n$，通过观察 $J_1$，可以得出原阶梯形方程组必有唯一解 $(c_1, \ldots, c_{n - 1}, c_n)$，其中 $c_i$ 是 $J_1$ 的第 $i$ 个常数项。
 			\item 若 $r < n$，将自由未知量的项移到等号右边，等式左边保留主变量，并且省略 $0 = 0$ 这样的方程。发现，对自由未知量取任意一组值，都能求出主变量的值从而得到方程组的一个解。由于有理数集具有稠密性，因此方程组有无穷多个解。
@@ -151,3 +151,59 @@
 \begin{theorem}
 	如果$n$ 元齐次线性方程组方程的数目 $s$ 小于未知量的数目 $n$，那么它一定有非零解。
 \end{theorem}
+
+\section{数域}
+
+\begin{definition}{数域}
+	复数集的一个子集 $K$ 如果满足：
+	\begin{enumerate}
+		\item $0, 1 \in K$；
+		\item $a, b \in K \Longrightarrow a \pm b, ab \in K$；
+		\item $a, b \in K \pod{b \ne 0} \Longrightarrow \dfrac{a}{b} \in K$。
+	\end{enumerate}
+
+	则称 $K$ 是一个\emph{数域}。
+\end{definition}
+
+数域定义中的三个条件可以减弱为：
+\begin{enumerate}
+	\item $1 \in K$；
+	\item $a, b \in K \Longrightarrow a - b \in K$；
+	\item $a, b \in K \pod{b \ne 0} \Longrightarrow \dfrac{a}{b} \in K$。
+\end{enumerate}
+
+原因是可以借以上三个条件推导出原来的三个条件。
+\begin{enumerate}
+	\item $1 \in K \Longrightarrow 1 - 1 \in K \Longrightarrow 0 \in K$；
+	\item $0, b \in K \Longrightarrow 0 - b \in K \Longrightarrow -b \in K$；
+	\item $a, (-b) \in K \Longrightarrow a - (-b) \in K \Longrightarrow a + b \in K$；
+	\item $1, b \pod{b \ne 0} \in K \Longrightarrow \dfrac{1}{b} \in K \Longrightarrow \dfrac{a}{\frac{1}{b}} \in K \Longrightarrow ab \in K$。
+\end{enumerate}
+
+根据定义，最大的数域是 $\C$。$\Q, \R, \C$ 均为数域，但 $\Z$ 不是数域，因为它对除法不封闭。
+
+\begin{theorem}
+	有无穷多个数域 $\mathbb F$ 满足 $\Q \subset \mathbb F \subset \R$。
+\end{theorem}
+
+\begin{proof}[构造法]
+	构造 $\Q(\sqrt p) = \{ a + b \sqrt p : a, b \in \Q \} \pod{p ~\text{是素数}}$。
+
+	显然 $\Q \subset \Q(\sqrt p) \subset \R$。下面证明 $\Q(\sqrt p)$ 是一个数域：
+
+	\begin{enumerate}
+		\item 当 $a = 1$，$b = 0$ 时，可知 $1 \in \Q(\sqrt p)$；
+		\item 设 $c = a_1 + b_1 \sqrt p$，$d = a_2 + b_2 \sqrt p$（$a_1, a_2, b_1, b_2 \in \Q$），显然 $c, d \in \Q(\sqrt p)$。设 $e = c - d = (a_1 - a_2) + (b_1 - b_2) \sqrt p$，显然 $e \in \Q(\sqrt p)$。
+		\item 设 $c = a_1 + b_1 \sqrt p$，$d = a_2 + b_2 \sqrt p$（$a_1, a_2, b_1, b_2 \in \Q$，$d \ne 0$）。$\frac{c}{d} = \frac{(a_1 + b_1 \sqrt p)(a_2 - b_2 \sqrt p)}{(a_2 + b_2 \sqrt p)(a_2 - b_2 \sqrt p)} = \frac{(a_1a_2 - pb_1b_2) + (b_1 a_2 - a_1 b_2)\sqrt p}{a_2^2 - pb_2^2}$，显然 $\frac{c}{d} \pod{d \ne 0} \in \Q(\sqrt p)$。
+	\end{enumerate}
+
+	由数域的定义，可知 $\Q(\sqrt p)$ 是一个数域。证毕。
+\end{proof}
+
+\begin{theorem}
+	不存在数域 $\mathbb F$ 满足 $\R \subset \mathbb F \subset \C$。
+\end{theorem}
+
+\begin{proof}[反证法]
+	假设原命题成立，可知：存在一个 $c = a + b \mathrm i \pod{a, b \in \R, b \ne 0}$，使得 $c \in \mathbb F$。由 $\mathbb F$ 是数域，可知 $\frac{c - a}{b} \in \mathbb F$，即 $\mathrm i \in \mathbb F$。由 $\mathrm i \in \mathbb F$，可知 $d + e \mathrm i \in \mathbb F \pod{d, e \in \R}$，即 $\C \subseteq \mathbb F$，与 $\mathbb F \subset \C$ 矛盾。证毕。
+\end{proof}
