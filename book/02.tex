@@ -1,0 +1,144 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\chapter{行列式}
+
+\section{行列式的定义}
+
+\subsection{引入}
+
+在二维直角坐标系下，如何求 $OA$、$OB$ 两条边构成的平行四边形的面积？利用向量的叉乘\footnote{在平面直角坐标系中，设 $\vec a = (a_1, b_1)$，$\vec b = (a_2, b_2)$，定义向量的叉乘为 $\vec a \times \vec b \triangleq a_1 b_2 - a_2 b_1$。$\vec a \times \vec b$ 的几何意义为 $\vec a$ 与 $\vec b$ 所围成的平行四边形的有向面积。}，可以求出该平行四边形的\textbf{有向面积}。
+$$
+S = \overset{\longrightarrow}{OA} \times \overset{\longrightarrow}{OB}
+$$
+
+利用二维向量叉乘的性质，我们可以验证：
+\begin{enumerate}
+	\item 当 $\overset{\longrightarrow}{OA} = (1, 0)$，$\overset{\longrightarrow}{OB} = (0, 1)$ 时，$S = 1$。
+	\item 设 $\overset{\longrightarrow}{OC} = a \cdot \overset{\longrightarrow}{OA} + b \cdot \overset{\longrightarrow}{OB}$，则 $\overset{\longrightarrow}{OC} \times \overset{\longrightarrow}{OB} = a \cdot \overset{\longrightarrow}{OA} \times \overset{\longrightarrow}{OB} + b \cdot \overset{\longrightarrow}{OB} \times \overset{\longrightarrow}{OB}$。
+	\item $\overset{\longrightarrow}{OB} \times \overset{\longrightarrow}{OA} = -\overset{\longrightarrow}{OA} \times \overset{\longrightarrow}{OB}$。
+\end{enumerate}
+
+扩展到三维直角坐标系，问题变为如何求 $\overset{\longrightarrow}{OA}$、$\overset{\longrightarrow}{OB}$、$\overset{\longrightarrow}{OC}$ 三条边构成的平行六面体的有向体积。我们暂时未知“有向”为何意，但我们根据立体几何的直觉，知道该有向体积应该满足以下性质：
+\begin{enumerate}
+	\item 当 $\overset{\longrightarrow}{OA} = (1, 0, 0)$，$\overset{\longrightarrow}{OB} = (0, 1, 0)$，$\overset{\longrightarrow}{OC} = (0, 0, 1)$ 时，$V = 1$。
+	\item 设该有向体积为 $f(\overset{\longrightarrow}{OA}, \overset{\longrightarrow}{OB}, \overset{\longrightarrow}{OC})$。则当 $\overset{\longrightarrow}{OD} = a \cdot \overset{\longrightarrow}{OA} + b \cdot \overset{\longrightarrow}{OB}$ 时，有：
+	$$
+	f(\overset{\longrightarrow}{OD}, \overset{\longrightarrow}{OB}, \overset{\longrightarrow}{OC}) = a \cdot f(\overset{\longrightarrow}{OA}, \overset{\longrightarrow}{OB}, \overset{\longrightarrow}{OC}) + b \cdot f(\overset{\longrightarrow}{OB}, \overset{\longrightarrow}{OB}, \overset{\longrightarrow}{OC})
+	$$
+\end{enumerate}
+
+在定义了该有向体积为 $f(\overset{\longrightarrow}{OA}, \overset{\longrightarrow}{OB}, \overset{\longrightarrow}{OC})$ 后，我们规定“有向”的含义为：交换 $f$ 的任意两个参数，其函数值取反。在此基础上，我们可以发现 $f$ 的表现与二维情形下的叉乘一致。进一步地，我们希望求在 $n$ 维直角坐标系下由 $n$ 个以原点为起点的向量构成的平行 $2n$ 面体的有向体积，由此便可以引出行列式的定义。
+
+\subsection{行列式的第一定义}
+
+\begin{definition}{行列式}
+	定义映射 $f: M_n(\mathbb F) \to \mathbb F$，其中 $\mathbb F$ 表示一个数域，$M_n(\mathbb F)$ 表示元素属于数域 $\mathbb F$ 的 $n$ 级矩阵组成的集合。若 $f$ 满足：
+	\begin{enumerate}
+		\item 归一化。
+		$$
+		f(I_n) = 1
+		$$
+		其中 $I_n$ 为\emph{单位矩阵}，即:
+		$$
+		I_n =
+		\begin{bmatrix}
+			1 & \cdots & 0
+			\\
+			\vdots & 1 & \vdots
+			\\
+			0 & \cdots & 1
+		\end{bmatrix}_{n \times n}
+		$$
+		\item 多线性。例如：
+		$$
+		\begin{aligned}&
+			f\left(\begin{bmatrix}Aa_{11} + Bb_{11} & \cdots & Aa_{1n} + Bb_{1n}\\a_{22} & \cdots & a_{2n}\\\vdots & \ddots & \vdots \\a_{n1} & \cdots & a_{nn}\end{bmatrix}\right)
+			\\=~&
+			A \cdot f\left(\begin{bmatrix}a_{11} & \cdots & a_{1n}\\a_{22} & \cdots & a_{2n}\\\vdots & \ddots & \vdots \\a_{n1} & \cdots & a_{nn}\end{bmatrix}\right) + B \cdot f\left(\begin{bmatrix}b_{11} & \cdots & b_{1n}\\a_{22} & \cdots & a_{2n}\\\vdots & \ddots & \vdots \\a_{n1} & \cdots & a_{nn}\end{bmatrix}\right)
+		\end{aligned}
+		$$
+		不止是第一行，对其他行也成立。
+		\item 反对称。交换参数矩阵的任意两行，函数值取相反数。
+	\end{enumerate}
+	则称 $f(A)$ 为方阵 $A$ 的\emph{行列式}，记为 $\det A$ 或 $|A|$。
+\end{definition}
+
+以上定义结合引入部分的讨论，可以给我们以下启发。设：
+$$
+\begin{gathered}
+	\vec e_1 = (1, 0, 0, \ldots, 0)
+	\\
+	\vec e_2 = (0, 1, 0, \ldots, 0)
+	\\
+	\vdots
+	\\
+	\vec e_n = (0, 0, 0, \ldots, 1)
+\end{gathered}
+$$
+
+则可以记单位矩阵 $I_n$ 为：
+$$
+I_n =
+\begin{bmatrix}
+	\vec e_1 \\ \vec e_2 \\ \vdots \\ \vec e_n
+\end{bmatrix}
+$$
+
+即 $n$ 级方阵的每一行可以看作一个 $n$ 维向量。
+
+\section{行列式的完全展开式}
+
+\subsection{二阶行列式的完全展开式}
+
+我们尝试利用行列式的第一定义求出二阶行列式的表达式。
+
+\begin{solve}
+	设 $f(A) = \det A$。
+	$$
+	\begin{aligned}
+		f(\begin{bmatrix}a&b\\c&d\end{bmatrix}) &= f(\begin{bmatrix}a\vec e_1 + b\vec e_2\\c\vec e_1 + d\vec e_2\end{bmatrix})
+		\\&= a \cdot f(\begin{bmatrix}\vec e_1\\c\vec e_1 + d\vec e_2\end{bmatrix}) + b \cdot f(\begin{bmatrix}\vec e_2\\c\vec e_1 + d\vec e_2\end{bmatrix})
+		\\&= a\left(c \cdot f(\begin{bmatrix}\vec e_1\\\vec e_1\end{bmatrix}) +
+		d \cdot f(\begin{bmatrix}\vec e_1\\\vec e_2\end{bmatrix})\right) +
+		\\&~~~~
+		b\left(c \cdot f(\begin{bmatrix}\vec e_2\\\vec e_1\end{bmatrix}) +
+		d \cdot f(\begin{bmatrix}\vec e_2\\\vec e_2\end{bmatrix})\right)
+	\end{aligned}
+	$$
+
+	根据行列式的反对称性质可知，若有两行相同，则行列式为 $0$。所以：
+	$$
+	\begin{aligned}
+		\text{原式} &= ad \cdot f(\begin{bmatrix}\vec e_1\\\vec e_2\end{bmatrix}) + bc \cdot f(\begin{bmatrix}\vec e_2\\\vec e_1\end{bmatrix})
+		\\&=
+		ad - bc
+	\end{aligned}
+	$$
+\end{solve}
+
+为了得到 $n$ 阶行列式的完全展开式，我们需要引入排列的概念。
+
+\subsection{$n$ 元排列}
+
+\begin{definition}{$n$ 元排列}
+	$n$ 个不同的自然数的一个全排列称为一个 \emph{$n$ 元排列}。
+\end{definition}
+
+下面讨论的一些性质，如果没有特别声明，考虑的是由 $1, 2, \ldots, n$ 组成的 $n$ 元排列，但对由任意 $n$ 个不同的自然数组成的 $n$ 元排列也成立。
+
+\begin{definition}{顺序,逆序}
+	对于 $n$ 元排列中的一对数，若这两个数中小的数在前，大的数在后，则称这一对数构成一个\emph{顺序}；反之，称之为构成一个\emph{逆序}。
+\end{definition}
+
+\begin{definition}{逆序数}
+	一个 $n$ 元排列中逆序的总数称为\emph{逆序数}，记作 $\tau(a_1 a_2 \ldots a_n)$。
+\end{definition}
+
+\begin{definition}{奇排列,偶排列}
+	逆序对为奇数的排列称为\emph{奇排列}，逆序数为偶数的排列称为\emph{偶排列}。
+\end{definition}
+
+\begin{definition}{对换}
+	把排列中的两个数 $a, b$ 互换位置，其余数不动，称这样的变换为一个\emph{对换}，记作 $(a, b)$。
+\end{definition}
