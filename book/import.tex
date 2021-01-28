@@ -21,9 +21,12 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{xifthen}
-\usepackage{framed}
-\usepackage{ulem}
-\normalem
+\usepackage[normalem]{ulem}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{hidealllines=true,%
+	skipabove=\topskip,%
+	innertopmargin=\topskip, innerbottommargin=\topskip,%
+	everyline=true, splittopskip=1.75\topskip}
 \usepackage{tikz}
 \newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt) circle (.5em) node {\makebox[1em][c]{\small #1}};}}
 
@@ -53,13 +56,13 @@
 \newenvironment{definition}[1]
 {
 	\definecolor{shadecolor}{RGB}{233, 233, 243}
-	\begin{shaded*}
+	\begin{mdframed}[backgroundcolor=shadecolor]\relax
 	\indexer{#1}
 	\noindent
 	\textbf{定义} \emph{#1}:%
 }
 {
-	\end{shaded*}
+	\end{mdframed}
 }
 
 % theorem
@@ -67,35 +70,35 @@
 \newenvironment{theorem}[1][]
 {
 	\definecolor{shadecolor}{RGB}{243, 233, 233}
-	\begin{shaded*}
+	\begin{mdframed}[backgroundcolor=shadecolor]\relax
 	\noindent
 	\textbf{定理}
 	\ifthenelse{\isempty{#1}}{\stepcounter{cTheorem}\arabic{cTheorem}}{\emph{#1}\index{#1}}: %
 }
 {
-	\end{shaded*}
+	\end{mdframed}
 }
 
 % proof
 \renewenvironment{proof}[1][]
 {
 	\definecolor{shadecolor}{RGB}{237, 237, 237}
-	\begin{shaded*}
+	\begin{mdframed}[backgroundcolor=shadecolor]\relax
 	{\noindent \textbf{证明}~{#1}}
 
 }
 {
-	\end{shaded*}
+	\end{mdframed}
 }
 
 % solve
 \newenvironment{solve}[1][]
 {
 	\definecolor{shadecolor}{RGB}{237, 237, 237}
-	\begin{shaded*}
+	\begin{mdframed}[backgroundcolor=shadecolor]\relax
 	{\noindent \textbf{解}~{#1}}
 
 }
 {
-	\end{shaded*}
+	\end{mdframed}
 }
