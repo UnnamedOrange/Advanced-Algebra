@@ -3,3 +3,80 @@
 
 \section{行列式的等价定义}
 
+除了行列式的第一定义，还可以直接使用行列式的完全展开式来定义行列式。
+
+\begin{definition}{行列式}
+	定义映射 $f: M_n(\mathbb F) \to \mathbb F$，其中 $\mathbb F$ 表示一个数域，$M_n(\mathbb F)$ 表示元素属于数域 $\mathbb F$ 的 $n$ 级矩阵组成的集合。若 $f$ 满足：
+	$$
+	f(A) = \sum_{j_1 j_2 \ldots j_n} (-1)^{\tau(j_1 j_2 \ldots j_n)} a_{1j_1} a_{2j_2} \cdots a_{nj_n}
+	$$
+	其中 $j_1 j_2 \ldots j_n$ 表示枚举 $123 \ldots n$ 的所有排列，$a_{ij}$ 是矩阵 $A$ 的 $(i, j)$ 元，则称 $f(A)$ 为方阵 $A$ 的\emph{行列式}，记为 $\det A$ 或 $|A|$。
+\end{definition}
+
+现在只需验证按完全展开式定义的行列式满足归一化、多线性和反对称，即可证明这\textbf{两种定义的等价性}。
+
+\begin{enumerate}
+	\item 归一化。代入单位矩阵 $I_n$，显然有 $|I_n| = 1$。
+	\item 多线性。考虑：
+	$$
+	\begin{aligned}
+		f(A) &= \sum_{j_1 j_2 \ldots j_n} (-1)^{\tau(j_1 j_2 \ldots j_n)} (x a_{1j_1} + y b_{1 j_1}) a_{2j_2} \cdots a_{nj_n}
+		\\&=
+		x \sum_{j_1 j_2 \ldots j_n} (-1)^{\tau(j_1 j_2 \ldots j_n)} a_{1j_1} a_{2j_2} \cdots a_{nj_n} +
+		\\&~~~~
+		y \sum_{j_1 j_2 \ldots j_n} (-1)^{\tau(j_1 j_2 \ldots j_n)} b_{1j_1} a_{2j_2} \cdots a_{nj_n}
+	\end{aligned}
+	$$
+	故成立。
+	\item 反对称。交换矩阵 $A$ 的两行，则完全展开式中每一项的 $\tau(j_1 j_2 \ldots j_n)$ 的奇偶性改变，故成立。
+\end{enumerate}
+
+行列式的定义还有一个变种，可以将前两种定义中提到的行向量改为列向量。例如，按列向量定义的行列式的完全展开式被定义为：
+$$
+\sum_{k_1 k_2 \ldots k_n} (-1)^{\tau(k_1 k_2 \ldots k_n)} a_{k_1 1} a_{k_2 2} \cdots a_{k_n n}
+$$
+与行向量定义的唯一差别是 $i j_i$ 变为了 $k_i i$。
+
+可以证明，按行向量和按列向量定义的行列式是等价的。
+
+\begin{proof}
+	只需证明两个完全展开式相等。注意到，两式都是对 $n!$ 项进行求和，因此只需证明这 $n!$ 项是相同的。
+
+	行向量定义为：
+	$$
+	\sum_{k_1 k_2 \ldots k_n} (-1)^{\tau(k_1 k_2 \ldots k_n)} a_{1k_1} a_{2k_2} \cdots a_{nk_n}
+	$$
+
+	将上式中的每一项进行重排，按列编号排序，得：
+	$$
+	\sum_{k_1 k_2 \ldots k_n} (-1)^{\tau(k_1 k_2 \ldots k_n)} a_{i_1 k_{i_1}} a_{i_2 k_{i_2}} \cdots a_{i_n k_{i_n}}
+	$$
+	其中 $k_{i_j} = j$，即上式等于：
+	$$
+	\sum_{k_1 k_2 \ldots k_n} (-1)^{\tau(k_1 k_2 \ldots k_n)} a_{i_1 1} a_{i_2 2} \cdots a_{i_n n}
+	$$
+
+	由于排列 $k_1 k_2 \ldots k_n$ 与排列 $i_1 i_2 \ldots i_n$ 是一一对应关系（因为对于任意的 $j$，有 $k_{i_j} = j$），因此只需证明 $(-1)^{\tau(k_1 k_2 \ldots k_n)} = (-1)^{\tau(i_1 i_2 \ldots i_n)}$。
+
+	\bigskip
+
+	在重排前，行标号和列标号分别为：
+	$$
+	\begin{matrix}
+		1 & 2 & 3 & \cdots & n & \pod{\text{行标号}}
+		\\
+		k_1 & k_2 & k_3 & \cdots & k_n & \pod{\text{列标号}}
+	\end{matrix}
+	$$
+
+	重排的操作相当于同时交换行标号和列标号，例如：
+	$$
+	\begin{matrix}
+		2 & 1 & 3 & \cdots & n & \pod{\text{行标号}}
+		\\
+		k_2 & k_1 & k_3 & \cdots & k_n & \pod{\text{列标号}}
+	\end{matrix}
+	$$
+
+	由于行标号排列和列标号排列的奇偶性同时发生改变，因此\textbf{行标号排列与列标号排列的逆序数之和的奇偶性不变}。而行标号排列的初态与列标号排列的末态均为偶排列（逆序数为 $0$），所以列标号排列的初态与行标号排列的末态的奇偶性相同，即有 $(-1)^{\tau(k_1 k_2 \ldots k_n)} = (-1)^{\tau(i_1 i_2 \ldots i_n)}$。
+\end{proof}
