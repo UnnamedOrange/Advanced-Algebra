@@ -81,6 +81,8 @@ $$
 	由于行标号排列和列标号排列的奇偶性同时发生改变，因此\textbf{行标号排列与列标号排列的逆序数之和的奇偶性不变}。而行标号排列的初态与列标号排列的末态均为偶排列（逆序数为 $0$），所以列标号排列的初态与行标号排列的末态的奇偶性相同，即有 $(-1)^{\tau(k_1 k_2 \ldots k_n)} = (-1)^{\tau(i_1 i_2 \ldots i_n)}$。
 \end{proof}
 
+按行向量和按列向量定义的等价，说明了行列式的行与列具有相同的地位。从行出发得到的性质，对于从列出发的情况也适用。
+
 \begin{definition}{转置}
 	互换矩阵 $A_{m \times n}$ 的行与列可得到一个 $n \times m$ 的矩阵，称之为 $A$ 的\emph{转置}，记作 $A'$、$A^T$ 或 $A^t$。
 \end{definition}
@@ -88,7 +90,7 @@ $$
 由行列式的等价定义，以下定理显然。
 
 \begin{theorem}
-	对于 $n$ 级方阵 $A$，满足 $|A^T| = |A|$。
+	对于 $n$ 级方阵 $A$，有 $|A^T| = |A|$。
 \end{theorem}
 
 受行列式等价定义的启发，我们可以得到以下定理。
@@ -136,3 +138,199 @@ $$
 \begin{theorem}
 	若系数矩阵的行列式为 $0$，则对应的线性方程组无解或有无穷多解，反之亦然。
 \end{theorem}
+
+\section{行列式按一行（列）展开}
+
+\begin{definition}{余子式}
+	划去 $n$ 级矩阵 $A$ 的第 $i$ 行和第 $j$ 列，剩下的元素按原来的次序组成 $n - 1$ 级矩阵，称该 $n - 1$ 级矩阵的行列式为 $A$ 的 $(i, j)$ 元的\emph{余子式}，记为 $M_{ij}$。
+\end{definition}
+
+\begin{definition}{代数余子式}
+	记 $A_{ij} = (-1)^{i + j} M_{ij}$，称 $A_{ij}$ 是 $A$ 的 $(i, j)$ 元的\emph{代数余子式}。
+\end{definition}
+
+\begin{theorem}[行列式按第 $i$ 行的展开式]
+	$n$ 级矩阵 $A$ 的行列式 $|A|$ 等于它的第 $i$ 行元素与自己的代数余子式的乘积之和，即：
+	$$
+	|A| = \sum\limits_{l = 1}^n A(i; l) \cdot A_{il}
+	$$
+\end{theorem}
+
+\begin{proof}
+	设 $n$ 级方阵 $A$ 的 $(i, j)$ 元为 $a_{ij}$。在 $A$ 的行列式的完全展开式中，根据项包含的第 $i$ 行元素的所在列（设为第 $j$ 列），将项分成 $n$ 组。原完全展开式变为：
+	$$
+	|A| = \sum\limits_{j = 1}^n a_{ij} \sum\limits_{p} (-1)^{\tau(p)} \cdot a_{1 k_1} \cdots a_{i - 1, k_{i - 1}} \cdot a_{i + 1, k_{i + 1}} \cdots a_{n k_n}
+	$$
+	其中，$p$ 是形如 $k_1 \ldots k_{i - 1}~j~k_{i + 1} \ldots k_n$ 的所有排列。
+
+	由于 $\tau(p)$ 的奇偶性与 $i + j + \tau(k_1 \ldots k_{i - 1} k_{i + 1} \ldots k_n)$ 的奇偶性相同（考虑进行 $i - 1$ 次相邻对换后把 $j$ 移除），因此：
+	$$
+	\sum\limits_{p} (-1)^{\tau(p)} \cdot a_{1 k_1} \cdots a_{i - 1, k_{i - 1}} \cdot a_{i + 1, k_{i + 1}} \cdots a_{n k_n} = A_{ij}
+	$$
+
+	即证得待证式。
+\end{proof}
+
+由行和列的等价性，可得以下定理。
+
+\begin{theorem}[行列式按第 $j$ 列的展开式]
+	$n$ 级矩阵 $A$ 的行列式 $|A|$ 等于它的第 $j$ 列元素与自己的代数余子式的乘积之和。
+\end{theorem}
+
+关于行列式的代数余子式，还有以下重要定理。
+
+\begin{theorem}
+	$n$ 级矩阵 $A$ 的第 $i$ 行元素与另一行（设为第 $k$ 行）相应元素的代数余子式的乘积之和等于 $0$，即：
+	$$
+	\sum\limits_{l = 1}^n A(i; l) \cdot A_{kl} = 0 \pod{k \ne i}
+	$$
+\end{theorem}
+
+\begin{proof}
+	设 $A$ 的 $(i, j)$ 元为 $a_{i, j}$，设另一矩阵 $B$ 为：
+	$$
+	B =
+	\begin{bmatrix}
+		a_{11} & a_{12} & \cdots & a_{1n}
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		a_{i1} & a_{i2} & \cdots & a_{in}
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		a_{i1} & a_{i2} & \cdots & a_{in}
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		a_{n1} & a_{n2} & \cdots & a_{nn}
+	\end{bmatrix}
+	$$
+	即 $B$ 的第 $k$ 行与 $A$ 的第 $i$ 行相同，其余行与 $A$ 相同。
+
+	显然 $B$ 的行列式为 $0$，而 $|B| = \sum\limits_{l = 1}^n A(i; l) \cdot A_{kl}$，证毕。
+\end{proof}
+
+同理，从列出发该性质也成立。
+
+\subsection{范德蒙德行列式}
+
+可以使用行列式按第 $i$ 行的展开式求行列式的值，称这种方法为\emph{降阶法}。范德蒙德行列式是一类非常重要的行列式，下面以范德蒙德行列式为例使用降阶法求其值。
+
+\begin{definition}{范德蒙德行列式}
+	若 $n$ 阶行列式形如：
+	$$
+	\begin{vmatrix}
+		1 & 1 & 1 & \cdots & 1
+		\\
+		a_1 & a_2 & a_3 & \cdots & a_n
+		\\
+		a_1^2 & a_2^2 & a_3^2 & \cdots & a_n^2
+		\\
+		\vdots & \vdots & \vdots & & \vdots
+		\\
+		a_1^{n - 2} & a_2^{n - 2} & a_3^{n - 2} & \cdots & a_n^{n - 2}
+		\\
+		a_1^{n - 1} & a_2^{n - 1} & a_3^{n - 1} & \cdots & a_n^{n - 1}
+	\end{vmatrix}
+	$$
+
+	则称该行列式为\emph{范德蒙德行列式}。
+\end{definition}
+
+\begin{theorem}[范德蒙德行列式的值]
+	$$
+	\begin{vmatrix}
+		1 & 1 & 1 & \cdots & 1
+		\\
+		a_1 & a_2 & a_3 & \cdots & a_n
+		\\
+		a_1^2 & a_2^2 & a_3^2 & \cdots & a_n^2
+		\\
+		\vdots & \vdots & \vdots & & \vdots
+		\\
+		a_1^{n - 2} & a_2^{n - 2} & a_3^{n - 2} & \cdots & a_n^{n - 2}
+		\\
+		a_1^{n - 1} & a_2^{n - 1} & a_3^{n - 1} & \cdots & a_n^{n - 1}
+	\end{vmatrix}
+	=
+	\prod\limits_{1 \le j < i \le n} (a_i - a_j)
+	$$
+\end{theorem}
+
+\begin{proof}[数学归纳法]
+	当 $n = 2$ 时，显然有：
+	$$
+	\begin{vmatrix}
+		1 & 1
+		\\
+		a_1 & a_2
+	\end{vmatrix}
+	= a_2 - a_1
+	$$
+
+	故成立。
+
+	\bigskip
+
+	当 $n \ge 3$ 时，假设当 $n_0 = k - 1$ 时成立，下面证明当 $n = k$ 时也成立。
+
+	待计算的行列式为：
+	$$
+	\begin{vmatrix}
+		1 & 1 & 1 & \cdots & 1
+		\\
+		a_1 & a_2 & a_3 & \cdots & a_k
+		\\
+		a_1^2 & a_2^2 & a_3^2 & \cdots & a_k^2
+		\\
+		\vdots & \vdots & \vdots & & \vdots
+		\\
+		a_1^{k - 2} & a_2^{k - 2} & a_3^{k - 2} & \cdots & a_k^{k - 2}
+		\\
+		a_1^{k - 1} & a_2^{k - 1} & a_3^{k - 1} & \cdots & a_k^{k - 1}
+	\end{vmatrix}
+	$$
+
+	令第 $n$ 行减去第 $n - 1$ 行的 $a_1$ 倍，再令第 $n - 1$ 行减去第 $n - 2$ 行的 $a_1$ 倍……直到令第 $2$ 行减去第 $1$ 行的 $a_1$ 倍，得：
+	$$
+	\begin{vmatrix}
+		1 & 1 & \cdots & 1
+		\\
+		0 & a_2 - a_1 & \cdots & a_k - a_1
+		\\
+		0 & a_2^2 - a_1 a_2 & \cdots & a_k^2 - a_1 a_k
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		0 & a_2^{k - 2} - a_1 a_2^{k - 3} & \cdots & a_k^{k - 2} - a_1 a_k^{k - 3}
+		\\
+		0 & a_2^{k - 1} - a_1 a_2^{k - 2} & \cdots & a_k^{k - 1} - a_1 a_k^{k - 2}
+	\end{vmatrix}
+	$$
+
+	将行列式按第一列展开，得：
+	$$
+	\begin{vmatrix}
+		a_2 - a_1 & \cdots & a_k - a_1
+		\\
+		a_2 (a_2 - a_1) & \cdots & a_k (a_k - a_1)
+		\\
+		\vdots & & \vdots
+		\\
+		a_2^{k - 2} (a_2 - a_1) & \cdots & a_k^{k - 2} (a_k - a_1)
+	\end{vmatrix}
+	$$
+
+	利用行列式的多线性提出 $(a_i - a_1) \pod{i \ge 2}$，得到一个 $k - 1$ 阶范德蒙德行列式。由归纳假设，可得原式等于：
+	$$
+	\prod\limits_{i = 2}^k (a_i - a_1) \prod_{2 \le l < j \le k} (a_j - a_l)
+	$$
+
+	上式又等于：
+	$$
+	\prod\limits_{1 \le j < i \le k} (a_i - a_j)
+	$$
+
+	由数学归纳法，原命题成立。
+\end{proof}
