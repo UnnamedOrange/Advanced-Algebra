@@ -1,3 +1,109 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\section{克拉默法则}
+
+我们直接研究 $n$ 个方程的 $n$ 元线性方程组的增广矩阵，以期得出用方程组的系数和常数项表示的方程组的解。
+
+设某 $n$ 个方程的 $n$ 元线性方程组为：
+$$
+\left[\begin{array}{c|c}
+	\begin{matrix}
+		a_{11} & \cdots & a_{1n}
+		\\
+		a_{21} & \cdots & a_{2n}
+		\\
+		\vdots & & \vdots
+		\\
+		a_{n1} & \cdots & a_{nn}
+	\end{matrix}
+	&
+	\begin{matrix}
+		b_1 \\ b_2 \\ \vdots \\ b_n
+	\end{matrix}
+\end{array}\right]
+$$
+
+我们用一个列向量的等式表示原方程组。这是首次使用这种方法，但该方法非常重要。
+$$
+x_1 \cdot \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{n1} \end{bmatrix} +
+x_2 \cdot \begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{n2} \end{bmatrix} +
+\cdots +
+x_n \cdot \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{nn} \end{bmatrix} =
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+$$
+
+设：
+$$
+\begin{matrix}
+	\vec{\beta_i} = \begin{bmatrix} a_{1i} \\ a_{2i} \\ \vdots \\ a_{ni} \end{bmatrix},
+	&
+	\vec{\beta} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+\end{matrix}
+$$
+
+则原方程组可记为：
+$$
+x_1 \vec \beta_1 + x_2 \vec \beta_2 + \cdots + x_n \vec \beta_n = \vec \beta
+$$
+
+移项可得：
+$$
+x_1 \vec \beta_1 + x_2 \vec \beta_2 + \cdots + x_n \vec \beta_n - \vec \beta =
+\begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
+\triangleq \vec 0
+$$
+
+希望得到 $x_i$ 的表达式，于是将上式记为：
+$$
+x_1 \vec \beta_1 + \cdots + (x_i \vec \beta_i - \vec \beta) + \cdots + x_n \vec \beta_n = \vec 0
+$$
+
+设 $n \times n$ 的矩阵 $P$ 为：
+$$
+P =
+\begin{bmatrix} \vec \beta_1 & \cdots & \vec \beta_{i - 1} & x_i \vec \beta_i - \vec \beta & \vec \beta_{i + 1} & \cdots & \vec \beta_n \end{bmatrix}
+$$
+
+则由行列式的多线性，$\det P$ 为：
+$$
+\det P = x_i \cdot
+\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{vmatrix}
+-
+\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_{i - 1} & \vec \beta & \vec \beta_{i + 1} & \cdots & \vec \beta_n \end{vmatrix}
+$$
+
+由于 $-(x_i \vec \beta_i - \vec \beta)$ 是其他各列向量的和，因此 $\det P = 0$。当 $\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{vmatrix} \ne 0$ 时，可得：
+$$
+x_i = \dfrac{\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_{i - 1} &\vec \beta & \vec \beta_{i + 1} & \cdots & \vec \beta_n \end{vmatrix}}{\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{vmatrix}}
+$$
+
+总结以上结论，我们得到以下定理。
+
+\begin{theorem}[克拉默法则]
+	设 $A$ 是某 $n$ 个方程的 $n$ 元线性方程组的系数矩阵，$B_i$ 是把系数矩阵 $A$ 的第 $i$ 列换成常数项得到的矩阵。当 $|A| \ne 0$ 时，原方程组的唯一解是：
+	$$
+	\left( \dfrac{|B_i|}{|A|}, \dfrac{|B_2|}{|A|}, \ldots, \dfrac{|B_n|}{|A|} \right)'
+	$$
+\end{theorem}
+
+在知道了克拉默法则的结论后，我们也可以用以下方法证明该结论。
+
+\begin{proof}
+	把 $x_j = \dfrac{|B_j|}{|A|} \pod{j = 1, 2, \ldots, n}$ 代入第 $i$ 个方程的左侧，得：
+	$$
+	\begin{aligned}&
+		a_{i1} \dfrac{|B_1|}{|A|} + a_{i2} \dfrac{|B_2|}{|A|} + \cdots + a_{in} \dfrac{|B_n|}{|A|}
+		\\=~&
+		\sum\limits_{j = 1}^n a_{ij} \dfrac{|B_j|}{|A|}
+		\\=~&
+		\dfrac{1}{|A|} \sum\limits_{j = 1}^n a_{ij} \biggl( \sum\limits_{k = 1}^n b_k A_{kj} \biggr) \pod{\text{按第 $j$ 列展开}}
+		\\=~&
+		\dfrac{1}{|A|} \sum\limits_{k = 1}^n b_k \biggl( \sum\limits_{j = 1}^n a_{ij} A_{kj} \biggr)
+		\\=~&
+		b_i \pod{\text{某行元素与某行代数余子式乘积之和}}
+	\end{aligned}
+	$$
+
+	即说明 $\left( \dfrac{|B_i|}{|A|}, \dfrac{|B_2|}{|A|}, \ldots, \dfrac{|B_n|}{|A|} \right)'$ 是原线性方程组的一组解。
+\end{proof}
