@@ -1,3 +1,62 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\section{线性相关与线性无关的向量组}
+
+在向量空间 $\mathbb K^2$ 中，设：
+$$
+	\vec e_1 = (1, 0)
+$$$$
+	\vec e_2 = (0, 1)
+$$
+
+显然，$\langle \vec e_1, \vec e_2 \rangle = \mathbb K^2$。进一步，我们想知道 $\mathbb K^2$ 上的其他向量组的张成是什么。举两例，$\langle (1, 0), (1, 1) \rangle = \mathbb K^2$，但 $\langle (1, 1), (2, 2) \rangle \ne \mathbb K^2$。可见，这两个向量组的张成不同，与向量组中的各向量有直接关系：第一例中，两向量“不共线”；而第二例中，两向量“共线”。我们将这一思路推广，引出以下定义。
+
+\begin{definition}{线性相关}
+	设 $\mathbb K^n$ 中一向量组为 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 1}$。如果 $\mathbb K$ 中有不全为 $0$ 的数 $k_1, \ldots, k_s$，使得 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0$，则称该向量组是\emph{线性相关}的。
+\end{definition}
+
+\begin{definition}{线性无关}
+	设 $\mathbb K^n$ 中一向量组为 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 1}$。如果该向量组不是线性相关的，则称该向量组是\emph{线性无关}的。
+
+	换言之，如果可以由 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0$ 得出 $k_1 = k_2 = \cdots = k_s = 0$，则该向量组是线性无关的。
+\end{definition}
+
+在以上定义的基础上，我们给出以下显然的结论。
+
+\begin{theorem}
+	包含零向量的向量组一定线性相关。
+\end{theorem}
+
+\begin{proof}
+	因为 $1 \cdot \vec 0 + 0 \cdot \vec \alpha_2 + \cdots + 0 \cdot \vec \alpha_s = \vec 0$。
+\end{proof}
+
+\begin{theorem}
+	单个向量 $\vec \alpha$ 组成的向量组线性相关当且仅当 $\vec \alpha = \vec 0$。
+\end{theorem}
+
+\begin{proof}
+	因为“存在 $k \ne 0$ 使得 $k \vec \alpha = \vec 0$”是 $\vec \alpha = \vec 0$ 的充分必要条件。
+\end{proof}
+
+\begin{theorem}
+	$\mathbb K^n$ 中，以下向量组成的向量组是线性无关的：
+	$$
+	\begin{aligned}
+		\vec e_1 &= (1, 0, 0, \ldots, 0, 0)
+		\\
+		\vec e_2 &= (0, 1, 0, \ldots, 0, 0)
+		\\
+		\vdots
+		\\
+		\vec e_n &= (0, 0, 0, \ldots, 0, 1)
+	\end{aligned}
+	$$
+\end{theorem}
+
+由线性无关的定义即可得出该结论。
+
+\subsection{从多个角度考察线性相关与线性无关的本质区别}
+
+定义中，用“是否存在不全为零的一组满足方程的数”区别线性相关与线性无关。事实上，还可以从以下其他角度考察线性相关与线性无关，它们都非常重要。
