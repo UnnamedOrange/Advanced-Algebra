@@ -61,7 +61,7 @@
 	\noindent
 	\textbf{定义} \emph{#1}:%
 }
-{
+{%
 	\end{mdframed}
 }
 
@@ -75,7 +75,7 @@
 	\textbf{定理}
 	\ifthenelse{\isempty{#1}}{\stepcounter{cTheorem}\arabic{cTheorem}}{\emph{#1}\index{#1}}: %
 }
-{
+{%
 	\end{mdframed}
 }
 
@@ -87,7 +87,7 @@
 	{\noindent \textbf{证明}~{#1}}
 
 }
-{
+{%
 	\end{mdframed}
 }
 
@@ -99,6 +99,6 @@
 	{\noindent \textbf{解}~{#1}}
 
 }
-{
+{%
 	\end{mdframed}
 }

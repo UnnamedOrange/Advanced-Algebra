@@ -1,3 +1,145 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\chapter{$n$ 维向量空间}
+
+\section{$n$ 维向量空间 $\mathbb K^n$ 及其子空间}
+
+前面我们用到过向量的数乘与加法，这里我们有必要对向量相关的一系列概念与操作进行明确定义。
+
+\bigskip
+
+取定一个数域 $\mathbb K$，设 $n$ 是任意给定的一个正整数，定义：
+$$
+	\mathbb K^n \triangleq \{ (a_1, a_2, \ldots, a_n): a_i \in \mathbb K, i = 1, 2, \ldots, n \}
+$$
+
+定义 $\mathbb K^n$ 上的\emph{相等}。若 $a_1 = b_1, a_2 = b_2, \ldots, a_n = b_n$，则称 $\mathbb K^n$ 中的两个元素 $(a_1, a_2, \ldots, a_n)$、$(b_1, b_2, \ldots, b_n)$ 相等。
+
+定义 $\mathbb K^n$ 上的\emph{加法运算}。规定：
+$$
+(a_1, a_2, \ldots, a_n) + (b_1, b_2, \ldots, b_n) = (a_1 + b_1, a_2 + b_2, \ldots, a_n + b_n)
+$$
+
+定义 $\mathbb K^n$ 上的\emph{数量乘法}。规定：
+$$
+k \cdot (a_1, a_2, \ldots, a_n) = (k a_1, k a_2, \ldots, k a_n) \pod{k \in \mathbb K}
+$$
+
+可以验证，$\mathbb K^n$ 上的加法和数量乘法满足下述 $8$ 条运算法则。对于任意 $\vec \alpha, \vec \beta, \vec \gamma \in \mathbb K^n$，$k, l \in \mathbb K$，有：
+\begin{enumerate}
+	\item 加法交换律。即 $\vec \alpha + \vec \beta = \vec \beta + \vec \alpha$。
+	\item 加法结合律。即 $(\vec \alpha + \vec \beta) + \vec \gamma = \vec \alpha + (\vec \beta + \vec \gamma)$。
+	\item 存在唯一零元（加法的单位元），记为 $\vec 0$。它满足 $\vec 0 + \vec \alpha = \vec \alpha + \vec 0 = \vec 0$。显然 $\vec 0 = (0, 0, \ldots, 0)$。
+	\item 任一 $\mathbb K^n$ 中的元素存在负元（加法的逆元），记 $\vec \alpha$ 的负元为 $-\vec \alpha$。它满足 $\vec \alpha + (-\vec \alpha) = (-\vec \alpha) + \vec \alpha = \vec 0$。设 $\vec \alpha = (a_1, a_2, \ldots, a_n)$，显然 $-\vec \alpha = (-a_1, -a_2, \ldots, -a_n)$。
+	\item 数乘的单位元。即存在 $1 \in \mathbb K$，使得 $1 \vec \alpha = \vec \alpha$。
+	\item 数乘的乘法结合律。即 $(kl) \vec \alpha = k(l \vec \alpha)$。
+	\item 数的乘法分配律。即 $(k + l) \vec \alpha = k \vec \alpha + l \vec \alpha$。
+	\item 向量的乘法分配律。即 $k(\vec \alpha + \vec \beta) = k \vec \alpha + k \vec \beta$。
+\end{enumerate}
+
+\begin{definition}{$n$ 维向量空间}
+	数域 $\mathbb K$ 上所有 $n$ 元有序数组组成的集合 $\mathbb K^n$，连同定义在它上面的加法运算和数量乘法运算，及其满足的八条运算法则一起，称为数域 $\mathbb K$ 上的一个 \emph{$n$ 维向量空间}。
+\end{definition}
+
+在 $n$ 维向量空间 $\mathbb K^n$ 中，可以定义减法运算：
+$$
+\vec \alpha - \vec \beta \triangleq \vec \alpha + (- \vec \beta)
+$$
+
+\begin{definition}{行向量,列向量}
+	$n$ 元有序数组写成一行 $(a_1, a_2, \ldots, a_n)$，称为\emph{行向量}；写成一列：
+	$$
+	\begin{pmatrix}
+		a_1 \\ a_2 \\ \vdots \\ a_n
+	\end{pmatrix}
+	$$
+	称为\emph{列向量}。
+
+	列向量可以看成是相应的行向量的转置，可记为 $(a_1, a_2, \ldots, a_n)'$。
+\end{definition}
+
+$\mathbb K^n$ 可以看成是 $n$ 维行向量组成的向量空间，也可以看成是 $n$ 维列向量组成的向量空间。
+
+\begin{definition}{线性组合,系数}
+	给定向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$，任给 $\mathbb K$ 中一组数 $k_1, k_2, \ldots, k_s$，就可以得到一个向量：
+	$$
+	k_1 \vec \alpha_1 + k_2 \vec \alpha_2 + \cdots + k_s \vec \alpha_s
+	$$
+	称这个向量是向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的一个\emph{线性组合}。其中 $k_1, k_2, \ldots, k_s$ 称为\emph{系数}。
+\end{definition}
+
+\begin{definition}{线性表出}
+	在 $\mathbb K^n$ 中，给定向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$，对于 $\vec \beta \in \mathbb K^n$，如果存在 $K$ 中的一组数 $c_1, c_2, \ldots, c_s$，使得：
+	$$
+	\vec \beta = c_1 \vec \alpha_1 + c_2 \vec \alpha_2 + \cdots + c_s \vec \alpha_s
+	$$
+	则称 $\vec \beta$ 可以由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ \emph{线性表出}。
+\end{definition}
+
+定义线性表出后，我们可以很自然地想要将 $s$ 个方程的 $n$ 元线性方程组与 $s$ 维向量空间联系起来。若记 $s$ 个方程的 $n$ 元线性方程组为：
+$$
+x_1 \cdot \begin{pmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{s1} \end{pmatrix} +
+x_2 \cdot \begin{pmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{s2} \end{pmatrix} +
+\cdots +
+x_n \cdot \begin{pmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{sn} \end{pmatrix} =
+\begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_s \end{pmatrix}
+$$
+
+并且设 $\vec \alpha_i = (\alpha_{1i}, \alpha_{2i}, \ldots, \alpha_{si})'$，$\vec \beta = (b_1, b_2, \ldots, b_s)'$，则原方程组记为：
+$$
+x_1 \vec \alpha_1 + x_2 \vec \alpha_2 + \cdots + x_n \vec \alpha_n = \vec \beta
+$$
+
+所以，我们得到以下定理。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的线性方程组 $x_1 \vec \alpha_1 + x_2 \vec \alpha_2 + \cdots + x_n \vec \alpha_n = \vec \beta$ 有解的充分必要条件是，$\vec \beta$ 可以由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 线性表出。
+\end{theorem}
+
+所以我们之后会重点研究一个向量能否被一个向量组线性表出的问题。为此，我们引出线性子空间的概念。
+
+\begin{definition}{线性子空间,子空间}
+	$\mathbb K^n$ 的一个非空子集 $U$ 如果满足：
+	\begin{enumerate}
+		\item $U$ 对于 $\mathbb K^n$ 的加法封闭。即对于任意 $\vec \alpha, \vec \gamma \in U$，总有 $\vec \alpha + \vec \gamma \in U$。
+		\item $U$ 对于 $\mathbb K^n$ 的数量乘法封闭。即对于任意 $\vec \alpha \in U, k \in \mathbb K$，总有 $k \vec \alpha \in U$。
+	\end{enumerate}
+	则称 $U$ 是 $\mathbb K^n$ 的一个\emph{线性子空间}，简称为\emph{子空间}。
+\end{definition}
+
+\begin{theorem}
+	向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的所有线性组合组成的集合 $W$ 是 $\mathbb K^n$ 的一个子空间。
+\end{theorem}
+
+\begin{proof}
+	$W$ 是：
+	$$
+	W = \{ k_1 \vec \alpha_1 + k_2 \vec \alpha_2 + \cdots + k_s \vec \alpha_s: k_i \in \mathbb K, i = 1, 2, \ldots, s \}
+	$$
+
+	任取 $\vec \alpha, \vec \gamma \in W$，设：
+	$$
+	\vec \alpha = a_1 \vec \alpha_1 + a_2 \vec \alpha_2 + \cdots + a_s \vec \alpha_s
+	$$$$
+	\vec \gamma = b_1 \vec \alpha_1 + b_2 \vec \alpha_2 + \cdots + b_s \vec \alpha_s
+	$$
+
+	则：
+	$$
+	\vec \alpha + \vec \gamma = (a_1 + b_1) \vec \alpha_1 + (a_2 + b_2) \vec \alpha_2 + \cdots + (a_s + b_s) \vec \alpha_s
+	$$$$
+	k \vec \alpha = (k a_1) \vec \alpha_1 + (k a_2) \vec \alpha_2 + \cdots + (k a_s) \vec \alpha_s \pod{k \in \mathbb K}
+	$$
+
+	从以上结果可见，$\vec \alpha + \vec \gamma \in W$、$k \vec \alpha \in W$。证毕。
+\end{proof}
+
+子空间 $W$ 完全取决于向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$，因此我们定义以下概念。
+
+\begin{definition}{生成,张成}
+	向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的所有线性组合组成的 $\mathbb K^n$ 的子空间 $W$ 称为 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 生成（或张成）的子空间，简称为向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的\emph{生成}（或\emph{张成}）。记为：
+	$$
+	\langle \vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s \rangle
+	$$
+\end{definition}

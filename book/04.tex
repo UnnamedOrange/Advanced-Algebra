@@ -3,9 +3,9 @@
 
 \section{克拉默法则}
 
-我们直接研究 $n$ 个方程的 $n$ 元线性方程组的增广矩阵，以期得出用方程组的系数和常数项表示的方程组的解。
+当某线性方程组有唯一解时，我们希望得出用方程组的系数和常数项表示的解。
 
-设某 $n$ 个方程的 $n$ 元线性方程组为：
+设某 $n$ 个方程的 $n$ 元线性方程组的增广矩阵为：
 $$
 \left[\begin{array}{c|c}
 	\begin{matrix}
@@ -24,21 +24,21 @@ $$
 \end{array}\right]
 $$
 
-我们用一个列向量的等式表示原方程组。这是首次使用这种方法，但该方法非常重要。
+我们用一个列向量的等式表示原方程组。这里尚未明确定义列向量的概念，但由于该方法非常重要，因此提前于此提出，之后会详细介绍该方法涉及的定义与知识。
 $$
-x_1 \cdot \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{n1} \end{bmatrix} +
-x_2 \cdot \begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{n2} \end{bmatrix} +
+x_1 \cdot \begin{pmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{n1} \end{pmatrix} +
+x_2 \cdot \begin{pmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{n2} \end{pmatrix} +
 \cdots +
-x_n \cdot \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{nn} \end{bmatrix} =
-\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+x_n \cdot \begin{pmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{nn} \end{pmatrix} =
+\begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{pmatrix}
 $$
 
 设：
 $$
 \begin{matrix}
-	\vec{\beta_i} = \begin{bmatrix} a_{1i} \\ a_{2i} \\ \vdots \\ a_{ni} \end{bmatrix},
+	\vec{\beta_i} = \begin{pmatrix} a_{1i} \\ a_{2i} \\ \vdots \\ a_{ni} \end{pmatrix},
 	&
-	\vec{\beta} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+	\vec{\beta} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{pmatrix}
 \end{matrix}
 $$
 
@@ -50,7 +50,7 @@ $$
 移项可得：
 $$
 x_1 \vec \beta_1 + x_2 \vec \beta_2 + \cdots + x_n \vec \beta_n - \vec \beta =
-\begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
+\begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
 \triangleq \vec 0
 $$
 
