@@ -60,3 +60,137 @@ $$
 \subsection{从多个角度考察线性相关与线性无关的本质区别}
 
 定义中，用“是否存在不全为零的一组满足方程的数”区别线性相关与线性无关。事实上，还可以从以下其他角度考察线性相关与线性无关，它们都非常重要。
+
+\begin{enumerate}
+	\item 从齐次线性方程组看：
+
+	向量组 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 1}$ 线性相关 $\Longleftrightarrow$ 他们有系数不全为 $0$ 的线性组合等于零向量。
+
+	向量组 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 1}$ 线性无关 $\Longleftrightarrow$ 他们只有系数全为 $0$ 的线性组合才会等于零向量。
+
+	\item 从线性表出看：
+
+	向量组 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 2}$ 线性相关 $\Longleftrightarrow$ 其中至少有一个向量可以由其余向量线性表出。
+
+	\begin{proof}
+		充分性。设 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 线性相关，则有不全为 $0$ 的数 $k_1, k_2, \ldots, k_s$，使得：
+		$$
+		k_1 \vec \alpha_1 + k_2 \vec \alpha_2 + \cdots + k_s \vec \alpha_s = \vec 0
+		$$
+
+		设 $k_i \ne 0$，则由上式得：
+		$$
+		\vec \alpha_i = - \frac{k_1}{k_i} \vec \alpha_1 - \cdots - \frac{k_{i - 1}}{k_i} \vec \alpha_{i - 1} - \frac{k_{i + 1}}{k_i} \vec \alpha_{i + 1} - \cdots - \frac{k_s}{k_1} \vec \alpha_s
+		$$
+
+		\bigskip
+
+		必要性。设 $\vec \alpha_j = l_1 \vec \alpha_1 + \cdots + l_{j - 1} \vec \alpha_{j - 1} + l_{j + 1} \vec \alpha_{j + 1} + \cdots + l_s \vec \alpha_s$，则：
+		$$
+		l_1 \vec \alpha_1 + \cdots + l_{j - 1} \vec \alpha_{j - 1} - \vec \alpha_j + l_{j + 1} \vec \alpha_{j + 1} + \cdots + l_s \vec \alpha_s = \vec 0
+		$$
+
+		从而 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 线性相关。
+	\end{proof}
+
+	向量组 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 2}$ 线性无关 $\Longleftrightarrow$ 其中每一个向量都不能由其余向量线性表出。
+
+	\item 从齐次线性方程组看：
+
+	列向量组 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 1}$ 线性相关 $\Longleftrightarrow$ 齐次线性方程组 $x_1 \vec \alpha_1 + \ldots + x_s \vec \alpha_s = \vec 0$ 有非零解。
+
+	列向量组 $\vec \alpha_1, \ldots, \vec \alpha_s \pod{s \ge 1}$ 线性无关 $\Longleftrightarrow$ 齐次线性方程组 $x_1 \vec \alpha_1 + \ldots + x_s \vec \alpha_s = \vec 0$ 只有零解。
+
+	\item 从行列式看：
+
+	$n$ 个 $n$ 维列（行）向量 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 线性相关 $\Longleftrightarrow$ 以 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 为列（行）向量组的矩阵的行列式等于零。
+
+	$n$ 个 $n$ 维列（行）向量 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 线性无关 $\Longleftrightarrow$ 以 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 为列（行）向量组的矩阵的行列式不等于零。
+
+	\item 从向量组线性表出一个向量的方式看：
+
+	设向量 $\vec \beta$ 可以由向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出。
+
+	向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关 $\Longleftrightarrow$ 表出方式唯一。
+
+	\begin{proof}
+		设 $\vec \beta = b_1 \vec \alpha_1 + \cdots + b_s \vec \alpha_s$。
+
+		\bigskip
+
+		充分性。已知 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关。如果还有 $\vec \beta = c_1 \vec \alpha_1 + \cdots + c_s \vec \alpha_s$，那么：
+		$$
+		b_1 \vec \alpha_1 + \cdots + b_s \vec \alpha_s = c_1 \vec \alpha_1 + \cdots + c_s \vec \alpha_s
+		$$
+
+		从而：
+		$$
+		(b_1 - c_1) \vec \alpha_1 + \cdots + (b_s - c_s) \vec \alpha_s = \vec 0
+		$$
+
+		由于 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关，因此有：
+		$$
+		b_1 - c_1 = \cdots = b_s - c_s = 0
+		$$
+
+		即 $b_1 = c_1, \ldots, b_s = c_s$，因此 $\vec \beta$ 由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出的方式唯一。
+
+		\bigskip
+
+		必要性。已知 $\vec \beta$ 由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出的方式唯一。假如 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性相关，则有不全为 $0$ 的数 $k_1, \ldots, k_s$，使得 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0$。则可得：$\vec \beta = (b_1 + k_1) \vec \alpha_1 + \cdots + (b_s + k_s) \vec \alpha_s$。由于 $k_1, \ldots, k_s$  不全为 $0$，因此 $(b_1 + k_1, \ldots, b_s + k_s) \ne (b_1, \ldots, b_s)$，于是 $\vec \beta$ 由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出的方式至少有两种，这与表出方式唯一矛盾，因此 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关。
+	\end{proof}
+
+	向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性相关 $\Longleftrightarrow$ 表出方式有无穷多种。
+
+	\item 从向量组与它的部分组的关系看：
+
+	如果向量组的一个部分组线性相关，那么整个向量组也线性相关。
+
+	如果向量组线性无关，那么它的任何一个部分组也线性无关。
+
+	\item 从向量组与它的延伸组或缩短组的关系看：
+
+	如果向量组线性无关，那么把每个向量添上 $m$ 个分量（所添分量的位置对于每个向量都一样）得到的延伸组也线性无关。（例如，向量 $(1, 2)$ 增加两个分量变为 $(1, 2, 3, 4)$）
+
+	\begin{proof}
+		设 $\vec \alpha_1, \ldots, \vec \alpha_s$ 的一个延伸组为 $\tilde \alpha_1, \ldots, \tilde \alpha_s$，则从 $k_1 \tilde \alpha_1 + \cdots + k_s \tilde \alpha_s = \vec 0$ 可得出：
+		$$
+		k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0
+		$$
+
+		若 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关，则从上式得 $k_1 = \cdots = k_s = 0$，从而 $\tilde \alpha_1, \ldots, \tilde \alpha_s$ 也线性无关。
+	\end{proof}
+
+	如果向量组线性相关，那么把每个向量去掉 $m$ 个分量（去掉的分量的位置对于每个向量都一样）得到的缩短组也线性相关。注意这是上述命题的逆否命题。
+\end{enumerate}
+
+我们要研究一个向量是否能由一个向量组线性表出，首先需要研究向量组线性无关的情形，因此给出以下定理。
+
+\begin{theorem}
+	设向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关，则向量 $\vec \beta$ 可以由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出的充分必要条件是 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s, \vec \beta$ 线性相关。
+\end{theorem}
+
+\begin{proof}
+	必要性显然，下面证充分性。设 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s, \vec \beta$ 线性相关，则有 $\mathbb K$ 中不全为 $0$ 的数 $k_1, k_2, \ldots, k_s, l$，使得：
+	$$
+	k_1 \vec \alpha_1 + k_2 \vec \alpha_2 + \cdots + k_s \vec \alpha_s + l \vec \beta = \vec 0
+	$$
+
+	假设 $l = 0$，则 $k_1, k_2, \ldots, k_s$ 不全为 $0$，并且从上式可得：
+	$$
+	k_1 \vec \alpha_1 + k_2 \vec \alpha_2 + \cdots + k_s \vec \alpha_s = \vec 0
+	$$
+
+	与向量组线性无关矛盾，因此 $l$ 始终不为 $0$，从而：
+	$$
+	\vec \beta = -\dfrac{k_1}{l} \vec \alpha_1 - \dfrac{k_2}{l} \vec \alpha_2 - \cdots - \dfrac{k_s}{l} \vec \alpha_s
+	$$
+
+	即 $\vec \beta$ 可由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出。证毕。
+\end{proof}
+
+下面的定理是上述定理的逆否命题。
+
+\begin{theorem}
+	设向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关，则向量 $\vec \beta$ 不能由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出的充分必要条件是 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s, \vec \beta$ 线性无关。
+\end{theorem}
