@@ -1,3 +1,63 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\section{等价关系}
+
+集合中的元素之间可能会存在某种关系。例如，集合 $\R$ 中的元素存在“小于”关系：设 $a, b \in \R$，则有可能 $a < b$，这时我们称 $a$ 小于 $b$。可见，小于关系是集合中两个元素之间的关系，为此，我们定义以下概念，以抽象“关系”一词。
+
+\begin{definition}{笛卡尔积,相等}
+	设 $A, B$ 是两个集合，则集合 $\{ (a, b): a \in A, b \in B \}$ 称为 $A$ 与 $B$ 的\emph{笛卡尔积}，记作 $A \times B$。若 $A \times B$ 中的两个元素 $(a_1, b_1)$ 与 $(a_2, b_2)$ 满足 $a_1 = a_2$ 且 $b_1 = b_2$，那么称它们\emph{相等}，记作 $(a_1, b_1) = (a_2, b_2)$。
+\end{definition}
+
+\begin{definition}{二元关系}
+	设 $S$ 是一个非空集合，则称 $S \times S$ 的一个子集 $W$ 叫做 $S$ 上的一个\emph{二元关系}。如果 $(a, b) \in W$，那么称 $a$ 与 $b$ 有 $W$ 关系；如果 $(a, b) \not \in W$，那么称 $a$ 与 $b$ 没有 $W$ 关系。当 $a$ 与 $b$ 有 $W$ 关系时，记作 $aWb$，或 $a \sim b$。
+\end{definition}
+
+显然，“小于”是 $\R$ 上的一个二元关系。可以注意到，若 $a < b$，则不可能 $b < a$。而对于 $\R$ 上的“等于”关系，若 $a = b$，则一定也有 $b = a$。可见，关系本身可能满足一定性质。
+
+等价关系是一类特殊的关系，将会在之后的内容中反复出现，下面给出其定义。
+
+\begin{definition}{等价关系}
+	设存在一集合 $S$，如果 $\forall a, b, c \in S$，集合 $S$ 上的一个二元关系 $\sim$ 总具有下述性质：
+	\begin{enumerate}
+		\item 反身性。即 $a \sim a$。
+		\item 对称性。即，若 $a \sim b$，则 $b \sim a$。
+		\item 传递性。即，若 $a \sim b$ 且 $b \sim c$，则 $a \sim c$。
+	\end{enumerate}
+
+	则称 $\sim$ 是 $S$ 上的一个等价关系。
+\end{definition}
+
+顾名思义，等价关系描述了集合中两元素在某方面等价的性质。在给出等价关系的定义后，可以将集合中的元素根据等价关系进行分类，相互等价的元素分为一类，由此引出\emph{等价类}的概念。等价类将在之后引出并分析。
+
+\subsection{向量组的一种等价关系}
+
+下面介绍一种向量组之间的等价关系，作为等价关系的一个实例。
+
+设 $S$ 是 $\mathbb K^n$ 中所有“元素数量有限的向量组”组成的集合，其中的任意两个元素设为 $A, B$，并设 $A$ 为 $\vec \alpha_1, \ldots, \vec \alpha_s$，$B$ 为 $\vec \beta_1, \ldots, \vec \beta_r$。定义关系 $\sim$：若 $\forall i = 1, 2, \ldots, s, \vec \alpha_i$ 可由 $\vec \beta_1, \ldots, \vec \beta_r$ 线性表出，且 $\forall j = 1, 2, \ldots, r, \vec \beta_j$ 可由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出，则 $A \sim B$。直观地说，该关系的含义为“两（元素数量有限的）向量组可相互表出”。
+
+\begin{theorem}
+	关系“两向量组可相互表出”是一个等价关系。
+\end{theorem}
+
+\begin{proof}
+	显然 $\sim$ 具有反身性和对称性，下面证明 $\sim$ 具有传递性。
+
+	设 $A$ 为 $\vec \alpha_1, \ldots, \vec \alpha_s$，$B$ 为 $\vec \beta_1, \ldots, \vec \beta_r$，$C$ 为 $\vec \gamma_1, \ldots, \vec \gamma_t$，且 $A, B, C \in S$。若 $A \sim B$ 且 $B \sim C$，则可设：
+	$$
+	\vec \alpha_i = \sum\limits_{j = 1}^r b_{ij} \vec \beta_j \pod{i = 1, \ldots, s}
+	$$$$
+	\vec \beta_j = \sum\limits_{l = 1}^t c_{jl} \vec \gamma_l \pod{j = 1, \ldots, r}
+	$$
+
+	于是有：
+	$$
+	\begin{aligned}
+		\vec \alpha_i &= \sum\limits_{j = 1}^r b_{ij} \biggl( \sum\limits_{l = 1}^t c_{jl} \vec \gamma_l \biggr)
+		\\&=
+		\sum\limits_{l = 1}^t \biggl( \sum\limits_{j = 1}^r b_{ij} c_{jl} \biggr) \vec \gamma_l \pod{i = 1, \ldots, s}
+	\end{aligned}
+	$$
+
+	说明 $A$ 中的向量可由 $C$ 线性表出。同理可得 $C$ 中的向量可由 $A$ 线性表出，即可知 $A \sim C$。证毕。
+\end{proof}
