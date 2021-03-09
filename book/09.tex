@@ -1,3 +1,88 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\section{矩阵的秩}
+
+矩阵的行秩与列秩有何关系？下面我们研究该问题，并给出矩阵的秩的概念。
+
+首先给出以下引理。
+
+\begin{theorem}
+	矩阵的初等列变换不改变矩阵的列秩。
+\end{theorem}
+
+具体证明略。证明思路是，对于初等列变换的三种操作，分别验证操作前后的两向量组可以互相表出，从而他们的线性相关性不变。
+
+\begin{theorem}
+	矩阵的初等行变换不改变矩阵列向量组的线性相关性，从而不改变矩阵的列秩。
+\end{theorem}
+
+\begin{proof}
+	设原矩阵为 $C = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_s \end{bmatrix}$，经过初等行变换后，新矩阵为 $D = \begin{bmatrix} \vec \beta_1 & \cdots & \vec \beta_s \end{bmatrix}$。以 $C$ 为系数矩阵的齐次线性方程组和以 $D$ 为系数矩阵的齐次线性方程组同解。因此其中一个方程组有非零解当且仅当另一个方程组有非零解，于是 $C$ 线性相关当且仅当 $D$ 线性相关。
+
+	设矩阵 $A$ 经过初等行变换变成矩阵 $B$，并且不妨设 $B$ 的前 $r$ 列构成 $B$ 的列向量组的一个极大线性无关组。由上一段可知，$A$ 的前 $r$ 个列向量构成的向量组线性无关。任取 $A$ 其余列中的一列，记为第 $l$ 列，由上一段以及对 $B$ 的假设可知，$A$ 的前 $r$ 列和第 $l$ 列组成的向量组线性相关，因此 $A$ 的前 $r$ 列构成 $A$ 的列向量组的一个极大线性无关组。
+
+	综上所述，矩阵的初等行变换不改变矩阵的列秩。
+\end{proof}
+
+以上两个定理互换行与列显然也成立。
+
+要进一步研究矩阵行向量组与列向量组的秩之间的关系，可以从一类特殊的矩阵入手。我们给出以下定理。
+
+\begin{theorem}
+	简化行阶梯形矩阵 $J$ 的行秩与列秩相等，它们都等于 $J$ 的非零行的个数。并且 $J$ 的主元所在列构成列向量组的一个极大线性无关组。
+\end{theorem}
+
+\begin{proof}
+	设简化行阶梯形矩阵 $J$ 的主元所在列为 $j_1, j_2, \ldots, j_r$ 列。
+
+	\begin{enumerate}
+		\item 证明这 $r$ 个列向量构成的向量组线性无关。
+
+		取出这 $r$ 列构成一个新的矩阵，并删去这个新矩阵的零行，则剩下 $r$ 行。该 $r \times r$ 矩阵的行列式非零，则这 $r$ 个缩短的列向量是线性无关的。由于线性无关的向量组的延伸组也线性无关，因此这 $r$ 个列向量构成的向量组线性无关。
+
+		\item 证明这 $r$ 个列向量构成的向量组是 $J$ 的列向量组的一个极大线性无关组。
+
+		注意到，对于第 $j_k \pod{k = 1, \ldots, r}$ 列，它的第 $k$ 行为 $1$，其余行为 $0$。而对于所有的列，$r$ 行之后都是零行。于是，从剩余的列中任选一列，该列总是可以由主元所在的 $r$ 列构成的向量组线性表出。故这 $r$ 列是 $J$ 的列向量组的一个极大线性无关组。
+
+		\item 证明行秩也等于 $r$。
+
+		显然 $J$ 的前 $r$ 行构成的行向量组是 $J$ 的行向量组的极大线性无关组。
+	\end{enumerate}
+
+	综上，原命题成立。
+\end{proof}
+
+综合以上结论，我们可以得到以下是深刻而重要的结论。
+
+\begin{theorem}
+	任一矩阵 $A$ 的行秩等于它的列秩。
+\end{theorem}
+
+由此，我们定义矩阵的秩。
+
+\begin{definition}{矩阵的秩}
+	矩阵 $A$ 的行秩与列秩统称为 $A$ 的\emph{秩}，记作 $\operatorname{rank}(A)$。
+\end{definition}
+
+根据以上证明过程及结论，我们得出以下重要推论。
+
+\begin{theorem}
+	设矩阵 $A$ 经过初等行变换化成简化行阶梯形矩阵 $J$。设 $J$ 的主元所在的列是第 $j_1, j_2, \ldots, j_r$ 列，则 $A$ 的第 $j_1, j_2, \ldots, j_r$ 列构成 $A$ 的列向量组的一个极大线性无关组。
+\end{theorem}
+
+\begin{theorem}
+	矩阵的初等列变换不改变矩阵的秩。
+\end{theorem}
+
+\begin{theorem}
+	若向量组 $A$ 可由 $B$ 表出，且 $\operatorname{rank}(A) = \operatorname{rank}(B)$，则 $A$ 与 $B$ 等价。
+\end{theorem}
+
+\begin{proof}
+	设 $A' = \vec \alpha_{i_1}, \ldots, \vec \alpha_{i_r}$ 和 $B' = \vec \beta_{j_1}, \ldots, \vec \beta_{j_r}$ 分别是 $A$ 和 $B$ 的极大线性无关组。
+
+	可知，向量组 $C_l = \vec \alpha_{i_1}, \ldots, \vec \alpha_{i_r}, \vec \beta_{jl} \pod{l = 1, \ldots, r}$ 可被 $B'$ 线性表出，故 $C_l$ 线性相关。由于 $A'$ 线性无关，因此 $B'$ 可被 $A'$ 线性表出。即可证得 $A$ 与 $B$ 等价。证毕。
+\end{proof}
+
+注意以上证明过程中运用了许多之前的定理但没有注明。
