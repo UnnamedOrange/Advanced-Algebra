@@ -1,3 +1,107 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\section{极大线性无关组，向量组的秩}
+
+\subsection{极大线性无关组}
+
+如果我们有一个向量组，我们自然希望从中取出一个部分组，使得该部分组线性无关，从而该部分组能够表出的向量具有唯一的表出方式。同时，我们还希望这样的子集尽可能大，使得从其余向量中任取一个添进去得到的新的部分组是线性相关的。为此，我们引出以下概念。
+
+\begin{definition}{极大线性无关组}
+	对于一个向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$，若对于一个它的部分组 $S = \vec \alpha_{i_1}, \ldots, \vec \alpha_{i_t}$ 有：
+
+	\begin{enumerate}
+		\item $S$ 是线性无关的。
+		\item $S$ 和 $\vec \alpha_1, \ldots, \vec \alpha_s$ 可相互表出，即它们等价。
+	\end{enumerate}
+
+	则称 $S$ 是 $\vec \alpha_1, \ldots, \vec \alpha_s$ 的一个\emph{极大线性无关组}。
+\end{definition}
+
+根据定义，极大线性无关组与原向量组等价，而它们之间的唯一区别是，极大线性无关组要求“线性无关”，而原向量组没有任何其他要求。根据这个“等价”的关系，我们可以利用等价关系的传递性得出一系列结论。
+
+下面首先阐述一个引理。
+
+\begin{theorem}
+	若向量组 $A$ 可由向量组 $B$ 线性表出，且 $|A| > |B|$，则向量组 $A$ 的向量线性相关。
+\end{theorem}
+
+\begin{proof}
+	设 $A = \vec \alpha_1, \ldots, \vec \alpha_s$，$B = \vec \beta_1, \ldots, \vec \beta_t$，且 $|A| > |B|$，$\vec \alpha_i \pod{i = 1, \ldots, s}$ 可由 $\vec \beta_1, \ldots, \vec \beta_t$ 线性表出。
+
+	考虑 $\sum\limits_{i = 1}^s k_i \vec \alpha_i = \vec 0$ 是否有非零解。不妨设 $\vec \alpha_i = \sum\limits_{l = 1}^t a_{li} \vec \beta_l$，代入上式并化简（改变求和顺序）得：
+	$$
+	\sum_{l = 1}^t \vec \beta_l \biggl( \sum_{i = 1}^s k_i a_{li} \biggr) = \vec 0
+	$$
+	注意到 $\sum\limits_{i = 1}^s k_i a_{li} = 0 \pod{l = 1, \ldots, t}$ 是一个方程个数为 $t$，未知量个数为 $s$ 的齐次线性方程组。由 $t < s$ 可知，该方程组一定有非零解。取该方程组的一组非零解 $k^\circ$，有 $\sum\limits_{i = 1}^s k^\circ_i a_{li} = 0 \pod{l = 1, \ldots, t}$。由于 $\sum\limits_{l = 1}^t \vec \beta_l \biggl( \sum\limits_{i = 1}^s k^\circ_i a_{li} \biggr) = \vec 0$，因此 $\sum\limits_{i = 1}^n k^\circ_i \vec \alpha_i = \vec 0$，即 $A$ 线性相关。证毕。
+\end{proof}
+
+该引理的逆否命题如下。
+
+\begin{theorem}
+	设向量组 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_r$ 可以由向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 线性表出，如果 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_r$ 线性无关，那么 $r \le s$。
+\end{theorem}
+
+由引理的逆否命题，可以得到以下结论。
+
+\begin{theorem}
+	等价的线性无关的向量组所含向量的个数相等。
+\end{theorem}
+
+在引理的基础上，利用等价关系的传递性可以得到以下结论。
+
+\begin{theorem}
+	对于固定的向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$，它的任意两个极大线性无关组所含向量的个数相等。
+\end{theorem}
+
+\begin{proof}
+	设 $A = \vec \alpha_{i_1}, \ldots, \vec \alpha_{i_t}$ 和 $B = \vec \alpha_{j_1}, \ldots, \vec \alpha_{j_q}$ 都是 $C = \vec \alpha_1, \ldots, \vec \alpha_s$ 的极大线性无关组。可知 $A \sim C$ 且 $B \sim C$。由等价关系的传递性，得 $A \sim B$。
+
+	假设 $t \ne q$，不妨假设 $t > q$。由 $A$ 可由 $B$ 表出，可知 $A$ 中的向量线性相关，矛盾，故 $t = q$。证毕。
+\end{proof}
+
+\begin{theorem}
+	向量组的任意两个极大线性无关组等价。
+\end{theorem}
+
+最后，我们关心向量被极大线性无关组表出的问题。有以下结论。
+
+\begin{theorem}
+	$\vec \beta$ 可以由向量组 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性表出当且仅当 $\vec \beta$ 可以由 $\vec \alpha_1, \ldots, \vec \alpha_s$ 的一个极大线性无关组线性表出。
+\end{theorem}
+
+该结论实际上只要求线性表出具有传递性，而这已在“两向量组可相互表出”的传递性中证明。
+
+\subsection{向量组的秩}
+
+由于等价的向量组的极大线性无关组所含向量的个数相等，因此我们引出以下重要概念。
+
+\begin{definition}{向量组的秩}
+	向量组的极大线性无关组所含向量的个数称为这个\emph{向量组的秩}，记作 $\operatorname{rank} \{\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s\}$。全由零向量组成的向量组的秩规定为 $0$。
+\end{definition}
+
+矩阵可以看作行向量的组合，也可以看作列向量的组合。针对矩阵对应的向量组，我们给出以下概念。
+
+\begin{definition}{行秩,列秩}
+	矩阵的行向量组的秩称为\emph{行秩}，列向量组的秩称为\emph{列秩}。
+\end{definition}
+
+之所以向量组的秩很重要，是因为只凭它一个自然数就可以判断向量组是线性无关还是线性相关。
+
+\begin{theorem}
+	向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 线性无关的充分必要条件是它的秩等于它所含向量的个数。
+\end{theorem}
+
+证明略。
+
+如果一个向量组能够表出另一个向量组，则可以比较这两个向量组的秩。
+
+\begin{theorem}
+	如果向量组 $A$ 可以由向量组 $B$ 线性表出，那么 $\operatorname{rank}(A) \le \operatorname{rank}(B)$。
+\end{theorem}
+
+\begin{theorem}
+	等价的向量组有相等的秩。
+\end{theorem}
+
+需要注意的是，秩相等的两个向量组不一定等价。等价不是秩相等，等价的定义是“两向量组可互相表出”。
