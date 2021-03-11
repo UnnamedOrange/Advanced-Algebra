@@ -53,7 +53,7 @@
 	综上，原命题成立。
 \end{proof}
 
-综合以上结论，我们可以得到以下是深刻而重要的结论。
+综合以上结论，我们可以得到以下深刻而重要的结论。
 
 \begin{theorem}
 	任一矩阵 $A$ 的行秩等于它的列秩。
@@ -86,3 +86,72 @@
 \end{proof}
 
 注意以上证明过程中运用了许多之前的定理但没有注明。
+
+\subsection{子式与矩阵的秩}
+
+矩阵的秩与其最高阶非零子式有着密切关系。
+
+\begin{theorem}
+	任一非零矩阵的秩等于它的不为零的子式的最高阶数。
+\end{theorem}
+
+\begin{proof}
+	设矩阵 $s \times n$ 的矩阵 $A$ 的秩为 $r$。按以下思路进行证明：
+	\begin{enumerate}
+		\item 存在 $r$ 阶非零子式。
+
+		$A$ 有 $r$ 行线性无关，它们组成一个矩阵 $A_1$。由于 $\operatorname{rank}(A_1) = r$，因此 $A_1$ 有 $r$ 列线性无关，于是 $A_1$ 的这 $r$ 列形成的行列式不为 $0$，而这是 $A$ 的一个 $r$ 阶子式。
+
+		\item 不存在 $r + k \pod{k \ge 1}$ 阶非零子式。
+
+		设 $m > r$，且 $m \le \min\{s, n\}$。设 $A$ 的第 $j_1, \ldots, j_r$ 列是其列向量组的极大线性无关组，则 $A$ 的任意 $m$ 列都可被这 $r$ 列线性表出。由于 $m > r$，因此这 $m$ 列线性相关，则这 $m$ 列的缩短组线性相关，即 $A$ 的任意 $m$ 阶子式等于 $0$。
+	\end{enumerate}
+\end{proof}
+
+% TODO: 补充第二个证明。
+
+\begin{theorem}
+	设 $s \times n$ 矩阵 $A$ 的秩为 $r$，则 $A$ 的不等于零的 $r$ 阶子式所在的列（行）构成 $A$ 的列（行）向量组的一个极大线性无关组。
+\end{theorem}
+
+\begin{proof}
+	$A$ 的不等于零的 $r$ 阶子式的列（行）向量组线性无关，从而它的延伸组也线性无关，即 $A$ 的相应的 $r$ 列（行）线性无关。由于 $A$ 的秩为 $r$，因此这 $r$ 列（行）构成 $A$ 的列（行）向量组的一个极大线性无关组。
+\end{proof}
+
+显然 $s \times n$ 矩阵的秩至多为 $\min \{s, n\}$，由此可以引出满秩矩阵的定义。
+
+\begin{definition}{满秩矩阵}
+	一个 $n$ 级矩阵 $A$ 的秩如果等于它的阶数 $n$，那么称 $A$ 为\emph{满秩矩阵}。
+\end{definition}
+
+注意满秩矩阵的概念限于方阵，但一般的矩阵也可以被称为是满秩的。
+
+对于满秩矩阵，以下定理显然成立。
+
+\begin{theorem}
+	$n$ 级矩阵 $A$ 满秩的充分必要条件是 $|A| \ne 0$。
+\end{theorem}
+
+\subsection{线性方程组有解的充分必要条件}
+
+利用矩阵的秩，我们给出以下有关线性方程组有解的充分必要条件的结论。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的线性方程组 $x_1 \vec \alpha_1 + x_2 \vec \alpha_2 + \cdots + x_n \vec \alpha_n = \vec \beta$ 有解的充分必要条件是它的系数矩阵与增广矩阵的秩相等。
+\end{theorem}
+
+\begin{proof}
+	原命题 $\Longleftrightarrow$ $\vec \beta$ 可以由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 线性表出 $\Longleftrightarrow$ 系数矩阵列向量组与增广矩阵列向量组等价 $\Longleftrightarrow$ 系数矩阵与增广矩阵的秩相等。
+\end{proof}
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的 $n$ 元线性方程组有解时，如果它的系数矩阵 $A$ 的秩等于 $n$，那么原方程组有唯一解；如果它的秩小于 $n$，那么原方程组有无穷多个解。
+\end{theorem}
+
+使用高斯约当算法判断解的情况，并判断主元个数与秩的关系，即可证明。具体过程略。
+
+针对齐次线性方程组，有以下推论。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的 $n$ 元齐次线性方程组有非零解的充分必要条件是：它的系数矩阵的秩小于未知量的个数 $n$。
+\end{theorem}
