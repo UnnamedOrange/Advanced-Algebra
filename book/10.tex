@@ -3,3 +3,99 @@
 
 \section{向量空间 $\mathbb K^n$ 及其子空间的基与维数}
 
+$\mathbb K^n$ 中，设：
+$$
+\begin{aligned}
+	\vec e_1 &= (1, 0, \ldots, 0)
+	\\
+	\vec e_2 &= (0, 1, \ldots, 0)
+	\\
+	\vdots
+	\\
+	\vec e_n &= (0, 0, \ldots, 1)
+\end{aligned}
+$$
+
+显然 $\vec e_1, \vec e_2, \ldots, \vec e_n$ 是线性无关的。
+
+又设 $\mathbb K^n$ 中的任一向量 $\vec \alpha$ 为：
+$$
+\vec \alpha = (a_1, a_2, \ldots, a_n)
+$$
+
+注意到，$\vec \alpha$ 可以使用 $\vec e_1, \vec e_2, \ldots, \vec e_n$ 表示为：
+$$
+\vec \alpha = \sum\limits_{i = 1}^n a_i \vec e_i
+$$
+
+由此思考，如果给定 $\mathbb K^n$ 中的一组向量 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_m$，能否将 $\mathbb K^n$ 或其子空间中的任一向量表示为 $\sum\limits_{i = 1}^m b_i \vec \beta_i$ 的形式，以使用 $b_1, b_2, \ldots, b_m$ 这 $m$ 个数表示该向量？为了研究这一问题，我们首先引出以下概念。
+
+\begin{definition}{基}
+	设 $U$ 是 $\mathbb K^n$ 的一个子空间，如果 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r \in U$，并且满足下述两个条件：
+	\begin{enumerate}
+		\item $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性无关。
+		\item $U$ 中的每一个向量都可以由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出。
+	\end{enumerate}
+
+	那么称向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 是 $U$ 的一个\emph{基}。
+\end{definition}
+
+由于子空间 $U$ 的基线性无关，因此用 $U$ 的任意一个基线性表出 $U$ 中向量的方式唯一。
+
+前文中已多次出现 $\vec e_1, \vec e_2, \ldots, \vec e_n$，显然该向量组是 $\mathbb K^n$ 的一个基。由它的特殊性，我们给出以下定义。
+
+\begin{definition}{标准基}
+	在 $\mathbb K^n$ 中，称向量组 $\vec e_1, \vec e_2, \ldots, \vec e_n$ 为 $\mathbb K^n$ 的\emph{标准基}。
+\end{definition}
+
+\subsection{基的性质}
+
+\begin{theorem}
+	$\mathbb K^n$ 的任一非零子空间 $U$ 都有一个基。
+\end{theorem}
+
+\begin{proof}[构造法]
+	取 $U$ 中的一个非零向量 $\vec \alpha_1$，向量组 $\vec \alpha_1$ 是线性无关的。若 $\langle \vec \alpha_1 \rangle \ne U$，则存在 $\vec \alpha \in U$，使得 $\vec \alpha_2 \not \in \langle \vec \alpha_1 \rangle$。由于 $\vec \alpha_2$ 不能由 $\vec \alpha_1$ 线性表出，因此 $\vec \alpha_1, \vec \alpha_2$ 线性无关。
+
+	照此循环加入向量，直到 $\langle \vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s \angle = U$。由于 $\mathbb K^n$ 中任一线性无关的向量组中所含向量的个数不超过 $n$，因此一定存在一个有限的向量组使得它们生成的子空间为 $U$。证毕。
+\end{proof}
+
+以上证明过程表明，子空间 $U$ 的任意一个线性无关的向量组都可以扩充成 $U$ 的一个基。
+
+\begin{theorem}
+	$\mathbb K^n$ 的任一非零子空间 $U$ 的任意两个基所含向量的个数相等。
+\end{theorem}
+
+这是因为等价的线性无关的向量组含有相同个数的向量。根据这一性质，我们可以定义子空间的维数。
+
+\begin{definition}{维数}
+	$\mathbb K^n$ 的任一非零子空间 $U$ 的任意一个基所含向量的个数称为 $U$ 的\emph{维数}，记作 $\dim_K U$ 或 $\dim U$。特别地，零子空间也存在维数的概念，规定为 $0$。
+\end{definition}
+
+基于本节已有的定义与性质，我们已经可以针对本节一开始提出的问题给出以下概念。
+
+\begin{definition}{坐标}
+	设 $\vec \alpha_1, \ldots, \vec \alpha_r$ 是 $\mathbb K^n$ 的一个子空间 $U$ 的一个基，则由基的定义，$U$ 的每一个向量 $\vec \alpha$ 都可以由 $\vec \alpha_1, \ldots, \vec \alpha_r$ 唯一地线性表出。设：
+	$$
+	\vec \alpha = a_1 \vec \alpha_1 + a_2 \vec \alpha_2 + \cdots + a_r \vec \alpha_r
+	$$
+	则把有序数组 $(a_1, \ldots, a_r)$ 称为 $\vec \alpha$ 在基 $\vec \alpha_1, \ldots, \vec \alpha_r$ 下的\emph{坐标}。
+\end{definition}
+
+\subsection{维数的性质}
+
+\begin{theorem}
+	设 $\dim U = r$，则 $U$ 中任意 $r + 1$ 个向量都线性相关。
+\end{theorem}
+
+\begin{proof}
+	取 $U$ 的一个基 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$，则 $U$ 中任意的 $r + 1$ 个向量 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_{r + 1}$ 都可由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出，即可知这 $r + 1$ 个向量组成的向量组线性相关\footnote{若向量组 $A$ 可由向量组 $B$ 线性表出，且 $|A| > |B|$，则向量组 $A$ 线性相关。}。
+\end{proof}
+
+\begin{theorem}
+	设 $\dim U = r$，则 $U$ 中任意 $r$ 个线性无关的向量组成的向量组都是 $U$ 的一个基。
+\end{theorem}
+
+\begin{proof}
+	任取 $U$ 中一线性无关的向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$，再任取 $\vec \beta \in U$，则向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r, \vec \beta$ 线性相关，因此 $\vec \beta$ 可由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出。综上， $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 是 $U$ 的一个基。
+\end{proof}
