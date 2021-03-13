@@ -84,6 +84,8 @@ $$
 
 \subsection{维数的性质}
 
+下面给出一系列有关子空间维数的性质。这些性质均给出了严格证明，但都是直观的，可以按感性理解直接使用。
+
 \begin{theorem}
 	设 $\dim U = r$，则 $U$ 中任意 $r + 1$ 个向量都线性相关。
 \end{theorem}
@@ -99,3 +101,44 @@ $$
 \begin{proof}
 	任取 $U$ 中一线性无关的向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$，再任取 $\vec \beta \in U$，则向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r, \vec \beta$ 线性相关，因此 $\vec \beta$ 可由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出。综上， $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 是 $U$ 的一个基。
 \end{proof}
+
+\begin{theorem}
+	设 $\dim U = r$，$\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r \in U$。如果 $U$ 中的每一个向量都可以由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出，那么 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 是 $U$ 的一个基。
+\end{theorem}
+
+\begin{proof}
+	取 $U$ 的一个基 $\vec \delta_1, \vec \delta_2, \ldots, \vec \delta_r$，可知它可被 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出，故两者等价，从而 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 也是 $U$ 的一个基。
+\end{proof}
+
+\begin{theorem}
+	设 $U$ 和 $W$ 都是 $\mathbb K^n$ 的非零子空间，如果 $U \subseteq W$，那么 $\dim U \le \dim W$。
+\end{theorem}
+
+\begin{proof}
+	在 $U$ 和 $W$ 中各取一个基 $A$ 和 $B$。因为 $U \subseteq W$，所以 $A$ 中的向量可被 $B$ 线性表出，从而 $|A| \le |B|$，进而 $\dim U \le \dim W$。
+\end{proof}
+
+\begin{theorem}
+	设 $U$ 和 $W$ 是 $\mathbb K^n$ 的两个非零子空间，且 $U \subseteq W$。如果 $\dim U = \dim W$，那么 $U = W$。
+\end{theorem}
+
+\begin{proof}
+	在 $U$ 中取一个基 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$。由于 $U \subseteq W$，因此 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r \in W$。由于 $\dim W = \dim U = r$，因此 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 是 $W$ 的一个基，从而 $W$ 中任一向量 $\vec \beta$ 可以由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$ 线性表出，于是 $\vec \beta \in U$，因此 $W \subseteq U$，从而 $U = W$。
+\end{proof}
+
+\begin{theorem}
+	向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的一个极大线性无关组是这个向量组生成的子空间 $\langle \vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s \rangle$ 的一个基，从而：
+	$$
+	\dim \langle \vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s \rangle = \operatorname{rank} \{\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s\}
+	$$
+\end{theorem}
+
+\begin{proof}
+	由于向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 生成的子空间 $W = \langle \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s \rangle$ 中的每一个向量都可由 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的一个极大线性无关组线性表出，因此 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 的一个极大线性无关组是 $W$ 的一个基，从而 $\dim W = r$。
+\end{proof}
+
+值得注意的是，维数和秩是两个完全不同的概念。维数是对子空间而言的，秩是对向量组而言的。子空间有无穷多个向量，而向量组只有有限多个向量。为了便于描述，我们补充以下定义。
+
+\begin{definition}{列空间,行空间}
+	数域 $\mathbb K$ 上 $s \times n$ 的矩阵 $A$ 的列向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 生成的子空间称为 $A$ 的\emph{列空间}。$A$ 的行向量组 $\vec \gamma_1, \vec \gamma_2, \ldots, \vec \gamma_s$ 生成的子空间称为 $A$ 的\emph{行空间}。$A$ 的列（行）空间的维数等于 $A$ 的列（行）向量组的秩，即等于 $A$ 的秩。
+\end{definition}
