@@ -1,19 +1,11 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
-\documentclass[UTF8, b5paper]{book}
-
-\title{高等代数}
-\author{UnnamedOrange}
-
+\documentclass[UTF8]{book}
 \usepackage{ctex}
-\usepackage[hidelinks]{hyperref}
-\hypersetup
-{
-	pdfauthor = {UnnamedOrange},
-	pdftitle = {高等代数}
-}
-\usepackage[top=2.54cm, bottom=2.54cm, left=2.54cm, right=1.91cm]{geometry}
+
+\input{hyperref}
+\input{geometry_default}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
