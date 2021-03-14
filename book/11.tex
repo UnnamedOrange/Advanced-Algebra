@@ -1,0 +1,94 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{齐次线性方程组的解集的结构}
+
+\begin{definition}{解向量}
+	数域 $\mathbb K$ 上的 $n$ 元齐次线性方程组 $x_1 \vec \alpha_1 + x_2 \vec \alpha_2 + \cdots + x_n \vec \alpha_n = \vec 0$ 的一个解是 $\mathbb K^n$ 中的一个向量，称它为齐次线性方程组的一个\emph{解向量}。
+\end{definition}
+
+用解向量的观点来考察方程组的解集，可知 $n$ 元齐次线性方程组的解集 $W$ 是 $\mathbb K^n$ 的一个非空子集。本节的目的便是研究 $W$ 的结构。
+
+注意到有：
+\begin{enumerate}
+	\item 若 $\vec \gamma, \vec \delta \in W$，则 $\vec \gamma + \vec \delta \in W$。
+	\item 若 $\vec \gamma \in W, k \in \mathbb K$，则 $k \vec \gamma \in W$。
+\end{enumerate}
+
+所以 $W$ 是 $\mathbb K^n$ 的一个子空间，我们将其称为解空间。
+
+\begin{definition}{解空间}
+	齐次线性方程组的解集 $W$ 是 $\mathbb K^n$ 的一个子空间，称它为方程组的\emph{解空间}。
+\end{definition}
+
+要进一步研究解空间的结构，自然想到要研究解空间的基。为此，我们给出以下概念。
+
+\begin{definition}{基础解系}
+	齐次线性方程组有非零解时，如果它的有限多个解 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_t$ 满足：
+	\begin{enumerate}
+		\item $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_t$ 线性无关。
+		\item 齐次线性方程组的每一个解都可以由 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_t$ 线性表出。
+	\end{enumerate}
+	则称 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_t$ 是齐次线性方程组的一个\emph{基础解系}。
+\end{definition}
+
+基础解系的定义与基的定义相同，只是把研究对象限定为解空间了。
+
+如果已知齐次线性方程组的一个基础解系 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_t$，那么我们其实已经知道齐次线性方程组的解集 $W$。
+$$
+W = \langle \vec \eta_1, \vec \eta_2, \ldots, \vec \eta_t \rangle
+$$
+
+所以我们研究如何得到基础解系即可。利用构造法，我们可以得出以下定理。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的 $n$ 元齐次线性方程组的解空间 $W$ 的维数为 $\dim W = n - \operatorname{rank}(A)$，其中 $A$ 是方程组的系数矩阵。从而当齐次线性方程组有非零解时，它的每个基础解系所含解向量的个数都为 $n - \operatorname{rank}(A)$。
+\end{theorem}
+
+\begin{proof}[构造法]
+	若 $\operatorname{rank}(A) = n$，则 $W = \{\vec 0\}$，显然成立。下面设 $\operatorname{rank}(A) = r < n$。
+
+	对 $A$ 进行初等行变换，化成简化行阶梯形矩阵 $J$。可知 $J$ 有 $r$ 个主元，不妨设它们分别在第 $1, 2, \ldots, r$ 列，于是齐次线性方程组的一般解为：
+	$$
+	\begin{cases}
+		x_1 = -b_{1, r + 1} x_{r + 1} - \cdots - b_{1n} x_n
+		\\
+		x_2 = -b_{2, r + 1} x_{r + 1} - \cdots - b_{2n} x_n
+		\\
+		\vdots
+		\\
+		x_r = -b_{r, r + 1} x_{r + 1} - \cdots - b_{rn} x_n
+	\end{cases}
+	$$
+
+	让自由未知量 $x_{r + 1}, \ldots, x_n$ 分别取下述 $n - r$ 组数：
+	$$
+	\begin{pmatrix}
+		1 \\ 0 \\ \vdots \\ 0
+	\end{pmatrix},
+	\begin{pmatrix}
+		0 \\ 1 \\ \vdots \\ 0
+	\end{pmatrix},
+	\ldots,
+	\begin{pmatrix}
+		0 \\ 0 \\ \vdots \\ 1
+	\end{pmatrix}
+	$$
+
+	则由一般解的公式可得方程组的 $n - r$ 个解：
+	$$
+	\vec \eta_1 =
+	\begin{pmatrix}
+		-b_{1, r + 1} \\ -b_{2, r + 1} \\ \vdots \\ -b_{r, r + 1} \\ 1 \\ 0 \\ \vdots \\ 0
+	\end{pmatrix},
+	\ldots,
+	\vec \eta_{n - r} =
+	\begin{pmatrix}
+		-b_{1n} \\ -b_{2n} \\ \vdots \\ -b_{rn} \\ 0 \\ 0 \\ \vdots \\ 1
+	\end{pmatrix}
+	$$
+
+	显然 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_{n - r}$ 线性无关。而对于齐次线性方程组的任意一组解，都显然可以由 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_{n - r}$ 线性表出，从而 $\vec \eta_1, \vec \eta_2, \ldots, \vec \eta_{n - r}$ 是方程组的一个基础解系，它包含的解向量的个数为 $n - \operatorname{rank}(A)$，于是 $\dim W = n - \operatorname{rank}(A)$。证毕。
+\end{proof}
+
+非齐次线性方程组的解集的结构又如何？设其对应的齐次线性方程组（常数项从 $\vec \beta$ 改为 $\vec 0$，称这个齐次线性方程组为原方程组的\emph{导出组}\index{导出组}）的解空间为 $W$，事实上，非齐次线性方程组的解集是一个 $W$ 型的\emph{线性流形}\index{线性流形}。相关的内容请自行查阅，本笔记不予讨论。
