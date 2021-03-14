@@ -1,0 +1,4 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\usepackage[b5paper, top=2.54cm, bottom=2.54cm, left=1.91cm, right=1.91cm]{geometry}
