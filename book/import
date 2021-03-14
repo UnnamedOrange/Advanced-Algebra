@@ -1,11 +1,9 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
-\documentclass[UTF8]{book}
 \usepackage{ctex}
 
 \input{hyperref}
-\input{geometry_default}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
