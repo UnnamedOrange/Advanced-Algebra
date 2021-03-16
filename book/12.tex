@@ -1,0 +1,109 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\chapter{矩阵的运算}
+
+\section{矩阵的加法和数量乘法}
+
+将矩阵看作一个集合中的元素，自然想到可以为矩阵定义运算。为了书写关于矩阵的等式，我们首先定义矩阵的相等。
+
+\begin{definition}{相等}
+	设数域 $\mathbb K$ 上的两个矩阵分别为 $A$ 和 $B$。如果它们的行数相等，列数也相等，并且它们的所有元素对应相等（即第一个矩阵的 $(i, j)$ 元等于第二个矩阵的 $(i, j)$ 元），那么称 $A$ 与 $B$ \emph{相等}，记作 $A = B$。
+\end{definition}
+
+类似于向量，我们可以很自然地想到定义矩阵的加法和数量乘法。
+
+\begin{definition}{和}
+	设 $A = (a_{ij})$ 和 $B = (b_{ij})$ 都是数域 $\mathbb K$ 上的 $s \times n$ 矩阵。令 $C = (a_{ij} + b_{ij})_{s \times n}$，则称 $C$ 是矩阵 $A$ 与 $B$ 的\emph{和}，记作 $C = A + B$。
+\end{definition}
+
+\begin{definition}{数量乘积}
+	设 $A = (a_{ij})$ 是数域 $\mathbb K$ 上的 $s \times n$ 矩阵，$k \in \mathbb K$。令 $M = (k a_{ij})_{s \times n}$，则称 $M$ 是 $k$ 与矩阵 $A$ 的\emph{数量乘积}，记作 $M = k A$。
+\end{definition}
+
+类似于向量空间中加法的负元，我们为矩阵定义其负矩阵。
+
+\begin{definition}{负矩阵}
+	设 $A = (a_{ij})_{s \times n}$，则矩阵 $(-a_{ij})_{s \times n}$ 称为 $A$ 的\emph{负矩阵}，记作 $-A$。
+\end{definition}
+
+容易验证，矩阵的加法与数量乘法满足类似于 $n$ 维向量的加法与数量乘法所满足的 $8$ 条运算法则。对于 $\mathbb K$ 上的 $s \times n$ 矩阵的运算，满足：
+\begin{enumerate}
+	\item 加法交换律。
+	\item 加法结合律。
+	\item 存在唯一零元（加法的单位元），称为零矩阵，记为 $\mathbf 0$。
+	\item 任一矩阵存在负元（加法的逆元），即负矩阵。
+	\item 数乘的单位元。
+	\item 数乘的乘法结合律。
+	\item 数的乘法分配律。
+	\item 矩阵的乘法分配律。
+\end{enumerate}
+
+最后，利用负矩阵的概念，我们可以定义矩阵的减法。
+
+\begin{definition}{差}
+	设 $A, B$ 都是 $s \times n$ 矩阵，则矩阵减法 $A - B$ 定义为 $A + (-B)$，称为 $A$ 与 $B$ 的\emph{差}。
+\end{definition}
+
+\section{$\mathbb K^n$ 到 $\mathbb K^s$ 的线性映射}
+
+矩阵还可以做什么运算？为了回答这一问题，需要研究 $\mathbb K^n$ 到 $\mathbb K^s$ 的线性映射。首先，我们在此明确提出映射及其相关概念。
+
+\subsection{映射}
+
+\begin{definition}{映射,象,原象}
+	设 $S$ 和 $S'$ 是两个集合，如果存在一个对应法则 $f$，使得集合 $S$ 中的每一个元素 $a$，都有集合 $S'$ 中唯一确定的元素 $b$ 与它对应，那么称 $f$ 是集合 $S$ 到 $S'$ 的一个\emph{映射}，记作：
+	$$
+	\begin{aligned}
+		f \colon & S \to S'
+		\\&
+		a \mapsto b
+	\end{aligned}
+	$$
+
+	其中 $b$ 称为 $a$ 在 $f$ 下的\emph{象}，$a$ 称为 $b$ 在 $f$ 下的一个\emph{原象}。$a$ 在 $f$ 下的象用符号 $f(a)$ 表示，于是映射 $f$ 也可以记成 $f(a) = b \pod{a \in S}$。
+\end{definition}
+
+\begin{definition}{定义域,陪域,值域,映射的象}
+	设 $f$ 是集合 $S$ 到集合 $S'$ 的一个映射，则把 $S$ 叫做映射 $f$ 的\emph{定义域}，把 $S'$ 叫做 $f$ 的\emph{陪域}。$S$ 的所有元素在 $f$ 下的象组成的集合叫做 $f$ 的\emph{值域}或 $f$ 的\emph{象}，记作 $f(S)$ 或 $\operatorname{Im} f$。容易看出，$f$ 的值域是 $f$ 的陪域的子集。
+\end{definition}
+
+\begin{definition}{满射}
+	设 $f$ 是集合 $S$ 到集合 $S'$ 的一个映射，如果 $f(S) = S'$，那么称 $f$ 是\emph{满射}（或 $f$ 是 $S$ 到 $S'$ 上的映射）。可知，$f$ 是满射当且仅当 $f$ 的陪域中每一个元素都有至少一个原象。
+\end{definition}
+
+\begin{definition}{单射}
+	如果映射 $f$ 的定义域 $S$ 中不同的元素的象也不同，那么称 $f$ 是\emph{单射}。可知，$f$ 是单射当且仅当从 $a_1, a_2 \in S$ 且 $f(a_1) = f(a_2)$ 可以推出 $a_1 = a_2$。
+\end{definition}
+
+\begin{definition}{双射,一一对应}
+	如果映射 $f$ 既是单射，又是满射，那么称 $f$ 是\emph{双射}（或 $f$ 是 $S$ 到 $S'$ 的一个\emph{一一对应}）。显然，$f$ 是双射当且仅当陪域中每一个元素都有唯一的一个原象。
+\end{definition}
+
+\begin{definition}{相等}
+	 如果映射 $f$ 与映射 $g$ 的定义域相等，陪域相等，并且对应法则相同（即 $\forall x \in S$，有 $f(x) = g(x)$），则称映射 $f$ 与映射 $g$ \emph{相等}。
+\end{definition}
+
+下面提出一些常用的名词或概念。
+
+\begin{definition}{变换}
+	集合 $S$ 到自身的一个映射，通常称为 $S$ 上的一个\emph{变换}。
+\end{definition}
+
+\begin{definition}{函数}
+	集合 $S$ 到数集（数域 $\mathbb K$ 的任一非空子集）的一个映射，通常称为 $S$ 上的一个\emph{函数}。
+\end{definition}
+
+\begin{definition}{原象集}
+	陪域 $S'$ 中的元素 $b$ 在映射 $f$ 下的所有原象组成的集合称为 $b$ 在 $f$ 下的\emph{原象集}，记作 $f^{-1}(b)$。
+\end{definition}
+
+\begin{definition}{恒等映射,恒等变换}
+	如果映射 $f \colon S \to S$ 把 $S$ 中每一个元素对应到它自身，即 $\forall x \in S$，有 $f(x) = x$，那么称 $f$ 是\emph{恒等映射}（或 $S$ 上的\emph{恒等变换}），记作 $1_S$。
+\end{definition}
+
+\begin{definition}{乘积,合成}
+	相继施行映射 $g: S \to S'$ 和 $f \colon S' \to S''$，得到 $S$ 到 $S''$ 的一个映射，称为 $f$ 与 $g$ 的\emph{乘积}（或\emph{合成}），记作 $fg$。即有 $(fg)(a) = f(g(a)) \pod{\forall a \in S}$。
+\end{definition}
+
+我们发现，在一个由映射组成的集合中，两映射之间可以进行比较和运算，还存在恒等映射的概念。所以我们接下来进一步研究这些概念与性质，并相应地提出逆映射等概念。
