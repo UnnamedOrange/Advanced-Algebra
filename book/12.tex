@@ -107,3 +107,91 @@
 \end{definition}
 
 我们发现，在一个由映射组成的集合中，两映射之间可以进行比较和运算，还存在恒等映射的概念。所以我们接下来进一步研究这些概念与性质，并相应地提出逆映射等概念。
+
+\begin{theorem}
+	设 $h \colon S \to S$，$g \colon S' \to S''$，$f \colon S'' \to S'''$，则有 $f(gh) = (fg)h$，即映射的合成满足结合律。
+\end{theorem}
+
+需要注意，映射的合成不满足交换律。
+
+\begin{theorem}
+	对于任意一个映射 $f \colon S \to S'$，都有 $f 1_S = f = 1_{S'} f$。
+\end{theorem}
+
+\begin{definition}{可逆,逆映射}
+	设 $f \colon S \to S'$，如果存在一个映射 $g \colon S' \to S$，使得 $fg = 1_{S'}$ 且 $gf = 1_S$，那么称映射 $f$ 是\emph{可逆}的，$g$ 是 $f$ 的一个\emph{逆映射}。
+\end{definition}
+
+\begin{theorem}
+	如果映射 $f$ 是可逆的，那么它的逆映射是唯一的。
+\end{theorem}
+
+\begin{proof}
+	设 $g$ 和 $h$ 都是 $f$ 的一个逆映射，则：
+	$$
+	h(fg) = h 1_{S'} = h
+	$$
+
+	由结合律又知：
+	$$
+	h(fg) = (hf)g = 1_S g = g
+	$$
+
+	所以 $h = g$。
+\end{proof}
+
+所以我们可以记 $f$ 的逆映射为 $f^{-1}$。
+
+\begin{theorem}
+	映射 $f \colon S \to S'$ 可逆的充分必要条件为 $f$ 是双射。
+\end{theorem}
+
+% TODO: 补充证明。
+
+证明略。
+
+\subsection{线性映射与矩阵乘法的定义}
+
+\begin{definition}{线性映射}
+	如果 $\mathbb K^n$ 到 $\mathbb K^s$ 的一个映射 $\sigma$ 保持加法和数量乘法，那么称 $\sigma$ 是 $\mathbb K^n$ 到 $\mathbb K^s$ 的一个\emph{线性映射}。所谓保持加法和数量乘法，是指：
+	$$
+	\forall \vec \alpha, \vec \beta \in \mathbb K^n, k \in \mathbb K
+	$$
+	都有：
+	$$
+	\sigma(\vec \alpha + \vec \beta) = \sigma(\vec \alpha) + \sigma(\vec \beta), \sigma(k \vec \alpha) = k \sigma (\vec \alpha)
+	$$
+\end{definition}
+
+下面尝试从线性映射的概念出发定义矩阵乘法。设某一 $\mathbb K^n$ 到 $\mathbb K^s$ 的线性映射为 $\phi$。考察 $\mathbb K^n$ 的标准基 $\vec e_1, \ldots, \vec e_n$，如果我们已知：
+$$
+\phi(\vec e_1) = \vec \alpha_1, \ldots, \phi(\vec e_n) = \vec \alpha_n
+$$
+那么事实上我们可以求出 $\mathbb K^n$ 中的任一向量 $\vec x$ 在 $\phi$ 下的象。设 $\vec x = (x_1, \ldots, x_n)'$，则有：
+$$
+\begin{aligned}
+	\phi(\vec x) &= \phi(x_1 \vec e_1 + \cdots + x_n \vec e_n)
+	\\&=
+	\phi(x_1 \vec e_1) + \phi(x_2 \vec e_2 + \cdots + x_n \vec e_n)
+	\\&=
+	x_1 \phi(\vec e_1) + \phi(x_2 \vec e_2 + \cdots + x_n \vec e_n)
+	\\&=
+	x_1 \vec \alpha_1 + \cdots + x_n \vec \alpha_n
+\end{aligned}
+$$
+
+受 $\phi(x) = x_1 \vec \alpha_1 + \cdots + x_n \vec \alpha_n$ 的启发，我们定义矩阵的乘积如下。
+
+\begin{definition}{矩阵的乘积}
+	设 $A = (a_{ij})_{s \times n}, B = (b_{ij})_{n \times m}$，令 $C = (c_{ij})_{s \times m}$，其中：
+	$$
+	c_{ij} = \sum\limits_{k = 1}^n a_{ik} b_{kj} \pod{i = 1, \ldots, s; j = 1, \ldots, m}
+	$$
+	则矩阵 $C$ 称为\emph{矩阵 $A$ 与 $B$ 的乘积}，记作 $C = AB$。
+\end{definition}
+
+如此定义后，记矩阵 $A = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$（$\vec \alpha_i \pod{i = 1, \ldots, n}$ 都是列向量），并把 $\vec x$ 和 $\phi(\vec x)$ 都看作 $n \times 1$ 的矩阵，则 $\phi(\vec x) = x_1 \vec \alpha_1 + \cdots + x_n \vec \alpha_n$ 便可用矩阵乘法记为 $\phi(\vec x) = A \vec x$。
+
+\subsection{矩阵乘法与线性映射的关系}
+
+以上对矩阵乘法的定义只是一个受启发后的产物。矩阵乘法与有限维向量空间的线性映射还有什么更深刻的关系？首先需要知道矩阵与线性映射的一一对应关系。
