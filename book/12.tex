@@ -45,7 +45,7 @@
 	设 $A, B$ 都是 $s \times n$ 矩阵，则矩阵减法 $A - B$ 定义为 $A + (-B)$，称为 $A$ 与 $B$ 的\emph{差}。
 \end{definition}
 
-\section{$\mathbb K^n$ 到 $\mathbb K^s$ 的线性映射}
+\section{$\mathbb K^n$ 到 $\mathbb K^s$ 的线性映射——矩阵乘法}
 
 矩阵还可以做什么运算？为了回答这一问题，需要研究 $\mathbb K^n$ 到 $\mathbb K^s$ 的线性映射。首先，我们在此明确提出映射及其相关概念。
 
@@ -192,6 +192,50 @@ $$
 
 如此定义后，记矩阵 $A = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$（$\vec \alpha_i \pod{i = 1, \ldots, n}$ 都是列向量），并把 $\vec x$ 和 $\phi(\vec x)$ 都看作 $n \times 1$ 的矩阵，则 $\phi(\vec x) = x_1 \vec \alpha_1 + \cdots + x_n \vec \alpha_n$ 便可用矩阵乘法记为 $\phi(\vec x) = A \vec x$。
 
-\subsection{矩阵乘法与线性映射的关系}
+\subsection{矩阵乘法与线性映射的一一对应关系}
 
 以上对矩阵乘法的定义只是一个受启发后的产物。矩阵乘法与有限维向量空间的线性映射还有什么更深刻的关系？首先需要知道矩阵与线性映射的一一对应关系。
+
+\begin{theorem}
+	设 $A, B$ 为两个任意的 $n$ 列的矩阵。若对于 $\mathbb K^n$ 中的任一列向量 $\vec x$，都有 $A \vec x = B \vec x$，则 $A = B$。
+\end{theorem}
+
+\begin{proof}
+	取 $\vec x = \vec e_i \pod{i = 1, \ldots, n}$，则可知 $A \vec e_i = B \vec e_i$。这意味着 $A$ 的第 $i$ 列与 $B$ 的第 $i$ 列相等。考虑 $i = 1, \ldots, n$，可知 $A$ 与 $B$ 的每一列都相等，即 $A = B$。
+\end{proof}
+
+\begin{theorem}
+	若 $\phi \colon \mathbb K^n \to \mathbb K^m$ 是一个线性映射，则存在唯一的 $m \times n$ 矩阵 $A$，使得 $\phi(\vec x) = A \vec x$。
+\end{theorem}
+
+\begin{proof}[反证法]
+	由前文中的 $\phi(x) = x_1 \vec \alpha_1 + \cdots + x_n \vec \alpha_n$ 即可证得存在性，下面证唯一性。假设存在矩阵 $B \ne A$ 使得 $\varphi(\vec x) = B \vec x$，则有 $A \vec x = B \vec x$，但这又意味着 $A = B$，所以满足 $\phi(\vec x) = A \vec x$ 的矩阵 $A$ 是唯一的。
+\end{proof}
+
+\begin{theorem}
+	设矩阵 $A$ 是任意一个 $m \times n$ 矩阵。若映射 $\phi$ 满足：
+	$$
+	\begin{aligned}
+		\phi \colon & \mathbb K^n \to \mathbb K^m
+		\\&
+		\vec x \mapsto A \vec x
+	\end{aligned}
+	$$
+
+	则 $\phi$ 是一个线性映射。
+\end{theorem}
+
+\begin{proof}
+	只需证明 $A (k \vec x) = kA \vec x$ 且 $A (\vec x + \vec y) = A \vec x + A \vec y$。将在只有的内容中进行证明。
+\end{proof}
+
+\subsection{矩阵乘法的更多理解方式}
+
+
+
+\subsection{复合的线性映射}
+
+
+
+\subsection{线性映射的单射性与满射性}
+
