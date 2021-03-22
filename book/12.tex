@@ -192,7 +192,7 @@ $$
 
 如此定义后，记矩阵 $A = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$（$\vec \alpha_i \pod{i = 1, \ldots, n}$ 都是列向量），并把 $\vec x$ 和 $\phi(\vec x)$ 都看作 $n \times 1$ 的矩阵，则 $\phi(\vec x) = x_1 \vec \alpha_1 + \cdots + x_n \vec \alpha_n$ 便可用矩阵乘法记为 $\phi(\vec x) = A \vec x$。
 
-\subsection{矩阵乘法与线性映射的一一对应关系}
+\subsection{矩阵与线性映射的一一对应关系}
 
 以上对矩阵乘法的定义只是一个受启发后的产物。矩阵乘法与有限维向量空间的线性映射还有什么更深刻的关系？首先需要知道矩阵与线性映射的一一对应关系。
 
@@ -226,12 +226,84 @@ $$
 \end{theorem}
 
 \begin{proof}
-	只需证明 $A (k \vec x) = kA \vec x$ 且 $A (\vec x + \vec y) = A \vec x + A \vec y$。将在只有的内容中进行证明。
+	只需证明 $A (k \vec x) = kA \vec x$ 且 $A (\vec x + \vec y) = A \vec x + A \vec y$。将在之后的内容中进行证明。
 \end{proof}
 
 \subsection{矩阵乘法的更多理解方式}
 
+设矩阵 $A = (a_{ij})_{s \times n}, B = (b_{ij})_{n \times m}$。矩阵乘法 $C = AB = (c_{ij})_{s \times m}$ 的定义式为：
+$$
+c_{ij} = \sum\limits_{k = 1}^n a_{ik} b_{kj} \pod{i = 1, \ldots, s; j = 1, \ldots, m}
+$$
 
+只看定义式是比较抽象的，下面我们介绍两种对偶的更易理解的表述方式。
+
+\begin{enumerate}
+	\item 设：
+	$$
+	B = \begin{bmatrix} \vec \beta_1 & \vec \beta_2 & \cdots & \vec \beta_n \end{bmatrix}
+	$$
+
+	则：
+	$$
+	C = \begin{bmatrix} A \vec \beta_1 & A \vec \beta_2 & \cdots & A \vec \beta_n \end{bmatrix}
+	$$
+
+	又即，$C$ 的每一列是 $A$ 的各列向量以 $B$ 的对应列为权的加权和。
+
+
+	\item 设：
+	$$
+	A = \begin{bmatrix} \vec \alpha_1 \\ \vec \alpha_2 \\ \vdots \\ \vec \alpha_n \end{bmatrix}
+	$$
+
+	则：
+	$$
+	C = \begin{bmatrix} \vec \alpha_1 B \\ \vec \alpha_2 B \\ \vdots \\ \vec \alpha_n B \end{bmatrix}
+	$$
+
+	又即，$C$ 的每一行是 $B$ 的各行向量以 $A$ 的对应行为权的加权和。
+\end{enumerate}
+
+\begin{proof}
+	只证 “$C$ 的每一行是 $B$ 的各行向量以 $A$ 的对应行为权的加权和”。根据矩阵乘法的定义，$C$ 的第 $i$ 行为：
+	$$
+	\begin{pmatrix}
+		a_{i1} b_{11} + a_{i2} b_{21} + \cdots + a_{in} b_{n1}
+		\\
+		a_{i1} b_{12} + a_{i2} b_{22} + \cdots + a_{in} b_{n2}
+		\\
+		\vdots
+		\\
+		a_{i1} b_{1m} + a_{i2} b_{2m} + \cdots + a_{in} b_{nm}
+	\end{pmatrix}'
+	$$
+	注意上式是一个行向量，只是记为了列向量的转置。
+
+	注意到上式中 $b_{jk}$ 的系数都是 $a_{ij}$（即该系数与 $k$ 无关），因此上式可以拆为：
+	$$
+	a_{i1}
+	\begin{pmatrix}
+		b_{11} \\ b_{12} \\ \vdots \\ b_{1m}
+	\end{pmatrix}'
+	+
+	a_{i2}
+	\begin{pmatrix}
+		b_{21} \\ b_{22} \\ \vdots \\ b_{2m}
+	\end{pmatrix}'
+	+
+	\cdots
+	+
+	a_{in}
+	\begin{pmatrix}
+		b_{n1} \\ b_{n2} \\ \vdots \\ b_{nm}
+	\end{pmatrix}'
+	$$
+
+	这即说明 $C$ 的第 $i$ 行是 $B$ 的各行向量以 $A$ 的第 $i$ 行为权的加权和。
+\end{proof}
+
+在后面我们可以看到，这种将矩阵拆分为若干向量，乃至若干“块”的思路有着重要应用。
 
 \subsection{复合的线性映射}
 
