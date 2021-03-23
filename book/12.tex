@@ -102,8 +102,8 @@
 	如果映射 $f \colon S \to S$ 把 $S$ 中每一个元素对应到它自身，即 $\forall x \in S$，有 $f(x) = x$，那么称 $f$ 是\emph{恒等映射}（或 $S$ 上的\emph{恒等变换}），记作 $1_S$。
 \end{definition}
 
-\begin{definition}{乘积,合成}
-	相继施行映射 $g: S \to S'$ 和 $f \colon S' \to S''$，得到 $S$ 到 $S''$ 的一个映射，称为 $f$ 与 $g$ 的\emph{乘积}（或\emph{合成}），记作 $fg$。即有 $(fg)(a) = f(g(a)) \pod{\forall a \in S}$。
+\begin{definition}{乘积,合成,复合}
+	相继施行映射 $g: S \to S'$ 和 $f \colon S' \to S''$，得到 $S$ 到 $S''$ 的一个映射，称为 $f$ 与 $g$ 的\emph{乘积}（或\emph{合成}，或\emph{复合}），记作 $fg$（或 $f \circ g$）。即有 $(fg)(a) = f(g(a)) \pod{\forall a \in S}$。
 \end{definition}
 
 我们发现，在一个由映射组成的集合中，两映射之间可以进行比较和运算，还存在恒等映射的概念。所以我们接下来进一步研究这些概念与性质，并相应地提出逆映射等概念。
@@ -305,9 +305,128 @@ $$
 
 在后面我们可以看到，这种将矩阵拆分为若干向量，乃至若干“块”的思路有着重要应用。
 
-\subsection{复合的线性映射}
+\subsection{线性映射的复合}
 
+我们继续研究线性映射。线性映射的复合满足什么性质？直觉告诉我们，线性映射的复合仍然是线性映射。
 
+\begin{theorem}
+	若 $\phi_1 \colon \mathbb K^n \to \mathbb K^m$ 和 $\phi_2 \colon \mathbb K^m \to \mathbb K_s$ 均为线性映射，则它们的复合 $(\phi_2 \circ \phi_1)$ 仍然是线性映射。
+\end{theorem}
+
+\begin{proof}
+	按定义证明。设 $\vec \alpha, \vec \beta$ 是 $\mathbb K^n$ 中的任意两个向量，考察：
+	$$
+	\begin{aligned}
+		(\phi_2 \circ \phi_1) (\vec \alpha + \vec \beta) &= \phi_2(\phi_1(\vec \alpha + \vec \beta))
+		\\&=
+		\phi_2(\phi_1(\vec \alpha) + \phi_1(\vec \beta))
+		\\&=
+		\phi_2(\phi_1(\vec \alpha)) + \phi_2(\phi_1(\vec \beta))
+		\\&=
+		(\phi_2 \circ \phi_1)(\vec \alpha) + (\phi_2 \circ \phi_1)(\vec \beta)
+	\end{aligned}
+	$$$$
+	\begin{aligned}
+		(\phi_2 \circ \phi_1)(\lambda \vec \alpha) &= \phi_2(\phi_1(\lambda \vec \alpha))
+		\\&=
+		\phi_2(\lambda \phi_1(\vec \alpha))
+		\\&=
+		\lambda \phi_2(\phi_1(\vec \alpha))
+		\\&=
+		\lambda (\phi_2 \circ \phi_1)(\vec \alpha)
+	\end{aligned}
+	$$
+\end{proof}
+
+线性映射的复合对应的矩阵是什么？我们给出如下定理。
+
+\begin{theorem}
+	设任意两个线性映射分别为 $\phi_1 \colon \mathbb K^n \to \mathbb K^m$ 和 $\phi_2 \colon \mathbb K^m \to \mathbb K_s$，它们对应的左乘矩阵分别为 $A_{m \times n}, B_{s \times m}$。若 $(\phi_2 \circ \phi_1)(\vec x) = M \vec x$，则 $M = BA$。
+\end{theorem}
+
+% TODO: 按照原有的笔记进行证明。
+
+\begin{proof}
+	$$
+	\begin{aligned}
+		(\phi_2 \circ \phi_1)(\vec x) &= \phi_2(\phi_1(\vec x))
+		\\&=
+		\phi_2(A \vec x)
+		\\&=
+		B(A \vec x)
+	\end{aligned}
+	$$
+
+	若矩阵乘法满足结合律，则上式成立。矩阵乘法的结合律将在后文进行证明。
+\end{proof}
 
 \subsection{线性映射的单射性与满射性}
 
+在这初探线性映射与矩阵乘法的小节，我们用线性映射的单射性和满射性结尾，旨在为后面的内容做一个引子。
+
+对于线性映射 $\phi \colon \mathbb K^n \to \mathbb K^m$，可以稍微具体地描述其单射性和满射性：
+\begin{itemize}
+	\item 若 $\phi$ 是单射，则从 $\phi(\vec x) = \phi(\vec y)$ 可以推出 $\vec x = \vec y$。
+	\item 若 $\phi$ 是满射，则 $\forall \vec z \in \mathbb K^m, \exists \vec x \in \mathbb K^n$，使得 $\phi(\vec x) = \vec z$。
+\end{itemize}
+
+清楚以上两点后，可以更好地理解线性映射的单射性和满射性。
+
+\bigskip
+
+线性映射什么时候是单射，什么时候是满射？我们给出以下三个重要的定理。
+
+\begin{theorem}
+	设线性映射 $\phi \colon \mathbb K^n \to \mathbb K^m$ 对应的左乘矩阵为 $A_{m \times n}$。$\phi$ 是单射的充分必要条件是 $\operatorname{rank}(A) = n$，即 $A$ 列满秩。
+\end{theorem}
+
+\begin{proof}
+	$$
+	\begin{aligned}&
+		\text{$\phi$ 是单射。}
+		\\\Longleftrightarrow~&
+		\text{$\phi(\vec 0) = \vec 0$ 且 $\Bigl( \phi(\vec x) = \phi(\vec y) \Longleftrightarrow \vec x = \vec y \Bigr)$}
+		\\\Longleftrightarrow~&
+		\text{$\Bigl( \phi(\vec x) = \vec 0 \Longleftrightarrow \vec x = \vec 0 \Bigr)$}
+		\\\Longleftrightarrow~&
+		\text{$\Bigl(A \vec x = \vec 0 \Longleftrightarrow \vec x = \vec 0 \Bigr)$}
+		\\\Longleftrightarrow~&
+		\text{齐次线性方程组 $A \vec x = \vec 0$ 只有零解。}
+		\\\Longleftrightarrow~&
+		\text{$\dim \{ \vec x \colon A \vec x = \vec 0 \} = 0$}
+		\\\Longleftrightarrow~&
+		\text{$\operatorname{rank}(A) = n$}
+	\end{aligned}
+	$$
+\end{proof}
+
+\begin{theorem}
+	设线性映射 $\phi \colon \mathbb K^n \to \mathbb K^m$ 对应的左乘矩阵为 $A_{m \times n}$。$\phi$ 是满射的充分必要条件是 $\operatorname{rank}(A) = m$，即 $A$ 行满秩。
+\end{theorem}
+
+\begin{proof}
+	设：
+	$$
+	A = \begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_n \end{bmatrix}
+	$$
+
+	$$
+	\begin{aligned}&
+		\text{$\phi$ 是满射。}
+		\\\Longleftrightarrow~&
+		\text{$\phi(\mathbb K^n) = \langle \vec \alpha_1, \ldots, \vec \alpha_n \rangle$}
+		\\\Longleftrightarrow~&
+		\text{$\mathbb K^m = \langle \vec \alpha_1, \ldots, \vec \alpha_n \rangle$}
+		\\\footnote{设 $U$ 和 $W$ 是 $\mathbb K^n$ 的两个非零子空间，且 $U \subseteq W$。如果 $\dim U = \dim W$，那么 $U = W$。}\Longleftrightarrow~&
+		\text{$\dim \langle \vec \alpha_1, \ldots, \vec \alpha_n \rangle = m$}
+		\\\Longleftrightarrow~&
+		\text{$\operatorname{rank}(A) = m$}
+	\end{aligned}
+	$$
+\end{proof}
+
+\begin{theorem}
+	设线性映射 $\phi \colon \mathbb K^n \to \mathbb K^m$ 对应的左乘矩阵为 $A_{m \times n}$。$\phi$ 是一一对应的充分必要条件是 $\operatorname{rank}(A) = m = n$，即 $A$ 是一个满秩的方阵。
+\end{theorem}
+
+显然成立。
