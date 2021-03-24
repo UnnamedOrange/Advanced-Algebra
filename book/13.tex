@@ -3,3 +3,88 @@
 
 \section{矩阵乘法运算的性质}
 
+本节中，我们介绍矩阵乘法一系列最基本的性质。
+
+\begin{enumerate}
+	\item 结合律。
+
+	\begin{theorem}[矩阵乘法的结合律]
+		设 $A = (a_{ij})_{s \times n}, B = (b_{ij})_{n \times m}, C = (c_{ij})_{m \times r}$。有：
+		$$
+		(AB)C = A(BC)
+		$$
+	\end{theorem}
+
+	\begin{proof}
+		显然运算结果都是 $s \times r$ 矩阵，考察该矩阵中的每一个元。
+		$$
+		\begin{aligned}&
+			\bigl( (AB)C \bigr)(i; j) \pod{1 \le i \le s; 1 \le j \le r}
+			\\=~&
+			\sum\limits_{k = 1}^n (AB)(i; k) \cdot C(k; j)
+			\\=~&
+			\sum\limits_{k = 1}^n \biggl( \sum\limits_{l = 1}^s A(i; l) B(l; k) \biggr) C(k; j)
+			\\=~&
+			\sum\limits_{l = 1}^s A(i; l) \sum\limits_{k = 1}^n B(l; k) C(k; j)
+			\\=~&
+			\sum\limits_{l = 1}^s A(i; l) \cdot (BC)(i; j)
+			\\=~&
+			\bigl( A(BC) \bigr)(i; j)
+		\end{aligned}
+		$$
+	\end{proof}
+
+	\item 不满足交换律。
+
+	矩阵乘法不满足交换律，以下三种情况均有可能发生：
+	\begin{enumerate}
+		\item $A$ 与 $B$ 可以做乘法，但 $B$ 与 $A$ 不可以做乘法。
+		\item $A$ 与 $B$ 可以做乘法，$B$ 与 $A$ 也可以做乘法，但 $AB$ 与 $BA$ 的维数不同。
+		\item $AB$ 与 $BA$ 的维数相同，但结果不同。
+	\end{enumerate}
+
+	\item 不满足消去律。
+
+	即，从 $AB = 0$ 不同推出 $A = 0$ 或 $B = 0$。见下例：
+	$$
+	\begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}
+	\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}
+	=
+	\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}
+	$$
+
+	不过，我们可以提出以下概念。
+
+	\begin{definition}{左零因子}
+		对于矩阵 $A$，如果存在一个矩阵 $B \ne 0$ 使得 $AB = 0$，那么称 $A$ 是一个\emph{左零因子}。
+	\end{definition}
+
+	\begin{definition}{右零因子}
+		对于矩阵 $A$，如果存在一个矩阵 $C \ne 0$ 使得 $CA = 0$，那么称 $A$ 是一个\emph{右零因子}。
+	\end{definition}
+
+	\begin{definition}{零因子}
+		左零因子和右零因子统称为\emph{零因子}。
+	\end{definition}
+
+	\begin{definition}{平凡的零因子}
+		显然，零矩阵是零因子，称它为\emph{平凡的零因子}。
+	\end{definition}
+
+	\item 分配律。
+
+	\begin{theorem}{矩阵乘法的左分配律,矩阵乘法的右分配律}
+		矩阵的乘法适合\emph{左分配律}：
+		$$
+		A (B + C) = AB + AC
+		$$
+
+		也适合右分配律：
+		$$
+		(B + C) D = BD + CD
+		$$
+	\end{theorem}
+
+
+
+\end{enumerate}
