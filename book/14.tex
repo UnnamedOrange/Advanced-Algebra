@@ -1,5 +1,54 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
-\section{线性映射的核空间与象空间}
+\section{线性映射的核与象空间}
 
+我们继续研究线性映射。首先提出两个非常重要的概念。
+
+\begin{definition}{核,零空间}
+	设 $\sigma$ 是 $\mathbb K^n$ 到 $\mathbb K^s$ 的一个映射，称 $\mathbb K^n$ 的一个子集：
+	$$
+	\{ \vec \alpha \in \mathbb K^n \colon \sigma (\vec \alpha) = \vec 0 \}
+	$$
+	为映射 $\sigma$ 的\emph{核}，记作 $\operatorname{Ker} \sigma$。如果 $\sigma$ 是 $\mathbb K^n$ 到 $\mathbb K^s$ 的一个线性映射，那么 $\operatorname{Ker} \sigma$ 是 $\mathbb K^n$ 的一个子空间，此时也称 $\operatorname{Ker} \sigma$ 为 $\sigma$ 的\emph{零空间}。
+\end{definition}
+
+可知，线性映射的核等于齐次线性方程组 $A \vec x = \vec 0$ 的解空间。
+
+\begin{definition}{象空间}
+	称线性映射 $\phi$ 的象（值域）为它的\emph{象空间}，记为 $\operatorname{Im} \phi$。
+\end{definition}
+
+可知，线性映射的象空间即为其对应矩阵的列向量张成的子空间。
+
+关于核与象空间，我们不加证明地给出以下定理。
+
+\begin{theorem}
+	$$
+	\dim \operatorname{Ker} \phi = n - \operatorname{rank}(A)
+	$$$$
+	\dim \operatorname{Im} \phi = \operatorname{rank}(A)
+	$$
+
+	其中 $A$ 是线性映射对应的矩阵，$n$ 是 $A$ 的行数。
+\end{theorem}
+
+\begin{theorem}
+	$$
+	\dim \operatorname{Ker} \phi + \dim \operatorname{Im} \phi = \dim \mathbb K^n
+	$$
+
+	其中 $n$ 是线性映射对应的矩阵的行数。
+\end{theorem}
+
+\begin{theorem}
+	设 $\phi \colon \mathbb K^m \to \mathbb K^n$ 是一个线性映射，则 $\phi$ 是单射的充分必要条件是 $\operatorname{Ker} \phi = \{ \vec 0 \}$；$\phi$ 是满射的充分必要条件是 $\operatorname{Im} \phi = \mathbb K^n$。
+\end{theorem}
+
+\begin{theorem}
+	设 $\phi \colon \mathbb K^n \to \mathbb K^n$ 是一个线性映射，则 $\phi$ 是单射的充分必要条件是 $\phi$ 是满射。
+\end{theorem}
+
+核与象空间的概念是深刻的。其运用举例暂时略去。
+
+% TODO: 核与象空间的应用举例。
