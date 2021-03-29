@@ -1,0 +1,68 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{矩阵乘积的行列式}
+
+矩阵乘积的行列式有什么性质？可以将下面介绍的比内柯西公式作为求矩阵乘积的行列式的基本定理。
+
+\begin{theorem}[比内柯西公式]
+	设 $A = (a_{ij})_{s \times n}$，$B = (b_{ij})_{n \times s}$：
+
+	\begin{enumerate}
+		\item 如果 $s > n$，那么 $|AB| = 0$。
+		\item 如果 $s \le n$，那么 $|AB|$ 等于 $A$ 的所有 $s$ 阶子式与 $B$ 的相应 $s$ 阶子式的乘积之和，即：
+		$$
+		|AB| = \sum\limits_{1 \le v_1 < v_2 < \cdots < v_s \le n} A \begin{pmatrix} 1, 2, \ldots, s \\ v_1, v_2, \ldots, v_s \end{pmatrix} B \begin{pmatrix} v_1, v_2, \ldots, v_s \\ 1, 2, \ldots, s \end{pmatrix}
+		$$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	设：
+	$$
+	A =
+	\begin{bmatrix}
+		\vec \alpha_1 & \cdots & \vec \alpha_n
+	\end{bmatrix}_{s \times n}
+	$$$$
+	B =
+	\begin{bmatrix}
+		\vec \beta_1 & \cdots & \vec \beta_s
+	\end{bmatrix}_{n \times s}
+	$$
+
+	则可记 $AB$ 为：
+	$$
+	\begin{aligned}
+		AB &=
+		\begin{bmatrix}
+			A \vec \beta_1 & \cdots & A \vec \beta_s
+		\end{bmatrix}
+		\\&=
+		\begin{bmatrix}
+			\sum\limits_{k_1 = 1}^n b_{k_1 1} \vec \alpha_{k_1} & \cdots & \sum\limits_{k_s = 1}^n b_{k_s s} \vec \alpha_{k_s}
+		\end{bmatrix}
+	\end{aligned}
+	$$
+
+	由行列式的多线性，得：
+	$$
+	|AB| = \sum\limits_{k_1 = 1}^n \cdots \sum\limits_{k_s = 1}^n b_{k_1 1} \cdots b_{k_s s} \cdot \begin{vmatrix} \vec \alpha_{k_1} & \cdots & \vec \alpha_{k_s} \end{vmatrix}
+	$$
+
+	当 $s > n$ 时，$\begin{bmatrix} \vec \alpha_{k_1} & \cdots & \vec \alpha_{k_s} \end{bmatrix}$ 中一定有重复的列，此时 $|AB| = 0$。当 $s \le n$ 时，只用考虑 $k_1, k_2, \ldots, k_s$ 互不相同的项。当它们互不相同时，设它们从小到大排序的结果为 $k_1^\circ, k_2^\circ, \ldots, k_s^\circ$，则有：
+	$$
+	\begin{aligned}&
+		|AB|
+		\\=~&
+		\sum\limits_{1 \le k_1^\circ < k_2^\circ < \cdots < k_s^\circ \le n} \sum\limits_{k_1 k_2 \ldots k_n} \begin{vmatrix} \vec \alpha_{k_1^\circ} & \cdots & \vec \alpha_{k_s^\circ} \end{vmatrix} \cdot (-1)^{\tau(k_1 k_2 \ldots k_s)} b_{k_1 1} b_{k_2 2} \cdots b_{k_s s}
+	\end{aligned}
+	$$
+
+	上式实际上就是：
+	$$
+	|AB| = \sum\limits_{1 \le v_1 < v_2 < \cdots < v_s \le n} A \begin{pmatrix} 1, 2, \ldots, s \\ v_1, v_2, \ldots, v_s \end{pmatrix} B \begin{pmatrix} v_1, v_2, \ldots, v_s \\ 1, 2, \ldots, s \end{pmatrix}
+	$$
+\end{proof}
+
+% TODO: 补充基于拉普拉斯展开的证明。
