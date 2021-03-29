@@ -66,3 +66,67 @@
 \end{proof}
 
 % TODO: 补充基于拉普拉斯展开的证明。
+
+基于比内柯西公式，我们可以得到矩阵乘积的子式的公式。
+
+\begin{theorem}
+	设 $A = (a_{ij})_{s \times n}$，$B = (b_{ij})_{n \times s}$，正整数 $r \le s$。如果 $r > n$，那么 $AB$ 的所有 $r$ 阶子式都等于 $0$。如果 $r \le n$，那么 $AB$ 的任一子式为：
+	$$
+	(AB) \begin{pmatrix} i_1, \ldots, i_r \\ j_1, \ldots, j_r \end{pmatrix} = \sum\limits_{1 \le v_1 < \cdots < v_r \le n} A \begin{pmatrix} i_1, \ldots, i_r \\ v_1, \ldots, v_r \end{pmatrix} B \begin{pmatrix} v_1, \ldots, v_r \\ j_1, \ldots, j_r \end{pmatrix}
+	$$
+\end{theorem}
+
+\begin{proof}
+	$AB$ 的任一 $r$ 阶子式为：
+	$$
+	\begin{aligned}
+		(AB) \begin{pmatrix} i_1, \ldots, i_r \\ j_1, \ldots, j_r \end{pmatrix} &=
+		\begin{vmatrix}
+			(AB)(i_1; j_1) & \cdots & (AB)(i_1; j_r)
+			\\
+			\vdots & & \vdots
+			\\
+			(AB)(i_r; j_1) & \cdots & (AB)(i_r; j_r)
+		\end{vmatrix}
+		\\&=
+		\left|
+		\begin{bmatrix}
+			a_{i_1 1} & \cdots & a_{i_1 n}
+			\\
+			\vdots & & \vdots
+			\\
+			a_{i_r 1} & \cdots & a_{i_r n}
+		\end{bmatrix}
+		\begin{bmatrix}
+			b_{1 j_1} & \cdots & b_{1 j_r}
+			\\
+			\vdots & & \vdots
+			\\
+			b_{n j_1} & \cdots & b_{n j_r}
+		\end{bmatrix}
+		\right|
+	\end{aligned}
+	$$
+
+	由比内柯西公式，如果 $r > n$，那么上式右端的两个矩阵的乘积的行列式等于 $0$，从而 $AB$ 的 $r$ 阶子式都等于 $0$；如果 $r \le n$，那么上式右端的两个矩阵乘积的行列式即等于：
+	$$
+	(AB) \begin{pmatrix} i_1, \ldots, i_r \\ j_1, \ldots, j_r \end{pmatrix} = \sum\limits_{1 \le v_1 < \cdots < v_r \le n} A \begin{pmatrix} i_1, \ldots, i_r \\ v_1, \ldots, v_r \end{pmatrix} B \begin{pmatrix} v_1, \ldots, v_r \\ j_1, \ldots, j_r \end{pmatrix}
+	$$
+\end{proof}
+
+有关子式，我们在这里额外提出一个概念。
+
+\begin{definition}{主子式}
+	如果矩阵 $A$ 的一个子式的行指标与列指标相同，那么称它为 $A$ 的一个\emph{主子式}。$A$ 的一个 $r$ 阶主子式形如 $A \begin{pmatrix} i_1, \ldots, i_r \\ j_1, \ldots, j_r \end{pmatrix}$。
+\end{definition}
+
+最后，我们给出以下重要的定理。它是比内柯西公式的一个特例。
+
+\begin{theorem}
+	设 $A, B$ 均为 $s$ 级方阵，则：
+	$$
+	|AB| = |A| |B| = |B| |A| = |BA|
+	$$
+\end{theorem}
+
+可见，$n$ 级矩阵的行列式是从矩阵乘法的非交换性中提取的可交换的量。以后还会看到，矩阵乘法还有其他可交换的量。
