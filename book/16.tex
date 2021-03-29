@@ -1,0 +1,141 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{可逆矩阵}
+
+矩阵乘法是否具有逆？为了研究这个问题，我们需要先定义相关概念，并给出一系列显然的定理。
+
+\begin{definition}{可逆矩阵,非奇异矩阵}
+	对于数域 $\mathbb K$ 上的矩阵 $A$，如果存在数域 $\mathbb K$ 上的矩阵 $B$，使得 $AB = BA = I$，那么称 $A$ 是\emph{可逆矩阵}（或\emph{非奇异矩阵}）。
+\end{definition}
+
+根据定义，\textbf{可逆矩阵一定是方阵}。
+
+\begin{definition}{逆矩阵}
+	如果 $A$ 是可逆矩阵，那么适合 $AB = BA = I$ 的矩阵 $B$ 称为 $A$ 的\emph{逆矩阵}，记作 $A^{-1}$。
+\end{definition}
+
+\begin{theorem}
+	逆矩阵如果存在，那么它是唯一的。
+\end{theorem}
+
+\begin{proof}
+	若 $A$ 是可逆矩阵，对于 $A$ 的任意两个逆矩阵 $B, C$，有：
+	$$
+	B = BI = BAC = IC = C
+	$$
+\end{proof}
+
+如果 $A$ 是可逆矩阵，那么根据 $|AB| = |A| |B| = |B| |A| = |BA|$，可知 $|A| \ne 0$ 是其逆矩阵存在的必要条件，因为：
+$$
+|A A^{-1}| = |I_n| = 1 = |A| |A^{-1}|
+$$
+
+我们自然地想知道，$|A| \ne 0$ 是可逆的充分必要条件吗？为了研究这个问题，我们需要借助下文的初等矩阵。
+
+\subsection{初等矩阵}
+
+初等矩阵概念的提出源于以下定理。
+
+\begin{theorem}
+	初等行变换都是线性变换。
+\end{theorem}
+
+\begin{proof}
+	只需找到初等行变换对应的矩阵，因为矩阵和线性映射有着一一对应关系。
+	\begin{enumerate}
+		\item 对于交换第 $i, j$ 两行（不妨设 $i < j$），该矩阵为：
+		$$
+		P(i, j) =
+		\begin{bmatrix}
+			\vec e_1 \\ \vdots \\ \vec e_j \\ \vdots \\ \vec e_i \\ \vdots \\ \vec e_n
+		\end{bmatrix}
+		$$
+
+		可以验证，$P(i, j) A$ 等于将 $A$ 的第 $i, j$ 两行交换后得到的矩阵。
+
+		\item 对于第 $i$ 行乘以 $c$，该矩阵为：
+		$$
+		P(i(c)) =
+		\begin{bmatrix}
+			\vec e_1 \\ \vdots \\ c \vec e_i \\ \vdots \\ \vec e_n
+		\end{bmatrix}
+		$$
+
+		可以验证，$P(i(c)) A$ 等于将 $A$ 的第 $i$ 行乘以 $c$ 后得到的矩阵。
+
+		\item 对于第 $i$ 行加上第 $j$ 行的 $k$ 倍，该矩阵为：
+		$$
+		P(i, j(c)) =
+		\begin{bmatrix}
+			\vec e_1 \\ \vdots \\ \vec e_i + k \vec e_j \\ \vdots \\ \vec e_n
+		\end{bmatrix}
+		$$
+
+		可以验证，$P(i, j(k)) A$ 等于将 $A$ 的第 $i$ 行加上第 $j$ 行的 $k$ 倍得到的矩阵。
+	\end{enumerate}
+\end{proof}
+
+以上证明过程反映了两个重要信息：
+\begin{enumerate}
+	\item 代入 $A = I$，则可知 $P(i, j), P(i(c)), P(i, j(k))$ 是单位矩阵经过一次初等行变换的结果。
+	\item 观察 $P(i, j), P(i(c)), P(i, j(k))$ 的结构，可知它们也可以由单位矩阵经过一次初等列变换得到。
+\end{enumerate}
+
+所以，我们用以下形式给出初等矩阵的定义。
+
+\begin{definition}{初等矩阵}
+	由单位矩阵经过一次初等行（列）变换得到的矩阵称为\emph{初等矩阵}。记号如下。
+
+	\begin{enumerate}
+		\item 用 $P(i, j(k))$ 表示将第 $i$ 行加上第 $j$ 行的 $k$ 倍对应的初等矩阵。
+		\item 用 $P(i, j)$ 表示将第 $i$ 行与第 $j$ 行交换对应的初等矩阵。
+		\item 用 $P(i(c))$ 表示将第 $i$ 行乘上 $c$ 倍对应的初等矩阵（$c \ne 0$）。
+	\end{enumerate}
+\end{definition}
+
+初等矩阵与其他矩阵相乘的含义如下定理所述。
+
+\begin{theorem}
+	用初等矩阵左（右）乘 $A$，就相当于 $A$ 做了一次相应的初等行（列）变换。具体含义如下：
+	\begin{enumerate}
+		\item 用 $P(i, j(k))$ \textbf{左乘} $A$，相当于把 $A$ 的第 $j$ 行的 $k$ 倍加到第 $i$ 行上，其余行不变。
+		\item 用 $P(i, j(k))$ \textbf{右乘} $A$，相当于把 $A$ 的第 $i$ 列的 $k$ 倍加到第 $j$ 列上，其余列不变（注意 $i$ 和 $j$ 互换了）。
+		\item 用 $P(i, j)$ 左（右）乘 $A$，相当于把 $A$ 的第 $i$ 行（列）与第 $j$ 行（列）互换，其余行（列）不变。
+		\item 用 $P(i(c)) \pod{c \ne 0}$ 左（右）乘 $A$，相当于用 $c$ 乘 $A$ 的第 $i$ 行（列），其余行（列）不变。
+	\end{enumerate}
+\end{theorem}
+
+由此，我们将矩阵的乘法与初等变换联系起来了。利用初等变换的性质，我们可以得到以下有关初等矩阵的定理。
+
+\begin{theorem}
+	若 $|A| \ne 0$，则存在一系列初等矩阵的乘积 $P_s \cdots P_1$ 使得\footnote{$n$ 级矩阵的初等行变换不改变其行列式的非零性。}：
+	$$
+	P_s \cdots P_1 A = I_n
+	$$
+\end{theorem}
+
+\begin{theorem}
+	初等矩阵是可逆的。
+\end{theorem}
+
+\begin{proof}
+	$$
+	P^2(i, j) = I_n
+	$$$$
+	P(i(c)) P \biggl( i \biggl( \frac{1}{c} \biggr) \biggr) = I_n
+	$$$$
+	P(i, j(k)) P(i, j(-k)) = I_n
+	$$
+\end{proof}
+
+\subsection{矩阵可逆的充分必要条件}
+
+
+
+\subsection{可逆矩阵的性质}
+
+
+
+\subsection{求逆矩阵的方法}
+

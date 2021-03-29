@@ -34,6 +34,16 @@
 \newcommand \Z {\mathbb Z}
 \newcommand \C {\mathbb C}
 
+% 无数字脚标
+\newcommand \footnoteONLYtext[1]
+{
+	\let \mybackup \thefootnote
+	\let \thefootnote \relax
+	\footnotetext{#1}
+	\let \thefootnote \mybackup
+	\let \mybackup \imareallyundefinedcommand
+}
+
 % index
 \newcommand \idx[1] {#1\index{#1}}
 

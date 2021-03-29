@@ -3,9 +3,9 @@
 
 \section{矩阵乘积的行列式}
 
-矩阵乘积的行列式有什么性质？可以将下面介绍的比内柯西公式作为求矩阵乘积的行列式的基本定理。
+矩阵乘积的行列式有什么性质？可以将下面介绍的比内-柯西公式作为求矩阵乘积的行列式的基本定理。
 
-\begin{theorem}[比内柯西公式]
+\begin{theorem}[比内-柯西公式]
 	设 $A = (a_{ij})_{s \times n}$，$B = (b_{ij})_{n \times s}$：
 
 	\begin{enumerate}
@@ -67,7 +67,7 @@
 
 % TODO: 补充基于拉普拉斯展开的证明。
 
-基于比内柯西公式，我们可以得到矩阵乘积的子式的公式。
+基于比内-柯西公式，我们可以得到矩阵乘积的子式的公式。
 
 \begin{theorem}
 	设 $A = (a_{ij})_{s \times n}$，$B = (b_{ij})_{n \times s}$，正整数 $r \le s$。如果 $r > n$，那么 $AB$ 的所有 $r$ 阶子式都等于 $0$。如果 $r \le n$，那么 $AB$ 的任一子式为：
@@ -108,7 +108,7 @@
 	\end{aligned}
 	$$
 
-	由比内柯西公式，如果 $r > n$，那么上式右端的两个矩阵的乘积的行列式等于 $0$，从而 $AB$ 的 $r$ 阶子式都等于 $0$；如果 $r \le n$，那么上式右端的两个矩阵乘积的行列式即等于：
+	由比内-柯西公式，如果 $r > n$，那么上式右端的两个矩阵的乘积的行列式等于 $0$，从而 $AB$ 的 $r$ 阶子式都等于 $0$；如果 $r \le n$，那么上式右端的两个矩阵乘积的行列式即等于：
 	$$
 	(AB) \begin{pmatrix} i_1, \ldots, i_r \\ j_1, \ldots, j_r \end{pmatrix} = \sum\limits_{1 \le v_1 < \cdots < v_r \le n} A \begin{pmatrix} i_1, \ldots, i_r \\ v_1, \ldots, v_r \end{pmatrix} B \begin{pmatrix} v_1, \ldots, v_r \\ j_1, \ldots, j_r \end{pmatrix}
 	$$
@@ -120,7 +120,7 @@
 	如果矩阵 $A$ 的一个子式的行指标与列指标相同，那么称它为 $A$ 的一个\emph{主子式}。$A$ 的一个 $r$ 阶主子式形如 $A \begin{pmatrix} i_1, \ldots, i_r \\ j_1, \ldots, j_r \end{pmatrix}$。
 \end{definition}
 
-最后，我们给出以下重要的定理。它是比内柯西公式的一个特例。
+最后，我们给出以下重要的定理。它是比内-柯西公式的一个特例。
 
 \begin{theorem}
 	设 $A, B$ 均为 $s$ 级方阵，则：
