@@ -131,7 +131,36 @@ $$
 
 \subsection{矩阵可逆的充分必要条件}
 
+\begin{theorem}[矩阵可逆的充分必要条件]
+	设 $A$ 是数域 $\mathbb K$ 上的方阵。以下五个命题等价：
+	\begin{enumerate}
+		\item $A$ 是可逆矩阵，即存在矩阵 $B$ 使得 $AB = BA = I_n$。
+		\item $|A| \ne 0$。
+		\item $A$ 可以写成一系列初等矩阵的乘积。
+		\item 存在一个数域 $\mathbb K$ 上的方阵 $B$，使得 $AB = I_n$。
+		\item 存在一个数域 $\mathbb K$ 上的方阵 $B$，使得 $BA = I_n$
+	\end{enumerate}
+\end{theorem}
 
+\begin{proof}[$1 \Longrightarrow 2$]
+	由 $AB = I_n$，可知 $|A| |B| = 1$，于是 $|A| \ne 0$。
+\end{proof}
+
+\begin{proof}[$2 \Longrightarrow 3$]
+	由 $|A| \ne 0$，可知 $\operatorname{rank}(A) = n$，则存在一系列初等矩阵的乘积 $P_s \cdots P_1$，使得 $P_s \cdots P_1 A = I_n$，从而 $A^{-1} = P_s \cdots P_1$，于是 $A = P_1^{-1} \cdots P_s^{-1}$。
+\end{proof}
+
+\begin{proof}[$3 \Longrightarrow 4$]
+	若 $A = P_1 \cdots P_s$，则令 $B = P_s^{-1} \cdots P_1^{-1}$ 即可。
+\end{proof}
+
+\begin{proof}[$4 \Longrightarrow 5$]
+	若 $AB = I_n$，则 $|A||B| \ne 0$，于是令 $A = Q_1 \cdots Q_t$，则 $B = Q_t^{-1} \cdots Q_1^{-1}$。显然满足 $BA = I_n$。
+\end{proof}
+
+\begin{proof}[$5 \Longrightarrow 1$]
+	若 $BA = I_n$，则 $|B||A| \ne 0$，于是令 $A = Q_1 \cdots Q_t$，则 $B = Q_t^{-1} \cdots Q_1^{-1}$，显然满足 $AB = I_n = BA$。
+\end{proof}
 
 \subsection{可逆矩阵的性质}
 
