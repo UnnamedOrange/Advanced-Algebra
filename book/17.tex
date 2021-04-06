@@ -3,6 +3,8 @@
 
 \section{分块矩阵}
 
+\subsection{引入}
+
 前文中提出了矩阵乘法的更多理解方式，其中一种为 “$C$ 的每一列是 $A$ 的各列向量以 $B$ 的对应列为权的加权和”：
 $$
 C = \begin{bmatrix} A \vec \beta_1 & A \vec \beta_2 & \cdots & A \vec \beta_n \end{bmatrix}
@@ -17,3 +19,113 @@ $$
 \begin{definition}{矩阵的分块,分块矩阵}
 	把一个矩阵 $A$ 的行分成若干组，列也分成若干组，从而 $A$ 被分成若干个子矩阵。再把 $A$ 看成是由这些子矩阵组成的，这种方法称为\emph{矩阵的分块}。称像 $A$ 这样的由子矩阵组成的矩阵为\emph{分块矩阵}。
 \end{definition}
+
+显然，两个具有相同分法的 $s \times n$ 矩阵相加，只需把对应的子矩阵相加；数 $k$ 乘一个分块矩阵，即用 $k$ 去乘每一个子矩阵。
+
+由矩阵乘法的定义容易想到分块矩阵相乘需满足下述两个条件：
+
+\begin{enumerate}
+	\item 左矩阵的列组数等于右矩阵的行组数。
+	\item 左矩阵的每个列组所含列数等于右矩阵的相应行组所含行数。
+\end{enumerate}
+
+满足上述两个条件的分块矩阵相乘时，整体上按照矩阵乘法法则进行，则结果的每一个元素是一系列矩阵乘积的和，这些矩阵乘积又是对应子矩阵相乘。下面证明这样做的正确性。
+
+\begin{proof}
+	用 $C$ 记最后结果的分块矩阵，用 $C_{pq}$ 表示 $C$ 的第 $p$ 个行组与第 $q$ 个列组交叉处元素组成的子矩阵。设 $C$ 的行数为 $s_1 + \cdots + s_u = s$，列数为 $m_1 + \cdots + m_v = m$，因此 $C$ 与 $AB$ 都是 $s \times m$ 矩阵。
+
+	计算 $C$ 的 $(i, j)$ 元，设：
+	$$
+	i = s_1 + \cdots + s_{p - 1} + f \pod{0 < f \le s_p}
+	$$$$
+	j = m_1 + \cdots + m_{q - 1} + g \pod{0 < g \le m_q}
+	$$
+	即设 $A$ 的第 $i$ 行属于第 $p$ 个行组，$B$ 的第 $j$ 列属于第 $q$ 个列组。于是：
+	$$
+	\begin{aligned}
+		C(i; j) &= C_{pq}(f;g)
+		\\&=
+		\biggl( \sum\limits_{l = 1}^t A_{pl} B_{lq} \biggr) (f; g)
+		\\&=
+		\sum\limits_{l = 1}^t (A_{pl} B_{lq}) (f; g)
+		\\&=
+		\sum\limits_{l = 1}^t \sum\limits_{r = 1}^{n_l} A_{pl}(f; r) B_{lq}(r;g)
+		\\&=
+		AB(i; j)
+	\end{aligned}
+	$$
+\end{proof}
+
+需要注意的是，子矩阵之间的乘法应当满足，左矩阵的子矩阵在左边，右矩阵的子矩阵在右边。
+
+\bigskip
+
+在提出分块矩阵的概念后，我们可以认为前文中 “$C$ 的每一列是 $A$ 的各列向量以 $B$ 的对应列为权的加权和”是分块矩阵的一个应用典例。除此之外，运用分块矩阵，还可以对以下等式提出新的看法。
+
+\begin{theorem}
+	设 $A_{s \times n} \ne 0$，$B_{n \times m}$ 的列向量组是 $\vec \beta_1, \ldots, \vec \beta_m$，$C_{s \times m}$ 的列向量组是 $\vec \delta_1, \ldots, \vec \delta_m$，则 $AB = C_{s \times m}$ 等价于 $\vec \beta_j$ 是线性方程组 $A\vec x = \vec \delta_j \pod{j = 1, \ldots, m}$ 的一个解。
+\end{theorem}
+
+该结论说明可以通过求解线性方程组来求解逆矩阵。进一步又说明可以通过求解线性方程组来求解形如 $AX = B$ 的矩阵方程。
+
+\bigskip
+
+在分块矩阵概念介绍的最后，我们讨论分块矩阵的初等变换。
+
+\begin{definition}{分块矩阵的初等行变换}
+	\begin{enumerate}
+		\item 把一个块行的\textbf{左} $P$ 倍（$P$ 是矩阵）加到另一个块行上。
+		\item 互换两个块行的位置。
+		\item 用一个\textbf{可逆矩阵左}乘某一块行（为的是可以把所得到的分块矩阵变回到原来的分块矩阵）。
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}{分块矩阵的初等列变换}
+	\begin{enumerate}
+		\item 把一个块列的\textbf{右} $P$ 倍（$P$ 是矩阵）加到另一个块列上。
+		\item 互换两个块列的位置。
+		\item 用一个\textbf{可逆矩阵右}乘某一块列。
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}{分块初等矩阵}
+	把单位矩阵分块得到的矩阵经过一次分块矩阵的初等行（列）变换得到的矩阵称为\emph{分块初等矩阵}。其性质与一般的初等矩阵相似。
+\end{definition}
+
+\subsection{分块矩阵的性质}
+
+\begin{definition}{分块对角矩阵}
+	主对角线上的所有子矩阵都是方阵，其余子矩阵全为 $0$ 的分块矩阵称为\emph{分块对角矩阵}，可简记为：
+	$$
+	\operatorname{diag} \{A_1, \ldots, A_s\}
+	$$
+	其中 $A_i$ 是方阵，$i = 1, \ldots, s$。
+\end{definition}
+
+\begin{definition}{分块上三角矩阵,分块下三角矩阵}
+	主对角线上的所有子矩阵都是方阵，而位于主对角线下（上）方的所有子矩阵都为 $0$ 的分块矩阵称为\emph{分块上（下）三角矩阵}。
+\end{definition}
+
+通过进行多次拉普拉斯展开可以证明以下结论。
+
+\begin{theorem}[分块三角矩阵的行列式]
+	若 $A_{11}, \ldots, A_{ss}$ 都是方阵，则分块下矩阵的行列式为：
+	$$
+	\begin{vmatrix}
+		A_{11} & 0 & \cdots & 0
+		\\
+		A_{21} & A_{22} & \cdots & 0
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		A_{s1} & A_{s2} & \cdots & A_{ss}
+	\end{vmatrix}
+	= |A_{11}| |A_{22}| \cdots |A_{ss}|
+	$$
+
+	分块上三角矩阵同理。
+\end{theorem}
+
+% TODO: 分块矩阵剩余定理和练习待补充。
+
+分块矩阵相关的剩余内容待补充。
