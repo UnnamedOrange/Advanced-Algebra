@@ -122,73 +122,71 @@
 
 我们再来看一系列特殊的矩阵或运算。
 
-\begin{enumerate}
-	\item 数量矩阵。
+\subsubsection{数量矩阵}
 
-	根据矩阵乘法的定义式，很容易得到以下定理。
+根据矩阵乘法的定义式，很容易得到以下定理。
 
-	\begin{theorem}
-		矩阵的乘法与数量乘法满足：
-		$$
-		k(AB) = (kA)B = A(kB)
-		$$
-	\end{theorem}
+\begin{theorem}
+	矩阵的乘法与数量乘法满足：
+	$$
+	k(AB) = (kA)B = A(kB)
+	$$
+\end{theorem}
 
-	虽然前面已经用到了这个性质，但因为它太简单了，所以此处仍然省略其证明。不过，下面这个在它基础上的概念却十分重要。
+虽然前面已经用到了这个性质，但因为它太简单了，所以此处仍然省略其证明。不过，下面这个在它基础上的概念却十分重要。
 
-	\begin{definition}{数量矩阵}
-		主对角线上元素是同一个数 $k$，其余元素全为 $0$ 的 $n$ 级矩阵称为\emph{数量矩阵}，它可以写成 $kI$。
-	\end{definition}
+\begin{definition}{数量矩阵}
+	主对角线上元素是同一个数 $k$，其余元素全为 $0$ 的 $n$ 级矩阵称为\emph{数量矩阵}，它可以写成 $kI$。
+\end{definition}
 
-	以下是关于数量矩阵的两个显然但重要的结论。
+以下是关于数量矩阵的两个显然但重要的结论。
 
-	\begin{theorem}[数量矩阵的运算封闭性]
-		$n$ 级数量矩阵组成的集合对于加法、数量乘法、矩阵乘法这三种运算都封闭。
-	\end{theorem}
+\begin{theorem}[数量矩阵的运算封闭性]
+	$n$ 级数量矩阵组成的集合对于加法、数量乘法、矩阵乘法这三种运算都封闭。
+\end{theorem}
 
-	\begin{theorem}
-		数量矩阵 $kI$ 左乘或右乘矩阵 $A$ 等于 $k$ 乘 $A$，即：
-		$$
-		(kI)A = kA = A(kI)
-		$$
-	\end{theorem}
+\begin{theorem}
+	数量矩阵 $kI$ 左乘或右乘矩阵 $A$ 等于 $k$ 乘 $A$，即：
+	$$
+	(kI)A = kA = A(kI)
+	$$
+\end{theorem}
 
-	\item 可交换的矩阵。
+\subsubsection{可交换的矩阵}
 
-	\begin{definition}{可交换}
-		矩阵的乘法不适合交换律，但是对于具体的两个矩阵 $A$ 与 $B$，也有可能 $AB = BA$。如果 $AB = BA$，则称 $A$ 与 $B$ 可交换。
-	\end{definition}
+\begin{definition}{可交换}
+	矩阵的乘法不适合交换律，但是对于具体的两个矩阵 $A$ 与 $B$，也有可能 $AB = BA$。如果 $AB = BA$，则称 $A$ 与 $B$ 可交换。
+\end{definition}
 
-	\begin{theorem}
-		数量矩阵与任一同级矩阵可交换。
-	\end{theorem}
+\begin{theorem}
+	数量矩阵与任一同级矩阵可交换。
+\end{theorem}
 
-	\item 矩阵的非负整数次幂。
+\subsubsection{矩阵的非负整数次幂}
 
-	由于矩阵的乘法适合结合律，因此可以定义 $n$ 级矩阵的非负整数次幂。
+由于矩阵的乘法适合结合律，因此可以定义 $n$ 级矩阵的非负整数次幂。
 
-	\begin{definition}{$n$ 级矩阵的非负整数次幂}
-		定义 \emph{$n$ 级矩阵 $A$ 的非负整数次幂}为：
-		$$
-		A^m = \underset{\text{$m$ 个}}{\underbrace{A \cdot A \cdots A}} \pod{m \in Z^+}
-		$$
+\begin{definition}{$n$ 级矩阵的非负整数次幂}
+	定义 \emph{$n$ 级矩阵 $A$ 的非负整数次幂}为：
+	$$
+	A^m = \underset{\text{$m$ 个}}{\underbrace{A \cdot A \cdots A}} \pod{m \in Z^+}
+	$$
 
-		特别地，定义 $A^0 = I$。
-	\end{definition}
+	特别地，定义 $A^0 = I$。
+\end{definition}
 
-	\item 矩阵的转置。
+\subsubsection{矩阵的转置}
 
-	我们已经提出过转置的概念，下面给出在矩阵运算中引入转置后的一些性质。
+我们已经提出过转置的概念，下面给出在矩阵运算中引入转置后的一些性质。
 
-	\begin{theorem}
-		$$
-		(A')' = A
-		$$$$
-		(A + B)' = A' + B'
-		$$$$
-		(kA)' = kA'
-		$$$$
-		(AB)' = B'A'
-		$$
-	\end{theorem}
-\end{enumerate}
+\begin{theorem}
+	$$
+	(A')' = A
+	$$$$
+	(A + B)' = A' + B'
+	$$$$
+	(kA)' = kA'
+	$$$$
+	(AB)' = B'A'
+	$$
+\end{theorem}

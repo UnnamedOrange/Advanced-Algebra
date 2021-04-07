@@ -3,3 +3,61 @@
 
 \section{特殊矩阵}
 
+\subsubsection{对角矩阵}
+
+\begin{definition}{对角矩阵}
+	主对角线以外的元素全为 $0$ 的方阵称为\emph{对角矩阵}，简记为 $\operatorname{diag} \{d_1, \ldots, d_n\}$。
+\end{definition}
+
+\subsubsection{基本矩阵}
+
+\begin{definition}{基本矩阵}
+	只有一个元素是 $1$，其余元素全为 $0$ 的矩阵称为\emph{基本矩阵}。$(i, j)$ 元为 $1$ 的基本矩阵记作 $E_{ij}$。
+\end{definition}
+
+可以用基本矩阵表示任一矩阵 $A_{m \times n} = (a_{ij})$。
+$$
+A_{m \times n} = \sum\limits_{i = 1}^{m} \sum\limits_{j = 1}^n a_{ij} E_{ij}
+$$
+
+有时可在计算矩阵乘法时按以上等式进行展开，这样做的好处是可以使用以下定理。
+
+\begin{theorem}
+	若基本矩阵 $E_{ij}$ 可以与基本矩阵 $E_{kl}$ 相乘，则：
+	$$
+	E_{ij} E_{kl} =
+	\begin{cases}
+		E_{il}, & \pod{k = j}
+		\\
+		0, & \pod{k \ne j}
+	\end{cases}
+	$$
+\end{theorem}
+
+\begin{theorem}
+	设矩阵 $A_{m \times n} = (a_{ij})$，$E_{ij}, E_{kl}$ 均为基本矩阵。若 $E_{ij} A E_{kl}$ 是合法的矩阵乘法，则：
+	$$
+	E_{ij} A E_{kl} = a_{jk} E_{il}
+	$$
+\end{theorem}
+
+\subsubsection{三角矩阵}
+
+\begin{definition}{上三角矩阵,下三角矩阵}
+	主对角线下（上）方的元素全为 $0$ 的方阵称为\emph{上（下）三角（形）矩阵}。
+\end{definition}
+
+三角矩阵是一类非常重要的矩阵，下面仅先给出一个有关三角矩阵做乘法的性质。
+
+\begin{theorem}
+	两个 $n$ 级上（下）三角矩阵 $A$ 与 $B$ 的乘积仍为上（下）三角矩阵，并且 $AB$ 的主对角元等于 $A$ 与 $B$ 相应主对角元的乘积。
+\end{theorem}
+
+\begin{proof}[证明上三角矩阵的情形]
+	设 $A = (a_{ij}), B = (b_{ij})$ 都是 $n$ 级上三角矩阵，则：
+	$$
+	(AB)(i; j) = \sum\limits_{k = 1}^n a_{ik} b_{kj} = \sum\limits_{k = 1}^j a_{ik}b_{kj} + \sum\limits_{k = j + 1}^n a_{ik} b_{kj}
+	$$
+
+
+\end{proof}
