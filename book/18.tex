@@ -59,5 +59,8 @@ $$
 	(AB)(i; j) = \sum\limits_{k = 1}^n a_{ik} b_{kj} = \sum\limits_{k = 1}^j a_{ik}b_{kj} + \sum\limits_{k = j + 1}^n a_{ik} b_{kj}
 	$$
 
+	当 $i > j$ 时，对于满足 $1 \le k \le j$ 的 $k$，由于 $k \le j < i$，因此 $a_{ik} = 0$；对于满足 $j < k \le n$ 的 $k$，$b_{kj} = 0$。从而 $(AB)(i; j) = 0 \pod{i > j}$，于是 $AB$ 是上三角矩阵。
 
+	计算 $(AB)(i; i)$ 易得 $a_{ii} b_{jj}$。
 \end{proof}
+
