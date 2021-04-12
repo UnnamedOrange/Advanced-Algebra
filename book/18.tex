@@ -64,3 +64,67 @@ $$
 	计算 $(AB)(i; i)$ 易得 $a_{ii} b_{jj}$。
 \end{proof}
 
+\begin{proof}[使用另一种方法证明下三角矩形的情形]
+	设 $A = (a_{ij}), B = (b_{ij})$ 都是 $n$ 级下三角矩阵，则：
+	$$
+	\begin{aligned}
+		AB &= \biggl( \sum_{i = 1}^n \sum_{j = 1}^i a_{ij} E_{ij} \biggr) \biggl( \sum_{k = 1}^n \sum_{l = 1}^k b_{kl} E_{kl} \biggr)
+		\\&=
+		\sum_{i = 1}^n \sum_{j = 1}^i \sum_{l = 1}^j a_{ij} b_{jl} E_{il}
+		\\&=
+		\sum_{i = 1}^n \sum_{l = 1}^i \sum_{j = l}^i a_{ij} b_{jl} E_{il}
+	\end{aligned}
+	$$
+	可以看出，求和项中 $E_{il}$ 满足 $i \ge l$，于是 $AB$ 是下三角矩阵。
+
+	$AB$ 的 $(i, i)$ 元等于 $E_{ii}$ 的系数，易得 $(AB)(i; i) = a_{ii} b_{ii}$。
+\end{proof}
+
+\subsubsection{对称矩阵}
+
+\begin{definition}{对称矩阵}
+	如果矩阵 $A$ 满足 $A' = A$，那么称 $A$ 是\emph{对称矩阵}。
+\end{definition}
+
+以下定理显然成立。
+
+\begin{theorem}
+	设 $A, B$ 都是数域 $K$ 上的 $n$ 级对称矩阵，则 $A + B, kA \pod{k \in \mathbb K}$ 都是对称矩阵。
+\end{theorem}
+
+以下定理将对称矩阵与矩阵乘法联系了起来。
+
+\begin{theorem}
+	设 $A$ 与 $B$ 都是 $n$ 级对称矩阵，则 $AB$ 为对称矩阵的充分必要条件是 $A$ 与 $B$ 可交换。
+\end{theorem}
+
+\begin{proof}
+	因为 $A$ 与 $B$ 都是对称矩阵，所以 $(AB)' = B'A' = BA$，于是：$AB$ 为对称矩阵 $\Longleftrightarrow$ $(AB)' = AB$ $\Longleftrightarrow$ $BA =  AB$。
+\end{proof}
+
+\subsubsection{斜对称矩阵}
+
+\begin{definition}{斜对称矩阵}
+	一个矩阵 $A$ 如果满足 $A' = -A$，那么称 $A$ 为\emph{斜对称矩阵}。
+\end{definition}
+
+\begin{theorem}
+	数域 $\mathbb K$ 上奇数级斜对称矩阵的行列式等于 $0$。
+\end{theorem}
+
+\begin{proof}
+	设 $A$ 是 $n$ 级斜对称矩阵，$n$ 是奇数，则 $A' = -A$，从而 $|A'| = |-A|$，于是 $|A| = |A'| = (-1)^n |A| = -|A|$。因此 $|A| = 0$。
+\end{proof}
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的 $n$ 级矩阵一定可以分解成一个对称矩阵和一个斜对称矩阵的和。
+\end{theorem}
+
+\begin{proof}
+	设 $B$ 是一个 $n$ 级矩阵，则：
+	$$
+	B = \dfrac{B + B'}{2} + \dfrac{B - B'}{2}
+	$$
+
+	其中加号左侧是一个对称矩阵，加号右侧是一个斜对称矩阵。证毕。
+\end{proof}
