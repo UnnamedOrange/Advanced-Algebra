@@ -1,3 +1,206 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\section{正交矩阵和欧几里得空间的概念}
+
+\subsection{正交矩阵的代数描述}
+
+\begin{definition}{正交矩阵}
+	如果\textbf{实数域}上的 $n$ 级矩阵 $A$ 满足 $A'A= I$，那么称 $A$ 是\emph{正交矩阵}。
+\end{definition}
+
+\begin{theorem}[正交矩阵的等价命题]
+	设矩阵 $A$ 是实数域上的正价矩阵，则以下四个命题等价。
+	\begin{enumerate}
+		\item $A$ 是正交矩阵。
+		\item $A'A = I$。
+		\item $A$ 可逆，且 $A^{-1} = A'$。
+		\item $AA' = I$。
+	\end{enumerate}
+\end{theorem}
+
+正交矩阵具有以下性质。
+
+\begin{theorem}
+	$I$ 是正交矩阵。
+\end{theorem}
+
+\begin{theorem}
+	若 $A$ 和 $B$ 都是 $n$ 级正交矩阵，则 $AB$ 也是正交矩阵。
+\end{theorem}
+
+\begin{proof}
+	用定义验证。若 $A, B$ 都是 $n$ 级正交矩阵，则：
+	$$
+	(AB)(AB)' = A(BB')A' = AIA' = I
+	$$
+
+	即 $AB$ 也是正交矩阵。
+\end{proof}
+
+\begin{theorem}
+	若 $A$ 是正交矩阵，则 $A^{-1}$（即 $A'$）也是正交矩阵。
+\end{theorem}
+
+\begin{theorem}
+	若 $A$ 是正交矩阵，则 $|A| = 1$ 或 $-1$。
+\end{theorem}
+
+\begin{proof}
+	若 $A$ 是正交矩阵，则 $|AA'| = |I|$，从而 $|A|^2 = 1$，因此 $|A| = \pm 1$。
+\end{proof}
+
+根据定义式 $A'A = I$，考察 $A'A$ 的每一个元素，我们可以得到以下重要结论。
+
+\begin{theorem}[正交矩阵的充要条件]
+	设实数域上 $n$ 级矩阵 $A$ 的行向量组为 $\vec \gamma_1, \vec \gamma_2, \ldots, \vec \gamma_n$，列向量组为 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$，则：
+	\begin{enumerate}
+		\item $A$ 为正交矩阵当且仅当 $A$ 的行向量组满足：
+		$$
+		\vec \gamma_i \vec \gamma'_j =
+		\begin{cases}
+			\begin{bmatrix} 1 \end{bmatrix}, & i = j
+			\\
+			\begin{bmatrix} 0 \end{bmatrix}, & i \ne j
+		\end{cases}
+		$$
+		\item $A$ 为正交矩阵当且仅当 $A$ 的列向量组满足：
+		$$
+		\vec \alpha'_i \vec \alpha_j =
+		\begin{cases}
+			\begin{bmatrix} 1 \end{bmatrix}, & i = j
+			\\
+			\begin{bmatrix} 0 \end{bmatrix}, & i \ne j
+		\end{cases}
+		$$
+	\end{enumerate}
+\end{theorem}
+
+以上定理中出现了只有一个元素的矩阵，我们可以直接将它们简记为 $0$ 和 $1$。另外，为了方便，我们提出以下记号。
+
+\begin{definition}{Kronecker 记号}
+	定义 \emph{Kronecker 记号}为：
+	$$
+	\delta_{ij} =
+	\begin{cases}
+			1, & i = j
+			\\
+			0, & i \ne j
+	\end{cases}
+	$$
+\end{definition}
+
+则正交矩阵的充要条件可简记为：
+$$
+\vec \gamma_i \vec \gamma'_j = \delta_{ij} \pod{1 \le i, j \le n}
+$$$$
+\vec \alpha'_i \vec \alpha_j = \delta_{ij} \pod{1 \le i, j \le n}
+$$
+
+\subsection{欧几里得空间}
+
+\begin{definition}{内积,标准内积}
+	在 $\R^n$ 中，任给 $\vec \alpha = (a_1, \ldots, a_n)$，$\vec \beta = (b_1, \ldots, b_n)$，规定：
+	$$
+	(\vec \alpha, \vec \beta) = a_1 b_1 + \cdots + a_n b_n
+	$$
+
+	这个二元实值函数 $(\vec \alpha, \vec \beta)$ 称为 $\R^n$ 的一个\emph{内积}，并且通常称它为\emph{标准内积}。可以把上式简写为：
+	$$
+	(\vec \alpha, \vec \beta) = \vec \alpha \vec \beta'
+	$$
+
+	如果 $\vec \alpha, \vec \beta$ 是列向量，那么标准内积可记为 $(\vec \alpha, \vec \beta) = \vec \alpha' \vec \beta$。
+\end{definition}
+
+根据以上定义，可以验证 $\R^n$ 的标准内积具有下列性质。
+
+\begin{theorem}[标准内积的性质]
+	\begin{enumerate}
+		\item 对称性：
+		$$
+		(\vec \alpha, \vec \beta) = (\vec \beta, \vec \alpha)
+		$$
+		\item 线性性：
+		$$
+		(\vec \alpha + \vec \gamma, \vec \beta) = (\vec \alpha, \vec \beta) + (\vec \gamma, \vec \beta)
+		$$$$
+		(k \vec \alpha, \vec \beta) = k(\vec \alpha, \vec \beta)
+		$$
+		\item 正定性：$(\vec \alpha, \vec \alpha) \ge 0$，等号成立当且仅当 $\vec \alpha = \vec 0$。
+	\end{enumerate}
+\end{theorem}
+
+所谓欧几里得空间，就是实数域上的（标准）内积空间。
+
+\begin{definition}{欧几里得空间}
+	$n$ 维向量空间 $\R^n$ 加上标准内积，就称 $\R^n$ 为\emph{欧几里得空间}。
+\end{definition}
+
+内积空间中存在长度这一重要概念。
+
+\begin{definition}{长度}
+	在欧几里得空间 $\R^n$ 中，规定向量 $\vec \alpha$ 的\emph{长度}为：
+	$$
+	|\vec \alpha| \triangleq \sqrt{(\vec \alpha, \vec \alpha)}
+	$$
+\end{definition}
+
+在欧几里得空间中，可以定义两向量的余弦值。
+
+\begin{definition}{两向量的余弦值}
+	规定欧几里得空间中两向量 $\vec \alpha, \vec \beta$ 的余弦值为：
+	$$
+	\cos \langle \vec \alpha, \vec \beta \rangle = \dfrac{(\vec \alpha, \vec \beta)}{|\vec \alpha| |\vec \beta|}
+	$$
+\end{definition}
+
+要使得两向量余弦值的定义式有意义，需要证明柯西不等式。
+
+\begin{theorem}[柯西不等式]
+	对于 $\R^n$ 上的向量 $\vec \alpha = (a_1, \ldots, a_n)$，$\vec \beta = (b_1, \ldots, b_n)$，总有：
+	$$
+	\biggl( \sum\limits_{i = 1}^n a_i^2 \biggr) \biggl( \sum\limits_{i = 1}^n b_i^2 \biggr) \ge \biggl( \sum\limits_{i = 1}^n a_i b_i \biggr)^2
+	$$
+\end{theorem}
+
+\begin{proof}
+	构造如下矩阵乘法：
+	$$
+	\begin{bmatrix}
+		a_1 & a_2 & \cdots & a_n
+		\\
+		b_1 & b_2 & \cdots & b_n
+	\end{bmatrix}
+	\begin{bmatrix}
+		a_1 & b_1
+		\\
+		a_2 & b_2
+		\\
+		\vdots & \vdots
+		\\
+		a_n & b_n
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\sum\limits_{i = 1}^n a_i^2 & \sum\limits_{i = 1}^n a_i b_i
+		\\
+		\sum\limits_{i = 1}^n a_i b_i & \sum\limits_{i = 1}^n b_i^2
+	\end{bmatrix}
+	$$
+
+	右侧矩阵的行列式为：
+	$$
+	\biggl( \sum\limits_{i = 1}^n a_i^2 \biggr) \biggl( \sum\limits_{i = 1}^n b_i^2 \biggr) - \biggl( \sum\limits_{i = 1}^n a_i b_i \biggr)^2
+	$$
+
+	等式左侧由比内-柯西公式得其行列式为：
+	$$
+	\sum\limits_{1 \le i < j \le n} \begin{vmatrix} a_i & a_j \\ b_i & b_j \end{vmatrix} \begin{vmatrix} a_i & b_i \\ a_j & b_j \end{vmatrix} = (a_i b_j - a_j b_i)(a_i b_j - a_j b_i) \ge 0
+	$$
+
+	因此：
+	$$
+	\biggl( \sum\limits_{i = 1}^n a_i^2 \biggr) \biggl( \sum\limits_{i = 1}^n b_i^2 \biggr) - \biggl( \sum\limits_{i = 1}^n a_i b_i \biggr)^2 \ge 0
+	$$
+\end{proof}
