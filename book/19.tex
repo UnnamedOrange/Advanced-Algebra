@@ -97,6 +97,8 @@ $$$$
 \vec \alpha'_i \vec \alpha_j = \delta_{ij} \pod{1 \le i, j \le n}
 $$
 
+（实数域上的）正交矩阵有何深刻的意义？要回答这一问题，需要研究欧几里得空间。
+
 \subsection{欧几里得空间}
 
 \begin{definition}{内积,标准内积}
@@ -151,7 +153,7 @@ $$
 \begin{definition}{两向量的余弦值}
 	规定欧几里得空间中两向量 $\vec \alpha, \vec \beta$ 的余弦值为：
 	$$
-	\cos \langle \vec \alpha, \vec \beta \rangle = \dfrac{(\vec \alpha, \vec \beta)}{|\vec \alpha| |\vec \beta|}
+	\cos \langle \vec \alpha, \vec \beta \rangle \triangleq \dfrac{(\vec \alpha, \vec \beta)}{|\vec \alpha| |\vec \beta|}
 	$$
 \end{definition}
 
@@ -202,5 +204,84 @@ $$
 	因此：
 	$$
 	\biggl( \sum\limits_{i = 1}^n a_i^2 \biggr) \biggl( \sum\limits_{i = 1}^n b_i^2 \biggr) - \biggl( \sum\limits_{i = 1}^n a_i b_i \biggr)^2 \ge 0
+	$$
+\end{proof}
+
+\subsection{向量内积的矩阵乘法表示}
+
+设 $\R^n$ 的一组基为 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$，构造矩阵 $A(a_{ij})$：
+$$
+a_{ij} = (\vec \alpha_i, \vec \alpha_j) =
+\begin{cases}
+	(\vec \alpha_i, \vec \alpha_i), & i = j
+	\\
+	(\vec \alpha_i, \vec \alpha_j), & i \ne j
+\end{cases}
+$$
+
+则对 $\R^n$ 中的任意两个列向量 $\vec \alpha, \vec \beta$ 做内积有：
+$$
+\begin{aligned}
+	(\vec \alpha, \vec \beta) &= \biggl( \sum\limits_{i = 1}^n x_i \vec \alpha_i, \sum\limits_{j = 1}^n y_j \vec \alpha_j \biggr)
+	\\&=
+	\sum\limits_{i = 1}^n \sum\limits_{j = 1}^n x_i y_j a_{ij}
+	\\&=
+	\sum\limits_{j = 1}^n y_j \sum\limits_{i = 1}^n x_i a_{ij}
+	\\&=
+	\begin{bmatrix} x_1 & x_2 & \cdots & x_n \end{bmatrix} A \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}
+\end{aligned}
+$$
+
+当 $\vec \alpha_1 = \vec e_1, \ldots, \vec \alpha_n = \vec e_n$ 时，$A = I_n$，此时有 $\forall \vec \alpha, \vec \beta \in \R^n, (\vec \alpha, \vec \beta) = \vec \alpha^T \vec \beta$。可见，标准内积的“标准”在于 $A$ 的取值为单位矩阵。
+
+之后我们将会看到，当 $A$ 取任意 $n$ 级满秩方阵，乃至任意 $n$ 级方阵时，上式会具有更普遍的含义。
+
+\subsection{欧几里得空间的几何性质}
+
+在定义欧几里得空间后，我们定义向量的正交。
+
+\begin{definition}{正交的向量}
+	在欧几里得空间 $\R^n$ 中，如果 $(\vec \alpha, \vec \beta) = 0$，那么称 $\vec \alpha$ 与 $\vec \beta$ 是\emph{正交}的，记作 $\vec \alpha \perp \vec \beta$。显然零向量与任何向量正交。
+\end{definition}
+
+\begin{definition}{正交向量组}
+	在欧几里得空间 $\R^n$ 中，由非零向量组成的向量组如果其中每两个不同的向量都正交，那么称它们为\emph{正交向量组}。仅由一个非零向量组成的向量组也是正交向量组。
+\end{definition}
+
+\begin{definition}{单位向量,单位化}
+	长度为 $1$ 的向量称为\emph{单位向量}。显然 $\vec \alpha$ 是单位向量的充分必要条件为 $(\vec \alpha, \vec \alpha) = 1$。把非零向量 $\vec \alpha$ 乘以 $\frac{1}{|\vec \alpha|}$ 称为把 $\vec \alpha$ \emph{单位化}。
+\end{definition}
+
+\begin{definition}{正交单位向量组}
+	如果正交向量组的每个向量都是单位向量，那么称它为\emph{正交单位向量组}。
+\end{definition}
+
+欧几里得空间满足以下几何性质。
+
+\begin{theorem}[三角形不等式]
+	$\forall \vec \alpha, \vec \beta \in \R^n$，有 $|\vec \alpha + \vec \beta| \le |\vec \alpha| + |\vec \beta|$。
+\end{theorem}
+
+\begin{proof}
+	$$
+	\begin{aligned}
+		|\vec \alpha + \vec \beta|^2 &= (\vec \alpha + \vec \beta, \vec \alpha + \vec \beta)
+		\\&=
+		|\vec \alpha|^2 + 2 (\vec \alpha, \vec \beta) + |\beta|^2
+		\\&\le
+		|\vec \alpha|^2 + 2|\vec \alpha||\vec \beta| + |\vec \beta|^2
+		\\&=
+		(|\vec \alpha| + |\vec \beta|)^2
+	\end{aligned}
+	$$
+\end{proof}
+
+\begin{theorem}[勾股定理]
+	$\forall \vec \alpha \perp \vec \beta \pod{\vec \alpha, \vec \beta \in \R^n}$，有 $|\vec \alpha + \vec \beta|^2 = |\vec \alpha|^2 + |\vec \beta|^2$。
+\end{theorem}
+
+\begin{proof}
+	$$
+	|\vec \alpha + \vec \beta|^2 = (\vec \alpha + \vec \beta, \vec \alpha + \vec \beta) = |\vec \alpha|^2 + |\vec \beta|^2
 	$$
 \end{proof}
