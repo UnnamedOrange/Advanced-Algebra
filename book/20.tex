@@ -3,3 +3,65 @@
 
 \section{$\R^n$ 的子空间的正交补}
 
+给定 $\R^n$ 的一个子空间，我们想要知道，在 $\R^n$ 中有哪些向量与该子空间的所有向量都正交。为此，我们提出以下概念。
+
+\begin{definition}{正交}
+	设 $U$ 是欧几里得空间 $\R^n$ 的一个子空间，如果向量 $\vec \alpha$ 与 $U$ 中的每一个向量都正交，那么称 $\vec \alpha$ 与 $U$ \emph{正交}，记作 $\vec \alpha \perp U$。
+\end{definition}
+
+\begin{definition}{正交补}
+	定义 $\R^n$ 的子空间 $U$ 的\emph{正交补} $U^\perp$ 为：
+	$$
+	U^\perp \triangleq \{ \vec \alpha \in \R^n \colon \vec \alpha \perp U \}
+	$$
+\end{definition}
+
+可见，正交补即是上面的问题中要研究的对象。正交补满足什么性质？以下定理描述了正交补最基本的特征。
+
+\begin{theorem}
+	设 $U$ 是 $\R^n$ 的一个子空间，则 $U^\perp$ 也是 $\R^n$ 的一个子空间。
+\end{theorem}
+
+\begin{proof}
+	由于 $\vec 0 \perp U$，因此 $\vec 0 \in U^\perp$，可知 $U^\perp$ 非空。任取 $\vec \alpha, \vec \beta \in U^\perp$，则 $\forall \vec \gamma \in U$，有：
+	$$
+	(\vec \alpha + \vec \beta, \vec \gamma) = (\vec \alpha, \vec \gamma) + (\vec \beta, \vec \gamma) = 0
+	$$$$
+	(k \vec \alpha, \vec \gamma) = k(\vec \alpha, \vec \gamma) = 0
+	$$
+
+	说明 $\vec \alpha + \vec \beta \in U^\perp$ 且 $k \vec \alpha \in U^\perp$，即 $U^\perp$ 是 $\R^n$ 的一个子空间。
+\end{proof}
+
+\begin{theorem}
+	设 $U$ 是 $\R^n$ 的一个子空间，则：
+	$$
+	\dim U + \dim U^\perp = \dim \R^n = n
+	$$
+\end{theorem}
+
+\begin{proof}
+	设 $U = \langle \vec \alpha_1, \ldots, \vec \alpha_s \rangle$，其中 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关（规定这些向量都是列向量）。对于 $\R^n$ 中的向量 $\vec \alpha$，易证：
+	$$
+	\vec \alpha \in U^\perp \Longleftrightarrow (\vec \alpha, \vec \alpha_i) = 0 \pod{i = 1, \ldots, s}
+	$$
+
+	于是 $\vec \alpha_i^T \vec \alpha = 0 \pod{i = 1, \ldots, s}$。将 $s$ 个这样的等式合在一起，可以得到：
+	$$
+	\begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_s \end{bmatrix}^T \vec \alpha = \vec 0
+	$$
+
+	即可知 $\vec \alpha$ 是齐次线性方程组 $\begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_s \end{bmatrix}^T \vec x = \vec 0$ 的一组解，所以有：
+	$$
+	U^\perp = \operatorname{Ker} \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_s \end{bmatrix}^T
+	$$
+
+	由重要维数公式\footnote{$\dim \operatorname{Ker} \phi = n - \operatorname{rank}(A)$，其中 $A$ 是线性映射 $\phi$ 对应的矩阵，$n$ 是 $A$ 的列数。}：
+	$$
+	\begin{aligned}
+		\dim U^\perp &= n - \operatorname{rank} \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_s \end{bmatrix}^T
+		\\&=
+		n - s
+	\end{aligned}
+	$$
+\end{proof}
