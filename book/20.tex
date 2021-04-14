@@ -3,6 +3,8 @@
 
 \section{$\R^n$ 的子空间的正交补}
 
+\subsection{子空间的正交补与向量空间的分解}
+
 给定 $\R^n$ 的一个子空间，我们想要知道，在 $\R^n$ 中有哪些向量与该子空间的所有向量都正交。为此，我们提出以下概念。
 
 \begin{definition}{正交}
@@ -31,6 +33,23 @@
 	$$
 
 	说明 $\vec \alpha + \vec \beta \in U^\perp$ 且 $k \vec \alpha \in U^\perp$，即 $U^\perp$ 是 $\R^n$ 的一个子空间。
+\end{proof}
+
+有了正交补的概念，我们能更好地描述 $\R^n$ 的结构，见以下定理。
+
+\begin{theorem}
+	设 $U$ 是 $\R^n$ 的一个子空间，则：
+	$$
+	U \cap U^\perp = \{ \vec 0\}
+	$$
+\end{theorem}
+
+\begin{proof}
+	由于 $U$ 是一个 $\mathbb K^n$ 的一个线性子空间，因此 $\vec 0 \in U$。前面已经证明，$\vec 0 \in U^\perp$。
+
+	$\forall \vec v \in U^\perp \pod{\vec v \ne \vec 0}$，假设 $\vec v \in U$，那么由标准内积的正定性可知 $(\vec v, \vec v) > 0$（将左侧看作 $\vec v \in U^\perp$，将右侧看作 $\vec v \in U$），这与 $\forall w \in U, (\vec v, \vec w) = 0$ 矛盾，故 $\vec v \not \in U$。
+
+	综上可得 $U \cap U^\perp = \{\vec 0\}$。
 \end{proof}
 
 \begin{theorem}
@@ -65,3 +84,49 @@
 	\end{aligned}
 	$$
 \end{proof}
+
+更深刻地，我们有以下定理。我们首先提出一个引理。
+
+\begin{theorem}
+	对于实数域上的 $s \times n$ 矩阵，有：
+	$$
+	\operatorname{rank}(A^T A) = \operatorname{rank}(A) = \operatorname{rank}(AA^T)
+	$$
+\end{theorem}
+
+\begin{proof}
+	% TODO
+\end{proof}
+
+\begin{theorem}
+	设 $\R^n$ 的一个子空间为 $U$，则 $\R^n$ 中的任何一个向量都可以唯一地表示为 $U$ 中的一个向量与 $U^\perp$ 中的一个向量的和，即 $\forall \vec \alpha \in \R^n, \exists \vec \beta \in U, \vec \gamma \in U^\perp$，使得 $\vec \alpha = \vec \beta + \vec \gamma$。
+\end{theorem}
+
+\begin{proof}
+	% TODO
+\end{proof}
+
+以上定理提出了一种分解向量（或者说分解向量空间）的方法。顺着分解向量空间的思路，我们提出以下概念。
+
+\begin{definition}{线性子空间的和}
+	设 $V, W$ 都是 $\mathbb K^n$ 的线性子空间，定义它们的\emph{和} $V + W$ 为：
+	$$
+	V + W \triangleq \{\vec v + \vec w \colon \vec v \in V, \vec w \in W\}
+	$$
+
+	不难证明 $V + W$ 也是 $\mathbb K^n$ 的一个线性子空间。
+\end{definition}
+
+则根据以上定理，我们可以很容易地得出以下结论。
+
+\begin{theorem}
+	设 $\R^n$ 的一个子空间为 $U$，则：
+	$$
+	U + U^\perp = \R^n
+	$$
+\end{theorem}
+
+\subsection{正交投影、正交基、正交矩阵}
+
+\subsubsection{正交投影应用举例：线性方程组的最小二乘解}
+
