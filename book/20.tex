@@ -208,5 +208,108 @@
 
 \subsection{正交投影、正交基、正交矩阵}
 
+前面提到的一个重要定理是，向量空间可以分解为子空间和其正交补的和。通过这一定理可以引出什么几何性质？据此，我们提出正交投影的概念。
+
+\begin{definition}{正交投影}
+	设 $U$ 是欧几里得空间 $\R^n$ 的一个子空间。设映射 $P_U$ 为 $\begin{aligned}P_U \colon & \R^n \to \R^n \\& \vec \alpha \mapsto \vec \alpha_1 \end{aligned}$，其中 $\vec \alpha_1 \in U$，并且 $\vec \alpha - \vec \alpha_1 \in U^\perp$，则称 $P_U$ 是 $\R^n$ 在 $U$ 上的\emph{正交投影}，把 $\vec \alpha_1$ 称为向量 $\vec \alpha$ 在 $U$ 上的\emph{正交投影}。
+\end{definition}
+
+从以下定理我们可以看到正交投影的几何意义。
+
+\begin{theorem}
+	设 $\vec \alpha \in \R^n$，$\vec \beta \in U$。则 $\vec \beta$ 是 $\vec \alpha$ 在 $U$ 上的正交投影当且仅当 $\forall \vec \delta \in U, |\vec \alpha - \vec \beta| \le |\vec \alpha - \vec \delta|$。
+\end{theorem}
+
+\begin{proof}
+	必要性。设 $\vec \alpha = \vec \beta + \vec \gamma \pod{\vec \beta \in U, \vec \gamma \in U^\perp}$。对 $\vec \alpha - \vec \delta = \vec \alpha - \vec \beta + \vec \beta - \vec \delta$ 两侧取平方，得：
+	$$
+	|\vec \alpha - \vec \delta|^2 = |\vec \alpha - \vec \beta|^2 + |\vec \beta - \vec \delta|^2 \ge |\vec \alpha - \vec \beta|^2
+	$$
+	其中，由于 $\vec \alpha - \vec \beta\in U^\perp$，$\vec \beta - \vec \delta \in U$，因此右式平方后只剩两个平方项。
+
+	充分性。设 $\vec \alpha$ 在 $U$ 上的正交投影是 $\vec \beta_0$，则由已知条件和必要性可得 $|\vec \alpha - \vec \beta| \le |\vec \alpha - \vec \beta_0|$ 和 $|\vec \alpha - \vec \beta_0| \le |\vec \alpha - \vec \beta|$，即 $|\vec \alpha - \vec \beta| = |\vec \alpha - \vec \beta_0|$。对 $\vec \alpha - \vec \beta = \vec \alpha - \vec \beta_0 + \vec \beta_0 - \vec \beta$ 两侧取平方，得 $|\vec \alpha - \vec \beta_0|^2 = |\vec \alpha - \vec \beta|^2 + |\vec \beta - \vec \beta_0|^2$，所以 $|\vec \beta - \vec \beta_0|^2 = 0$。由标准内积的正定性，可知 $\vec \beta = \vec \beta_0$。
+\end{proof}
+
+由于以上定理说明了 $\vec \beta$ 是 $\vec \alpha$ 在 $U$ 上的正交投影的充分必要条件，因此我们可以将其作为正交投影的等价定义。
+
+\bigskip
+
+前面的证明过程中，提到了正交基的概念，我们在此进行形式化的说明与定义。
+
+\begin{theorem}
+	欧几里得空间 $\R^n$ 中，正交向量组一定是线性无关的。
+\end{theorem}
+
+\begin{proof}
+	设 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 是正交向量组，设 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0$，则有：
+	$$
+	(k_1 \vec \alpha_1 + k_2 \vec \alpha_2 + \cdots + k_s \vec \alpha_s, \vec \alpha_i) = (\vec 0, \vec \alpha_i) \pod{i = 1, \cdots, s}
+	$$
+
+	化简得：$k_i (\vec \alpha_i, \vec \alpha_i) = 0$。又由标准内积的正定性，可以推导出 $k_i = 0$。即关于 $\{k_i\}$ 的方程组 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0$ 没有非零解，故正交向量组线性无关。
+\end{proof}
+
+\begin{definition}{正交基}
+	欧几里得空间 $\R^n$ 中，$n$ 个向量组成的正交向量组一定是 $\R^n$ 的一个基，称它为\emph{正交基}。
+\end{definition}
+
+\begin{definition}{标准正交基}
+	$n$ 个单位向量组成的正交向量组称为 $\R^n$ 的一个\emph{标准正交基}。特别地，$\vec e_1, \ldots, \vec e_n$ 是 $\R^n$ 的标准正交基。
+\end{definition}
+
+\bigskip
+
+正交基与正交矩阵有着密不可分的联系。
+
+\begin{theorem}
+	实数域上的 $n$ 级矩阵 $A$ 是正交矩阵的充分必要条件为：$A$ 的行（列）向量组是欧几里得空间 $\R^n$ 的一个标准正交基。
+\end{theorem}
+
+\begin{proof}
+	设 $A$ 的行向量组为 $\vec \gamma_1, \ldots, \vec \gamma_n$，则以下条件依次充分必要：
+	\begin{itemize}
+		\item 实数域上 $n$ 级矩阵 $A$ 是正交矩阵。
+		\item $\vec \gamma_i \vec \gamma'_j = \delta_{ij} \pod{1 \le i, j \le n}$。
+		\item $(\vec \gamma_i, \vec \gamma_j) = \delta_{ij} \pod{1 \le i, j \le n}$。
+		\item $\vec \gamma_1, \ldots, \vec \gamma_n$ 是 $\R^n$ 的一个标准正交基。
+	\end{itemize}
+
+	列向量组同理。证毕。
+\end{proof}
+
+\begin{theorem}
+	设 $A$ 是 $n$ 级方阵，则以下命题等价：
+	\begin{enumerate}
+		\item $A$ 是正交矩阵。
+		\item $A$ 的行（列）向量是 $\R^n$ 的一组标准正交基。
+		\item 对于映射 $\begin{aligned} \varphi \colon & \R^n \to \R^n \\ & \vec x \mapsto A \vec x \end{aligned}$，满足 $\forall \vec x \in \R^n, |A \vec x| = |\vec x|$。
+		\item 对于任意的一组标准正交基 $\vec \alpha_1, \ldots, \vec \alpha_n$（列向量），满足 $A \vec \alpha_1, \ldots, A \vec \alpha_n$ 也是标准正交基。
+	\end{enumerate}
+\end{theorem}
+
+我们已经证明了第一点和第二点的等价性。
+
+\begin{proof}[$2 \Longrightarrow 3$]
+	$$
+	\forall \vec x \in \R^n, (A \vec x, A \vec x) = (A\vec x)^T A \vec x = \vec x^T A^T A \vec x = x^T x = (\vec x, \vec x)
+	$$
+\end{proof}
+
+\begin{proof}[$4 \Longrightarrow 1$]
+	令 $B = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$ ，由于 $\vec \alpha_1, \ldots, \vec \alpha_n$ 是标准正交基，因此 $B$ 是正交矩阵。
+
+	由于 $AB = \begin{bmatrix} A \vec \alpha_1 & \cdots & A \vec \alpha_n \end{bmatrix}$，可知 $AB$ 也是正交矩阵。则：
+	$$
+	A = ABB^{-1} = (AB) B^{-1}
+	$$
+
+	由于正交矩阵乘以正交矩阵仍然是正交矩阵：
+	$$
+	(AB)^T(AB) = B^TA^TAB = I_n
+	$$
+
+	而 $B^{-1}$ 是正交矩阵，因此 $A$ 也是正交矩阵。
+\end{proof}
+
 \subsubsection{正交投影应用举例：线性方程组的最小二乘解}
 
