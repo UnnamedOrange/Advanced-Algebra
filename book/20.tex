@@ -269,8 +269,8 @@
 	设 $A$ 的行向量组为 $\vec \gamma_1, \ldots, \vec \gamma_n$，则以下条件依次充分必要：
 	\begin{itemize}
 		\item 实数域上 $n$ 级矩阵 $A$ 是正交矩阵。
-		\item $\vec \gamma_i \vec \gamma'_j = \delta_{ij} \pod{1 \le i, j \le n}$。
-		\item $(\vec \gamma_i, \vec \gamma_j) = \delta_{ij} \pod{1 \le i, j \le n}$。
+		\item $\vec \gamma_i \vec \gamma'_j = \delta_{ij} \pod{1 \le i, j \le n}$
+		\item $(\vec \gamma_i, \vec \gamma_j) = \delta_{ij} \pod{1 \le i, j \le n}$
 		\item $\vec \gamma_1, \ldots, \vec \gamma_n$ 是 $\R^n$ 的一个标准正交基。
 	\end{itemize}
 
@@ -313,3 +313,36 @@
 
 \subsubsection{正交投影应用举例：线性方程组的最小二乘解}
 
+考虑线性方程组 $A \vec X = \vec \beta$，若它无解，能否考虑一下它的近似解？
+
+\begin{definition}{最小二乘解}
+	设 $A$ 是实数域上的一个 $m \times n$ 矩阵，$m > n$，$\vec \beta \in \R^m$。如果 $\vec x_0 \in \R^n$ 使得 $\forall \vec x \in \R^n, |\vec \beta - A \vec x_0| \le |\vec \beta - A \vec x|$，那么称 $\vec x_0$ 是线性方程组 $A \vec x = \vec \beta$ 的\emph{最小二乘解}。
+\end{definition}
+
+显然线性方程组 $A \vec x_0 = \vec \beta$ 的最小二乘解是 $\vec \beta$ 在 $A$ 的列向量张成的线性子空间的正交投影。
+
+\begin{theorem}
+	$\vec x_0$ 是 $A \vec x = \vec \beta$ 的最小二乘解当且仅当 $\vec x_0$ 是线性方程组 $A'A \vec x = A' \vec \beta$ 的解。
+\end{theorem}
+
+\begin{proof}
+	用 $U$ 表示矩阵 $A$ 的列空间，即 $U = \langle \vec \alpha_1, \ldots, \vec \alpha_n \rangle$，则以下条件依次充分必要：
+	\begin{itemize}
+		\item $\vec x_0$ 是 $A \vec x = \vec \beta$ 的最小二乘解。
+		\item $A \vec x_0$ 是 $\vec \beta$ 在 $U$ 上的正交投影。
+		\item $\vec \beta - A \vec x_0 \in U^\perp$
+		\item $(\vec \beta - A \vec x_0, \vec \alpha_i) = 0 \pod{i = 1, \ldots, n}$
+		\item $\vec a'_i (\vec \beta - A \vec x_0) = 0 \pod{i = 1, \ldots, n}$
+		\item $A'(\vec \beta - A \vec x_0) = \vec 0$
+		\item $A'A \vec x_0 = A' \vec \beta$
+		\item $\vec x_0$ 是 $A'A \vec x = A' \vec \beta$ 的解。
+	\end{itemize}
+
+	证毕。另一方面，考察线性方程组 $A'A \vec x = A' \vec \beta$ 的解一定存在的原因：
+	$$
+	\operatorname{rank}(A'A) \le \operatorname{rank}(A'(A|\vec \beta)) \le \operatorname{rank}(A') = \operatorname{rank}(A'A)
+	$$
+	其中，$(A|\vec \beta)$ 是分块矩阵的表示；第二个小于等于号的原因是 $A'(A|\vec \beta)$ 的列向量组中的每一个向量都是 $A'$ 的列向量组的线性组合。
+
+	最后可知 $\operatorname{rank}(A'(A|\vec \beta)) = \operatorname{rank}(A'A)$，即线性方程组 $A'A \vec x = A' \vec \beta$ 一定有解。
+\end{proof}
