@@ -94,8 +94,27 @@
 	$$
 \end{theorem}
 
-\begin{proof}
-	% TODO
+\begin{proof}[方法一]
+	证明 $(A'A) \vec x = \vec 0$ 与 $A \vec x = \vec 0$ 同解。
+
+	设 $\vec \eta$ 是 $A \vec x = \vec 0$ 的任意一个解，即 $A \vec \eta = \vec 0$，则 $A'A \vec \eta = \vec 0$，于是可知 $\vec \eta$ 也是 $(A'A) \vec x = \vec 0$ 的一个解。
+
+	设 $\vec \eta$ 是 $(A'A) \vec x = \vec 0$ 的任意一个解，即 $A' A \vec \eta = \vec 0$，则可知 $\vec \eta' A' A \vec \eta = \vec 0$，即 $(A \vec \eta)' A \vec \eta = \vec 0$。注意到 $A \vec \eta$ 是一个 $1 \times n$ 的矩阵，将它看作一个列向量，则该式等价于一个向量与它自身的内积等于 $0$。由标准内积的正定性，可知这个向量是零向量，即 $A \vec \eta = \vec 0$，于是可知 $\vec \eta$ 也是 $A \vec x = \vec 0$ 的一个解。
+
+	综上，$(A'A)\vec x = \vec 0$ 与 $A \vec x = \vec 0$ 同解，所以 $A'A$ 与 $A$ 的解空间的维数相等，进一步它们的秩也相等。令 $A = A^T$，可得第二个等号也成立。证毕。
+\end{proof}
+
+\begin{proof}[方法二]
+	设 $\operatorname{rank}(A) = r$，可知 $r \le \min \{s, n\}$。使用比内柯西公式计算 $AA'$ 的任一 $r$ 阶主子式：
+	$$
+	\begin{aligned}
+		(AA') \begin{pmatrix} i_1, \ldots, i_r \\ i_1, \ldots, i_r \end{pmatrix} &= \sum\limits_{1 \le v_1 < \cdots < v_r \le n} A \begin{pmatrix} i_1, \ldots, i_r \\ v_1, \ldots, v_r \end{pmatrix} A' \begin{pmatrix} v_1, \ldots, v_r \\ i_1, \ldots, i_r \end{pmatrix}
+		\\&=
+		\sum\limits_{1 \le v_1 < \cdots < v_r \le n} \Biggl( A \begin{pmatrix} i_1, \ldots, i_r \\ v_1, \ldots, v_r \end{pmatrix} \Biggr)^2
+	\end{aligned}
+	$$
+
+	由于至少存在一个 $A$ 的 $r$ 阶子式不为 $0$，因此 $AA'$ 至少存在一个 $r$ 阶主子式不为 $0$，则可得 $\operatorname{rank}(AA') \ge \operatorname{rank}(A)$\footnote{任一非零矩阵的秩等于它的不为零的子式的最高阶数。}。又由于 $AA'$ 的每个列向量都可以看作 $A$ 的列向量组的线性组合，即 $AA'$ 可由 $A$ 线性表出，则可得 $\operatorname{rank}(AA') \le \operatorname{rank}(A)$。综上，$\operatorname{rank}(AA') = \operatorname{rank}(A) = r$。令 $A = A^T$，可得第二个等号也成立。证毕。
 \end{proof}
 
 \begin{theorem}
@@ -103,7 +122,68 @@
 \end{theorem}
 
 \begin{proof}
-	% TODO
+	设 $U$ 的一组正交基是 $\vec \alpha_1, \ldots, \vec \alpha_s$，记 $\vec \beta = \sum\limits_{i = 1}^{s} x_i \vec \alpha_i$。假设 $\vec \alpha \in \R^n$ 可以被分解成 $\vec \beta + \vec \gamma$，下面证明这种分解是存在的，并且这种分解是唯一的。
+
+	根据假设，已知 $(\vec \alpha - \vec \beta) \perp U$，则有：
+	$$
+	\biggl( \vec \alpha - \sum\limits_{j = 1}^s x_j \vec \alpha_j \biggr) \perp U
+	$$
+
+	于是，对于 $i = 1, \ldots, s$，有：
+	$$
+	\biggl( \vec \alpha - \sum\limits_{j = 1}^s x_j \vec \alpha_j, \vec \alpha_i \biggr) = 0
+	$$
+
+	展开得：
+	$$
+	(\vec \alpha, \vec \alpha_i) - x_j \sum\limits_{j = 1}^s (\vec \alpha_j, \vec \alpha_i) = 0 \pod{i = 1, \cdots, s}
+	$$
+
+	由于 $(\vec \alpha_i, \vec \alpha_j) = 0 \pod{i \ne j}$，因此化简上式可得：
+	$$
+	(\vec \alpha, \vec \alpha_i) = x_i (\vec a_i, \vec a_i)
+	$$
+
+	若假设成立，则该式成立。反之，若存在 $x_i \pod{i = 1, 2, \ldots, s}$ 使得该式成立，则可代入 $x_i$ 得到满足条件的 $\vec \beta$ 和 $\vec \gamma$。
+
+	\bigskip
+
+	定义矩阵 $M$：
+	$$
+	M =
+	\begin{bmatrix}
+	(\vec \alpha_1, \vec \alpha_1) & \cdots & (\vec \alpha_1, \vec \alpha_s)
+	\\
+	\vdots && \vdots
+	\\
+	(\vec \alpha_s, \vec \alpha_1) & \cdots & (\vec \alpha_s, \vec \alpha_s)
+	\end{bmatrix}_{s \times s}
+	$$
+
+	注意 $(\vec \alpha_i, \vec \alpha_j) = 0 \pod{i \ne j}$。规定以上向量都是列向量，则可以记 $(\vec \alpha_i ,\vec \alpha_j) = \vec \alpha_i^T \vec \alpha_j$，则 $M$ 可以写成如下分块矩阵的乘积：
+	$$
+	M =
+	\begin{bmatrix} \vec \alpha_1^T \\ \vec \alpha_2^T \\ \vdots \\ \vec \alpha_s^T \end{bmatrix}
+	\begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_s \end{bmatrix}
+	$$
+
+	定义 $Q = \begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_s \end{bmatrix}$，则 $M$ 可简记为 $M = Q^T Q$。由引理可知\footnote{$\operatorname{rank}(A^T A) = \operatorname{rank}(A) = \operatorname{rank}(AA^T)$}，$\operatorname{rank}(M) = \operatorname{rank}(Q)$。由于 $Q$ 是一个列满秩的矩阵，因此 $M$ 也是一个列满秩的矩阵。
+
+	\bigskip
+
+	要能够将 $\vec \alpha$ 分解成 $\vec \beta + \vec \gamma$，必须有 $x_i (\vec a_i, \vec a_i) = (\vec \alpha, \vec \alpha_i)$。于是解方程组：
+	$$
+	x_i \vec a_i^T \vec a_i = \vec \alpha^T \vec \alpha_i \pod{i = 1, 2, \ldots, s}
+	$$
+
+	将该方程组记作矩阵乘法的形式，得（注意 $(\vec \alpha_i, \vec \alpha_j) = 0 \pod{i \ne j}$）：
+	$$
+	M \vec x = Y
+	$$
+	其中 $Y = \bigl( (\vec \alpha, \vec \alpha_i) \bigr)_{s \times 1}$。
+
+	由于 $M$ 是一个列满秩的矩阵，因此 $x_i \pod{i = 1, 2, \ldots, s}$ 有唯一解。则可知，存在唯一的这样一组 $x_i$，构成 $\vec \beta = \sum\limits_{i = 1}^s x_i \vec \alpha_i$ 和 $\vec \gamma = \vec \alpha - \vec \beta$，满足 $\vec \beta \in U$，$\vec \gamma \in U^\perp$，使得 $\vec \alpha = \vec \beta + \vec \gamma$。证毕。
+
 \end{proof}
 
 以上定理提出了一种分解向量（或者说分解向量空间）的方法。顺着分解向量空间的思路，我们提出以下概念。
