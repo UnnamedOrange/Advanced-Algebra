@@ -92,3 +92,64 @@ $$
 \end{proof}
 
 非齐次线性方程组的解集的结构又如何？设其对应的齐次线性方程组（常数项从 $\vec \beta$ 改为 $\vec 0$，称这个齐次线性方程组为原方程组的\emph{导出组}\index{导出组}）的解空间为 $W$，事实上，非齐次线性方程组的解集是一个 $W$ 型的\emph{线性流形}\index{线性流形}。相关的内容请自行查阅，本笔记不予讨论。
+
+\subsection{子空间的交的基}
+
+我们尝试用以上知识来解决下面这个问题。设 $V_1, V_2$ 是 $\mathbb K^n$ 的向量子空间。设 $V_1$ 的一组基是 $\vec \alpha_1, \ldots, \vec \alpha_s$，$V_2$ 的一组基是 $\vec \beta_1, \ldots, \vec \beta_t$，求 $V_1 \cap V_2$ 的一组基。
+
+\begin{solve}
+	可以知道，$\forall \vec \alpha \in V_1 \cap V_2$，可以表示为：
+	$$
+	\vec \alpha = k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = l_1 \vec \beta_1 + \cdots + l_t \vec \beta_t
+	$$
+
+	移项得：
+	$$
+	k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s - l_1 \vec \beta_1 - \cdots - l_t \vec \beta_t = \vec 0
+	$$
+
+	注意，上面是一个有 $s + t$ 个未知量、$n$ 个方程的齐次线性方程组，设其基础解系为 $\vec \delta_1, \ldots, \vec \delta_q$。具体地，设：
+	$$
+	\vec \delta_i = (a_{i1}, \ldots, a_{is}, a_{i, s + 1}, \ldots, a_{i, s + t})' \pod{i = 1, \ldots, q}
+	$$
+
+	则可以得到一组“基” $a_{i1} \vec \alpha_1 + \cdots + a_{is} \vec \alpha_s \pod{i = 1, \ldots, q}$。下面证明，它们确实是一组基，即它们满足：
+	\begin{enumerate}
+		\item 这 $q$ 个向量线性无关。
+		\item $V_1 \cap V_2$ 中的每一个向量都可以由这 $q$ 个向量线性表出。
+	\end{enumerate}
+
+	证明：
+	\begin{enumerate}
+		\item 写出向量组线性无关的等式：
+		$$
+		a_1 (a_{11} \vec \alpha_1 + \cdots + a_{1s} \vec \alpha_s) + \cdots + a_q(a_{q1} \vec \alpha_1 + \cdots + a_{qs} \vec \alpha_s) = \vec 0
+		$$
+
+		即要证明 $a_i = 0 \pod{i = 1, 2, \ldots, q}$。可得其中 $\vec \alpha_i$ 的系数为：
+		$$
+		a_1 a_{1i} + \cdots + a_q a_{qi} \pod{i = 1, \ldots, s}
+		$$
+
+		由于 $\vec \alpha_i \pod{i = 1, \ldots, s}$ 线性无关，因此上式都等于 $0$。于是再列出关于 $a_i$ 的方程组：
+		$$
+		a_1 a_{1i} + \cdots + a_q a_{qi} = 0 \pod{i = 1, \ldots, s}
+		$$
+
+		另一方面，将 $\vec \alpha$ 关于 $\vec \beta_i$ 的等式代入，得：
+		$$
+		a_1(a_{1, s + 1} \vec \beta_1 + \cdots + a_{1, s + t} \vec \beta_t) + \cdots + a_q(a_{q, s + 1} \vec \beta_1 + \cdots + a_{q, s + t} \vec \beta_t) = \vec 0
+		$$
+
+		于是得 $\vec \beta_i$ 的系数为 $a_1 a_{s + 1, i} + \cdots + a_q a_{s + t, i}$，由于 $\vec \beta_i \pod{i = 1, \ldots, t}$ 线性无关，因此这些系数也都是 $0$。综合以上内容，我们得到了 $s + t$ 个方程：
+		$$
+		a_1 a_{1i} + \cdots + a_q a_{qi} = 0 \pod{i = 1, \ldots, s}
+		$$$$
+		a_1 a_{1, s + j} + \cdots + a_q a_{q, s + j} = 0 \pod{j = 1, \ldots, t}
+		$$
+
+		由基础解系线性无关，得 $a_1, \ldots, a_q$ 均为 $0$。即得 $a_{i1} \vec \alpha_1 + \cdots + a_{is} \vec \alpha_s \pod{i = 1, \ldots, q}$ 线性无关。
+
+		\item 由 $\vec \delta_i \pod{i = 1, \ldots, q}$ 是 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s - l_1 \vec \beta_1 - \cdots - l_t \vec \beta_t = \vec 0$ 的基础解系，可知 $\vec \delta_i \pod{i = 1, \ldots, q}$ 的所有线性组合是方程组 $\vec \alpha = k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = l_1 \vec \beta_1 + \cdots + l_t \vec \beta_t$ 的所有解，由此可知它的每个向量取前 $s$ 个数形成的缩短组是方程组 $\vec \alpha = k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s$ 的基础解系，从而 $a_{i1} \vec \alpha_1 + \cdots + a_{is} \vec \alpha_s \pod{i = 1, \cdots, q}$ 是 $V_1 \cap V_2$ 的一组基。
+	\end{enumerate}
+\end{solve}
