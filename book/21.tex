@@ -3,3 +3,157 @@
 
 \section{施密特正交化过程}
 
+显然正交基拥有比一般的基更好的性质，我们自然想知道，如果给定 $\R^n$ 的线性子空间的一组基 $\vec \alpha_1, \ldots, \vec \alpha_s$，如何构造出一组正交向量组 $\vec \beta_1, \ldots, \vec \beta_s$，使得 $\langle \vec \alpha_1, \ldots \vec \alpha_s \rangle = \langle \vec \beta_1, \ldots, \vec \beta_s \rangle$，并且 $(\vec \beta_i, \vec \beta_j) = \delta_{ij}$？
+
+考虑 $n = s = 2$ 的情况。对于两个不正交的非零向量 $\vec \alpha_1, \vec \alpha_2$，我们可以让 $\vec \alpha_2$ 在垂直 $\vec \alpha_1$ 方向做投影并单位化得 $\vec \beta_2$，再对 $\vec \alpha_1$ 单位化得 $\vec \beta_1$。将以上过程公式化，可以考虑将 $\vec \alpha_2$ 分解成 $\vec p + \vec q$，其中 $\vec p \in \langle \vec \alpha_1 \rangle$，$\vec q \in \langle \vec \alpha_1 \rangle^\perp$。由于 $\vec p$ 是 $\vec \alpha_1$ 的线性组合，于是我们可以设出 $\vec p$ 的每一项（即 $\vec \alpha_1$）的系数。
+
+\begin{solve}
+	令 $\vec \beta_1 = \vec \alpha_1$。设 $\vec \alpha_2 = k \vec \beta_1 + \vec \beta_2$，其中 $\vec \beta_2$ 满足 $(\vec \beta_2, \vec \beta_1) = 0$。则可得 $(\vec \alpha_2 - k \vec \beta_1, \vec \beta_1) = 0$，解得 $k = \dfrac{(\vec \alpha_2, \vec \beta_1)}{(\vec \beta_1, \vec \beta_1)}$。令 $\vec \beta_2 = \vec \alpha_2 - \dfrac{(\vec \alpha_2, \vec \beta_1)}{(\vec \beta_1, \vec \beta_1)} \vec \beta_1$。
+
+	再令 $\vec \eta_1 = \dfrac{\vec \beta_1}{|\vec \beta_1|}, \vec \eta_2 = \dfrac{\vec \beta_2}{|\vec \beta_2|}$，则 $\vec \eta_1, \vec \eta_2$ 是 $\R^2$ 的一组标准正交基。
+\end{solve}
+
+对于一般的 $s$，我们可以用类似的方法构造与原基等价的正交单位向量组。
+
+\begin{theorem}[施密特正交化过程]
+	设 $\vec \alpha_1, \ldots, \vec \alpha_s$ 是欧几里得空间 $\R^n$ 中一个线性无关的向量组，令：
+	$$
+	\begin{aligned}
+		\vec \beta_1 &= \vec \alpha_1
+		\\
+		\vec \beta_2 &= \vec \alpha_2 - \dfrac{(\vec \alpha_2, \vec \beta_1)}{(\vec \beta_1, \vec \beta_1)} \vec \beta_1
+		\\
+		\vdots
+		\\
+		\vec \beta_s &= \vec \alpha_s - \sum\limits_{j = 1}^{s - 1} \dfrac{(\vec \alpha_s, \vec \beta_j)}{(\vec \beta_j, \vec \beta_j)} \vec \beta_j
+	\end{aligned}
+	$$
+
+	则 $\vec \beta_1, \ldots, \vec \beta_s$ 是正交向量组，并且 $\vec \beta_1, \ldots, \vec \beta_s$ 与 $\vec \alpha_1, \ldots, \vec \alpha_s$ 等价。
+\end{theorem}
+
+\begin{proof}
+	对线性无关的向量组所含向量的个数做数学归纳法。当 $s = 1$ 时，令 $\vec \beta_1 = \vec \alpha_1$，显然成立。假设 $s = k$ 时命题为真，下面考察 $s = k + 1$ 的情形。
+
+	现在有 $\vec \beta_{k + 1} = \vec \alpha_{k + 1} - \sum\limits_{j = 1}^{k} \dfrac{(\vec \alpha_{k + 1}, \vec \beta_j)}{(\vec \beta_j, \vec \beta_j)} \vec \beta_j$，下面证明在正交向量组 $\vec \beta_1, \ldots, \vec \beta_k$ 中加入 $\vec \beta_{k + 1}$ 后， $\vec \beta_1, \ldots, \vec \beta_k, \vec \beta_{k + 1}$ 仍是正交向量组。
+
+	考虑 $(\vec \beta_{k + 1}, \vec \beta_i) \pod{i = 1, \ldots, k}$：
+	$$
+	\begin{aligned}
+		(\vec \beta_{k + 1}, \vec \beta_i) &= \biggl( \vec \alpha_{k + 1} - \sum\limits_{j = 1}^{k} \frac{(\vec \alpha_{k + 1}, \vec \beta_j)}{(\vec \beta_j, \vec \beta_j)} \vec \beta_j, \vec \beta_i \biggr) \pod{i = 1, \ldots, k}
+		\\&=
+		(\vec \alpha_{k + 1}, \vec \beta_i) - \frac{(\vec \alpha_{k + 1}, \vec \beta_i)}{(\vec \beta_i, \vec \beta_i)} (\vec \beta_i, \vec \beta_i)
+		\\&=
+		0
+	\end{aligned}
+	$$
+
+	即 $\vec \beta_{k + 1}$ 与正交向量组 $\vec \beta_1, \ldots, \vec \beta_k$ 中的每一个向量正交，则 $\vec \beta_1, \ldots, \vec \beta_k, \vec \beta_{k + 1}$ 也是正交向量组。由数学归纳法，可知 $\vec \beta_1, \ldots, \vec \beta_s$ 是正交向量组。
+
+	对 $\vec \beta_{k + 1} = \vec \alpha_{k + 1} - \sum\limits_{j = 1}^{k} \dfrac{(\vec \alpha_{k + 1}, \vec \beta_j)}{(\vec \beta_j, \vec \beta_j)} \vec \beta_j$ 移项，可以看出 $\vec \alpha_1, \ldots, \vec \alpha_s$ 是 $\vec \beta_1, \ldots, \vec \beta_s$ 的线性组合。而由数学归纳法，将等式右侧的 $\vec \beta_j$ 等价替换成 $\vec \alpha_j$ 的线性组合后，可以看出 $\vec \beta_1, \ldots, \vec \beta_s$ 是 $\vec \alpha_1, \ldots, \vec \alpha_s$ 的线性组合。故 $\vec \beta_1, \ldots, \vec \beta_s$ 与 $\vec \alpha_1, \ldots, \vec \alpha_s$ 等价。证毕。
+\end{proof}
+
+只需要令 $\vec \eta_i = \dfrac{\vec \beta_i}{|\vec \beta_i|} \pod{i = 1, \ldots, s}$，即可得到正交单位向量组 $\vec \eta_1, \ldots, \vec \eta_n$。
+
+\subsection{施密特正交化过程应用举例：矩阵的 QR-分解}
+
+\begin{theorem}[QR-分解]
+	设 $A$ 是实数域上的 $m \times n$ 矩阵，其中 $m \ge n$。如果 $A$ 的列向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_n$ 线性无关，那么 $A$ 可以\textbf{唯一}分解成 $A = QR$，其中 $Q$ 是列向量组为正交单位向量组的 $m \times n$ 矩阵，$R$ 是主对角元都为正数的 $n$ 级上三角矩阵，称这种分解为 \emph{QR-分解}。
+\end{theorem}
+
+\begin{proof}
+	存在性。由施密特正交化过程，可得到与 $A$ 的列向量组等价的正交向量组 $\vec \beta_1, \ldots, \vec \beta_n$，再经单位化可得到正交单位向量组 $\vec \eta_1, \ldots, \vec \eta_n$。根据施密特正交化过程的等式：
+	$$
+	\vec \beta_s = \vec \alpha_s - \sum\limits_{j = 1}^{s - 1} \dfrac{(\vec \alpha_s, \vec \beta_j)}{(\vec \beta_j, \vec \beta_j)} \vec \beta_j
+	$$
+
+	可以写出等价的矩阵乘法：
+	$$
+	\begin{aligned}
+	A &=
+	\begin{bmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{bmatrix}
+	\begin{bmatrix}
+		1 & b_{12} & \cdots & b_{1n}
+		\\
+		0 & 1 & \cdots & b_{2n}
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		0 & 0 & \cdots & 1
+	\end{bmatrix}
+	\\&=
+	\begin{bmatrix} \vec \eta_1 & \cdots & \vec \eta_n \end{bmatrix}
+	\begin{bmatrix}
+		|\vec \beta_1| & 0 & \cdots & 0
+		\\
+		0 & |\vec \beta_2| & \cdots & 0
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		0 & 0 & \cdots & |\vec \beta_n|
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & b_{12} & \cdots & b_{1n}
+		\\
+		0 & 1 & \cdots & b_{2n}
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		0 & 0 & \cdots & 1
+	\end{bmatrix}
+	\\&=
+	\begin{bmatrix} \vec \eta_1 & \cdots & \vec \eta_n \end{bmatrix}
+	\begin{bmatrix}
+		|\vec \beta_1| & b_{12}|\vec \beta_1| & \cdots & b_{1n}|\vec \beta_1|
+		\\
+		0 & |\vec \beta_2| & \cdots & b_{2n}|\vec \beta_2|
+		\\
+		\vdots & \vdots & & \vdots
+		\\
+		0 & 0 & \cdots & |\vec \beta_n|
+	\end{bmatrix}
+	\\&=
+	QR
+	\end{aligned}
+	$$
+
+	唯一性。设 $A = QR = Q_1 R_1$，则 $Q = Q_1 R_1 R^{-1}$。由于 $R$、$R_1$ 都是上三角矩阵，于是它们的逆矩阵也是上三角矩阵\footnote{对上三角矩阵由初等变换法求逆矩阵可得。}。进一步可知 $R_1 R^{-1}$ 是一个主对角线元素大于 $0$ 的上三角矩阵\footnote{两个 $n$ 级上（下）三角矩阵 $A$ 与 $B$ 的乘积仍为上（下）三角矩阵，并且 $AB$ 的主对角元等于 $A$ 与 $B$ 相应主对角元的乘积。}。设 $Q = \begin{bmatrix} \vec \eta_1 & \cdots & \vec \eta_s \end{bmatrix}$，$Q_1 = \begin{bmatrix} \vec \delta_1 & \cdots & \vec \delta_s \end{bmatrix}$，于是有：
+	$$
+	\begin{aligned}
+		\begin{bmatrix} \vec \eta_1 & \cdots & \vec \eta_s \end{bmatrix} &= \begin{bmatrix} \vec \delta_1 & \cdots & \vec \delta_s \end{bmatrix}
+		\begin{bmatrix}
+			c_{11} &  c_{12} & \cdots & c_{1n}
+			\\
+			0 & c_{22} & \cdots & c_{2n}
+			\\
+			\vdots & \vdots & & \vdots
+			\\
+			0 & 0 & \cdots & c_{nn}
+		\end{bmatrix}
+		\pod{c_{ii} > 0}
+		\\&=
+		\begin{bmatrix} c_{11} \vec \delta_1 & c_{12} \vec \delta_1 + c_{22} \vec \delta_2 & \cdots \end{bmatrix}
+	\end{aligned}
+	$$
+
+	注意到，由向量长度的关系，$c_{11} = 1$，并且 $c_{ii} > 0$。又有：
+	$$
+	(\vec \eta_1, \vec \eta_2) = (c_{11} \vec \delta_1, c_{12} \vec \delta_1 + c_{22} \vec \delta_2) = 0
+	$$
+
+	所以有 $c_{11} c_{12} = 0$，即 $c_{12} = 0$。而又有 $(\vec \eta_2, \vec \eta_2) = c_{12}^2 + c_{22}^2 = 1$，于是可得 $c_{12} = 0, c_{22} = 1$。按同样的方法计算其他 $c_{ij}$，可知右边的矩阵是 $I$，于是 $Q = Q_1$。由 $Q$ 是一个可逆矩阵，得 $R = R_1$。证毕。
+\end{proof}
+
+对矩阵取转置后，可知对于行向量也有类似的结论。设 $A$ 是实数域上的 $m \times n$ 矩阵，其中 $m \le n$。如果 $A$ 的行向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_m$ 线性无关，那么 $A$ 可以\textbf{唯一}分解成 $A = RQ$，其中 $Q$ 是行向量组为正交单位向量组的 $m \times n$ 矩阵，$R$ 是主对角元都为正数的 $m$ 级下三角矩阵。
+
+\subsubsection{矩阵的 QR-分解应用举例：列满秩矩阵的最小二乘解公式}
+
+已经证明，$A \vec X = \vec \beta$ 的最小二乘解 $\vec X_0$ 是线性方程组 $A^T A \vec X = A^T \vec \beta$ 的解。显然，当 $A$ 列满秩时，$A^T A$ 列满秩，最小二乘解唯一，此时的最小二乘解为多少？
+
+\begin{theorem}[列满秩矩阵的最小二乘解]
+	设 $A$ 是实数域上的 $m \times n$ 列满秩矩阵，它可分解成 $A = QR$，其中 $Q$ 是列向量组为正交单位向量组的 $m \times n$ 矩阵，$R$ 为主对角元都为正数的上三角矩阵。则对于任意 $\vec \beta \in \R^m$，$R^{-1} Q' \vec \beta$ 是线性方程组 $A'A \vec x = A' \vec \beta$ 的唯一解。
+\end{theorem}
+
+\begin{solve}
+	已知 $A = QR$，则 $A' = R'Q'$，于是线性方程组 $A'A \vec x = A' \vec \beta$ 等价为 $R'Q'QR \vec x = R'Q' \vec \beta$，由 $QQ' = I$，$R$ 是可逆矩阵，于是 $R \vec x = Q' \vec \beta$，进一步可得 $\vec x = R^{-1} Q' \vec \beta$。证毕。
+\end{solve}
