@@ -3,4 +3,77 @@
 
 \section{矩阵的秩与矩阵的运算}
 
-作为本章的结尾，我们讨论矩阵的运算对矩阵的秩的影响。
+作为本章的结尾，我们讨论矩阵的某些运算对矩阵的秩的影响。
+
+\subsection{矩阵乘积的秩的上界}
+
+设 $A \in M_{m \times n}(\mathbb K)$，$B \in M_{n \times s}(\mathbb K)$，则由分块矩阵，可以将 $AB$ 记为：
+$$
+AB = A
+\begin{bmatrix} \vec \beta_1 & \vec \beta_2 & \cdots & \vec \beta_s \end{bmatrix}
+=
+\begin{bmatrix} A \vec \beta_1 & A \vec \beta_2 & \cdots & A \vec \beta_s \end{bmatrix}
+$$$$
+AB =
+\begin{bmatrix} \vec \alpha_1 \\ \vec \alpha_2 \\ \vdots \\ \vec \alpha_m \end{bmatrix}
+B =
+\begin{bmatrix} \vec \alpha_1 B \\ \vec \alpha_2 B \\ \vdots \\ \vec \alpha_m \end{bmatrix}
+$$
+
+以上两式的意义是，$A \vec \beta_i$ 是 $A$ 的列向量的线性组合，$\vec \alpha_i B$ 是 $B$ 的行向量的线性组合。因此，我们有以下定理成立\footnote{设向量组 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_r$ 可以由向量组 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 线性表出，如果 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_r$ 线性无关，那么 $r \le s$。}。
+
+\begin{theorem}[矩阵乘积的秩的上界]
+	$$
+	\operatorname{rank}(AB) \le \operatorname{rank}(A)
+	$$$$
+	\operatorname{rank}(AB) \le \operatorname{rank}(B)
+	$$
+\end{theorem}
+
+\subsection{Sylvester 秩不等式}
+
+Sylvester 秩不等式描述的是矩阵乘积的秩的下界。相比矩阵乘积的秩的上界，该定理不是那么显然。
+
+\begin{theorem}[Sylvester 秩不等式]
+	设 $A$、$B$ 分别是 $s \times n$，$n \times m$ 矩阵，则 $\operatorname{rank}(AB) \ge \operatorname{rank}(A) + \operatorname{rank}(B) - n$。
+\end{theorem}
+
+如果只是要证明 Sylvester 秩不等式，难度并不大，见以下代数证明方法。
+
+\begin{proof}[代数证明方法]
+	构造分块矩阵 $\begin{bmatrix} I_n & 0 \\ 0 & AB \end{bmatrix}$，可知 $\operatorname{rank}\left(\begin{bmatrix} I_n & 0 \\ 0 & AB \end{bmatrix}\right) = n + \operatorname{rank}(AB)$。现对该分块矩阵进行分块行（列）初等变换。
+	$$
+	\begin{bmatrix} I_n & 0 \\ 0 & AB \end{bmatrix} \to
+	\begin{bmatrix} I_n & 0 \\ -A & AB \end{bmatrix} \to
+	\begin{bmatrix} I_n & B \\ -A & 0 \end{bmatrix}
+	$$
+
+	注意到：
+	$$
+	\operatorname{rank}\left(\begin{bmatrix} I_n & 0 \\ 0 & AB \end{bmatrix}\right) = \operatorname{rank}\left(\begin{bmatrix} I_n & B \\ -A & 0 \end{bmatrix}\right) \ge \operatorname{rank}(A) + \operatorname{rank}(B)
+	$$
+	这是因为该矩阵必然存在一个不为零的 $\operatorname{rank}(A) + \operatorname{rank}(B)$ 阶子式。证毕。
+\end{proof}
+
+\bigskip
+
+重点需要掌握下面介绍的引理，以及由此产生的几何证明方法。
+
+% TODO: 补充例题。
+
+\begin{theorem}
+	设 $W \subseteq \mathbb K^m$ 是一个线性子空间，$\varphi \colon \mathbb K^m \to \mathbb K^n$ 是一个线性映射，则满足维数等式：
+	$$
+	\dim (W \cap \operatorname{Ker} \varphi) + \dim (\varphi(W)) = \dim W
+	$$
+\end{theorem}
+
+可以参照以下线性映射进行理解：
+$$
+\begin{aligned} \tilde \varphi \colon & W \to \varphi(W) \\ & \vec \gamma \mapsto \varphi(\vec \gamma) \end{aligned}
+$$
+
+特别地，当 $W = \mathbb K^m$ 时，以上定理即为：
+$$
+\dim \operatorname{Im} \phi + \dim \operatorname{Ker} \phi = \dim \mathbb K^m = m
+$$
