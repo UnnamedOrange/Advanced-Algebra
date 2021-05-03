@@ -57,7 +57,7 @@ Sylvester 秩不等式描述的是矩阵乘积的秩的下界。相比矩阵乘�
 
 \bigskip
 
-重点需要掌握下面介绍的引理，以及由此产生的几何证明方法。
+重点需要掌握下面介绍的两个引理，以及由此产生的几何证明方法\footnote{尽管这是考试的重点，但在应用中这一方法过于抽象，反而代数证明方法更重要了。下面内容的严谨性会因此有所降低。}。
 
 % TODO: 补充例题。
 
@@ -66,14 +66,79 @@ Sylvester 秩不等式描述的是矩阵乘积的秩的下界。相比矩阵乘�
 	$$
 	\dim (W \cap \operatorname{Ker} \varphi) + \dim (\varphi(W)) = \dim W
 	$$
-\end{theorem}
 
-可以参照以下线性映射进行理解：
-$$
-\begin{aligned} \tilde \varphi \colon & W \to \varphi(W) \\ & \vec \gamma \mapsto \varphi(\vec \gamma) \end{aligned}
-$$
+	如果设：
+	$$
+	\begin{aligned} \tilde \varphi \colon & W \to \varphi(W) \\ & \vec \gamma \mapsto \varphi(\vec \gamma) \end{aligned}
+	$$
+
+	则该定理描述的是 $\tilde \varphi$ 的零空间的维数加上其象空间的维数等于其定义域对应子空间的维数，即：
+	$$
+	\dim \operatorname{Ker} \tilde \varphi + \dim \operatorname{Im} \tilde \varphi = \dim W
+	$$
+\end{theorem}
 
 特别地，当 $W = \mathbb K^m$ 时，以上定理即为：
 $$
 \dim \operatorname{Im} \phi + \dim \operatorname{Ker} \phi = \dim \mathbb K^m = m
 $$
+
+% TODO: 补充证明。
+
+\begin{theorem}
+	设 $A, B$ 是两个线性映射（或表示其对应的矩阵），且 $BA$ 存在，则：
+	$$
+	\dim \operatorname{Ker}(BA) \le \dim \operatorname{Ker} A + \dim \operatorname{Ker} B
+	$$
+\end{theorem}
+
+\begin{proof}
+	设线性映射 $A \colon V \to U$，$B \colon U \to W$（其中 $V, U$ 是线性空间），则线性映射 $BA \colon V \to W$。可知：
+	$$
+	\dim V = \dim \operatorname{Ker}(BA) + \dim \operatorname{Im}(BA)
+	$$
+
+	由于：
+	$$
+	\operatorname{Im} (BA) = B \bigl( \operatorname{Im} A \bigr)
+	$$
+
+	因此\footnote{$\dim (W \cap \operatorname{Ker} \varphi) + \dim (\varphi(W)) = \dim W$}：
+	$$
+	\dim (\operatorname{Im} A \cap \operatorname{Ker} B) + \dim \operatorname{Im}(BA) = \dim \operatorname{Im} A
+	$$
+
+	综上，可以计算：
+	$$
+	\begin{aligned}
+		\dim \operatorname{Ker}(BA) &= \dim V - \dim \operatorname{Im}(BA)
+		\\&=
+		\dim V - \bigl( \dim \operatorname{Im} A - \dim (\operatorname{Im} A \cap \operatorname{Ker} B) \bigr)
+		\\&\le
+		\dim V - \dim \operatorname{Im} A + \dim \operatorname{Ker} B
+		\\&=
+		\dim \operatorname{Ker} A + \dim \operatorname{Ker} B
+	\end{aligned}
+	$$
+\end{proof}
+
+下面给出 Sylvester 秩不等式的几何证明方法。
+
+\begin{proof}[几何证明方法]
+	设 $A_{m \times n}, B_{n \times s}$ 对应的线性映射分别是 $A \colon U \to W$，$B \colon V \to U$。可知：
+	$$
+	\begin{aligned}
+		\operatorname{rank}(AB) &= \dim \operatorname{Im}(AB)
+		\\&=
+		\dim V - \dim \operatorname{Ker}(AB)
+		\\&\ge
+		\dim V - \bigl( \dim \operatorname{Ker} A + \dim \operatorname{Ker} B \bigr)
+		\\&=
+		\dim \operatorname{Im} B - \dim \operatorname{Ker} A
+		\\&=
+		\dim \operatorname{Im} B - (\dim U - \dim \operatorname{Im} A)
+		\\&=
+		\operatorname{rank}(A) + \operatorname{rank}(B) - n
+	\end{aligned}
+	$$
+\end{proof}
