@@ -3,5 +3,52 @@
 
 \chapter{矩阵的相抵与相似}
 
+本章研究两个重要的等价关系。
+
 \section{矩阵的相抵}
 
+\begin{definition}{相抵}
+	对于数域 $\mathbb K$ 上的 $s \times n$ 矩阵 $A$ 和 $B$，如果从 $A$ 经过一系列初等行变换和初等列变换能变成矩阵 $B$，那么称 $A$ 与 $B$ 是\emph{相抵}的，记作 $A \stackrel{\text{相抵}}{\sim} B$。
+\end{definition}
+
+\begin{theorem}
+	相抵是 $M_{s \times n}(\mathbb K)$ 上的一个等价关系。
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item 显然，$A \stackrel{\text{相抵}}{\sim} A$；
+		\item 显然，若 $A \stackrel{\text{相抵}}{\sim} B$，则 $B \stackrel{\text{相抵}}{\sim} A$；
+		\item 显然，若 $A \stackrel{\text{相抵}}{\sim} B$，$B \stackrel{\text{相抵}}{\sim} C$，则 $A \stackrel{\text{相抵}}{\sim} C$。
+	\end{enumerate}
+\end{proof}
+
+注意到，若 $\operatorname{rank}(A) = r$，则经过一系列的初等行变换，可得到一简化阶梯形矩阵，再经过一系列初等列变换，可得到矩阵 $\begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}$。于是我们可以得到两矩阵相抵的又一个定义。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上 $s \times n$ 矩阵 $A$ 与 $B$ 相抵当且仅当它们的秩相等。
+\end{theorem}
+
+由初等矩阵，可以把以上初等行变换和初等列变换记作：
+$$
+P_s \cdots P_1 A Q_1 \cdots Q_t = PAQ = \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}
+$$
+
+其中：
+$$
+P = P_s \cdots P_1
+$$$$
+Q = Q_1 \cdots Q_t
+$$
+
+由于 $P_s, \ldots, P_1, Q_1, \ldots, Q_t$ 都是初等矩阵，因此 $P$ 和 $Q$ 是可逆矩阵。于是我们可以得出以下结论。
+
+\begin{theorem}
+	对于任意的非零矩阵 $A$，若 $\operatorname{rank}(A) = r$，则总存在两可逆矩阵 $P$ 和 $Q$，使得 $PAQ = \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}$。
+\end{theorem}
+
+由于任何一个秩为 $r$ 的矩阵都能经过初等行变换和初等列变换变成 $\begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}$（零矩阵保持为零矩阵），因此引入相抵标准形的概念。
+
+\begin{definition}{相抵标准形}
+	设数域 $\mathbb K$ 上的 $s \times n$ 矩阵 $A$ 的秩为 $r$。如果 $r > 0$，那么 $A$ 相抵于矩阵 $\begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}$，称它为 $A$ 的\emph{相抵标准形}。规定零矩阵的相抵标准形就是它自己。
+\end{definition}
