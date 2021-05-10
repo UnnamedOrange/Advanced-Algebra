@@ -1,0 +1,94 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{矩阵的相似}
+
+矩阵的相似是本笔记中最重要的内容之一，其研究动力如下。为了求 $n$ 级矩阵 $A$ 的方幂 $A^m$，如果能找到 $n$ 级可逆矩阵 $P$，使得 $P^{-1} AP = D$，其中 $D$ 是对角矩阵，那么 $A = PDP^{-1}$，从而 $A^m = PD^m P^{-1}$，而对角矩阵 $D$ 的方幂很容易计算，于是 $A^m$ 也就比较容易算出了。据此，我们定义相似的概念。
+
+\subsection{相似的概念}
+
+\begin{definition}{相似}
+	设 $A$ 与 $B$ 都是数域 $K$ 上的 $n$ 级矩阵，如果存在数域 $\mathbb K$ 上一个 $n$ 级可逆矩阵 $P$，使得 $P^{-1} A P = B$，那么称 $A$ 与 $B$ 是\emph{相似}的，记作 $A \sim B$。
+\end{definition}
+
+\begin{theorem}
+	相似是一个等价关系。
+\end{theorem}
+
+\begin{definition}{相似类}
+	在相似关系下，$A$ 的等价类称为 $A$ 的\emph{相似类}。
+\end{definition}
+
+容易证明，矩阵的相似满足以下性质。
+
+\begin{theorem}[相似的运算性质]
+	如果 $B_1 = P^{-1} A_1 P$，$B_2 = P^{-1} A_2 P$，$m$ 是正整数，那么：
+	\begin{enumerate}
+		\item $B_1 + B_2 = P^{-1} (A_1 + A_2) P$。
+		\item $B_1 B_2 = P^{-1} (A_1 A_2) P$。
+		\item $B_1^m = P^{-1} A_1^m P$。
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	相似的矩阵的行列式是一个不变量，但不是完全不变量。
+\end{theorem}
+
+\begin{theorem}
+	相似的矩阵或者都可逆，或者都不可逆；当它们可逆时，它们的逆矩阵也相似。
+\end{theorem}
+
+\begin{theorem}
+	相似的矩阵的秩是一个不变量，但不是完全不变量。
+\end{theorem}
+
+下面我们提出矩阵的迹的概念，并证明相似的矩阵的迹也是一个不变量。
+
+\begin{definition}{迹}
+	$n$ 级矩阵 $A = (a_{ij})$ 的主对角线上的元素之和称为 $A$ 的\emph{迹}，记作 $\operatorname{tr}(A)$， 即 $\operatorname{tr}(A) = a_{11} + a_{22} + \cdots + a_{nn}$。
+\end{definition}
+
+\begin{theorem}[矩阵的迹的运算性质]
+	\begin{enumerate}
+		\item 对 $n$ 级矩阵，$\operatorname{tr}(A + B) = \operatorname{tr}(A) + \operatorname{tr}(B)$。
+		\item 对 $n$ 级矩阵，$\operatorname{tr}(kA) = k \operatorname{tr}(A)$。
+		\item 对 $n \times m$ 矩阵 $A$ 和 $m \times n$ 矩阵 $B$，$\operatorname{tr}(AB) = \operatorname{tr}(BA)$。
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}[只证明 3.]
+	$$
+	\begin{aligned}
+		\operatorname{tr}(AB) &= \sum_{i = 1}^n (AB)(i; i)
+		\\&=
+		\sum_{i = 1}^n \sum_{k = 1}^m a_{ik} b_{ki}
+		\\&=
+		\sum_{k = 1}^m \sum_{i = 1}^n b_{ki} a_{ik}
+		\\&=
+		\sum_{k = 1}^m (BA)(k;k) = \operatorname{tr}(BA)
+	\end{aligned}
+	$$
+\end{proof}
+
+可见，矩阵的迹是从矩阵乘法的非交换性中提取的可交换的量。
+
+\begin{theorem}
+	相似的矩阵有相等的迹。
+\end{theorem}
+
+\begin{proof}
+	$$
+	\operatorname{tr}(B) = \operatorname{tr}(P^{-1} A P) = \operatorname{tr}(APP^{-1}) = \operatorname{tr}(A)
+	$$
+\end{proof}
+
+综合以上定理，我们总结出相似不变量的概念。
+
+\begin{definition}{相似不变量}
+	矩阵的行列式、秩、迹都是相似关系下的不变量，简称为\emph{相似不变量}。
+\end{definition}
+
+% TODO: 补充例题。
+
+\subsection{矩阵可对角化的概念}
+
