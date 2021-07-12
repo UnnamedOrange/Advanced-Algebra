@@ -92,3 +92,150 @@
 
 \subsection{矩阵可对角化的概念}
 
+\begin{definition}{可对角化}
+	如果 $n$ 级矩阵 $A$ 能够相似于一个对角矩阵，那么称 $A$ \emph{可对角化}。
+\end{definition}
+
+我们直接给出矩阵可对角化的充分必要条件。
+
+\begin{theorem}[矩阵可对角化的充分必要条件]
+	数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 可对角化的充分必要条件是，$\mathbb K^n$ 中有 $n$ 个线性无关的列向量 $\vec \alpha_1, \ldots, \vec \alpha_n$，以及 $\mathbb K$ 中有 $n$ 个数 $\lambda_1, \ldots, \lambda_n$（它们之中可能相等），使得 $A \vec \alpha_i = \lambda_i \vec \alpha_i \pod{i = 1, \ldots, n}$。这时，令 $P = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$，则 $P^{-1} AP = \operatorname{diag} \{ \lambda_1, \ldots, \lambda_n \}$。
+\end{theorem}
+
+\begin{proof}
+	设 $D = \operatorname{diag} \{ \lambda_1, \ldots, \lambda_n \}$，则以下命题互为充分必要条件：
+
+	\begin{itemize}
+		\item $A$ 相似于一个对角矩阵，即 $P^{-1} AP = D$。
+		\item $AP = PD$，设 $P = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$。
+		\item $\begin{bmatrix} A \vec \alpha_1 & \cdots & A \vec \alpha_n \end{bmatrix} =  \begin{bmatrix} \lambda_1 \vec \alpha_1 & \cdots & \lambda_n \vec \alpha_n \end{bmatrix}$
+		\item $A \vec \alpha_i = \lambda_i \vec \alpha_i \pod{i = 1, \ldots, n}$，其中 $\vec \alpha_1, \cdots, \vec \alpha_n$ 线性无关。
+	\end{itemize}
+\end{proof}
+
+\subsection{特征多项式}
+
+根据以上关于矩阵可对角化的分析，我们可以提出以下概念。
+
+\begin{definition}{特征值,特征向量}
+	设 $A$ 是数域 $\mathbb K$ 上的 $n$ 级矩阵，如果 $\mathbb K^n$ 中有非零列向量 $\vec \alpha$，使得 $A \vec \alpha = \lambda_0 \vec \alpha \pod{\lambda_0 \in \mathbb K}$，那么称 $\lambda_0$ 是 $A$ 的一个\emph{特征值}，称 $\vec \alpha$ 是 $A$ 的属于特征值 $\lambda_0$ 的一个\emph{特征向量}。
+\end{definition}
+
+注意，根据定义，零向量不是 $A$ 的特征向量。
+
+关于特征值与特征向量，我们首先给出以下显然的结论。
+
+\begin{theorem}
+	如果 $\vec \alpha$ 是 $A$ 的属于 $\lambda_0$ 的一个特征向量，那么对于任意 $k \in \mathbb K \pod{k \ne 0}$，$k \vec \alpha$ 也是 $A$ 的属于 $\lambda_0$ 的特征向量。
+\end{theorem}
+
+\begin{proof}
+	$$
+	A(k \vec \alpha) = k(A \vec \alpha) = k(\lambda_0 \vec \alpha) = \lambda_0 (k \vec \alpha)
+	$$
+\end{proof}
+
+根据以上定义，又受可对角化的充分必要条件的推导过程启发，我们可知以下命题互为充分必要条件：
+
+\begin{itemize}
+	\item $\lambda_0$ 是 $A$ 的一个特征值，$\vec \alpha$ 是 $A$ 的属于 $\lambda_0$ 的一个特征向量。
+	\item $A \vec \alpha = \lambda_0 \vec \alpha \pod{\vec \alpha \ne \vec 0, \lambda_0 \in \mathbb K}$
+	\item $(\lambda_0 I - A) \vec \alpha = \vec 0 \pod{\vec \alpha \ne \vec 0, \lambda_0 \in \mathbb K}$
+	\item $\vec \alpha$ 是齐次线性方程组 $(\lambda_0 I - A) \vec x = \vec 0$ 的一个非零解（$\lambda_0 \in \mathbb K$）。
+	\item $|\lambda_0 I - A| = 0$，$\vec \alpha$ 是 $(\lambda_0 I - A) \vec x = \vec 0$ 的一个非零解（$\lambda_0 \in \mathbb K$）。
+	\item $\lambda_0$ 是\textbf{多项式} $|\lambda I - A|$ 在 $\mathbb K$ 中的一个根，$\vec \alpha$ 是 $(\lambda_0 I - A) \vec x = \vec 0$ 的一个非零解。
+\end{itemize}
+
+将行列式 $|\lambda I - A|$ 的完全展开式看作一个关于 $\lambda$ 的多项式，即得到了上文中的多项式 $|\lambda I - A|$。
+$$
+|\lambda I - A| =
+\begin{vmatrix}
+\lambda - a_{11} & -a_{12} & \cdots & -a_{1n}
+\\
+-a_{21} & \lambda - a_{22} & \cdots & -a_{2n}
+\\
+\vdots & \vdots & & \vdots
+\\
+-a_{n1} & -a_{n2} & \cdots & \lambda - a_{nn}
+\end{vmatrix}
+$$
+
+\begin{definition}{特征多项式}
+	把 $|\lambda I - A|$ 称为 $A$ 的\emph{特征多项式}。
+\end{definition}
+
+以下定理描述了多项式 $|\lambda I_n - A|$ 的结构。
+
+\begin{theorem}
+	设 $A$ 是数域 $\mathbb K$ 上的 $n$ 级矩阵，则 $A$ 的特征多项式 $|\lambda I - A|$ 是一个 $n$ 次多项式，$\lambda^n$ 的系数是 $1$，$\lambda^{n - 1}$ 的系数等于 $-\operatorname{tr}(A)$，常数项为 $(-1)^n |A|$，$\lambda^{n - k}$ 的系数为 $A$ 的所有 $k$ 阶主子式的和乘以 $(-1)^k \pod{1 \le k < n}$。
+\end{theorem}
+
+\begin{proof}
+	设 $A = (a_{ij})$ 的列向量组是 $\vec \alpha_1, \ldots, \vec \alpha_n$，写出 $|\lambda I - A|$：
+	$$
+	|\lambda I - A| =
+	\begin{vmatrix} \lambda \vec e_1 - \vec \alpha_1 & \lambda \vec e_2 - \vec \alpha_2 & \cdots & \lambda \vec e_n - \vec \alpha_n \end{vmatrix}
+	$$
+	利用行列式的多线性，$|\lambda I - A|$ 可以拆成 $2^n$ 个行列式的和，我们把它按全是 $\vec e$，全是 $\vec \alpha$，既有 $\vec e$ 又有 $\vec \alpha$ 分成三类。
+
+	第一类，显然这个行列式等于 $\lambda^n$。第二类，显然这个行列式等于 $(-1)^n |A|$。对于第三类行列式，设第 $j_1, j_2, \ldots, j_{n - k}$ 列是 $\vec e$，于是可以将这个行列式按第 $j_1, j_2, \ldots, j_{n - k}$ 列展开。这 $n - k$ 列元素组成的 $n - k$ 阶子式只有一个不为 $0$，即选出第 $j_1, \ldots, j_{n - k}$ 行的那一个不为 $0$，还可知这个 $n - k$ 阶子式就是 $|\lambda I_{n - k}| = \lambda^{n - k}$。而剩下的 $k$ 阶子式对应的代数余子式为：
+	$$
+	(-1)^{(j_1 + \cdots + j_k) + (j_1 + \cdots + j_k)} (-A) \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} = (-1)^k A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix}
+	$$
+
+	于是第三类行列式的值为：$(-1)^k A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} \lambda^{n - k}$。特别地，当 $k = 1$ 时，得 $\lambda^{n - 1}$ 的系数为 $-\operatorname{tr}(A)$。综上，可以写出 $\lambda^{n - k}$ 的系数，即可得到 $A$ 的特征多项式的系数表示形式。
+	$$
+	\lambda^n - \operatorname{tr}(A) + \cdots + (-1)^k \sum_{1 \le j'_1 < \cdots < j'_k \le n} A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} \lambda^{n - k} + \cdots + (-1)^n |A|
+	$$
+\end{proof}
+
+\subsection{利用特征多项式进行矩阵对角化}
+
+要得到与矩阵 $A$ 相似的对角矩阵，我们需要找出 $A$ 的特征值 $\lambda_i$ 和特征向量 $\vec \alpha_i$。有了特征多项式，我们只需要找出 $A$ 的特征值 $\lambda_i$，并利用 $\vec \alpha_i$ 是齐次线性方程组 $(\lambda_i I - A) \vec x = \vec 0$ 的解求出 $\vec \alpha_i$（并验证 $\vec \alpha_i$ 是否线性无关）。于是可以将过程分成三步：
+\begin{enumerate}
+	\item 解多项式的零点 $|\lambda I_n - A| = 0$，得到 $n$ 个解 $\lambda_1, \ldots, \lambda_n$（包括重解）。
+	\item 对于每个 $\lambda_i$，解齐次线性方程组 $(\lambda_i I - A) \vec x = \vec 0$。将 $n$ 个非零解合在一起构成列向量组。
+	\item 检查列向量组 $\vec \alpha_1, \ldots, \vec \alpha_n$ 是否线性无关。
+\end{enumerate}
+
+如果以上步骤能顺利进行，那么 $\lambda_i$ 即为 $A$ 的一个特征值，$\vec \alpha_j$ 为 $A$ 属于 $\lambda_i$ 的一个特征向量。
+
+\bigskip
+
+下面以斐波那契数列 $a_n = a_{n - 1} + a_{n - 2}$ 为例，展示矩阵对角化的分析方法。
+
+\begin{solve}
+	用矩阵表示斐波那契数列的递推公式为：
+	$$
+	\begin{bmatrix} a_n \\ a_{n - 1}\end{bmatrix}
+	=
+	\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}
+	\begin{bmatrix} a_{n - 1} \\ a_{n - 2} \end{bmatrix}
+	$$
+
+	设 $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$，下面对 $A$ 进行对角化。
+
+	\begin{enumerate}
+		\item 解方程 $|\lambda I - A| = 0$。
+		$$
+		\begin{vmatrix}\lambda I - A\end{vmatrix} =
+		\begin{vmatrix} \lambda - 1 & -1 \\ -1 & \lambda \end{vmatrix} =
+		\lambda^2 - \lambda - 1 = 0
+		$$
+
+		解得 $\lambda_1 = \dfrac{1 - \sqrt 5}{2}, \lambda_2 = \dfrac{1 + \sqrt 5}{2}$。
+
+		\item 分别解关于 $\vec X$ 的方程组 $A \vec X = \lambda_1 \vec X$，$A \vec X = \lambda_2 \vec X$。
+
+		分别移项，得 $(\lambda_1 I - A) \vec X = \vec 0$，$(\lambda_2 I - A) \vec X = \vec 0$。注意到，$\lambda_1 I - A = \begin{bmatrix} \lambda_1 - 1 & -1 \\ -1 & \lambda_1 \end{bmatrix}$，$\lambda_2 I - A = \begin{bmatrix} \lambda_2 - 1 & -1 \\ -1 & \lambda_2 \end{bmatrix}$，它们的行列式都为 $0$，而它们都不是零矩阵，故它们的解空间的维数为 $2 - 1 = 1$。于是，设 $\vec X_1$ 为 $(\lambda_1 I - A) \vec X = \vec 0$ 的基础解系，$\vec X_2$ 为 $(\lambda_2 I - A) \vec X = \vec 0$ 的基础解系。此处省略计算结果。
+
+		\item 验证 $\vec X_1$ 和 $\vec X_2$ 线性无关。此处省略计算过程。
+	\end{enumerate}
+
+	最终可知，$A$ 可对角化，且满足：
+	$$
+	A \begin{bmatrix} \vec X_1 & \vec X_2 \end{bmatrix} = \begin{bmatrix} \vec X_1 & \vec X_2 \end{bmatrix} \begin{bmatrix} \dfrac{1 + \sqrt 5}{2} & 0 \\ 0 & \dfrac{1 - \sqrt 5}{2} \end{bmatrix}
+	$$
+
+	注意其中的 $\vec X_1, \vec X_2$ 是求解出的两个常向量。
+\end{solve}
