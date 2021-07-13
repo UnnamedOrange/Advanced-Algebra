@@ -164,7 +164,7 @@ $$
 	把 $|\lambda I - A|$ 称为 $A$ 的\emph{特征多项式}。
 \end{definition}
 
-以下定理描述了多项式 $|\lambda I_n - A|$ 的结构。
+以下定理描述了多项式 $|\lambda I - A|$ 的结构。
 
 \begin{theorem}
 	设 $A$ 是数域 $\mathbb K$ 上的 $n$ 级矩阵，则 $A$ 的特征多项式 $|\lambda I - A|$ 是一个 $n$ 次多项式，$\lambda^n$ 的系数是 $1$，$\lambda^{n - 1}$ 的系数等于 $-\operatorname{tr}(A)$，常数项为 $(-1)^n |A|$，$\lambda^{n - k}$ 的系数为 $A$ 的所有 $k$ 阶主子式的和乘以 $(-1)^k \pod{1 \le k < n}$。
@@ -187,6 +187,87 @@ $$
 	$$
 	\lambda^n - \operatorname{tr}(A) + \cdots + (-1)^k \sum_{1 \le j'_1 < \cdots < j'_k \le n} A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} \lambda^{n - k} + \cdots + (-1)^n |A|
 	$$
+\end{proof}
+
+由代数学基本定理，复数域上的特征多项式亦可用以下定理所示的形式表示。
+
+\begin{theorem}
+	设 $A \in M_n (\C)$，则 $A$ 的特征多项式为：
+	$$
+	|\lambda I - A| = (\lambda - \lambda_1) (\lambda - \lambda_2) \cdots (\lambda - \lambda_n)
+	$$
+	其中 $\lambda_1, \ldots, \lambda_n$ 是 $A$ 的特征值（可重）。
+
+	$A$ 的特征多项式亦可记作：
+	$$
+	|\lambda I - A| = (\lambda - \lambda_1)^{l_1} (\lambda - \lambda_2)^{l_2} \cdots (\lambda - \lambda_m)^{l_m}
+	$$
+	其中 $\lambda_1, \ldots, \lambda_m$ 是 $A$ 的特征值（互不相同）。
+\end{theorem}
+
+综合以上两个定理，可知复数域上的矩阵的所有 $k$ 阶主子式之和满足以下性质。
+
+\begin{theorem}
+	设 $A \in M_n(\C)$，设 $A$ 的特征值为 $\lambda_1, \lambda_2, \ldots, \lambda_n$（可重），则 $A$ 的所有 $k$ 阶主子式之和为 $\sum\limits_{1 \le j_1 < \cdots < j_{n - k} \le n} \lambda_{j_1} \cdots \lambda_{j_{n - k}}$。
+\end{theorem}
+
+\begin{proof}
+	设 $A$ 的所有 $k$ 阶主子式之和为 $A_k$。由于 $\lambda^{n - k}$ 的系数为 $(-1)^k A_k$，又等于 $(-1)^k \sum\limits_{1 \le j_1 < \cdots < j_{n - k} \le n} \lambda_{j_1} \cdots \lambda_{j_{n - k}}$。即可知 $A_k = \sum\limits_{1 \le j_1 < \cdots < j_{n - k} \le n} \lambda_{j_1} \cdots \lambda_{j_{n - k}}$。
+\end{proof}
+
+\subsection{特征值的性质}
+
+在研究了特征多项式的结构后，本节中将提出几个有关特征值的定理。
+
+\begin{theorem}
+	若 $A$ 可逆，则零不可能是 $A$ 的一个特征值。
+\end{theorem}
+
+\begin{proof}
+	假设零是 $A$ 的一个特征值，则 $A$ 的行列式为 $0$，与 $A$ 可逆矛盾。
+\end{proof}
+
+\begin{theorem}
+	$\lambda_0$ 为可逆矩阵 $A \in M_n(\C)$ 的特征值的充分必要条件是 $\dfrac{1}{\lambda_0}$ 为 $A^{-1}$ 的特征值。
+\end{theorem}
+
+\begin{proof}
+	设 $|\lambda I - A| = (\lambda - \lambda_0)^{l_0} (\lambda - \lambda_1)^{l_1} \cdots (\lambda - \lambda_m)^{l_m}$，由代数学基本定理，$l_0 + \cdots + l_m = n$。
+
+	考虑计算 $A^{-1}$ 的特征多项式，尝试从 $|\lambda I - A^{-1}|$ 化出 $|\lambda I - A|$ 的形式以展开成多项式。
+	$$
+	\begin{aligned}
+		|\lambda I - A^{-1}| &= |\lambda A A^{-1} - A^{-1}| = |A^{-1}| |\lambda A - I| = (-\lambda)^n |A^{-1}| \biggl| \dfrac{1}{\lambda} I - A \biggr|
+		\\&=
+		(-\lambda)^n |A^{-1}| \biggl( \dfrac{1}{\lambda} - \lambda_0 \biggr)^{l_0} \cdots \biggl( \dfrac{1}{\lambda} - \lambda_m \biggr)^{l_m}
+		\\&=
+		|A^{-1}||A| \biggl( \lambda - \dfrac{1}{\lambda_0} \biggr)^{l_0} \cdots \biggl( \lambda - \dfrac{1}{\lambda_m} \biggr)^{l_m}
+		\\&=
+		\biggl( \lambda - \dfrac{1}{\lambda_0} \biggr)^{l_0} \cdots \biggl( \lambda - \dfrac{1}{\lambda_m} \biggr)^{l_m}
+	\end{aligned}
+	$$
+\end{proof}
+
+\begin{theorem}
+	设 $A \in M_n(\C)$，$f(x) = \sum\limits_{i = 0}^s a_i x^i$。若 $A$ 的特征值为 $\lambda_1, \ldots, \lambda_n$（可重），则 $f(A)$ 的特征值为 $f(\lambda_1), \ldots, f(\lambda_n)$。同时，若 $f(A)$ 的特征值为 $\lambda_1, \ldots, \lambda_n$，则对每个 $\lambda_i$，都存在一个 $q$，使得 $f(q) = \lambda_i$，并且 $q$ 是 $A$ 的特征值。
+\end{theorem}
+
+\begin{proof}
+	由于 $\lambda_1, \ldots, \lambda_n$ 为 $A$ 的特征值，故设 $\vec \alpha_i \in \C^n$ 为 $\lambda_i$ 对应的特征向量，即有 $A \vec \alpha_i = \lambda_i \vec \alpha_i$。
+
+	考虑左乘一个 $A$，得 $A^2 \vec \alpha_i = A \cdot A \vec \alpha_i = A (\lambda_i \vec \alpha_i) = \lambda_i (A \vec \alpha_i) = \lambda_i^2 \vec \alpha_i$。同理归纳知，$A^m \vec \alpha_i = \lambda_i^m \vec \alpha_i$，从而有 $(a_m A^m) \vec \alpha_i = (a_m \lambda_i^m) \vec \alpha_i$。于是可以通过相加得 $f(A) \vec \alpha_i = f(\lambda_i) \vec \alpha_i$。即证得：若 $A$ 的特征值为 $\lambda_1, \cdots, \lambda_n$，则 $f(A)$ 的特征值为 $f(\lambda_1), \cdots, f(\lambda_n)$，并且 $A$ 的特征值 $\lambda_i$ 对应的特征子空间与 $f(A)$ 的特征值 $f(\lambda_i)$ 对应的特征子空间相等。
+
+	\bigskip
+
+	由于 $\lambda_1, \ldots, \lambda_n$ 为 $f(A)$ 的特征值，故设 $\vec v_i \in \C^n$ 为 $\lambda_i$ 对应的特征向量，即有 $f(A) \vec v_i = \lambda_i \vec v_i$。
+
+	设 $f(x) - \lambda_i = C(x - q_1) \cdots (x - q_s)$（注意，这是一个 $s$ 次多项式，在 $\C$ 上一定有 $s$ 个解），则 $\lambda_i = f(q_j) \pod{1 \le j \le s}$。要证明原命题，只需证明：$\exists j \in \{1, 2, \cdots, s\}$，使得 $q_j$ 是 $A$ 的特征值。
+
+	同时，由 $f(x) - \lambda_i$ 的分解，可知 $(A - q_1 I_n) \cdots (A - q_s I_n) \vec v_i = \vec 0$。注意到，若 $(A - q_2 I_n) \cdots (A - q_s I_n) \vec v_i \ne \vec 0$，则 $(A - q_2 I_n) \cdots (A - q_s I_n) \vec v_i$ 是 $A$ 的一个特征向量，对应特征值为 $q_1$，此时结论成立。
+
+	否则，若 $(A - q_3 I_n) \cdots (A - q_s I_n) \vec v_i \ne \vec 0$，则 $(A - q_3 I_n) \cdots (A - q_s I_n) \vec v_i$ 是 $A$ 的一个特征向量，对应特征值为 $q_2$，此时结论成立。
+
+	否则，继续照此进行检查，直到结论成立。最后一个式子可能是 $(A - q_s I_n) \vec v_i = \vec 0$，由于 $\vec v_i \ne \vec 0$，故在该情况下一定可以得出结论：$\vec v_i$ 是 $A$ 的一个特征向量，$q_s$ 是对应的特征值。
 \end{proof}
 
 \subsection{利用特征多项式进行矩阵对角化}
@@ -239,3 +320,25 @@ $$
 
 	注意其中的 $\vec X_1, \vec X_2$ 是求解出的两个常向量。
 \end{solve}
+
+\subsection{特征子空间}
+
+求解对角矩阵的三个步骤中，我们已经研究了第一步涉及的特征多项式。下面我们研究第二步中涉及到的齐次线性方程组的解空间，我们称其为特征子空间。
+
+\begin{definition}{特征子空间}
+	设 $\lambda_j$ 是 $A$ 的一个特征值，把齐次线性方程组 $(\lambda_j I - A) \vec x = \vec 0$ 的解空间称为 $A$ 的属于 $\lambda_j$ 的\emph{特征子空间}，其中的全部非零向量就是 $A$ 的属于 $\lambda_j$ 的全部特征向量。
+\end{definition}
+
+根据特征子空间的定义可知，对于 $A$ 的每一个特征值 $\lambda_j$，设齐次线性方程组 $(\lambda_j I - A) \vec x = \vec 0$ 的一个基础解系为 $\vec \eta_1, \ldots, \vec \eta_t$，则 $A$ 属于 $\lambda_j$ 的全部特征向量组成的集合是：
+$$
+\{ k_1 \vec \eta_1 + \cdots + k_t \vec \eta_t \colon k_1, \cdots, k_t \in \mathbb K, \text{不全为 $0$} \}
+$$
+
+\subsection{重数}
+
+不难注意到，$|\lambda I - A| = 0$ 可能会有重根，我们自然会问属于某个重根的特征子空间满足什么性质。为此我们提出重数的概念。
+
+\begin{definition}{代数重数,重数}
+	把 $\lambda_i$ 作为 $A$ 的特征多项式的根的重数 $l_i$ 叫做 $\lambda_i$ 的\emph{代数重数}，简称为\emph{重数}。
+\end{definition}
+
