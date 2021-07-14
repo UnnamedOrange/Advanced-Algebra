@@ -410,7 +410,7 @@ $$
 	\end{aligned}
 	$$
 
-	右侧矩阵写成分块矩阵为 $\begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。于是，$AP = P \begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。由于 $P$ 是可逆矩阵，因此 $A \sim \begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。由此可知 $A$ 的特征多项式与 $\begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$ 的特征多项式相等。计算：
+	右侧矩阵写成分块矩阵为 $\begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。于是，$AP = P \begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。由于 $P$ 是可逆矩阵，所以 $A \sim \begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。由此可知 $A$ 的特征多项式与 $\begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$ 的特征多项式相等。计算：
 	$$
 	|\lambda I - A| =
 	\begin{vmatrix}
@@ -446,7 +446,7 @@ $$
 
 		注意到，\textbf{代数重数为 $1$ 的特征值的几何重数一定为 $1$。因为 $\operatorname{rank} (\lambda_1 I - A) < n$，所以一定能找到属于它的特征向量，其几何重数不可能为 $0$}。而对于特征值 $0$，计算 $\operatorname{rank}(0 - A) = 2$，则 $\dim V_0 = 3 - 2 = 1$，即特征值 $0$ 对应的几何重数为 $1$。
 
-		具体求解过程略。但可以知道，由于特征值 $0$ 的几何重数为 $1$，因此找不到两个线性无关的属于它的特征向量。无法找到三个线性无关的特征向量，故 $A$ 不可对角化。
+		具体求解过程略。但可以知道，由于特征值 $0$ 的几何重数为 $1$，因而找不到两个线性无关的属于它的特征向量。因为无法找到三个线性无关的特征向量，所以 $A$ 不可对角化。
 
 		\item 验证基础解系的并线性无关。
 
@@ -454,5 +454,5 @@ $$
 	\end{enumerate}
 \end{solve}
 
-仍以尝试对角化三阶矩阵的过程为例，现在假设特征值 $1$ 的几何重数是 $1$，但特征值 $0$ 的几何重数为 $2$，我们能否因为两者之和等于 $3$ 而断言各特征向量之间线性无关？下述定理说明了这样断言的正确性。
+仍以尝试对角化三阶矩阵的过程为例，现在假设特征值 $1$ 的几何重数是 $1$，但特征值 $0$ 的几何重数为 $2$，我们能否因为两者之和等于 $3$ 而断言存在三个线性无关的特征向量？下述定理说明了这样断言的正确性。
 

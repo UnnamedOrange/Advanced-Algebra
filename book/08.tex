@@ -33,7 +33,7 @@
 	$$
 	\sum_{l = 1}^t \vec \beta_l \biggl( \sum_{i = 1}^s k_i a_{li} \biggr) = \vec 0
 	$$
-	注意到 $\sum\limits_{i = 1}^s k_i a_{li} = 0 \pod{l = 1, \ldots, t}$ 是一个方程个数为 $t$，未知量个数为 $s$ 的齐次线性方程组。由 $t < s$ 可知，该方程组一定有非零解。取该方程组的一组非零解 $k^\circ$，有 $\sum\limits_{i = 1}^s k^\circ_i a_{li} = 0 \pod{l = 1, \ldots, t}$。由于 $\sum\limits_{l = 1}^t \vec \beta_l \biggl( \sum\limits_{i = 1}^s k^\circ_i a_{li} \biggr) = \vec 0$，因此 $\sum\limits_{i = 1}^n k^\circ_i \vec \alpha_i = \vec 0$，即 $A$ 线性相关。证毕。
+	注意到 $\sum\limits_{i = 1}^s k_i a_{li} = 0 \pod{l = 1, \ldots, t}$ 是一个方程个数为 $t$，未知量个数为 $s$ 的齐次线性方程组。由 $t < s$ 可知，该方程组一定有非零解。取该方程组的一组非零解 $k^\circ$，有 $\sum\limits_{i = 1}^s k^\circ_i a_{li} = 0 \pod{l = 1, \ldots, t}$。由于 $\sum\limits_{l = 1}^t \vec \beta_l \biggl( \sum\limits_{i = 1}^s k^\circ_i a_{li} \biggr) = \vec 0$，因而 $\sum\limits_{i = 1}^n k^\circ_i \vec \alpha_i = \vec 0$，即 $A$ 线性相关。证毕。
 \end{proof}
 
 该引理的逆否命题如下。
@@ -74,7 +74,7 @@
 
 \subsection{向量组的秩}
 
-由于等价的向量组的极大线性无关组所含向量的个数相等，因此我们引出以下重要概念。
+由于等价的向量组的极大线性无关组所含向量的个数相等，我们引出以下重要概念。
 
 \begin{definition}{向量组的秩}
 	向量组的极大线性无关组所含向量的个数称为这个\emph{向量组的秩}，记作 $\operatorname{rank} \{\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s\}$。全由零向量组成的向量组的秩规定为 $0$。

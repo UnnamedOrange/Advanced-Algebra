@@ -24,7 +24,7 @@ $$
 \end{array}\right]
 $$
 
-我们用一个列向量的等式表示原方程组。这里尚未明确定义列向量的概念，但由于该方法非常重要，因此提前于此提出，之后会详细介绍该方法涉及的定义与知识。
+我们用一个列向量的等式表示原方程组。这里尚未明确定义列向量的概念，但该方法非常重要，因此提前于此提出，之后会详细介绍该方法涉及的定义与知识。
 $$
 x_1 \cdot \begin{pmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{n1} \end{pmatrix} +
 x_2 \cdot \begin{pmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{n2} \end{pmatrix} +
@@ -73,7 +73,7 @@ $$
 \begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_{i - 1} & \vec \beta & \vec \beta_{i + 1} & \cdots & \vec \beta_n \end{vmatrix}
 $$
 
-由于 $-(x_i \vec \beta_i - \vec \beta)$ 是其他各列向量的和，因此 $\det P = 0$。当 $\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{vmatrix} \ne 0$ 时，可得：
+由于 $-(x_i \vec \beta_i - \vec \beta)$ 是其他各列向量的和，所以 $\det P = 0$。当 $\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{vmatrix} \ne 0$ 时，可得：
 $$
 x_i = \dfrac{\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_{i - 1} &\vec \beta & \vec \beta_{i + 1} & \cdots & \vec \beta_n \end{vmatrix}}{\begin{vmatrix} \vec \beta_1 & \cdots & \vec \beta_n \end{vmatrix}}
 $$

@@ -25,7 +25,7 @@
 \end{theorem}
 
 \begin{proof}
-	由于 $\vec 0 \perp U$，因此 $\vec 0 \in U^\perp$，可知 $U^\perp$ 非空。任取 $\vec \alpha, \vec \beta \in U^\perp$，则 $\forall \vec \gamma \in U$，有：
+	由于 $\vec 0 \perp U$，因而 $\vec 0 \in U^\perp$，可知 $U^\perp$ 非空。任取 $\vec \alpha, \vec \beta \in U^\perp$，则 $\forall \vec \gamma \in U$，有：
 	$$
 	(\vec \alpha + \vec \beta, \vec \gamma) = (\vec \alpha, \vec \gamma) + (\vec \beta, \vec \gamma) = 0
 	$$$$
@@ -45,7 +45,7 @@
 \end{theorem}
 
 \begin{proof}
-	由于 $U$ 是一个 $\mathbb K^n$ 的一个线性子空间，因此 $\vec 0 \in U$。前面已经证明，$\vec 0 \in U^\perp$。
+	由于 $U$ 是一个 $\mathbb K^n$ 的一个线性子空间，所以 $\vec 0 \in U$。前面已经证明，$\vec 0 \in U^\perp$。
 
 	$\forall \vec v \in U^\perp \pod{\vec v \ne \vec 0}$，假设 $\vec v \in U$，那么由标准内积的正定性可知 $(\vec v, \vec v) > 0$（将左侧看作 $\vec v \in U^\perp$，将右侧看作 $\vec v \in U$），这与 $\forall w \in U, (\vec v, \vec w) = 0$ 矛盾，故 $\vec v \not \in U$。
 
@@ -114,7 +114,7 @@
 	\end{aligned}
 	$$
 
-	由于至少存在一个 $A$ 的 $r$ 阶子式不为 $0$，因此 $AA'$ 至少存在一个 $r$ 阶主子式不为 $0$，则可得 $\operatorname{rank}(AA') \ge \operatorname{rank}(A)$\footnote{任一非零矩阵的秩等于它的不为零的子式的最高阶数。}。又由于 $AA'$ 的每个列向量都可以看作 $A$ 的列向量组的线性组合，即 $AA'$ 可由 $A$ 线性表出，则可得 $\operatorname{rank}(AA') \le \operatorname{rank}(A)$。综上，$\operatorname{rank}(AA') = \operatorname{rank}(A) = r$。令 $A = A^T$，可得第二个等号也成立。证毕。
+	由于至少存在一个 $A$ 的 $r$ 阶子式不为 $0$，所以 $AA'$ 至少存在一个 $r$ 阶主子式不为 $0$，则可得 $\operatorname{rank}(AA') \ge \operatorname{rank}(A)$\footnote{任一非零矩阵的秩等于它的不为零的子式的最高阶数。}。又由于 $AA'$ 的每个列向量都可以看作 $A$ 的列向量组的线性组合，即 $AA'$ 可由 $A$ 线性表出，则可得 $\operatorname{rank}(AA') \le \operatorname{rank}(A)$。综上，$\operatorname{rank}(AA') = \operatorname{rank}(A) = r$。令 $A = A^T$，可得第二个等号也成立。证毕。
 \end{proof}
 
 \begin{theorem}
@@ -139,7 +139,7 @@
 	(\vec \alpha, \vec \alpha_i) - x_j \sum\limits_{j = 1}^s (\vec \alpha_j, \vec \alpha_i) = 0 \pod{i = 1, \cdots, s}
 	$$
 
-	由于 $(\vec \alpha_i, \vec \alpha_j) = 0 \pod{i \ne j}$，因此化简上式可得：
+	由于 $(\vec \alpha_i, \vec \alpha_j) = 0 \pod{i \ne j}$，所以化简上式可得：
 	$$
 	(\vec \alpha, \vec \alpha_i) = x_i (\vec a_i, \vec a_i)
 	$$
@@ -167,7 +167,7 @@
 	\begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_s \end{bmatrix}
 	$$
 
-	定义 $Q = \begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_s \end{bmatrix}$，则 $M$ 可简记为 $M = Q^T Q$。由引理可知\footnote{$\operatorname{rank}(A^T A) = \operatorname{rank}(A) = \operatorname{rank}(AA^T)$}，$\operatorname{rank}(M) = \operatorname{rank}(Q)$。由于 $Q$ 是一个列满秩的矩阵，因此 $M$ 也是一个列满秩的矩阵。
+	定义 $Q = \begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_s \end{bmatrix}$，则 $M$ 可简记为 $M = Q^T Q$。由引理可知\footnote{$\operatorname{rank}(A^T A) = \operatorname{rank}(A) = \operatorname{rank}(AA^T)$}，$\operatorname{rank}(M) = \operatorname{rank}(Q)$。由于 $Q$ 是一个列满秩的矩阵，所以 $M$ 也是一个列满秩的矩阵。
 
 	\bigskip
 
@@ -182,7 +182,7 @@
 	$$
 	其中 $Y = \bigl( (\vec \alpha, \vec \alpha_i) \bigr)_{s \times 1}$。
 
-	由于 $M$ 是一个列满秩的矩阵，因此 $x_i \pod{i = 1, 2, \ldots, s}$ 有唯一解。则可知，存在唯一的这样一组 $x_i$，构成 $\vec \beta = \sum\limits_{i = 1}^s x_i \vec \alpha_i$ 和 $\vec \gamma = \vec \alpha - \vec \beta$，满足 $\vec \beta \in U$，$\vec \gamma \in U^\perp$，使得 $\vec \alpha = \vec \beta + \vec \gamma$。证毕。
+	由于 $M$ 是一个列满秩的矩阵，所以 $x_i \pod{i = 1, 2, \ldots, s}$ 有唯一解。则可知，存在唯一的这样一组 $x_i$，构成 $\vec \beta = \sum\limits_{i = 1}^s x_i \vec \alpha_i$ 和 $\vec \gamma = \vec \alpha - \vec \beta$，满足 $\vec \beta \in U$，$\vec \gamma \in U^\perp$，使得 $\vec \alpha = \vec \beta + \vec \gamma$。证毕。
 
 \end{proof}
 
@@ -225,12 +225,12 @@
 	$$
 	|\vec \alpha - \vec \delta|^2 = |\vec \alpha - \vec \beta|^2 + |\vec \beta - \vec \delta|^2 \ge |\vec \alpha - \vec \beta|^2
 	$$
-	其中，由于 $\vec \alpha - \vec \beta\in U^\perp$，$\vec \beta - \vec \delta \in U$，因此右式平方后只剩两个平方项。
+	其中，由于 $\vec \alpha - \vec \beta\in U^\perp$，$\vec \beta - \vec \delta \in U$，所以右式平方后只剩两个平方项。
 
 	充分性。设 $\vec \alpha$ 在 $U$ 上的正交投影是 $\vec \beta_0$，则由已知条件和必要性可得 $|\vec \alpha - \vec \beta| \le |\vec \alpha - \vec \beta_0|$ 和 $|\vec \alpha - \vec \beta_0| \le |\vec \alpha - \vec \beta|$，即 $|\vec \alpha - \vec \beta| = |\vec \alpha - \vec \beta_0|$。对 $\vec \alpha - \vec \beta = \vec \alpha - \vec \beta_0 + \vec \beta_0 - \vec \beta$ 两侧取平方，得 $|\vec \alpha - \vec \beta_0|^2 = |\vec \alpha - \vec \beta|^2 + |\vec \beta - \vec \beta_0|^2$，所以 $|\vec \beta - \vec \beta_0|^2 = 0$。由标准内积的正定性，可知 $\vec \beta = \vec \beta_0$。
 \end{proof}
 
-由于以上定理说明了 $\vec \beta$ 是 $\vec \alpha$ 在 $U$ 上的正交投影的充分必要条件，因此我们可以将其作为正交投影的等价定义。
+以上定理说明了 $\vec \beta$ 是 $\vec \alpha$ 在 $U$ 上的正交投影的充分必要条件，我们可以将其作为正交投影的等价定义。
 
 \bigskip
 
@@ -296,7 +296,7 @@
 \end{proof}
 
 \begin{proof}[$4 \Longrightarrow 1$]
-	令 $B = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$ ，由于 $\vec \alpha_1, \ldots, \vec \alpha_n$ 是标准正交基，因此 $B$ 是正交矩阵。
+	令 $B = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$ ，由于 $\vec \alpha_1, \ldots, \vec \alpha_n$ 是标准正交基，所以 $B$ 是正交矩阵。
 
 	由于 $AB = \begin{bmatrix} A \vec \alpha_1 & \cdots & A \vec \alpha_n \end{bmatrix}$，可知 $AB$ 也是正交矩阵。则：
 	$$
