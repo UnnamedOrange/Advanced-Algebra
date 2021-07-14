@@ -215,9 +215,26 @@ $$
 	设 $A$ 的所有 $k$ 阶主子式之和为 $A_k$。由于 $\lambda^{n - k}$ 的系数为 $(-1)^k A_k$，又等于 $(-1)^k \sum\limits_{1 \le j_1 < \cdots < j_{n - k} \le n} \lambda_{j_1} \cdots \lambda_{j_{n - k}}$。即可知 $A_k = \sum\limits_{1 \le j_1 < \cdots < j_{n - k} \le n} \lambda_{j_1} \cdots \lambda_{j_{n - k}}$。
 \end{proof}
 
+之所以特征多项式可以作为矩阵的一个特征，是因为相似的矩阵有相等的特征多项式。
+
+\begin{theorem}
+	相似的矩阵有相等的特征多项式。
+\end{theorem}
+
+\begin{proof}
+	设 $A \sim B$，则有可逆矩阵 $P$，使得 $B = P^{-1} A P$，于是：
+	$$
+	|\lambda I - B| = |\lambda I - P^{-1} A P| = |P^{-1} (\lambda I - A) P| = |P^{-1}| |\lambda I - A||P| = |\lambda I - A|
+	$$
+\end{proof}
+
 \subsection{特征值的性质}
 
 在研究了特征多项式的结构后，本节中将提出几个有关特征值的定理。
+
+\begin{theorem}
+	相似的矩阵有完全相同的特征值。
+\end{theorem}
 
 \begin{theorem}
 	若 $A$ 可逆，则零不可能是 $A$ 的一个特征值。
@@ -263,11 +280,11 @@ $$
 
 	设 $f(x) - \lambda_i = C(x - q_1) \cdots (x - q_s)$（注意，这是一个 $s$ 次多项式，在 $\C$ 上一定有 $s$ 个解），则 $\lambda_i = f(q_j) \pod{1 \le j \le s}$。要证明原命题，只需证明：$\exists j \in \{1, 2, \cdots, s\}$，使得 $q_j$ 是 $A$ 的特征值。
 
-	同时，由 $f(x) - \lambda_i$ 的分解，可知 $(A - q_1 I_n) \cdots (A - q_s I_n) \vec v_i = \vec 0$。注意到，若 $(A - q_2 I_n) \cdots (A - q_s I_n) \vec v_i \ne \vec 0$，则 $(A - q_2 I_n) \cdots (A - q_s I_n) \vec v_i$ 是 $A$ 的一个特征向量，对应特征值为 $q_1$，此时结论成立。
+	同时，由 $f(x) - \lambda_i$ 的分解，可知 $(A - q_1 I) \cdots (A - q_s I) \vec v_i = \vec 0$。注意到，若 $(A - q_2 I) \cdots (A - q_s I) \vec v_i \ne \vec 0$，则 $(A - q_2 I) \cdots (A - q_s I) \vec v_i$ 是 $A$ 的一个特征向量，对应特征值为 $q_1$，此时结论成立。
 
-	否则，若 $(A - q_3 I_n) \cdots (A - q_s I_n) \vec v_i \ne \vec 0$，则 $(A - q_3 I_n) \cdots (A - q_s I_n) \vec v_i$ 是 $A$ 的一个特征向量，对应特征值为 $q_2$，此时结论成立。
+	否则，若 $(A - q_3 I) \cdots (A - q_s I) \vec v_i \ne \vec 0$，则 $(A - q_3 I) \cdots (A - q_s I) \vec v_i$ 是 $A$ 的一个特征向量，对应特征值为 $q_2$，此时结论成立。
 
-	否则，继续照此进行检查，直到结论成立。最后一个式子可能是 $(A - q_s I_n) \vec v_i = \vec 0$，由于 $\vec v_i \ne \vec 0$，故在该情况下一定可以得出结论：$\vec v_i$ 是 $A$ 的一个特征向量，$q_s$ 是对应的特征值。
+	否则，继续照此进行检查，直到结论成立。最后一个式子可能是 $(A - q_s I) \vec v_i = \vec 0$，由于 $\vec v_i \ne \vec 0$，故在该情况下一定可以得出结论：$\vec v_i$ 是 $A$ 的一个特征向量，$q_s$ 是对应的特征值。
 \end{proof}
 
 \subsection{利用特征多项式进行矩阵对角化}
@@ -275,7 +292,7 @@ $$
 要得到与矩阵 $A$ 相似的对角矩阵，我们需要找出 $A$ 的特征值 $\lambda_i$ 和特征向量 $\vec \alpha_i$。有了特征多项式，我们只需要找出 $A$ 的特征值 $\lambda_i$，并利用 $\vec \alpha_i$ 是齐次线性方程组 $(\lambda_i I - A) \vec x = \vec 0$ 的解求出 $\vec \alpha_i$（并验证 $\vec \alpha_i$ 是否线性无关）。于是可以将过程分成三步：
 \begin{enumerate}
 	\item 解多项式的零点 $|\lambda I_n - A| = 0$，得到 $n$ 个解 $\lambda_1, \ldots, \lambda_n$（包括重解）。
-	\item 对于每个 $\lambda_i$，解齐次线性方程组 $(\lambda_i I - A) \vec x = \vec 0$。将 $n$ 个非零解合在一起构成列向量组。
+	\item 对于每个 $\lambda_i$，解齐次线性方程组 $(\lambda_i I - A) \vec x = \vec 0$。对于每个方程组，将任一基础解系作为它的解。将所有方程组的非零解合在一起构成包含 $n$ 个向量的列向量组。
 	\item 检查列向量组 $\vec \alpha_1, \ldots, \vec \alpha_n$ 是否线性无关。
 \end{enumerate}
 
@@ -339,6 +356,103 @@ $$
 不难注意到，$|\lambda I - A| = 0$ 可能会有重根，我们自然会问属于某个重根的特征子空间满足什么性质。为此我们提出重数的概念。
 
 \begin{definition}{代数重数,重数}
-	把 $\lambda_i$ 作为 $A$ 的特征多项式的根的重数 $l_i$ 叫做 $\lambda_i$ 的\emph{代数重数}，简称为\emph{重数}。
+	设 $A$ 是数域 $\mathbb K$ 上的 $n$ 级矩阵，$\lambda_1$ 是 $A$ 的一个特征值。把 $\lambda_i$ 作为 $A$ 的特征多项式的根的重数 $l_i$ 叫做 $\lambda_i$ 的\emph{代数重数}，简称为\emph{重数}。
 \end{definition}
+
+\begin{definition}{几何重数}
+	设 $A$ 是数域 $\mathbb K$ 上的 $n$ 级矩阵，$\lambda_1$ 是 $A$ 的一个特征值。把 $A$ 的属于 $\lambda_1$ 的特征子空间的维数叫做特征值 $\lambda_1$ 的\emph{几何重数}。
+\end{definition}
+
+设 $A$ 的一个特征值为 $\lambda_i$，其对应的特征子空间为：
+$$
+V_{\lambda_i} = \{\vec X \in \mathbb K^n \colon (\lambda_i I - A) \vec X = \vec 0\}
+$$
+
+则特征值 $\lambda_i$ 的几何重数为 $\dim V_{\lambda_i} = n - \mathrm{rank}(\lambda_i I -A)$\footnote{$\dim \operatorname{Ker} \phi = n - \operatorname{rank}(A)$}。
+
+事实上，代数重数和几何重数具有如下关系。
+
+\begin{theorem}
+	设 $\lambda_1$ 是数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的一个特征值，则 $\lambda_1$ 的几何重数不超过它的代数重数。
+\end{theorem}
+
+\begin{proof}[构造可逆矩阵 $P$]
+	设 $A$ 的属于特征值 $\lambda_1$ 的特征子空间 $W_1$ 的维数为 $r$。在 $W_1$ 中取一个基 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r$，把它扩充为 $\mathbb K^n$ 的一个基 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_r, \vec \beta_1, \ldots, \vec \beta_{n - r}$。把这 $n$ 个向量放进矩阵 $P$ 中，即：
+	$$
+	P = \begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_r & \vec \beta_1 & \cdots & \vec \beta_{n - r} \end{bmatrix}
+	$$
+
+	这 $n$ 个向量线性无关，所以 $P$ 可逆。
+
+	计算 $AP = \begin{bmatrix} A \vec \alpha_1 & \cdots & A \vec \alpha_r & A \vec \beta_1 & \cdots & A \vec \beta_{n - r} \end{bmatrix}$。其中，$A \vec \alpha_i = \lambda_1 \vec \alpha_i$，而 $A \vec \beta_i$ 是 $\vec \alpha_1, \ldots, \vec \alpha_r, \vec \beta_1, \ldots, \vec \beta_{n - r}$ 的线性组合，于是可以把 $AP$ 写成两个矩阵相乘的形式：
+	$$
+	\begin{aligned}
+		AP =&
+		\begin{bmatrix} \vec \alpha_1 & \vec \alpha_2 & \cdots & \vec \alpha_r & \vec \beta_1 & \cdots & \vec \beta_{n - r} \end{bmatrix} \cdot
+		\\&
+		\begin{bmatrix}
+			\lambda_1 & 0 & \cdots & 0 & p_{11} & \cdots & p_{1, n - r}
+			\\
+			0 & \lambda_1 & \cdots & 0 & p_{21} & \cdots & p_{r, n - r}
+			\\
+			\vdots & \vdots & & \vdots & \vdots & & \vdots
+			\\
+			0 & 0 & \cdots & \lambda_1 & p_{r1} & \cdots & p_{r, n - r}
+			\\
+			0 & 0 & \cdots & 0 & q_{11} & \cdots & q_{1, n - r}
+			\\
+			0 & 0 & \cdots & 0 & q_{21} & \cdots & q_{2, n - r}
+			\\
+			\vdots & \vdots & & \vdots & \vdots & & \vdots
+			\\
+			0 & 0 & \cdots & 0 & q_{n - r, 1} & \cdots & q_{n - r, n - r}
+		\end{bmatrix}
+	\end{aligned}
+	$$
+
+	右侧矩阵写成分块矩阵为 $\begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。于是，$AP = P \begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。由于 $P$ 是可逆矩阵，因此 $A \sim \begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$。由此可知 $A$ 的特征多项式与 $\begin{bmatrix} \lambda_1 I & \tilde P \\ 0 & \tilde Q \end{bmatrix}$ 的特征多项式相等。计算：
+	$$
+	|\lambda I - A| =
+	\begin{vmatrix}
+	(\lambda - \lambda_1) I_{r} & - \tilde P
+	\\
+	0 & \lambda I_{n - r} - \tilde Q
+	\end{vmatrix}
+	=
+	(\lambda - \lambda_1)^{r} |\lambda I_{n - r} - \tilde Q|
+	$$
+
+	$|\lambda I_{n - r} - \tilde Q|$ 即 $Q$ 的特征多项式。其中可能有 $(\lambda - \lambda_1)$ 这个因数，也可能没有。设 $(\lambda - \lambda_1)$ 这个因数在特征多项式的幂次为 $l$，故 $r \le l$。
+\end{proof}
+
+\subsection{矩阵可对角化的条件}
+
+通过尝试对角化以下矩阵，我们将总结出一系列判断矩阵是否可对角化的依据和相关定理。
+$$
+A = \begin{bmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+
+\begin{solve}
+	\begin{enumerate}
+		\item 求特征多项式的零点。
+
+		$$
+		|\lambda I - A| = \begin{vmatrix} \lambda & -1 & -2 \\ 0 & \lambda & -1 \\ 0 & 0 & \lambda - 1 \end{vmatrix} = \lambda^2(\lambda - 1)
+		$$
+
+		可知 $A$ 的特征值为 $0$ 和 $1$，对应代数重数为 $2$ 和 $1$。
+
+		\item 求特征向量。
+
+		注意到，\textbf{代数重数为 $1$ 的特征值的几何重数一定为 $1$。因为 $\operatorname{rank} (\lambda_1 I - A) < n$，所以一定能找到属于它的特征向量，其几何重数不可能为 $0$}。而对于特征值 $0$，计算 $\operatorname{rank}(0 - A) = 2$，则 $\dim V_0 = 3 - 2 = 1$，即特征值 $0$ 对应的几何重数为 $1$。
+
+		具体求解过程略。但可以知道，由于特征值 $0$ 的几何重数为 $1$，因此找不到两个线性无关的属于它的特征向量。无法找到三个线性无关的特征向量，故 $A$ 不可对角化。
+
+		\item 验证基础解系的并线性无关。
+
+		由于第 2 步就已经失败，所以无法进行第 3 步。
+	\end{enumerate}
+\end{solve}
+
+仍以尝试对角化三阶矩阵的过程为例，现在假设特征值 $1$ 的几何重数是 $1$，但特征值 $0$ 的几何重数为 $2$，我们能否因为两者之和等于 $3$ 而断言各特征向量之间线性无关？下述定理说明了这样断言的正确性。
 
