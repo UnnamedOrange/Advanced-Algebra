@@ -456,3 +456,74 @@ $$
 
 仍以尝试对角化三阶矩阵的过程为例，现在假设特征值 $1$ 的几何重数是 $1$，但特征值 $0$ 的几何重数为 $2$，我们能否因为两者之和等于 $3$ 而断言存在三个线性无关的特征向量？下述定理说明了这样断言的正确性。
 
+\begin{theorem}
+	设 $\lambda_1, \lambda_2$ 是数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的不同的特征值，$\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s$ 与 $\vec \beta_1, \vec \beta_2, \ldots, \vec \beta_r$ 分别是 $A$ 的属于 $\lambda_1, \lambda_2$ 的两组线性无关的特征向量，则 $\vec \alpha_1, \vec \alpha_2, \ldots, \vec \alpha_s, \vec \beta_1, \vec \beta_2, \ldots, \vec \beta_r$ 线性无关。
+\end{theorem}
+
+\begin{proof}[特征向量左乘 $A$]
+	设：
+	$$
+	k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s + l_1 \vec \beta_1 + \cdots + l_r \vec \beta_r = \vec 0
+	$$
+
+	两边左乘 $A$，有：
+	$$
+	A (k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s + l_1 \vec \beta_1 + \cdots + l_r \vec \beta_r) = \vec 0
+	$$
+
+	由于这些向量都是特征向量，所以有：
+	$$
+	\lambda_1(k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s) + \lambda_2(l_1 \beta_1 + \cdots + l_r \beta_r) = \vec 0
+	$$
+
+	已设：
+	$$
+	k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s + l_1 \vec \beta_1 + \cdots + l_r \vec \beta_r = \vec 0
+	$$
+
+	上式乘以 $\lambda_1$ 后，得 $\lambda_1(k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s) + \lambda_1(l_1 \vec \beta_1 + \cdots + l_r \vec \beta_r) = \vec 0$。两式相减可得：
+	$$
+	(\lambda_2 - \lambda_1)(l_1 \vec \beta_1 + \cdots + l_r \vec \beta_r) = \vec 0
+	$$
+
+	由于 $\vec \beta_1, \ldots, \vec \beta_r$ 线性无关，因而 $l_1 = \cdots = l_r = 0$ 是 $l_1, \ldots, l_r$ 的唯一解。代回原式，得 $k_1 \vec \alpha_1 + \cdots + k_s \vec \alpha_s = \vec 0$，由于 $\vec \alpha_1, \ldots, \vec \alpha_s$ 线性无关，因而 $k_1 = \cdots = k_s = 0$ 是 $k_1, \ldots, k_s$ 的唯一解，从而 $\vec \alpha_1, \ldots, \vec \alpha_s, \vec \beta_1, \ldots, \vec \beta_r$ 线性无关。
+\end{proof}
+
+归纳可得以下定理。
+
+\begin{theorem}
+	设 $\lambda_1, \lambda_2, \ldots, \lambda_m$ 是数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的不同的特征值，$$\vec \alpha_{j1}, \vec \alpha_{j2}, \ldots, \vec \alpha_{j r_j}$$ 是 $A$ 的属于 $\lambda_j$ 的线性无关的特征向量，$j = 1, \ldots, m$，则向量组 $$\vec \alpha_{11},\ldots, \vec \alpha_{1 r_1}, \ldots, \vec \alpha_{m1}, \ldots, \vec \alpha_{m r_m}$$ 线性无关。
+\end{theorem}
+
+\bigskip
+
+在引入了特征值和特征向量的概念后，我们可以再次提出矩阵可对角化的充分必要条件。
+
+\begin{theorem}[矩阵可对角化的充分必要条件]
+	数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 可对角化的充分必要条件是：
+
+	\begin{enumerate}
+		\item $A$ 有 $n$ 个线性无关的特征向量 $\vec \alpha_1, \ldots, \vec \alpha_n$，令 $P = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$，有 $P^{-1} A P = \operatorname{diag} \{\lambda_1, \ldots, \lambda_n\}$。其中 $\lambda_i$ 是 $\vec \alpha_i$ 所属的特征值，$i = 1, \ldots, n$。
+
+		\item $A$ 的属于不同特征值的特征子空间的维数之和等于 $n$。
+
+		\item $A$ 的特征多项式的全部复根都属于 $\mathbb K$，并且 $A$ 的每个特征值的几何重数等于它的代数重数。
+	\end{enumerate}
+\end{theorem}
+
+进一步，我们还能得到以下推论。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 如果有 $n$ 个不同的特征值，那么 $A$ 可对角化。
+\end{theorem}
+
+\begin{theorem}
+	若 $A$ 的特征多项式有一个复根不属于数域 $\mathbb K$，或者 $A$ 有一个特征值的几何重数小于它的代数重数，则 $A$ 不可对角化。
+\end{theorem}
+
+在弄清了矩阵可对角化的充分必要条件后，我们可以提出相似标准形的概念。
+
+\begin{definition}{相似标准形}
+	若一个矩阵可对角化，则称与它相似的对角矩阵为它的\emph{相似标准形}。除了主对角线上元素的排列次序外，$A$ 的相似标准形是唯一的。
+\end{definition}
+
