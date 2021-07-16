@@ -368,7 +368,7 @@ $$
 V_{\lambda_i} = \{\vec X \in \mathbb K^n \colon (\lambda_i I - A) \vec X = \vec 0\}
 $$
 
-则特征值 $\lambda_i$ 的几何重数为 $\dim V_{\lambda_i} = n - \mathrm{rank}(\lambda_i I -A)$\footnote{$\dim \operatorname{Ker} \phi = n - \operatorname{rank}(A)$}。
+则特征值 $\lambda_i$ 的几何重数为 $\dim V_{\lambda_i} = n - \operatorname{rank}(\lambda_i I -A)$\footnote{$\dim \operatorname{Ker} \phi = n - \operatorname{rank}(A)$}。
 
 事实上，代数重数和几何重数具有如下关系。
 
@@ -526,4 +526,100 @@ $$
 \begin{definition}{相似标准形}
 	若一个矩阵可对角化，则称与它相似的对角矩阵为它的\emph{相似标准形}。除了主对角线上元素的排列次序外，$A$ 的相似标准形是唯一的。
 \end{definition}
+
+\subsection{实对称矩阵的对角化}
+
+\subsubsection{实对称矩阵的可对角化}
+
+实数域上的对称矩阵简称为实对称矩阵。
+
+\begin{theorem}
+	实对称矩阵的特征多项式的每一个复根都是实数，从而它们都是特征值。
+\end{theorem}
+
+\begin{proof}
+	设 $\lambda_0$ 是 $n$ 级实对称矩阵 $A$ 的特征多项式的任意一个复根，要证 $\lambda_0$ 是实数，只需证 $\lambda_0 = \overline \lambda_0$。下面在复数域上研究问题。设 $A \vec \alpha = \lambda_0 \vec \alpha$，已知 $A$ 的每个元素都是实数，即虚部为 $0$，于是等式两侧取共轭可得：
+	$$
+	A \overline{\vec \alpha} = \overline \lambda_0 \overline{\vec \alpha}
+	$$
+	注意 $A$ 是实对称矩阵，因此 $A = \overline A$。
+
+	对于 $A \vec \alpha = \lambda_0 \vec \alpha$，取转置后得 $\vec \alpha' A = \lambda_0 \vec \alpha'$，再右乘 $\overline{\vec \alpha}$ 得 $\vec \alpha' A \overline{\vec \alpha} = \lambda_0 \vec \alpha' \overline{\vec \alpha}$。对于 $A \overline{\vec \alpha} = \overline \lambda_0 \overline{\vec \alpha}$，左乘 $\vec \alpha'$ 得 $\vec \alpha' A \overline{\vec \alpha} = \overline \lambda_0 \vec \alpha' \overline{\vec \alpha}$。
+
+	注意到，现在有 $\vec \alpha' A \overline{\vec \alpha} = \lambda_0 \vec \alpha' \overline{\vec \alpha} = \overline \lambda_0 \vec \alpha' \overline{\vec \alpha}$，则可知 $(\overline \lambda_0 - \lambda_0) \vec \alpha' \overline{\vec \alpha} = 0$。由于 $\vec \alpha \ne 0$，所以 $\vec \alpha' \overline{\vec \alpha} \ne 0$，即一个非零向量与其共轭的内积不为 $0$。从而 $\overline \lambda_0 = \lambda_0$。
+\end{proof}
+
+\begin{theorem}
+	实对称矩阵一定可对角化。
+\end{theorem}
+
+\begin{proof}
+	对实对称矩阵的级数 $n$ 作数学归纳法。当 $n = 1$ 时，显然成立。假设对于 $n - 1$ 级的实对称矩阵命题为真，下面证明对 $n$ 级实对称矩阵 $A$ 为真。
+
+	实对称矩阵必有特征值，因此设 $A$ 的一个特征值为 $\lambda_1$、属于 $\lambda_1$ 的一个特征向量为 $\vec \eta_1$。并且规定 $|\vec \eta_1| = 1$（否则令 $\vec \eta_1 = \dfrac{\vec \eta_1}{|\vec \eta_1|}$）。
+
+	把 $\vec \eta_1$ 扩充成 $\R^n$ 的一组标准正交基 $\vec \eta_1, \vec \eta_2, \cdots, \vec \eta_n$。令：
+	$$
+	T_1  = \begin{bmatrix} \vec \eta_1 & \vec \eta_2 & \cdots & \vec \eta_n \end{bmatrix}
+	$$
+	则 $T_1$ 是 $n$ 级正交矩阵。设：
+	$$
+	T_1^{-1} A T_1 = C
+	$$
+
+	左乘 $T_1$ 后得 $AT_1 = T_1 C$，展开记为 $\begin{bmatrix} A \vec \eta_1 & A \vec \eta_2 & \cdots & A \vec \eta_n \end{bmatrix} = T_1 C$。注意到有 $A\vec \eta_1 = \lambda_1 \vec \eta_1$，而 $\vec \eta_1$ 是 $T_1$ 的第一列，于是把 $C$ 写成分块矩阵为 $\begin{bmatrix} \lambda_1 & \vec \alpha \\ \vec 0 & B \end{bmatrix}$。
+
+	另外注意到，$T_1$ 是正交矩阵，于是有 $T_1^{-1} = T'_1$。同时由于 $A$ 是实对称矩阵，于是有 $A = A'$。所以：
+	$$
+	T_1^{-1} A T_1 = \begin{bmatrix} \lambda_1 & \vec \alpha \\ \vec 0 & B \end{bmatrix} = T'_1 A T_1
+	$$
+
+	第二个等号两侧取转置，得：
+	$$
+	T'_1 A' T_1 = \begin{bmatrix} \lambda_1 & \vec 0 \\ \vec \alpha' & B' \end{bmatrix}
+	$$
+
+	而 $T'_1 A' T_1 = T_1^{-1} A T_1$，于是：
+	$$
+	\begin{bmatrix} \lambda_1 & \vec \alpha \\ \vec 0 & B \end{bmatrix} = \begin{bmatrix} \lambda_1 & \vec 0 \\ \vec \alpha' & B' \end{bmatrix}
+	$$
+
+	所以 $\vec \alpha = 0$，且 $B$ 是一个对称矩阵。由于 $A$ 是实对称矩阵，$T$ 是实矩阵，于是 $B$ 也是一个实对称矩阵。
+
+	对 $B$ 进行归纳假设。可知存在 $n - 1$ 级正交矩阵 $T_2$，使得 $T_2^{-1} B T_2 = \operatorname{diag} \{\lambda_2, \ldots, \lambda_n\}$。令 $T = T_1 \begin{bmatrix} 1 & 0 \\ 0 & T_2 \end{bmatrix}$，由正交矩阵的乘积也是正交矩阵，可知 $T$ 也是正交矩阵。计算：
+	$$
+	\begin{aligned}
+	T^{-1} AT &= \begin{bmatrix} 1 & \vec 0 \\ \vec 0 & T_2 \end{bmatrix}^{-1} T_1^{-1} A T_1 \begin{bmatrix} 1 & \vec 0 \\ \vec 0 & T_2 \end{bmatrix}
+	\\&=
+	\begin{bmatrix} 1 & \vec 0 \\ \vec 0 & T_2^{-1} \end{bmatrix}
+	\begin{bmatrix} \lambda_1 & \vec 0 \\ \vec 0 & B \end{bmatrix}
+	\begin{bmatrix} 1 & \vec 0 \\ \vec 0 & T_2 \end{bmatrix} \pod{T^{-1} = T', T_2^{-1} = T'_2}
+	\\&=
+	\begin{bmatrix} \lambda_1 & \vec 0 \\ \vec 0 & T_2^{-1} B T_2 \end{bmatrix}
+	= \operatorname{diag}\{\lambda_1, \lambda_2, \cdots, \lambda_n\}
+	\end{aligned}
+	$$
+
+	由数学归纳法，得证。
+\end{proof}
+
+以上证明方法直观易懂，但难以直接想出。下面给出几个定理和定义，以从几何的角度说明以上证明过程的思路。
+
+\begin{theorem}
+	对于 $n$ 级实矩阵 $A$，它是实对称矩阵的充分必要条件是：$\forall \vec \alpha, \vec \beta \in \R^n, (A \vec \alpha, \vec \beta) = (\vec \alpha, A \vec \beta)$。
+\end{theorem}
+
+\begin{proof}
+	必要性。$(A \vec \alpha, \vec \beta) = (A \vec \alpha)^T \vec \beta = \vec \alpha^T A^T \vec \beta = \vec \alpha^T A \vec \beta = (\vec \alpha, A \vec \beta)$。
+
+	充分性。已知 $\vec \alpha^T A^T \vec \beta = \vec \alpha^T A \vec \beta$。取 $\vec \alpha = \vec e_i, \vec \beta = \vec e_j$，则有 $A(i; j) = A^T(i; j)$，即可知 $A = A^T$。
+\end{proof}
+
+\begin{theorem}
+	对于实对称矩阵 $A$，若 $A \vec \alpha = \lambda \vec \alpha$，则 $\forall \vec \beta \in \langle \vec \alpha \rangle^\perp, A \vec \beta \in \langle \vec \alpha \rangle^\perp$。
+\end{theorem}
+
+\begin{proof}
+	要证明 $(A \vec \beta, \vec \alpha) = 0$。由于 $A$ 是一个实对称矩阵，所以 $(A \vec \beta, \vec \alpha) = (\vec \beta, A \vec \alpha)$，而 $A \vec \alpha = \lambda \vec \alpha$，因此 $(A \vec \beta, \vec \alpha) = \lambda(\vec \beta, \vec \alpha) = 0$。
+\end{proof}
 
