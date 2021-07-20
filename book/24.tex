@@ -550,7 +550,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-	实对称矩阵一定可对角化。
+	实对称矩阵 $A$ 一定可对角化。并且若设 $A = T^{-1} D T$，则 $T$ 是正交矩阵。
 \end{theorem}
 
 \begin{proof}
@@ -622,4 +622,51 @@ $$
 \begin{proof}
 	要证明 $(A \vec \beta, \vec \alpha) = 0$。由于 $A$ 是一个实对称矩阵，所以 $(A \vec \beta, \vec \alpha) = (\vec \beta, A \vec \alpha)$，而 $A \vec \alpha = \lambda \vec \alpha$，因此 $(A \vec \beta, \vec \alpha) = \lambda(\vec \beta, \vec \alpha) = 0$。
 \end{proof}
+
+根据特征值与特征向量的定义式：
+$$
+A \vec \alpha = \lambda \vec \alpha
+$$
+我们可以写出一个映射：
+$$
+\begin{aligned}
+	A \colon & \langle \vec \alpha \rangle \rightarrow \langle \vec \alpha \rangle
+	\\&
+	\vec x \mapsto A \vec x
+\end{aligned}
+$$
+
+这意味着实对称矩阵 $A$ 对应的线性映射对于特征向量而言只是进行了一定比例的长度变化，而这个比例等于特征值。
+
+在得出以上定理后，我们还可以写出一个映射：
+$$
+\begin{aligned}
+	A \colon & \langle \vec \alpha \rangle^\perp \rightarrow \langle \vec \alpha \rangle^\perp
+	\\&
+	\vec x \mapsto A \vec x
+\end{aligned}
+$$
+
+这意味着实对称矩阵 $A$ 总是将其特征向量张成的正交补 $\langle \vec \alpha \rangle^\perp$ 中的向量映射到 $\langle \vec \alpha \rangle^\perp$ 中。
+
+\begin{theorem}
+	对于实对称矩阵 $A$，设它的两个不同的特征值为 $\lambda, \mu$，对于非零向量 $\vec \alpha \in V_\lambda(A), \vec \beta \in V_\mu(A)$，有 $(\vec \alpha, \vec \beta) = 0$。
+\end{theorem}
+
+\begin{proof}
+	由于 $(A \vec \alpha, \vec \beta) = (\vec \alpha, A \vec \beta)$，所以 $\lambda(\vec \alpha, \vec \beta) = \mu (\vec \alpha, \vec \beta)$，则 $(\vec \alpha, \vec \beta) = 0$。
+\end{proof}
+
+以上定理说明，实对称矩阵 $A$ 的属于不同特征值的特征向量是正交的。即对于非零向量 $\vec \alpha \in V_\lambda(A), \vec \beta \in V_\mu(A)$，必有 $\vec \alpha \in \bigl( V_\mu(A) \bigr)^\perp$。由于：
+$$
+\forall \vec \alpha \in V_\lambda(A), A \vec \alpha = \lambda \vec \alpha
+$$
+
+换句话说，对于特征值 $\lambda$，可以任取一个基础解系作为特征子空间的基，所以我们可以取一组标准正交基。
+
+\begin{definition}{正交相似}
+	对于 $n$ 级实矩阵 $A, B$，如果存在一个 $n$ 级正交矩阵 $T$，使得 $T^{-1} A T = B$，那么称 $A$ \emph{正交相似}于 $B$。
+\end{definition}
+
+由于特征子空间的基总可以取标准正交基，而实对称矩阵的不同特征值的特征向量是正交的，所以实对称矩阵若可以对角化，则一定正交相似于对角矩阵。
 
