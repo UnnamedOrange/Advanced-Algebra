@@ -670,3 +670,57 @@ $$
 
 由于特征子空间的基总可以取标准正交基，而实对称矩阵的不同特征值的特征向量是正交的，所以实对称矩阵若可以对角化，则一定正交相似于对角矩阵。
 
+在实对称矩阵一定可对角化的证明中，事实上我们已经证明了实对称矩阵一定正交相似于对角矩阵。综上，该证明过程的一些思路可以总结如下：
+\begin{enumerate}
+	\item 求出一个特征值 $\lambda_1$，找到属于它的一个特征向量 $\vec \eta_1$，并归一化。
+	\item 将 $\vec \eta_1$ 扩充为 $\R^n$ 的一组标准正交基。由于对于实对称矩阵 $A$ 的任一特征向量 $\vec \alpha$ 有 $\forall \vec \beta \in \langle \vec \alpha \rangle^\perp, A \vec \beta \in \langle \vec \alpha \rangle^\perp$，所以将这些标准正交基左乘 $A$。对于 $\vec \eta_1$，可得 $A \vec \eta_1 = \lambda_1 \vec \eta_1$，而对于其他标准正交基，仍然有 $A \vec \eta_i \in \langle \vec \alpha \rangle^\perp \pod{i \ne 1}$。
+\end{enumerate}
+
+\subsubsection{对角化实对称矩阵}
+
+对于 $n$ 级实对称矩阵 $A$，找一个正交矩阵 $T$，使得 $T^{-1} A T$ 为对角矩阵的步骤如下：
+
+\begin{enumerate}
+	\item 计算 $|\lambda I - A|$，求出它的全部不同的根 $\lambda_1, \lambda_2, \ldots, \lambda_m$，它们是 $A$ 的全部特征值。
+	\item 对于每一个特征值 $\lambda_j$，求 $(\lambda_j I - A) \vec x = \vec 0$ 的一个基础解系 $\vec \alpha_{j_1}, \vec \alpha_{j_2}, \ldots, \vec \alpha_{j_{r_j}}$。然后把它们施密特正交化和单位化，得到 $\vec \eta_{j1}, \vec \eta_{j2}, \ldots, \vec \eta_{j r_j}$。
+	\item 令：
+	$$
+	T =
+	\begin{bmatrix}
+		\vec \eta_{11} & \cdots & \vec \eta_{1 r_1} & \cdots & \vec \eta_{m1} & \cdots & \vec \eta_{m r_m}
+	\end{bmatrix}
+	$$
+	则 $T$ 是 $n$ 级正交矩阵，且：
+	$$
+	T^{-1} A T = \operatorname{diag} \{\underset{\text{$r_1$ 个}}{\underbrace{\lambda_1, \ldots, \lambda_1}}, \ldots, \underset{\text{$r_m$ 个}}{\underbrace{\lambda_m, \ldots, \lambda_m}}\}
+	$$
+\end{enumerate}
+
+就以上过程而言，对角化实对称矩阵与对角化一般的矩阵没有差别，只是为了得到正交矩阵 $T$，需要额外进行施密特正交化和单位化。我们不禁会问：对于一般的矩阵 $A$，对各特征子空间的向量进行施密特正交化有意义吗？下面的定理否定了这样做的意义。
+
+\begin{theorem}
+	如果 $n$ 级实矩阵 $A$ 正交相似于一个对角矩阵 $D$，那么 $A$ 一定是实对称矩阵。
+\end{theorem}
+
+\begin{proof}
+	由已知条件，有 $n$ 级正交矩阵 $T$，使 $T^{-1} AT = D$，从而：
+	$$
+	A' = (TDT^{-1})' = ({T'}^{-1} D' T') = TDT^{-1} = A
+	$$
+
+	所以 $A$ 是对称矩阵。
+\end{proof}
+
+可见，两个实矩阵相似，不意味着它们正交相似。例如，设 $n$ 级非对称实矩阵 $A$ 相似于一个对角矩阵 $D$，那么 $A$ 不能正交相似于 $D$，否则可得 $A$ 为对称矩阵，矛盾。由此可见，只有实对称矩阵才能正交相似于对角阵。
+
+实对称矩阵之间的相似关系满足什么性质？下面的定理说明，实对称矩阵之间的相似一定是正交相似。
+
+\begin{theorem}
+	两个 $n$ 级实对称矩阵正交相似的充分必要条件是它们相似。
+\end{theorem}
+
+\begin{proof}
+	必要性显然，下面证充分性。已知它们都正交相似于某一个对角阵。由于它们相似，它们的特征多项式相同，它们的特征值也相同，所以与它们正交相似的对角阵可以相同。由正交相似的对称性和传递性，可得 $A$ 正交相似于 $B$。
+\end{proof}
+
+可见，对于所有 $n$ 级实对称矩阵组成的集合来说，特征值（包括重数）是相似关系下的完全不变量。
