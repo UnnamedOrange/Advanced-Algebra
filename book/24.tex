@@ -59,13 +59,13 @@
 \begin{proof}[只证明 3.]
 	$$
 	\begin{aligned}
-		\operatorname{tr}(AB) &= \sum_{i = 1}^n (AB)(i; i)
+		\operatorname{tr}(AB) &= \sum\limits_{i = 1}^n (AB)(i; i)
 		\\&=
-		\sum_{i = 1}^n \sum_{k = 1}^m a_{ik} b_{ki}
+		\sum\limits_{i = 1}^n \sum\limits_{k = 1}^m a_{ik} b_{ki}
 		\\&=
-		\sum_{k = 1}^m \sum_{i = 1}^n b_{ki} a_{ik}
+		\sum\limits_{k = 1}^m \sum\limits_{i = 1}^n b_{ki} a_{ik}
 		\\&=
-		\sum_{k = 1}^m (BA)(k;k) = \operatorname{tr}(BA)
+		\sum\limits_{k = 1}^m (BA)(k;k) = \operatorname{tr}(BA)
 	\end{aligned}
 	$$
 \end{proof}
@@ -185,7 +185,7 @@ $$
 
 	于是第三类行列式的值为：$(-1)^k A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} \lambda^{n - k}$。特别地，当 $k = 1$ 时，得 $\lambda^{n - 1}$ 的系数为 $-\operatorname{tr}(A)$。综上，可以写出 $\lambda^{n - k}$ 的系数，即可得到 $A$ 的特征多项式的系数表示形式。
 	$$
-	\lambda^n - \operatorname{tr}(A) + \cdots + (-1)^k \sum_{1 \le j'_1 < \cdots < j'_k \le n} A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} \lambda^{n - k} + \cdots + (-1)^n |A|
+	\lambda^n - \operatorname{tr}(A) + \cdots + (-1)^k \sum\limits_{1 \le j'_1 < \cdots < j'_k \le n} A \begin{pmatrix} j'_1, \ldots, j'_k \\ j'_1, \ldots, j'_k \end{pmatrix} \lambda^{n - k} + \cdots + (-1)^n |A|
 	$$
 \end{proof}
 
@@ -724,3 +724,67 @@ $$
 \end{proof}
 
 可见，对于所有 $n$ 级实对称矩阵组成的集合来说，特征值（包括重数）是相似关系下的完全不变量。
+
+\subsection{矩阵可对角化的等价命题}
+
+前面已经给出了矩阵可对角化的三个等价命题：
+\begin{enumerate}
+	\item $A$ 有 $n$ 个线性无关的特征向量 $\vec \alpha_1, \ldots, \vec \alpha_n$，令 $P = \begin{bmatrix} \vec \alpha_1 & \cdots & \vec \alpha_n \end{bmatrix}$，有 $P^{-1} A P = \operatorname{diag} \{\lambda_1, \ldots, \lambda_n\}$。其中 $\lambda_i$ 是 $\vec \alpha_i$ 所属的特征值，$i = 1, \ldots, n$。
+
+	\item $A$ 的属于不同特征值的特征子空间的维数之和等于 $n$。
+
+	\item $A$ 的特征多项式的全部复根都属于 $\mathbb K$，并且 $A$ 的每个特征值的几何重数等于它的代数重数。
+\end{enumerate}
+
+下面，我们进一步研究特征子空间与可对角化的关系。首先给出一个有关线性子空间的引理。
+
+\begin{theorem}
+	设 $V_1, V_2$ 是 $\mathbb K^n$ 的线性子空间，则：
+	$$
+	\dim(V_1 + V_2) = \dim V_1 + \dim V_2 - \dim (V_1 \cap V_2)
+	$$
+\end{theorem}
+
+\begin{proof}
+	首先显然有 $(V_1 \cap V_2) \subset V_1, V_2$。取 $V_1 \cap V_2$ 的一组基 $\vec \alpha_1, \ldots, \vec \alpha_s$，将其扩充成 $V_1$ 的一组基：
+	$$
+	\vec \alpha_1, \ldots, \vec \alpha_s, \vec \beta_1, \ldots, \vec \beta_t
+	$$
+
+	又将 $\alpha_1, \ldots, \vec \alpha_s$ 扩充成 $V_2$ 的一组基：
+	$$
+	\vec \alpha_1, \ldots, \vec \alpha_s, \vec \gamma_1, \ldots, \vec \gamma_q
+	$$
+
+	显然，$V_1 + V_2$ 中的每一个元素都可由以下向量组线性表出：
+	$$
+	\vec \alpha_1, \ldots, \vec \alpha_s, \vec \beta_1, \ldots, \vec \beta_t, \vec \gamma_1, \ldots, \vec \gamma_q
+	$$
+
+	下面按定义证明这个向量组是线性无关的。设：
+	$$
+	\sum\limits_{i = 1}^s a_i \vec \alpha_i + \sum\limits_{j = 1}^t b_j \vec \beta_j + \sum\limits_{k = 1}^q c_k \vec \gamma_k = \vec 0
+	$$
+
+	移项得：
+	$$
+	\sum\limits_{i = 1}^s a_i \vec \alpha_i + \sum\limits_{j = 1}^t b_j \vec \beta_j = - \sum\limits_{k = 1}^q c_k \vec \gamma_k
+	$$
+
+	注意到，等式左侧的向量属于 $V_1$，等式右侧的向量属于 $V_2$，故等式两侧的向量都属于 $V_1 \cap V_2$。因此，等式右侧可表示为 $\vec \alpha_1, \ldots, \vec \alpha_s$ 的一个线性组合，于是设：
+	$$
+	\sum\limits_{k = 1}^q c_k \vec \gamma_k + \sum\limits_{i = 1}^s d_i \vec \alpha_i = \vec 0
+	$$
+
+	由于 $\vec \alpha_1, \ldots, \vec \alpha_s, \vec \gamma_1, \ldots, \vec \gamma_k$ 线性无关，所以：
+	$$
+	c_1 = \cdots = c_q = d_1 = \cdots = d_s = 0
+	$$
+
+	把 $c_1, \ldots, c_q$ 代入原式，同理可得：
+	$$
+	a_1 = \cdots = a_s = b_1 = \cdots = b_t = 0
+	$$
+
+	故 $\vec \alpha_1, \ldots, \vec \alpha_s, \vec \beta_1, \ldots, \vec \beta_t, \vec \gamma_1, \ldots, \vec \gamma_q$ 线性无关，它是 $V_1 + V_2$ 的一组基。
+\end{proof}
