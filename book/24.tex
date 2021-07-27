@@ -725,7 +725,21 @@ $$
 
 可见，对于所有 $n$ 级实对称矩阵组成的集合来说，特征值（包括重数）是相似关系下的完全不变量。
 
-\subsection{矩阵可对角化的等价命题}
+\subsubsection{斜对称矩阵特征多项式的零点}
+
+斜对称矩阵是满足 $A' = -A$ 的矩阵。下面的定理说明，实数域上的斜对称矩阵不可能对角化。
+
+\begin{theorem}
+	实数域上的斜对称矩阵的特征多项式在复数域的零点是 $0$ 或纯虚数。
+\end{theorem}
+
+\begin{proof}
+	设 $A$ 是实数域上的斜对称矩阵，$\lambda_0$ 是 $A$ 的一个特征值。只需证 $\overline \lambda_0 = - \lambda_0$。
+
+	已知存在一个 $\vec \alpha \in \C^n$ 使得 $A \vec \alpha = \lambda_0 \vec \alpha$，验证知 $A \overline{\vec \alpha} = \overline \lambda_0 \overline{\vec \alpha}$ 成立。用类似于证明实对称矩阵的特征值是实数的思路，左乘 $\vec \alpha'$ 后对等式两侧取共轭转置，有 $\vec a' A \overline{\vec \alpha} = \overline \lambda_0 \vec \alpha' \overline{\vec \alpha}$，$\vec \alpha' A \overline{\vec \alpha} = - \lambda_0 \vec \alpha' \overline{\vec \alpha}$。于是 $\overline \lambda_0 = - \lambda_0$，证毕。
+\end{proof}
+
+\subsection{矩阵可对角化的又一等价命题}
 
 前面已经给出了矩阵可对角化的三个等价命题：
 \begin{enumerate}
@@ -788,3 +802,90 @@ $$
 
 	故 $\vec \alpha_1, \ldots, \vec \alpha_s, \vec \beta_1, \ldots, \vec \beta_t, \vec \gamma_1, \ldots, \vec \gamma_q$ 线性无关，它是 $V_1 + V_2$ 的一组基。
 \end{proof}
+
+然后给出三个有关特征子空间的引理。第一个引理说明特征子空间之间两两不交。
+
+\begin{theorem}
+	设 $A \in M_n(\mathbb K)$ 的特征值为 $\lambda_1, \ldots, \lambda_s$（不可重），则有 $V_{\lambda_i} (A) \cap \left( \sum\limits_{j \ne i} V_{\lambda_j} (A) \right) = \{ \vec 0 \}$。
+\end{theorem}
+
+\begin{proof}
+	反证。假设存在非零向量 $\vec \alpha \in V_{\lambda_i}(A) \cap \left( \sum\limits_{j \ne i} V_{\lambda_j}(A) \right)$，将 $\vec \alpha$ 表示为 $\left( \sum\limits_{j \ne i} V_{\lambda_j}(A) \right)$ 中一组基的和：
+	$$
+	\begin{aligned}
+	\vec \alpha &= \vec \alpha_{11} + \cdots + \vec \alpha_{1 t_1} + \vec \alpha_{21} + \cdots + \vec \alpha_{2 t_2} + \cdots + \vec \alpha_{i - 1, 1} + \cdots + \vec \alpha_{i - 1, t_{i - 1}} +
+	\\&~~~~
+	\vec \alpha_{i + 1, 1} + \cdots + \vec \alpha_{i + 1, t_{i + 1}} + \cdots +\vec \alpha_{s1} + \cdots + \vec \alpha_{st_s}
+	\end{aligned}
+	$$
+
+	其中，$t_k = \dim V_{\lambda_k}(A)$，对于固定的 $k$，$\vec \alpha_{k j} \pod{j = 1, \ldots, t_k}$ 线性无关。进而 $\forall k, j$，$\{ \vec \alpha_{kj} \}_{k, j}$ 都线性无关\footnote{设 $\lambda_1, \lambda_2, \ldots, \lambda_m$ 是数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的不同的特征值，$$\vec \alpha_{j1}, \vec \alpha_{j2}, \ldots, \vec \alpha_{j r_j}$$ 是 $A$ 的属于 $\lambda_j$ 的线性无关的特征向量，$j = 1, \ldots, m$，则向量组 $$\vec \alpha_{11},\ldots, \vec \alpha_{1 r_1}, \ldots, \vec \alpha_{m1}, \ldots, \vec \alpha_{m r_m}$$ 线性无关。}。由于假设了 $\vec \alpha$ 是属于 $\lambda_i$ 的特征向量，所以有：
+	$$
+	A \vec \alpha = A (\vec \alpha_{11} + \cdots + \vec \alpha_{s t_s})
+	$$
+	其中不包含 $\vec \alpha_{ij} \pod{j = 1, \ldots, t_i}$。
+
+	进而：
+	$$
+	\lambda_i \vec \alpha = \lambda_i (\vec \alpha_{11} + \cdots + \vec \alpha_{st_s})
+	$$
+
+	由于 $\forall \vec \alpha_{kj} \pod{k \ne i}$ 是线性无关的，因此不存在它们的其他线性组合能表示出 $\lambda_i \vec \alpha$。但又因为有 $A \vec \alpha_{kj} = \lambda_k \vec \alpha_{kj}$，所以 $\forall k \ne i, \lambda_k = \lambda_i$，与假设特征值不可重矛盾。
+\end{proof}
+
+第二个引理是第一个引理的简单延伸。
+
+\begin{theorem}
+	设 $A \in M_n(\mathbb K)$ 的特征值为 $\lambda_1, \ldots, \lambda_s$（不可重），则：
+	$$
+	\dim(V_{\lambda_1}(A) + \cdots + V_{\lambda_s}(A)) = \sum\limits_{i = 1}^s \dim V_{\lambda_i}(A)
+	$$
+\end{theorem}
+
+\begin{proof}
+	$$
+	\begin{aligned}&
+		\dim \left( V_{\lambda_1}(A) + \left( \sum_{i = 2}^s V_{\lambda_i}(A) \right) \right)
+		\\~=& \dim(V_{\lambda_1}) + \dim \left( \sum_{i = 2}^s V_{\lambda_i}(A) \right) - \underset{0}{\underbrace{\dim \left( V_{\lambda_1}(A) \cap \left( \sum_{i = 2}^s V_{\lambda_i}(A) \right) \right)}}
+	\end{aligned}
+	$$
+
+	进一步，用数学归纳法即可证得该命题。
+\end{proof}
+
+第三个引理重定义了 $V_\lambda(A)$，以便于后面使用。其证明是显然的。
+
+\begin{theorem}
+	设 $A \in M_n(\mathbb K)$ 的特征值为 $\lambda_1, \ldots, \lambda_s$（不可重），重定义：
+	$$
+	V_x(A) \triangleq
+	\begin{cases}
+		V_x(A), & \text{$x$ 是特征值} \\ \{ \vec 0 \}, & \text{$x$ 不是特征值}
+	\end{cases}
+	$$
+
+	则有：
+	$$
+	\dim(V_{\lambda_1}(A) + \cdots + V_{\lambda_s}(A) + V_{x_1}(A) + \cdots) = \sum\limits_{i = 1}^s \dim V_{\lambda_i}(A)
+	$$
+	其中 $x_j$ 不是特征值。
+\end{theorem}
+
+最后，我们给出又一个矩阵可对角化的充分必要条件。
+
+\begin{theorem}
+	设 $A \in M_n(\mathbb K)$，其特征多项式在复数域上的零点均为其特征值，设为 $\lambda_1, \ldots, \lambda_s$（不可重），则 $A$ 可对角化的充分必要条件是 $\mathbb K^n = \sum\limits_{i = 1}^s V_{\lambda_i}(A) + \sum\limits_{j} V_{x_j}(A)$，其中 $x_j$ 不是 $A$ 的特征值。
+\end{theorem}
+
+\begin{proof}
+	必要性。取 $V_{\lambda_i}$ 的基，若 $A$ 可对角化，则所有的基合在一起共有 $n$ 个且仍线性无关，故它们是 $\mathbb K^n$ 的一组基。
+
+	充分性。计算 $n = \dim(\mathbb K^n) = \dim \left( \sum\limits_{i = 1}^s V_{\lambda_i}(A) + \sum\limits_j V_{x_j}(A) \right)$，由引理可知，它等于 $\sum\limits_{i = 1}^s \dim V_{\lambda_i}(A)$，这就是已证的一个 $A$ 可对角化的等价命题。
+\end{proof}
+
+% TODO: 补充例题。
+
+该等价命题可以用于证明一个非具体矩阵可对角化。例如，若 $\mathbb K$ 上的矩阵 $A$ 满足 $A^2 = A$，我们可以知道 $A$ 的特征值一定为 $0$ 或 $1$，所以要证 $A$ 可对角化只需证明 $V_0(A) + V_1(A) = \mathbb K^n$。事实上，$0$ 和 $1$ 都有可能不是 $A$ 的特征值，但在使用该等价命题进行证明时，无需考虑这个问题。只要满足 $A \vec x = \lambda x$，就有 $\vec x \in V_\lambda(A)$。
+
+\subsection{同时可对角化问题}
+
