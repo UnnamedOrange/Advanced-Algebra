@@ -889,3 +889,112 @@ $$
 
 \subsection{同时可对角化问题}
 
+下面的定理描述了同时可对角化问题。
+
+\begin{theorem}
+	设 $A, B \in M_n(\mathbb K)$ 都可对角化，若 $AB = BA$，则存在一可逆矩阵 $P$，使得 $P^{-1} A P$ 是对角矩阵，$P^{-1} B P$ 也是对角矩阵。
+\end{theorem}
+
+\begin{proof}
+	由 $A$ 可对角化，知存在一可逆矩阵 $T$，使得 $T^{-1} AT = \operatorname{diag}\{\lambda_1, \ldots, \lambda_s\}$（$\lambda_1, \ldots, \lambda_s$ 互不相同，它们可以出现多次，设代数重数分别为 $n_1, \ldots, n_s$）。由 $AB = BA$ 知（对角阵写成了分块矩阵）：
+	$$
+	\left(
+	T
+	\begin{bmatrix}
+		\lambda_1 I_{n_1} & &
+		\\
+		& \ddots &
+		\\
+		& & \lambda_s I_{n_s}
+	\end{bmatrix}
+	T^{-1}
+	\right)
+	B = B
+	\left(
+	T
+	\begin{bmatrix}
+		\lambda_1 I_{n_1} & &
+		\\
+		& \ddots &
+		\\
+		& & \lambda_s I_{n_s}
+	\end{bmatrix}
+	T^{-1}
+	\right)
+	$$
+
+	等式两侧同时左乘 $T^{-1}$，同时右乘 $T$，得：
+	$$
+	\begin{bmatrix}
+		\lambda_1 I_{n_1} & &
+		\\
+		& \ddots &
+		\\
+		& & \lambda_s I_{n_s}
+	\end{bmatrix}
+	T^{-1}BT = T^{-1}BT
+	\begin{bmatrix}
+		\lambda_1 I_{n_1} & &
+		\\
+		& \ddots &
+		\\
+		& & \lambda_s I_{n_s}
+	\end{bmatrix}
+	$$
+
+	可知 $T^{-1}BT$ 是对角矩阵\footnote{与非数量矩阵的对角矩阵可交换的矩阵一定是对角矩阵。}。将 $T^{-1}BT$ 分块，设为：
+	$$
+	T^{-1}BT =
+	\begin{bmatrix}
+		B_{11} & &
+		\\
+		& \ddots &
+		\\
+		& & B_{ss}
+	\end{bmatrix}
+	$$
+
+	可知 $B$ 相似于 $\begin{bmatrix} B_{11} & & \\ & \ddots & \\ & & B_{ss} \end{bmatrix}$。由已知条件 $B$ 可对角化，可知 $B$ 的特征多项式（和 $T^{-1}BT$ 的特征多项式都）为 $(\lambda - \mu_1)^{p_1}\cdots(\lambda - \mu_t)^{p_t}$，其中 $\mu_1, \ldots, \mu_t$ 互不相同，都是 $B$（和 $T^{-1}BT$）的特征值。于是\footnote{将矩阵代入其特征多项式的结果为零矩阵。
+	$$
+	\begin{aligned}
+		(B - \lambda_1 I_n) \cdots (B - \lambda_n I_n) &= (P^{-1}DP - \lambda_1 P^{-1}P) \cdots (P^{-1}DP - \lambda_t P^{-1}P)
+		\\&=
+		P^{-1} (D - \lambda_1 I_n) P P^{-1}(D - \lambda_2 I_n) P \cdots P^{-1} (D - \lambda_n I_n) P
+		\\&=
+		P^{-1}(D - \lambda_1 I_n)(D - \lambda_2 I_n) \cdots (D - \lambda_n I_n) P
+	\end{aligned}
+	$$
+	}：
+	$$
+	(T^{-1}BT - \mu_1 I_n) \cdots (T^{-1}BT - \mu_t I_n) = 0
+	$$
+
+	只研究 $T^{-1}BT$ 的一个分块，可知 $\forall i = 1, \ldots, s$，有：
+	$$
+	(B_{ii} - \mu_1 I_{n_i})(B_{ii} - \mu_2 I_{n_i}) \cdots (B_{ii} - \mu_t I_{n_i}) = 0
+	$$
+
+	于是可知 $\forall i = 1, \ldots, s$，$B_{ii}$ 可对角化\footnote{证明超纲，略。}。
+
+	设 $Q_i^{-1} B_{ii} Q_i = D_i \pod{i = 1, \cdots, s}$，其中 $D_i$ 为对角矩阵。设：
+	$$
+	Q =
+	\begin{bmatrix}
+		Q_1 & &
+		\\
+		& \ddots &
+		\\
+		& & Q_s
+	\end{bmatrix},
+	D =
+	\begin{bmatrix}
+		D_1 & &
+		\\
+		& \ddots &
+		\\
+		& & D_s
+	\end{bmatrix}
+	$$
+
+	于是 $Q^{-1}T^{-1}BTQ = D$，即 $(TQ)^{-1}B(TQ) = D$。注意到，$T^{-1} AT$ 是一个对角矩阵，而 $Q$ 也是一个分块对角矩阵，利用分块对角矩阵计算 $Q^{-1}(T^{-1}AT)Q$，可得：$Q^{-1}(T^{-1}AT)Q = T^{-1}AT$，即 $(TQ)^{-1}A(TQ)$ 也是一个对角矩阵。令 $P = TQ$，则满足原命题。
+\end{proof}
