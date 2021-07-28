@@ -1,3 +1,73 @@
 % Licensed under the Creative Commons Attribution Share Alike 4.0 International.
 % See the LICENCE file in the repository root for full licence text.
 
+\chapter{二次型与矩阵的合同}
+
+\section{二次型标准形与合同}
+
+\subsection{二重线性函数}
+
+\begin{definition}{多重线性函数}
+	若有 $f: \underset{\text{$m$ 个}}{\underbrace{\mathbb K^n \times \mathbb K^n \times \cdots \times \mathbb K^n}} \to \mathbb K$，且 $\forall i = 1, \ldots, m$，都满足：
+	$$
+	\begin{aligned}&
+		f(\vec \alpha_1, \ldots, a_i \vec \alpha_i + a'_i \vec \alpha'_i, \ldots, \vec \alpha_s)
+		\\=~&
+		a_i f(\vec \alpha_1, \ldots, \vec \alpha_i, \ldots, \vec \alpha_s) + a'_i f(\vec \alpha_1, \ldots, \vec \alpha'_i, \ldots, \vec \alpha_s)
+	\end{aligned}
+	$$
+	则称 $f$ 为 $\mathbb K^n$ 上的 \emph{$m$ 重线性函数}。通俗地讲，多重线性函数的每一个参数都是线性的。
+\end{definition}
+
+例如，$\det(A)$ 是一个 $n$ 重线性函数。
+
+\begin{definition}{对称的多重线性函数}
+	设 $f$ 是一个多重线性函数，$a$ 是一个全排列，若 $f(\vec \alpha_1, \ldots, \vec \alpha_m) = f(\vec \alpha_{a_1}, \ldots, \vec \alpha_{a_m})$，则称 $f$ 是一个\emph{对称的多重线性函数}。
+\end{definition}
+
+\begin{definition}{反对称的多重线性函数}
+	设 $f$ 是一个多重线性函数，$a$ 是一个全排列，若 $f(\vec \alpha_1, \ldots, \vec \alpha_m) = (-1)^{\tau(a)} f(\vec \alpha_{a_1}, \ldots, \vec \alpha_{a_m})$，其中 $\tau(a)$ 表示全排列 $a$ 的逆序数，则称 $f$ 是一个\emph{反对称的多重线性函数}。
+\end{definition}
+
+例如，$\det(A)$ 是一个反对称的多重线性函数。
+
+\bigskip
+
+当 $m = 2$ 时，考虑二重线性函数 $f \colon \mathbb K^n \times \mathbb K^n \to \mathbb K$，取 $\mathbb K^n$ 的一组基 $\{\vec e_i \colon i = 1, \cdots, n\}$，设 $f(\vec e_i, \vec e_j) = a_{ij} \in \mathbb K$，于是 $\forall \vec X, \vec Y \in \mathbb K^n$，我们可以计算出：
+$$
+\begin{aligned}
+f(\vec X, \vec Y) &= f \biggl( \sum_{i = 1}^n x_i \vec e_i, \sum_{j = 1}^n y_j \vec e_j \biggr)
+\\&=
+\sum_{i = 1}^n \sum_{j = 1}^n x_i a_{ij} y_j
+\end{aligned}
+$$
+
+注意到，上式可以表示为 $f(\vec X, \vec Y) = \vec X^T A \vec Y$。由此可见，$f$ 是对称的二重线性函数当且仅当 $A$ 是一个对称矩阵；$f$ 是一个反对称的二重线性函数当且仅当 $A$ 是一个反对称矩阵。
+
+\bigskip
+
+对于\textbf{对称的二重线性函数} $f(\vec X, \vec Y)$，我们来计算 $f(\vec X, \vec Y)$，可以考虑用以下方式：
+$$
+f(\vec X, \vec Y) = \frac{f(\vec X + \vec Y, \vec X + \vec Y) - f(\vec X, \vec X) - f(\vec Y, \vec Y)}{2}
+$$
+
+如果 $\vec X = \vec Y$，我们要研究的对象就是 $\vec X^T A \vec X$，只用研究 $\vec X$ 的 $n$ 个变量即可。而通过上式，我们知道了可以透过 $f(\vec X, \vec X)$ 来研究 $f(\vec X, \vec Y)$。下面我们就来研究 $f(\vec X, \vec X)$。
+
+\begin{definition}{二次型}
+	数域 $\mathbb K$ 上的一个 \emph{$n$ 元二次型}是系数在 $\mathbb K$ 中的 $n$ 个变量的二次\textbf{齐次}多项式，它的一般形式是：
+	$$
+	f(\vec X, \vec X) = \sum_{i = 1}^n \sum_{j = 1}^n a_{ij} x_i x_j = \sum_{i = 1}^n a_{ii} x_i^2 + 2 \sum_{i = 1}^n \sum_{j = i + 1}^n a_{ij} x_i x_j
+	$$
+\end{definition}
+
+前面提到，二重线性函数可以表示为 $f(\vec X, \vec Y) = \vec X^T A \vec Y$，不难验证二次型与对称矩阵一一对应。
+
+\begin{definition}{二次型的矩阵}
+	称与二次型 $f$ 按以下关系一一对应的对称矩阵 $A = (a_{ij})$ 为\emph{二次型 $f$ 的矩阵}。
+	$$
+	f(\vec X, \vec X) = \sum_{i = 1}^n \sum_{j = 1}^n a_{ij} x_i x_j = \sum_{i = 1}^n a_{ii} x_i^2 + 2 \sum_{i = 1}^n \sum_{j = i + 1}^n a_{ij} x_i x_j
+	$$
+\end{definition}
+
+\subsubsection{二次型标准形}
+
