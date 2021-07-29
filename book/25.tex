@@ -69,5 +69,117 @@ $$
 	$$
 \end{definition}
 
-\subsubsection{二次型标准形}
+\subsection{二次型标准形}
+
+我们希望二次型能够形如 $a_{11} x_1^2 + a_{22} x_2^2 + \cdots + a_{nn} x_n^2$。如果一个二次型含有交叉项，我们能否通过一系列变换使得交叉项消失呢？最简单的思路就是配方。例如，给定三元二次型 $x_1^2 - 2x_1 x_2 + x_2 x_3 - x_3^2$，通过依次为 $x_1, x_2$ 配方，我们可以得到：
+$$
+\begin{aligned}&
+	x_1^2 - 2x_1 x_2 + x_2 x_3 - x_3^2
+	\\=~&
+	(x_1 - x_2)^2 - x_2^2 + x_2x_3 - x_3^2
+	\\=~&
+	(x_1 - x_2)^2 - \biggl( x_2 - \dfrac{x_3}{2} \biggr)^2 - \dfrac{3}{4} x_3^2
+\end{aligned}
+$$
+
+由于为 $x_2$ 配方后 $x_3$ 一定只剩下平方项，所以无需为 $x_3$ 配方。令：
+$$
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}
+=
+\begin{bmatrix}
+	1 & -1 & 0
+	\\
+	0 & 1 & -\dfrac{1}{2}
+	\\
+	0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+$$
+则原二次型等于 $y_1^2 - y_2^2 - \dfrac{3}{4} y_3^2$。
+
+受以上配方过程启发，我们给出以下定义。
+
+\begin{definition}{非退化线性替换}
+	令 $\vec Y = (y_1, \ldots, y_n)'$，设 $C$ 是数域 $\mathbb K$ 上的一个 $n$ 级\textbf{可逆}矩阵，则关系式 $\vec X = C \vec Y$ 称为变量 $x_1, \ldots, x_n$ 到变量 $y_1, \ldots, y_n$ 的一个\emph{非退化线性替换}。
+\end{definition}
+
+根据非退化线性替换的定义，我们要求矩阵 $C$ 是可逆矩阵，所以自然地可以得到一个等价关系。
+
+\begin{definition}{二次型的等价}
+	数域 $\mathbb K$ 上的两个 $n$ 元二次型 $\vec X^T A \vec X$ 与 $\vec Y^T B \vec Y$，如果存在一个非退化线性替换 $\vec X = C \vec Y$，把 $\vec X^T A \vec X$ 变成 $\vec Y^T B \vec Y$，那么称二次型 $\vec X^T A \vec X$ 与 $\vec Y^T B \vec Y$ \emph{等价}，记作 $\vec X^T A \vec X \cong \vec Y^T B \vec Y$。
+\end{definition}
+
+\begin{definition}{二次型标准形}
+	如果 $\vec X^T A X$ 等价于一个只含平方项的二次型，那么这个只含平方项的二次型称为 $\vec X^T A \vec X$ 的一个\emph{标准形}。
+\end{definition}
+
+主观感受可知，通过配方，一定可以将任意二次型转换为只含平方项的二次型。我们不加证明地给出以下定理。
+
+% TODO: 补充证明。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的任意二次型都可以通过非退化线性替换 $\vec X = P \vec Y$ 化为它的一个二次型标准形。
+\end{theorem}
+
+\subsection{实对称矩阵对应的二次型标准形：正交替换法}
+
+注意到，实二次型对应的矩阵是实对称矩阵。实对称矩阵作为一类特殊的矩阵，其对应的二次型标准形还可以用以下方法求出。
+
+\begin{theorem}
+	实数域上的 $n$ 元二次型 $\vec X^T A \vec X$ 有一个标准形为 $\lambda_1 y_1^2 + \cdots + \lambda_n y_n^2$，其中 $\lambda_1, \ldots, \lambda_n$ 是 $A$ 的全部特征值。
+\end{theorem}
+
+\begin{proof}
+	已知对于 $n$ 级实对称矩阵 $A$，存在一个 $n$ 级正交矩阵 $T$，使得 $T^{-1} AT = \operatorname{diag}\{\lambda_1, \ldots, \lambda_n\} = D$，其中 $\lambda_1, \ldots, \lambda_n$ 是 $A$ 的全部特征值。由于 $T^{-1} = T^T$，从而在变量的替换 $\vec X = T \vec Y$ 下，$\vec X^T A \vec X$ 化成二次型 $\lambda_1 y_1^2 + \cdots + \lambda_n y_n^2$。
+\end{proof}
+
+我们称以上这种特殊的替换为正交替换。
+
+\begin{definition}{正交替换}
+	如果 $T$ 是正交矩阵，那么变量的替换 $\vec X = T \vec Y$ 称为\emph{正交替换}。
+\end{definition}
+
+特别注意，正交替换法的前提是 $T^{-1} = T^T$。
+
+\subsection{矩阵的合同}
+
+二次型的变量替换可以表示为：
+$$
+\vec X^T A \vec X = (C \vec Y)^T A (C \vec Y) = \vec Y^T (C^T A C) \vec Y
+$$
+
+如果二次型的等价用其对应的矩阵表示，则上例中我们可以说 $A$ 与 $C^T A C$ 等价。事实上，矩阵的这种等价被称为合同。
+
+\begin{definition}{合同}
+	数域 $\mathbb K$ 上两个 $n$ 级矩阵 $A$ 与 $B$，如果存在 $\mathbb K$ 上一个 $n$ 级可逆矩阵 $C$，使得 $C^T AC = B$，那么称 $A$ 与 $B$ \emph{合同}，记作 $A \simeq B$。
+\end{definition}
+
+同理，由于要求矩阵 $C$ 可逆，所以合同也是一个等价关系，其相关概念定义如下。
+
+\begin{definition}{合同类}
+	在合同关系下，$A$ 的等价类称为 $A$ 的\emph{合同类}。
+\end{definition}
+
+\begin{definition}{合同标准形}
+	如果对称矩阵 $A$ 合同于一个对角矩阵，那么这个对角矩阵称为 $A$ 的一个\emph{合同标准形}。
+\end{definition}
+
+注意合同标准形的定义中要求 $A$ 是对称矩阵。事实上，非对称矩阵不可能合同于一个对角矩阵，因为与对角矩阵合同的矩阵一定是对称矩阵。
+
+由数域 $\mathbb K$ 上的任意二次型可以通过非退化线性替换 $\vec X = P \vec Y$ 化为它的一个二次型标准形，我们可以知道数域 $\mathbb K$ 上的任意对称矩阵都存在合同标准形，即数域 $\mathbb K$ 上任一对称矩阵都合同于一个对角矩阵。
+
+\subsection{求合同标准形：初等变换法}
+
+可以证明，对于数域 $\mathbb K$ 中的对称矩阵 $A$ 一定存在一个合同标准形。设 $P^T A P = D$，其中 $P$ 是可逆矩阵，$D$ 是对角矩阵。由于可逆矩阵可以表示成初等矩阵的乘积，故设：
+$$
+P = P_1 \cdots P_s
+$$
+其中 $P_1, \ldots, P_s$ 均为初等矩阵。于是：
+$$
+\begin{aligned}
+	P^T A P &= (P_1 \cdots P_s)^T A (P_1 \cdots P_s)
+	\\&=
+	P_s^T \cdots P_1^T A P_1 \cdots P_s
+\end{aligned}
+$$
 
