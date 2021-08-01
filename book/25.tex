@@ -48,7 +48,7 @@ $$
 
 对于\textbf{对称的二重线性函数} $f(\vec X, \vec Y)$，我们来计算 $f(\vec X, \vec Y)$，可以考虑用以下方式：
 $$
-f(\vec X, \vec Y) = \frac{f(\vec X + \vec Y, \vec X + \vec Y) - f(\vec X, \vec X) - f(\vec Y, \vec Y)}{2}
+f(\vec X, \vec Y) = \dfrac{f(\vec X + \vec Y, \vec X + \vec Y) - f(\vec X, \vec X) - f(\vec Y, \vec Y)}{2}
 $$
 
 如果 $\vec X = \vec Y$，我们要研究的对象就是 $\vec X^T A \vec X$，只用研究 $\vec X$ 的 $n$ 个变量即可。而通过上式，我们知道了可以透过 $f(\vec X, \vec X)$ 来研究 $f(\vec X, \vec Y)$。下面我们就来研究 $f(\vec X, \vec X)$。
@@ -183,3 +183,102 @@ $$
 \end{aligned}
 $$
 
+考察 $P_1^T A P_1$ 的意义。依次考虑三种初等矩阵：
+\begin{enumerate}
+	\item $P_1 = P(i, j)$，此时 $P_1^T = P(i, j)$，$P_1^T A P_1 = P(i, j) A P(i, j)$，意义为：交换 $A$ 的第 $i$ 列和第 $j$ 列，再交换 $A$ 的第 $i$ 行和第 $j$ 行。由矩阵乘法的结合律，也可以先交换行，再交换列。
+	\item $P_1 = P(i(c))$，此时 $P_1^T = P(i(c))$，$P_1^T A P_1 = P(i(c)) A P(i(c))$，意义为：将 $A$ 的第 $i$ 列乘以 $c$，并将 $A$ 的第 $i$ 行乘以 $c$。同理，也可以先乘以行，再乘以列。
+	\item $P_1 = P(j, i(k))$，此时 $P_1^T = P(i, j(k))$（注意 $P(j, i(k))$ 不是对称矩阵），$P_1^T A P_1 = P(i, j(k)) A P(j, i(k))$，意义为：将 $A$ 的第 $j$ 行乘以 $k$ 加到第 $i$ 行，并将 $A$ 的第 $j$ 列乘以 $k$ 加到第 $i$ 列。
+\end{enumerate}
+
+因为 $P_1^T A P_1$ 有以上意义，所以我们特将它称为成对初等行列变换。
+
+\begin{definition}{成对初等行列变换}
+	设 $P$ 是初等矩阵，称 $P^T A P$ 为对 $A$ 作\emph{成对初等行列变换}。
+\end{definition}
+
+\begin{theorem}
+	设 $A, B$ 都是数域 $\mathbb K$ 上的 $n$ 级矩阵，则 $A$ 合同于 $B$，当且仅当 $A$ 经过一系列成对初等行列变换可以变成 $B$。并且对 $I$ 只作其中的初等列变换得到的可逆矩阵 $C$ 满足 $C^TAC = B$。
+\end{theorem}
+
+以上定理给出了求解矩阵的合同标准形的方法。具体使用方法见下例。
+$$
+A =
+\begin{bmatrix}
+	0 & 1 & 2
+	\\
+	1 & 0 & 0
+	\\
+	2 & 0 & 0
+\end{bmatrix}
+$$
+
+\begin{solve}
+	对 $A$ 进行一系列成对初等行列变换：
+	$$
+	\begin{gathered}
+		\left[
+		\begin{array}{c}
+			\begin{matrix} 0 & 1 & 2 \\ 1 & 0 & 0 \\ 2 & 0 & 0 \end{matrix}
+			\\\hline
+			\begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{matrix}
+		\end{array}
+		\right]
+		\to
+		\left[
+		\begin{array}{c}
+			\begin{matrix} 1 & 1 & 2 \\ 1 & 0 & 0 \\ 2 & 0 & 0 \end{matrix}
+			\\\hline
+			\begin{matrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{matrix}
+		\end{array}
+		\right]
+		\to
+		\left[
+		\begin{array}{c}
+			\begin{matrix} 2 & 1 & 2 \\ 1 & 0 & 0 \\ 2 & 0 & 0 \end{matrix}
+			\\\hline
+			\begin{matrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1 \end{matrix}
+		\end{array}
+		\right]
+		\to \cdots \to
+		\left[
+		\begin{array}{c}
+			\begin{matrix} 2 & 0 & 0 \\ 0 & -\frac{1}{2} & 0 \\ 0 & 0 & 0 \end{matrix}
+			\\\hline
+			\begin{matrix} 1 & -\frac{1}{2} & 0 \\ 1 & -\frac{1}{2} & -2 \\ 0 & 0 & 1 \end{matrix}
+		\end{array}
+		\right]
+	\end{gathered}
+	$$
+
+	令 $P = \begin{bmatrix} 1 & -\frac{1}{2} & 0 \\ 1 & \frac{1}{2} & -2 \\ 0 & 0 & 1 \end{bmatrix}$，则有：
+	$$
+	P^T A P =
+	\begin{bmatrix}
+		2 & 0 & 0
+		\\
+		0 & \frac{1}{2} & 0
+		\\
+		0 & 0 & 0
+	\end{bmatrix}
+	$$
+
+	$P^T A P$ 即为 $A$ 的合同标准形，$P$ 是非退化线性替换。
+\end{solve}
+
+以上定理仅仅说明了求解对称矩阵合同标准形的方法，没有证明任何对称矩阵都可通过此方法求得合同标准形。但事实上，可以证明初等变换法对于对称矩阵总是有效的。
+
+\begin{theorem}
+	数域 $\mathbb K$ 上任一对称矩阵都合同于一个对角矩阵。特别地，总是可以使用初等变换法求出某个对称矩阵的合同标准形。
+\end{theorem}
+
+% TODO: 补充证明。
+
+由于成对初等行列变换不改变矩阵的秩，所以我们可以定义二次型的秩，并得到以下定理。
+
+\begin{definition}{二次型的秩}
+	二次型 $\vec X^T A \vec X$ 的矩阵 $A$ 的秩称为\emph{二次型 $\vec X^T A \vec X$ 的秩}。
+\end{definition}
+
+\begin{theorem}
+	数域 $\mathbb K$ 上的 $n$ 元二次型 $\vec X^T A \vec X$ 的任一标准形中，系数不为 $0$ 的平方项个数等于它的秩。
+\end{theorem}
