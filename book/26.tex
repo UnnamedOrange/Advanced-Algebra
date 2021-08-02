@@ -1,0 +1,73 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{惯性定理}
+
+设\textbf{实}二次型存在一个标准形形如 $d_1 y_1^2 + \cdots + d_p y_p^2 - d_{p + 1}y_{p + 1}^2 - \cdots - d_r y_r^2$，其中 $d_i > 0 \pod{i = 1, 2, \ldots, r}$，$r$ 为实二次型的秩。发现，不难再作一次线性替换，使得实二次型的标准形形如 $z_1^2 + \cdots + z_p^2 - z_{p + 1}^2 - z_r^2$。
+
+\begin{definition}{规范形}
+	称二次型 $\vec X^T A \vec X$ 的二次项系数为 $1$ 或 $-1$ 或 $0$ 的标准形为 $\vec X^T A \vec X$ 的\emph{规范形}。
+\end{definition}
+
+\begin{theorem}[惯性定理]
+	$n$ 元\textbf{实}二次型 $\vec X^T A \vec X$ 的规范形是唯一的。
+\end{theorem}
+
+\begin{proof}[反证法]
+	设 $n$ 元实二次型 $\vec X^T A \vec X$ 的秩为 $r$。假设 $\vec X^T A \vec X$ 分别经过非退化线性替换 $\vec X = C \vec Y \pod{\vec Y = C^{-1} \vec X}$，$\vec X = B \vec Z \pod{\vec Z = B^{-1}C \vec Y}$ 变成两个规范形：
+	$$
+	\begin{gathered}
+		\vec X^T A \vec X = y_1^2 + \cdots + y_p^2 -y_{p + 1}^2 - \cdots - y_r^2
+		\\
+		\vec X^T A \vec X = z_1^2 + \cdots + z_q^2 - z_{q + 1}^2 - \cdots - z_r^2
+	\end{gathered}
+	$$
+
+	则有：
+	$$
+	y_1^2 + \cdots + y_p^2 - y_{p + 1}^2 - \cdots - y_r^2 = z_1^2 + \cdots + z_q^2 - z_{q + 1}^2 - \cdots - z_r^2
+	$$
+
+	让 $\vec Y$ 取列向量 $\vec \beta = (k_1, \ldots, k_p, 0, \ldots, 0)$，其中 $k_1, \ldots, k_p$ 是待定的不全为 $0$ 的实数，使得变量 $z_1, \ldots, z_q$ 取的值全为 $0$。设 $G = B^{-1} C = (g_{ij})$，由于 $\vec Z = G \vec Y$，所以当 $\vec Y$ 取 $\vec \beta$ 时，有：
+	$$
+	\begin{cases}
+	z_1 = g_{11} k_1 + \cdots + g_{1p} k_p
+	\\
+	z_2 = g_{21} k_1 + \cdots + g_{2p} k_p
+	\\
+	\vdots
+	\\
+	z_q = g_{q1} k_1 + \cdots + g_{qp} k_p
+	\end{cases}
+	$$
+
+	令 $z_1 = \cdots = z_q = 0$，我们得到了一个 $p$ 个方程，$q$ 个未知量的方程组，于是得到 $p \le q$，否则产生矛盾。同理可得 $p \ge q$，故 $p = q$。
+\end{proof}
+
+\begin{definition}{正惯性指数,负惯性指数,符号差}
+	在实二次型 $\vec X^T A \vec X$ 的规范形中，系数为 $1$ 的平方项个数 $p$ 称为 $\vec X^T A \vec X$ 的\emph{正惯性指数}，系数为 $-1$ 的平方项个数 $r - p$ 称为 $\vec X^T A \vec X$ 的\emph{负惯性指数}。正惯性指数减去负惯性指数所得的差 $2p - r$ 称为 $\vec X^T A \vec X$ 的\emph{符号差}。
+\end{definition}
+
+\begin{theorem}
+	两个 $n$ 元实二次型等价 $\Longleftrightarrow$ 它们的规范形相同 $\Longleftrightarrow$ 它们的秩相等，并且正惯性指数也相等。
+\end{theorem}
+
+\begin{definition}{合同规范形}
+	由惯性定理，任一 $n$ 级\textbf{实}对称矩阵 $A$ 合同于对角矩阵 $\operatorname{diag}\{1, \ldots, 1, -1, \ldots, -1, 0, \ldots, 0\}$，这个对角矩阵称为 $A$ 的\emph{合同规范形}。
+\end{definition}
+
+\begin{definition}{正惯性指数, 负惯性指数}
+	$A$ 的合同规范形中 $1$ 的个数等于 $\vec X^T A \vec X$ 的正惯性指数，$-1$ 的个数等于 $\vec X^T A \vec X$ 的负惯性指数，分别把它们称为 $A$ \emph{正惯性指数}和\emph{负惯性指数}。
+\end{definition}
+
+由于合同标准形和合同规范形在忽略顺序的情况下只差一个正系数，故有：$n$ 级实对称矩阵 $A$ 的合同标准形中，主对角元为正（负）数的个数等于 $A$ 的正（负）惯性指数。
+
+\bigskip
+
+\textbf{实}二次型 $\vec X^T A \vec X$ 与 $\vec Y^T B \vec Y$ 等价意味着实对称矩阵 $A$ 与 $B$ 合同，故可由二次型等价的一系列命题立即推导出对称矩阵合同的一系列命题。
+
+\begin{theorem}
+	两个实对称矩阵合同 $\Longleftrightarrow$ 它们的合同规范形相同 $\Longleftrightarrow$ 它们的秩相等，并且正惯性指数也相等。
+\end{theorem}
+
+% TODO: 补充例题。

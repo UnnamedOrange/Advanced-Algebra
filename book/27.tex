@@ -1,0 +1,87 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{正定二次型}
+
+\subsection{正定二次型与正定矩阵}
+
+对于欧式几何而言，在 $\R^n$ 上定义内积，要求内积函数满足对称性、双线性、正定性。我们已经学习了标准内积：
+$$
+(\vec \alpha, \vec \beta) = a_1 b_1 + \cdots + a_n b_n
+$$
+自然要问，是否存在其他内积函数？
+
+可以发现，内积函数被定义为对称的二重线性函数。所以要研究上面的问题，只需要研究对称的二重线性函数的正定性，即只需要研究二次型的取值情况。
+
+\begin{definition}{正定的实二次型,正定}
+	设 $n$ 元实二次型 $\vec X^T A \vec X$。如果对于 $\R^n$ 中任意非零列向量 $\vec \alpha$，都有 $\vec \alpha^T A \vec \alpha > 0$，则称 $\vec X^T A \vec X$ 为\emph{正定的实二次型}，称 $\vec X^T A \vec X$ 是\emph{正定}的。
+\end{definition}
+
+联想到实二次型的标准形和规范形，显然有以下结论成立。
+
+\begin{theorem}
+	$n$ 元实二次型 $\vec X^T A \vec X$ 是正定的，当且仅当它的正惯性指数等于 $n$。
+\end{theorem}
+
+\begin{proof}
+	必要性。设 $\vec X^T A \vec X$ 是正定的，作非退化线性替换 $\vec X = C \vec Y$，化成规范形：
+	$$
+	y_1^2 + \cdots + y_p^2 - y_{p + 1}^2 - \cdots - y_r^2
+	$$
+
+	如果 $p < n$，那么 $y_n^2$ 的系数为 $0$ 或 $-1$，取 $\vec \beta = (0, \ldots, 0, 1)'$，令 $\vec \alpha = C \vec  \beta$，则 $\vec \alpha^T A \vec \alpha = 0$ 或 $-1$，矛盾，因此 $p = n$。
+
+	\bigskip
+
+	充分性。设 $\vec X^T A \vec X$ 的正惯性指数等于 $n$，则可以作非退化线性替换 $\vec X = C \vec Y$，化成规范形：
+	$$
+	y_1^2 + \cdots + y_n^2
+	$$
+
+	任取 $\vec \alpha \in \R^n$ 且 $\vec \alpha \ne \vec 0$，令 $\vec \beta = C^{-1} \vec \alpha = (b_1, \ldots, b_n)'$，则 $\vec \beta \ne \vec 0$，从而得出 $\vec \alpha^T A \vec \alpha = b_1^2 + \cdots + b_n^2 > 0$，因此 $\vec X^T A \vec X$ 是正定的。
+\end{proof}
+
+\begin{theorem}
+	$n$ 元实二次型 $\vec X^T A \vec X$ 是正定的 $\Longleftrightarrow$ 它的规范形为 $y_1^2 + y_2^2 + \cdots + y_n^2$ $\Longleftrightarrow$ 它的标准形中 $n$ 个系数全大于 $0$。
+\end{theorem}
+
+\begin{definition}{正定的实对称矩阵,正定,正定矩阵}
+	设实对称矩阵 $A$。如果实二次型 $\vec X^T A \vec X$ 是正定的，即对于 $\R^n$ 中任意非零列向量 $\vec \alpha$，有 $\vec \alpha^T A \vec \alpha > 0$，则称 $A$ 是\emph{正定的实对称矩阵}，称 $A$ 是\emph{正定}的。正定的实对称矩阵简称为\emph{正定矩阵}。
+\end{definition}
+
+\subsection{正定矩阵的等价命题}
+
+联想到矩阵的合同、合同标准形、合同规范形等概念，可以提出以下有关正定矩阵的一系列等价命题。
+
+设 $A$ 是 $n$ 级\textbf{实对称矩阵}，则下列命题等价：
+
+\begin{enumerate}
+	\item 正定矩阵的定义：$\forall \vec X \in \R^n \backslash \{\vec 0\}, \vec X^T A \vec X > 0$
+	\item $A \simeq I_n$
+	\item $A$ 的正惯性指数为 $n$。
+	\item 存在一个正交矩阵 $P$ 使得 $P^T A P = \operatorname{diag}\{ \lambda_1, \ldots, \lambda_n \}$，其中 $\lambda_i > 0$，且分别为 $A$ 的所有特征值。
+	\item 有 $n$ 级实可逆矩阵 $C$ 使得 $A = C^T C$。
+	\item $A$ 的各阶顺序主子式（$n$ 级矩阵有 $n$ 个顺序主子式）全大于 $0$。
+	\item $A$ 的各阶主子式大于零。
+\end{enumerate}
+
+1, 2, 3 的等价是显然的，1, 2, 3, 4, 5 的等价是容易证明的。
+
+\begin{proof}[1, 2, 3 $\Longrightarrow$ 4]
+	由于 $A \simeq I_n$ 且 $A \simeq \operatorname{diag} \{ \lambda_1, \cdots, \lambda_n \}$，所以 $I_n \simeq \operatorname{diag} \{ \lambda_1, \cdots, \lambda_n \}$。于是 $\lambda_i > 0$。
+\end{proof}
+
+\begin{proof}[4 $\Longrightarrow$ 2]
+	由于 $A \simeq \operatorname{diag} \{ \lambda_1, \cdots, \lambda_n \}$ 且 $I_n \simeq \operatorname{diag} \{ \lambda_1,  \cdots, \lambda_n \}$，所以 $A \simeq I_n$。
+\end{proof}
+
+\begin{proof}[1, 2, 3, 4 $\Longleftrightarrow$ 5]
+	由 $A \simeq I_n$，可知存在 $n$ 级实可逆矩阵 $C$ 使得 $A = C^T I_n C$，则 $A = C^T C$。反过来，可知 $A$ 合同于 $I_n$。
+\end{proof}
+
+较为麻烦的是对 6 和 7 的证明。注意下面证明过程中用到的技巧。
+
+\begin{proof}[1, 2, 3, 4, 5 $\Longrightarrow$ 6]
+
+\end{proof}
+
