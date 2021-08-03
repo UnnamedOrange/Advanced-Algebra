@@ -13,11 +13,7 @@
 \usepackage{xcolor}
 \usepackage{xifthen}
 \usepackage[normalem]{ulem}
-\usepackage[framemethod=TikZ]{mdframed}
-\mdfsetup{hidealllines=true,%
-	skipabove=\topskip,%
-	innertopmargin=\topskip, innerbottommargin=\topskip,%
-	everyline=true, splittopskip=1.75\topskip}
+\usepackage[most]{tcolorbox}
 \usepackage{tikz}
 \newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt) circle (.5em) node {\makebox[1em][c]{\small #1}};}}
 
@@ -37,6 +33,10 @@
 % index
 \newcommand{\idx}[1]{#1\index{#1}}
 
+% indent
+\newlength{\saveparindent}
+\tcbset{fontupper={\setlength{\parindent}{\saveparindent}\noindent}}
+
 % def
 \makeatletter
 \newcommand{\indexer}[1]
@@ -44,60 +44,88 @@
 	\@for\@myvar:={#1}\do{\index{\@myvar}}%
 }
 \makeatother
+\definecolor{defcolor}{RGB}{233, 233, 243}
+\newtcolorbox{defbox}[1]{
+	colback=defcolor,
+	colframe=defcolor,
+	sharp corners=all,
+	coltitle=black,
+	attach title to upper,
+	title={\textbf{定义}\ },
+	after title={\emph{#1}：},
+	breakable,
+}
 \newenvironment{definition}[1]
-{
-	\definecolor{shadecolor}{RGB}{233, 233, 243}
-	\begin{mdframed}[backgroundcolor=shadecolor]\relax
-	\indexer{#1}
-	\noindent
-	\textbf{定义} \emph{#1}：%
+{%
+	\indexer{#1}%
+	\setlength{\saveparindent}{\parindent}%
+	\begin{defbox}{#1}%
 }
 {%
-	\end{mdframed}
+	\end{defbox}%
 }
 
 % proposition
 \newcounter{proposition}[section]
+\definecolor{propcolor}{RGB}{243, 233, 233}
+\newtcolorbox{propbox}[1][]{
+	colback=propcolor,
+	colframe=propcolor,
+	sharp corners=all,
+	coltitle=black,
+	attach title to upper,
+	title={\ifthenelse{\isempty{#1}}{\textbf{命题}}{\textbf{定理}}\ },
+	after title={\ifthenelse{\isempty{#1}}{\stepcounter{proposition}\arabic{chapter}.\arabic{section}.\arabic{proposition}}{\emph{#1}\index{#1}}：},
+	breakable,
+}
 \newenvironment{proposition}[1][]
-{
-	\definecolor{shadecolor}{RGB}{243, 233, 233}
-	\begin{mdframed}[backgroundcolor=shadecolor]\relax
-	\noindent
-	\ifthenelse{\isempty{#1}}{\textbf{命题} \stepcounter{proposition}\arabic{chapter}.\arabic{section}.\arabic{proposition}}{\textbf{定理} \emph{#1}\index{#1}}：%
+{%
+	\setlength{\saveparindent}{\parindent}%
+	\begin{propbox}[#1]%
 }
 {%
-	\end{mdframed}
+	\end{propbox}%
 }
 
 % theorem (deprecated)
 \newenvironment{theorem}[1][]
-{
-	\begin{proposition}[#1]
+{%
+	\begin{proposition}[#1]%
 }
 {%
-	\end{proposition}
+	\end{proposition}%
+}
+
+\definecolor{progresscolor}{RGB}{237, 237, 237}
+\newtcolorbox{progressbox}[2][]{
+	colback=progresscolor,
+	colframe=progresscolor,
+	sharp corners=all,
+	coltitle=black,
+	attach title to upper,
+	title={\textbf{#2}\ },
+	after title={#1},
+	breakable,
 }
 
 % proof
 \renewenvironment{proof}[1][]
-{
-	\definecolor{shadecolor}{RGB}{237, 237, 237}
-	\begin{mdframed}[backgroundcolor=shadecolor]\relax
-	{\noindent \textbf{证明}~{#1}}
+{%
+	\setlength{\saveparindent}{\parindent}%
+	\begin{progressbox}[#1]{证明}
 
 }
 {%
-	\end{mdframed}
+	\end{progressbox}%
 }
 
 % solve
 \newenvironment{solve}[1][]
 {
-	\definecolor{shadecolor}{RGB}{237, 237, 237}
-	\begin{mdframed}[backgroundcolor=shadecolor]\relax
-	{\noindent \textbf{解}~{#1}}
+	\setlength{\saveparindent}{\parindent}%
+	\begin{progressbox}[#1]{解}
 
 }
 {%
-	\end{mdframed}
+	\end{progressbox}%
 }
