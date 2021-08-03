@@ -28,28 +28,18 @@
 \newcommand \comma {,}
 
 % 数集
-\newcommand \N {\mathbb N}
-\newcommand \Q {\mathbb Q}
-\newcommand \R {\mathbb R}
-\newcommand \Z {\mathbb Z}
-\newcommand \C {\mathbb C}
-
-% 无数字脚标
-\newcommand \footnoteONLYtext[1]
-{
-	\let \mybackup \thefootnote
-	\let \thefootnote \relax
-	\footnotetext{#1}
-	\let \thefootnote \mybackup
-	\let \mybackup \imareallyundefinedcommand
-}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
 
 % index
-\newcommand \idx[1] {#1\index{#1}}
+\newcommand{\idx}[1]{#1\index{#1}}
 
 % def
 \makeatletter
-\newcommand \indexer[1]
+\newcommand{\indexer}[1]
 {%
 	\@for\@myvar:={#1}\do{\index{\@myvar}}%
 }
@@ -66,18 +56,26 @@
 	\end{mdframed}
 }
 
-% theorem
-\newcounter{cTheorem}
-\newenvironment{theorem}[1][]
+% proposition
+\newcounter{proposition}[section]
+\newenvironment{proposition}[1][]
 {
 	\definecolor{shadecolor}{RGB}{243, 233, 233}
 	\begin{mdframed}[backgroundcolor=shadecolor]\relax
 	\noindent
-	\textbf{定理}
-	\ifthenelse{\isempty{#1}}{\stepcounter{cTheorem}\arabic{cTheorem}}{\emph{#1}\index{#1}}：%
+	\ifthenelse{\isempty{#1}}{\textbf{命题} \stepcounter{proposition}\arabic{chapter}.\arabic{section}.\arabic{proposition}}{\textbf{定理} \emph{#1}\index{#1}}：%
 }
 {%
 	\end{mdframed}
+}
+
+% theorem (deprecated)
+\newenvironment{theorem}[1][]
+{
+	\begin{proposition}[#1]
+}
+{%
+	\end{proposition}
 }
 
 % proof
