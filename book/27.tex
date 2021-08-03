@@ -82,6 +82,85 @@ $$
 较为麻烦的是对 6 和 7 的证明。注意下面证明过程中用到的技巧。
 
 \begin{proof}[1, 2, 3, 4, 5 $\Longrightarrow$ 6]
+	首先证明正定矩阵的行列式大于 $0$。这是因为：
+	$$
+	|A| = |C^T C| = |C|^2 > 0
+	$$
 
+	于是可知 $A$ 的 $n$ 阶顺序主子式大于零。下面证明对于 $k \in \{ 1, 2, \ldots, n - 1 \}$，$A$ 的 $k$ 阶顺序主子式都大于零。对于一个 $k$，把 $A$ 写成分块矩阵：
+	$$
+	A =
+	\begin{bmatrix} A_k & B_1 \\ B_1^T & B_2 \end{bmatrix}
+	$$
+	其中 $|A_k|$ 即为 $A$ 的 $k$ 阶顺序主子式。下面证明 $A_k$ 是正定的，从而由正定矩阵的行列式大于 $0$ 可知 $A$ 的 $k$ 阶主子式大于零。
+
+	利用分块矩阵。在 $\R^k$ 中任取一个非零列向量 $\vec X_k$，有：
+	$$
+	\begin{bmatrix} \vec X_k \\ \vec 0 \end{bmatrix}^T
+	A
+	\begin{bmatrix} \vec X_k \\ \vec 0 \end{bmatrix}
+	=
+	\vec X_k^T A_k \vec X_k
+	$$
+	由于 $A$ 是正定矩阵，所以左式大于零，从而右式大于 $0$，从而 $A_k$ 是正定矩阵，因此 $|A_k| > 0$。故 $A$ 的 $k$ 阶顺序主子式都大于零。
 \end{proof}
 
+\begin{proof}[6 $\Longrightarrow$ 2]
+	考虑 $n = 2$ 的情况。设 $A = \begin{bmatrix} a_{11} & a_{12} \\ a_{12} & a_{22} \end{bmatrix}$，对它进行成对初等行、列变换，有：
+	$$
+	\begin{bmatrix} a_{11} & a_{12} \\ a_{12} & a_{22} \end{bmatrix}
+	\rightarrow
+	\begin{bmatrix} a_{11} & a_{12} \\ 0 & a_{22} - \frac{a_{12}^2}{a_{11}} \end{bmatrix}
+	\rightarrow
+	\begin{bmatrix} a_{11} & 0 \\ 0 & a_{22} - \frac{a_{12}^2}{a_{11}} \end{bmatrix}
+	$$
+
+	于是原矩阵合同于变换后的矩阵。已知 $a_{11} > 0$，只需证 $a_{22} - \frac{a_{12}^2}{a_{11}} > 0$。已知 $A$ 的行列式大于零，而 $|A| = a_{11} (a_{22} - \frac{a_{12}^2}{a_{11}})$，故 $a_{22} - \frac{a_{12}^2}{a_{11}} > 0$，证毕。
+
+	受 $n = 2$ 的情况的启发，考虑使用数学归纳法。当 $n = 1$ 时，显然 $A$ 正定。当 $n \ge 3$ 时，假设对于 $n - 1$ 级实对称矩阵命题为真，现在来证明 $n$ 级实对称矩阵 $A = (a_{ij})$ 也是正定矩阵。把 $A$ 写成分块矩阵：
+	$$
+	A =
+	\begin{bmatrix} A_{n - 1} & \vec \alpha \\ \vec \alpha^T & a_{nn} \end{bmatrix}
+	$$
+
+	显然 $A_{n - 1}$ 也是实对称矩阵，并且 $A_{n - 1}$ 的所有顺序主子式是 $A$ 的 $1$ 到 $n - 1$ 阶顺序主子式。由已知条件得，它们都大于零，于是据归纳假设得，$A_{n - 1}$ 是正定的，因此有 $n - 1$ 级实可逆矩阵 $C_1$，使得 $C_1^T A_{n - 1} C_1 = I_{n - 1}$。考虑仿照以上过程进行分块成对初等行、列变换：
+	$$
+	\begin{aligned}&
+		\begin{bmatrix} A_{n - 1} & \vec \alpha \\ \vec \alpha^T & a_{nn} \end{bmatrix}
+		\xrightarrow{\text{$\circled 2 + (-\vec \alpha^T A_{n - 1}^{-1}) \circled 1$}}
+		\begin{bmatrix} A_{n - 1} & \vec \alpha \\ \vec 0 & a_{nn} - \vec \alpha^T A_{n - 1}^{-1} \vec \alpha \end{bmatrix}
+		\\&
+		\xrightarrow[\text{$\circled 2 + \circled 1 (-\vec \alpha^T A_{n - 1}^{-1})^T$}]{}
+		\begin{bmatrix} A_{n - 1} & \vec 0 \\ \vec 0 & a_{nn} - \vec \alpha^T A_{n - 1}^{-1} \vec \alpha \end{bmatrix}
+	\end{aligned}
+	$$
+
+	由 $|A| > 0$ 且 $|A_1| > 0$ 知，$a_{nn} - \vec \alpha^T A_{n - 1}^{-1} \vec \alpha > 0$。由于：
+	$$
+	\begin{bmatrix} C_1 & \vec 0 \\ \vec 0 & 1\end{bmatrix}^T
+	\begin{bmatrix} A_{n - 1} & \vec 0 \\ \vec 0 & a_{nn} - \vec \alpha^T A_{n - 1}^{-1} \vec \alpha \end{bmatrix}
+	\begin{bmatrix} C_1 & \vec 0 \\ \vec 0 & 1 \end{bmatrix}
+	=
+	\begin{bmatrix} I_{n - 1} & \vec 0 \\ \vec 0 & a_{nn} - \vec \alpha^T A_{n - 1} ^{-1} \vec \alpha \end{bmatrix}
+	$$
+	得到了一个正定矩阵，所以 $A$ 合同于一个正定矩阵，从而 $A$ 也是一个正定矩阵。
+\end{proof}
+
+7 到 6 的证明是显然的。
+
+\begin{proof}[5 $\Longrightarrow$ 7]
+	设 $A$ 是 $n$ 级正定矩阵，则有实可逆矩阵 $C$ 使得 $A = C^T C$，从而由比内柯西公式可知 $A$ 的任一 $m$ 阶主子式（$1 \le m \le n$）为：
+	$$
+	\begin{aligned}
+		A \begin{pmatrix} i_1, \ldots, i_m \\ i_1, \ldots, i_m \end{pmatrix}   &= (C^T C) \begin{pmatrix} i_1, \ldots, i_m \\ i_1, \ldots, i_m \end{pmatrix}
+		\\&=
+		\sum\limits_{1 \le v_1 < \cdots < v_m \le n} C^T \begin{pmatrix} i_1, \ldots, i_m \\ v_1, \ldots, v_m \end{pmatrix} C \begin{pmatrix} v_1, \ldots, v_m \\ i_1, \ldots, i_m \end{pmatrix}
+		\\&=
+		\sum\limits_{1 \le v_1 < \cdots < v_m \le n} \left( C \begin{pmatrix} v_1, \ldots, v_m \\ i_1, \ldots, i_m \end{pmatrix} \right)^2
+	\end{aligned}
+	$$
+
+	只需证明 $C$ 的第 $i_1, \ldots, i_m$ 列组成的子矩阵 $C_1$ 存在一个 $m$ 阶子式非零。由于 $C$ 满秩，所以 $C_1$ 满秩，因此 $C_1$ 一定存在一个非零 $m$ 阶子式，则 $A$ 的任一 $m$ 阶主子式不为零。
+\end{proof}
+
+% TODO: 补充例题。
