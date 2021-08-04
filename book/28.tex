@@ -1,0 +1,112 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\chapter{多项式环}
+
+\section{一元多项式环的基本概念}
+
+\subsection{一元多项式的基本概念}
+
+一元多项式的研究动力是，我们需要求解一元多项式 $f(x) = 0$ 的根。因为需要对一元多项式 $f(x)$ 进行因式分解，所以需要研究一元多项式组成的集合的结构。
+
+\begin{definition}{一元多项式,不定元,系数,$i$ 次项,零次项,常数项}
+	形如 $a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_1 x + a_0$ 的表达式称为数域 $\mathbb K$ 上的\emph{一元多项式}。其中 $x$ 是一个符号（它不属于 $\mathbb K$），称之为\emph{不定元}；$n$ 是非负整数；$a_i \in \mathbb K \pod{i = 0, 1, \ldots, n}$ 称为\emph{系数}；$a_i x^i$ 称为 \emph{$i$ 次项}（$i = 1, 2, \ldots, n$）；$a_0$ 称为\emph{零次项}或\emph{常数项}。
+\end{definition}
+
+两个一元多项式相等规定为它们含有完全相同的项（除去系数为 $0$ 的项外，系数为 $0$ 的项允许任意删去和添加）。
+
+\begin{definition}{零多项式}
+	系数全为 $0$ 的多项式称为\emph{零多项式}，记作 $0$。
+\end{definition}
+
+\begin{definition}{首项,次数}
+	设 $f(x) = a_n x^n + \cdots + a_1 x + a_0$，如果 $a_n \ne 0$，那么称 $a_n x^n$ 是 $f(x)$ 的\emph{首项}，称 $n$ 是 $f(x)$ 的\emph{次数}，记作 $\deg f(x)$ 或 $\deg f$。
+\end{definition}
+
+零多项式的次数被定义为 $-\infty < 0$。
+
+\bigskip
+
+数域 $\mathbb K$ 上所有一元多项式组成的集合记作 $\mathbb K[x]$。在 $\mathbb K[x]$ 中可以定义加法和乘法运算。设 $f(x) = \sum\limits_{i = 0}^n a_i x^i$，$g(x) = \sum\limits_{i = 0}^m b_i x^i$，不妨设 $m \le n$，定义：
+$$
+f(x) + g(x) = \sum_{i = 0}^n (a_i + b_i) x^i
+$$$$
+f(x) g(x) = \sum_{s = 0}^{n + m} \biggl( \sum_{i + j = s} a_i b_j \biggr) x^s
+$$
+
+\subsection{环的基本概念}
+
+\begin{definition}{代数运算}
+	设某个集合为 $S$。称 $S \times S$ 到 $S$ 的一个映射为集合 $S$ 上的一个\emph{代数运算}。
+\end{definition}
+
+\begin{definition}{环,加法,乘法,零元素}
+	设 $R$ 是一个非空集合，如果它有两个代数运算，一个叫做\emph{加法}，记作 $a + b$，另一个叫做\emph{乘法}，记作 $ab$，并且这两个运算满足下列六条运算法则（$\forall a, b, c \in R$）：
+	\begin{itemize}
+		\item 加法结合律，即 $(a + b) + c = a + (b + c)$
+		\item 加法交换律，即 $a + b = b + a$
+		\item 在 $R$ 中有元素 $0$，使得 $a + 0 = a$，称 $0$ 是 $R$ 的\emph{零元素}。
+		\item 对于 $a$，在 $R$ 中有元素 $d$，使得 $a + d = 0$，称 $d$ 是 $a$ 的\emph{负元素}，记作 $-a$。
+		\item 乘法结合律，即 $(ab)c = a(bc)$
+		\item 乘法对于加法的左、右分配律，即：
+		$$
+		a(b + c) = ab + ac
+		$$$$
+		(b + c) a = ba + ca
+		$$
+	\end{itemize}
+	那么称 $R$ 是一个\emph{环}。
+\end{definition}
+
+之所以要定义环，是因为我们想要抽象出像 $\Z, \mathbb K[x], M_n[\mathbb K]$ 这样的集合所具有的共同性质。下面首先给出一些有关环的简单结论。
+
+\begin{proposition}
+	环 $R$ 中的零元素是唯一的。
+\end{proposition}
+
+\begin{proof}[反证法]
+	设 $\forall a \in R$，有 $a + 0_1 = a \pod{0_1 \in R}$，又有 $a + 0_2 = a \pod{0_2 \in R}$，且 $0_1 \ne 0_2$，则分别代入 $0_2$ 和 $0_1$ 有：
+	$$
+	0_1 + 0_2 = 0_1 = 0_2 = 0_2 + 0_1
+	$$
+
+	矛盾，说明零元素是唯一的。
+\end{proof}
+
+\begin{theorem}
+	环 $R$ 中元素 $a$ 的负元素是唯一的，且 $-(-a) = a$。
+\end{theorem}
+
+\begin{proof}[反证法]
+	设 $\forall a \in R$，有 $a + (-a_1) = 0$，又有 $a + (-a_2) = 0$，且 $-a_1 \ne -a_2$，则等式 $a + (-a_1) = a + (-a_2)$ 两侧同时加上 $-a_1$ 有：
+	$$
+	0 + (-a_1) = 0 + (-a_2)
+	$$
+
+	矛盾，说明负元素是唯一的。
+
+	\bigskip
+
+	因为 $a$ 的负元是 $-a$，所以 $a + (-a) = 0$，这也意味着 $-a$ 的负元是 $a$，即证得 $-(-a) = a$。
+\end{proof}
+
+容易发现，$\Z$、$\mathbb K[x]$、$M_n[\mathbb K]$ 都是环，它们分别被称为\emph{\idx{整数环}}、\emph{数域 $\mathbb K$ 上\idx{一元多项式环}}、\emph{数域 $\mathbb K$ 上 $n$ 级\idx{全矩阵环}}。任意一个数域 $\mathbb K$ 也是环。
+
+\bigskip
+
+在环的定义的基础上，存在一些特殊的环。
+
+\begin{definition}{交换环}
+	若环 $R$ 中的乘法还满足交换律，则称 $R$ 为\emph{交换环}。
+\end{definition}
+
+\begin{definition}{单位元,有单位元的环}
+	若环 $R$ 中有一个元素 $e$ 满足 $\forall a \in R, ea = ae = a$，则称 $e$ 是 $R$ 的\emph{单位元}，此时称 $R$ 是\emph{有单位元的环}。
+\end{definition}
+
+\begin{proposition}
+	在有单位元的环 $R$ 中，单位元是唯一的，通常把单位元记成 $1$。
+\end{proposition}
+
+\subsection{子环与扩环}
+
