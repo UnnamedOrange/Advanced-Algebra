@@ -29,10 +29,36 @@
 
 数域 $\mathbb K$ 上所有一元多项式组成的集合记作 $\mathbb K[x]$。在 $\mathbb K[x]$ 中可以定义加法和乘法运算。设 $f(x) = \sum\limits_{i = 0}^n a_i x^i$，$g(x) = \sum\limits_{i = 0}^m b_i x^i$，不妨设 $m \le n$，定义：
 $$
-f(x) + g(x) = \sum_{i = 0}^n (a_i + b_i) x^i
+f(x) + g(x) = \sum\limits_{i = 0}^n (a_i + b_i) x^i
 $$$$
-f(x) g(x) = \sum_{s = 0}^{n + m} \biggl( \sum_{i + j = s} a_i b_j \biggr) x^s
+f(x) g(x) = \sum\limits_{s = 0}^{n + m} \biggl( \sum\limits_{i + j = s} a_i b_j \biggr) x^s
 $$
+
+\subsection{一元多项式的基本性质}
+
+\begin{proposition}
+	对于 $f(x), g(x) \in \mathbb K[x]$，有：
+	$$
+	\deg(f(x) \pm g(x)) \le \max \{ \deg f(x), \deg g(x) \}
+	$$
+\end{proposition}
+
+\begin{proposition}
+	对于 $f(x), g(x) \in \mathbb K[x]$，有：
+	$$
+	\deg(f(x) g(x)) = \deg f(x) + \deg g(x)
+	$$
+\end{proposition}
+
+一元多项式满足消去律。
+
+\begin{proposition}
+	对于 $f(x), g(x), h(x) \in \mathbb K[x] \pod{f(x) \ne 0}$，若 $f(x) g(x) = f(x) h(x)$，则 $g(x) = h(x)$。
+\end{proposition}
+
+\begin{proof}
+	移项得 $f(x)(g(x) - h(x)) = 0$，于是 $\deg f(x) + \deg(g(x) - h(x)) = - \infty$，由 $\deg f(x) \ge 0$，可知 $\deg(g(x) - h(x)) = -\infty$，所以 $g(x) = h(x)$。
+\end{proof}
 
 \subsection{环的基本概念}
 
@@ -58,7 +84,7 @@ $$
 	那么称 $R$ 是一个\emph{环}。
 \end{definition}
 
-之所以要定义环，是因为我们想要抽象出像 $\Z, \mathbb K[x], M_n[\mathbb K]$ 这样的集合所具有的共同性质。下面首先给出一些有关环的简单结论。
+之所以要定义环，是因为我们想要抽象出像 $\Z, \mathbb K[x], M_n(\mathbb K)$ 这样的集合所具有的共同性质。下面首先给出一些有关环的简单结论。
 
 \begin{proposition}
 	环 $R$ 中的零元素是唯一的。
@@ -90,7 +116,7 @@ $$
 	因为 $a$ 的负元是 $-a$，所以 $a + (-a) = 0$，这也意味着 $-a$ 的负元是 $a$，即证得 $-(-a) = a$。
 \end{proof}
 
-容易发现，$\Z$、$\mathbb K[x]$、$M_n[\mathbb K]$ 都是环，它们分别被称为\emph{\idx{整数环}}、\emph{数域 $\mathbb K$ 上\idx{一元多项式环}}、\emph{数域 $\mathbb K$ 上 $n$ 级\idx{全矩阵环}}。任意一个数域 $\mathbb K$ 也是环。
+容易发现，$\Z$、$\mathbb K[x]$、$M_n(\mathbb K)$ 都是环，它们分别被称为\emph{\idx{整数环}}、\emph{数域 $\mathbb K$ 上\idx{一元多项式环}}、\emph{数域 $\mathbb K$ 上 $n$ 级\idx{全矩阵环}}。任意一个数域 $\mathbb K$ 也是环。
 
 \bigskip
 
@@ -109,4 +135,144 @@ $$
 \end{proposition}
 
 \subsection{子环与扩环}
+
+\begin{definition}{子环}
+	如果环 $R$ 的一个非空子集 $R_1$ 对于 $R$ 的加法和乘法也成为一个环，那么称 $R_1$ 是 $R$ 的一个\emph{子环}。
+\end{definition}
+
+\begin{proposition}
+	环 $R$ 的一个非空子集 $R_1$ 为一个子环的充分必要条件是 $R_1$ 对于 $R$ 的\textbf{减法}和乘法都封闭，即 $\forall a, b \in R_1, a - b \in R_1$ 且 $ab \in R_1$。
+\end{proposition}
+
+\begin{proof}
+	必要性显然，只证充分性。由已知条件得 $c - c \in R_1$，即 $0 \in R_1$，所以可得 $-b \in R_1$，进一步得 $a + b = a - (-b) \in R_1$。
+
+	于是可以把 $R$ 的加法和乘法看成是 $R_1$ 的加法和乘法，易得 $R_1$ 是 $R$ 的子环。
+\end{proof}
+
+从以上证明过程中可以看出，要求对减法封闭是为了保证集合中存在零元素。
+
+\begin{definition}{扩环}
+	设 $R$ 是有单位元 $1'$ 的交换环，如果 $R$ 有一个子环 $R_1$ 满足下列条件：
+
+	\begin{enumerate}
+		\item $1' \in R_1$
+		\item 数域 $\mathbb K$ 到 $R_1$ 有一个双射 $\tau$，且 $\tau$ 保持加法与乘法运算。即，存在一个双射 $\tau \colon \mathbb K \to R_1$ 满足 $\tau(a + b) = \tau(a) + \tau(b)$ 且 $\tau(ab) = \tau(a) \tau(b)$。注意等号左边的加号（乘号）是 $\mathbb K$ 中的加号（乘号），等号右边的加号（乘号）是 $R_1$ 中的乘号。
+	\end{enumerate}
+
+	那么 $R$ 可看成是 $\mathbb K$ 的一个\emph{扩环}。
+\end{definition}
+
+形象地说，若环 $R$ 的一个子环 $R_1$ 可以被挖去，然后用数域 $\mathbb K$ 取而代之，则称 $R$ 是 $\mathbb K$ 的一个扩环。引入扩环的概念是为了证明一些一元多项式的性质。
+
+\begin{example}
+	\begin{enumerate}
+		\item $\mathbb K[x]$ 是 $\mathbb K$ 的扩环，双射 $\tau$ 是：
+		$$
+		\begin{aligned}
+			\tau \colon & \mathbb K \to \set{t \colon t \in \mathbb K[x], \deg t \le 0}
+			\\&
+			k \mapsto k
+		\end{aligned}
+		$$
+
+		\item 给定 $A \in M_n(\mathbb K)$，形如下述的表达式被称为数域 $\mathbb K$ 上矩阵 $A$ 的多项式：
+		$$
+		a_m A^m + a_{m - 1} A^{m - 1} + \cdots + a_1 A + a_0 I
+		$$
+		其中 $m \in \N, a_i \in \mathbb K, i = 0, 1, \ldots, m$。注意以上表达式表示的是一个矩阵，而非一个含不定元的多项式。
+
+		把数域 $\mathbb K$ 上矩阵 $A$ 的所有多项式组成的集合记作 $\mathbb K[A]$，可知 $\mathbb K[A]$ 是 $M_n(\mathbb K)$ 的一个子环。同时，$\mathbb K[A]$ 是一个有单位元的交换环，是 $\mathbb K$ 的扩环。
+	\end{enumerate}
+\end{example}
+
+若 $R$ 是 $\mathbb K$ 的扩环，则子环 $R_1$ 的结构与 $\mathbb K$ 有一定相似性。
+
+\begin{proposition}
+	如果有单位元 $1'$ 的交换环 $R$ 可看作是数域 $\mathbb K$ 的扩环，那么 $\mathbb K$ 到子环 $R_1$ 的双射 $\tau$ 满足 $\tau(1) = 1'$。
+\end{proposition}
+
+\begin{proof}
+	任取 $b \in R_1$，由于 $\tau$ 是满射，因而存在 $k \in \mathbb K$，使得 $\tau(k) = b$。于是：\
+	$$
+	\tau(1) b = \tau(1) \tau(k) = \tau(1k) = \tau(k) = b
+	$$
+
+	从而 $\tau(1)$ 是交换环 $R_1$ 的单位元。由于单位元在环中是唯一的，所以 $\tau(1) = 1'$。
+\end{proof}
+
+\subsection{代入}
+
+\begin{definition}{代入}
+	设 $R$ 是数域 $\mathbb K$ 的扩环，对应双射记为 $\tau$，定义映射：\
+	$$
+	\begin{aligned}
+		\sigma_t \colon & \mathbb K[x] \to R
+		\\&
+		f(x) = \sum\limits_{i = 0}^n a_i x^i \mapsto \sum\limits_{i = 0}^n \tau(a_i) t^i \triangleq f(t)
+	\end{aligned}
+	$$
+
+	映射 $\sigma_t$ 被称为 $x$ 用 $t$ \emph{代入}。
+\end{definition}
+
+研究代入的动力是，如果我们已知一个公式，例如：
+$$
+(x + a)^2 = x^2 + 2ax + a^2
+$$
+
+我们希望将 $x$ 替换为一个常数，例如：
+$$
+(100 + 1)^2 = 100^2 + 2 \times 1 \times 100 + 1^2
+$$
+
+而等式仍然成立。下面的定理说明了代入的正确性。
+
+\begin{theorem}
+	设 $R$ 是数域 $\mathbb K$ 的扩环。如果在 $\mathbb K[x]$ 中，有 $f(x) + g(x) = h(x)$，$f(x)g(x) = p(x)$，那么在 $R$ 中有 $f(t) + g(t) = h(t)$，$f(t) g(t) = p(t)$，而且还有 $\sigma_t(x) = t$。
+\end{theorem}
+
+由以上定理可知，由于 $\mathbb K[x], \mathbb K[A]$ 都是 $\mathbb K$ 的扩环，因而不定元 $x$ 可以用 $\mathbb K[x]$ 中任一多项式代入，也可以用矩阵 $A$ 的任一多项式代入。更一般地，可以用 $\mathbb K$ 的任一扩环中的任一元素代入。
+
+\subsection{例题}
+
+\begin{exercise}
+	设数域 $\mathbb K$ 上的 $n$ 级矩阵 $A$ 为：
+	$$
+	A =
+	\begin{bmatrix}
+		k & c & 0 & \cdots & 0
+		\\
+		0 & k & c & \cdots & 0
+		\\
+		\vdots & \vdots & \vdots & & \vdots
+		\\
+		0 & 0 & 0 & \cdots & c
+		\\
+		0 & 0 & 0 & \cdots & k
+	\end{bmatrix}
+	$$
+	其中 $k, c \in \mathbb K \backslash \set{0}$。
+
+	说明 $A$ 可逆，并且求 $A^{-1}$。
+\end{exercise}
+
+\begin{solve}
+	记 $A = k I_n + c H$。注意到，$H$ 是一个幂零矩阵，满足 $H^n = 0$。
+
+	在 $\mathbb K[x]$ 中直接计算可得：
+	$$
+	(1 - x)(1 + x + \cdots+ x^{n - 1}) = 1 - x^n
+	$$
+
+	由于 $\mathbb K[H]$ 可看成是 $K$ 的一个扩环，所以 $x$ 可以用 $-\dfrac{c}{k} H$ 代入，整理可得：
+	$$
+	(kI + cH) \biggl( \dfrac{1}{k} I_n - \dfrac{c}{k^2} H + \cdots + (-1)^{n - 1} \dfrac{c^{n - 1}}{k^n} H^{n - 1} \biggr) = I_n
+	$$
+
+	则 $A^{-1}$ 为：
+	$$
+	A^{-1} = \dfrac{1}{k} I_n - \dfrac{c}{k^2} H + \cdots + (-1)^{n - 1} \dfrac{c^{n - 1}}{k^n} H^{n - 1}
+	$$
+\end{solve}
 
