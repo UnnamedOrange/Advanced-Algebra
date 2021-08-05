@@ -12,6 +12,8 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{xifthen}
+\usepackage{braket} % Import braket before physics.
+\usepackage{physics}
 \usepackage[normalem]{ulem}
 \usepackage[most]{tcolorbox}
 \usepackage{tikz}
@@ -87,7 +89,7 @@
 	\end{propbox}%
 }
 
-% theorem (deprecated)
+% theorem (same as proposition)
 \newenvironment{theorem}[1][]
 {%
 	\begin{proposition}[#1]%
@@ -96,6 +98,7 @@
 	\end{proposition}%
 }
 
+% proof
 \definecolor{progresscolor}{RGB}{237, 237, 237}
 \newtcolorbox{progressbox}[2][]{
 	colback=progresscolor,
@@ -107,8 +110,6 @@
 	after title={#1},
 	breakable,
 }
-
-% proof
 \renewenvironment{proof}[1][]
 {%
 	\setlength{\saveparindent}{\parindent}%
@@ -128,4 +129,38 @@
 }
 {%
 	\end{progressbox}%
+}
+
+% example
+\definecolor{examplecolor}{RGB}{233, 243, 233}
+\newtcolorbox{examplebox}[2][]{
+	colback=examplecolor,
+	colframe=examplecolor,
+	sharp corners=all,
+	coltitle=black,
+	attach title to upper,
+	title={\textbf{#2}\ },
+	after title={#1},
+	breakable,
+}
+\newenvironment{example}
+{%
+	\setlength{\saveparindent}{\parindent}%
+	\begin{examplebox}{例}
+
+}
+{%
+	\end{examplebox}%
+}
+
+% exercise
+\newcounter{exercise}[section]
+\newenvironment{exercise}[1][]
+{
+	\setlength{\saveparindent}{\parindent}%
+	\begin{examplebox}[\stepcounter{exercise}\arabic{chapter}.\arabic{section}.\arabic{exercise} #1]{练习}
+
+}
+{%
+	\end{examplebox}%
 }
