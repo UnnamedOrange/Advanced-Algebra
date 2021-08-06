@@ -1,0 +1,121 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{整除关系与带余除法}
+
+从一元多项式环 $\mathbb K[x]$ 上的乘法出发，我们引出整除的概念，然后研究没有整除关系的两个多项式之间的带余除法。
+
+\subsection{整除关系与带余除法的概念}
+
+\begin{definition}{整除}
+	设 $f(x), g(x) \in \mathbb K[x]$，如果存在 $h(x) \in \mathbb K[x]$，使得 $f(x) = h(x) g(x)$，那么称 $g(x)$ \emph{整除} $f(x)$，记作 $g(x) \mid f(x)$；否则，称 $g(x)$ 不能整除 $f(x)$，记作 $g(x) \nmid f(x)$。
+\end{definition}
+
+\begin{proposition}[带余除法]
+	设 $f(x), g(x) \in \mathbb K[x]$，且 $g(x) \ne 0$，则在 $\mathbb K[x]$ 中存在唯一的一对多项式 $h(x), r(x)$，使得：
+	$$
+	f(x) = h(x) g(x) + r(x) \pod{\deg r(x) < \deg g(x)}
+	$$
+
+	带余除法中，$f(x)$ 称为\emph{\idx{被除式}}，$g(x)$ 称为\emph{\idx{除式}}，$q(x)$ 称为\emph{\idx{商式}}，$r(x)$ 称为\emph{\idx{余式}}。
+\end{proposition}
+
+\begin{proof}[对 $f(x)$ 的次数作数学归纳法]
+	存在性。若 $\deg g(x) = 0$，此时有 $f(x) = \biggl( \dfrac{1}{b} f(x) \biggr) b + 0$，显然成立。若 $\deg g(x) > \deg f(x) \ge 0$，此时有 $f(x) = 0 \cdot g(x) + f(x)$，显然成立。下面只用考虑 $\deg f(x) \ge \deg g(x) > 0$ 的情况。
+
+	对 $f(x)$ 的次数作数学归纳法。假设对于次数小于 $n$ 的被除式命题的存在性部分成立，现在来看 $n$ 次多项式 $f(x)$。设 $f(x), g(x)$ 的首项分别是 $a_n x^n$、$b_m x^m$，于是 $a_n b_m^{-1} x^{n - m} g(x)$ 的首项是 $a_n x^n$。设：
+	$$
+	f_1(x) = f(x) - a_n b_m^{-1} x^{n - m} g(x)
+	$$
+
+	则 $\deg f_1(x) < n$。根据归纳假设，存在 $h_1(x), r_1(x) \in K[x]$，使得：
+	$$
+	f_1(x) = h_1(x) g(x) + r_1(x) \pod{\deg r_1(x) < \deg g(x)}
+	$$
+
+	代入到 $f(x)$ 中，得：
+	$$
+	f(x) = (h_1(x) + a_n b_m^{-1} x^{n - m}) g(x) + r_1(x)
+	$$
+
+	唯一性。若 $f(x) = g(x) q(x) + r(x) = g(x) q_1(x) + r_1(x)$，则可得 $g(x) (q(x) - q_1(x)) = r_1(x) - r(x)$。求两侧多项式的次数，根据：
+	$$
+	\max \{ \deg r(x), r_1(x) \} < g(x)
+	$$
+
+	易得：
+	$$
+	\deg(q(x) - q_1(x)) < 0 = -\infty \Longrightarrow q(x) = q_1(x)
+	$$$$
+	r(x) = r_1(x)
+	$$
+\end{proof}
+
+\subsection{整除关系与带余除法的性质}
+
+容易证明，整除关系满足以下事实：
+\begin{enumerate}
+	\item 有且仅有 $0$ 能被 $0$ 整除：
+	$$
+	0 \mid f(x) \Longleftrightarrow f(x) = 0
+	$$
+
+	\item 任何多项式都能整除 $0$：
+	$$
+	\forall f(x) \in \mathbb K[x], f(x) \mid 0
+	$$
+	\item 任何非零数都能整除所有多项式：
+	$$
+	\forall b \in \mathbb K \backslash \set{0}, \forall f(x) \in \mathbb K[x], b \mid f(x)
+	$$
+\end{enumerate}
+
+作为一个二元关系，整除满足反身性和传递性，但不具有对称性。如果两个多项式之间的整除满足对称性，这两个多项式满足什么特殊条件？我们给出以下定义和定理。
+
+\begin{definition}{相伴}
+	在 $\mathbb K[x]$ 中，如果 $g(x) \mid f(x)$ 且 $f(x) \mid g(x)$，那么称 $f(x)$ 与 $g(x)$ \emph{相伴}，记作 $f(x) \sim g(x)$。
+\end{definition}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，$f(x) \sim g(x)$ 当且仅当存在 $c \in \mathbb K \backslash \set{0}$，使得 $f(x) = c g(x)$。
+\end{proposition}
+
+\begin{proof}
+	充分性显然，只证必要性。已知 $f(x) \mid g(x)$ 且 $g(x) \mid f(x)$，所以存在 $h_1(x), h_2(x) \in \mathbb K[x]$，使得：
+	$$
+	g(x) = h_1(x) f(x)
+	$$$$
+	f(x) = h_2(x) g(x)
+	$$
+
+	从而有：
+	$$
+	f(x) = h_2(x) h_1(x) f(x)
+	$$
+
+	如果 $f(x) = 0$，那么 $g(x) = 0$，否则可得 $h_2(x) h_1(x) = 1$，由次数关系，可知 $h_2(x) = c \pod{c \in K \backslash \{0\}}$。
+\end{proof}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，如果 $g(x) \mid f_i(x) \pod{i = 1, 2, \ldots, s}$，那么对于任意 $u_1(x), \ldots, u_s(x) \in \mathbb K[x]$，都有：
+	$$
+	g(x) \mid \bigl( u_1(x) f_1(x) + \cdots + u_s(x) f_s(x) \bigr)
+	$$
+\end{proposition}
+
+\begin{proof}
+	由已知条件得，存在 $h_i(x) \in \mathbb K[x]$，使得：
+	$$
+	f_i(x) = h_i(x) g(x) \pod{i = 1, 2, \ldots, s}
+	$$
+
+	从而原式右侧等于：
+	$$
+	\bigl( u_1(x) h_1(x) + \cdots + u_s(x) h_s(x) \bigr) g(x)
+	$$
+
+	因此 $g(x) \mid (u_1(x) f_1(x) + \cdots + u_s(x) f_s(x))$。
+\end{proof}
+
+\subsection{例题}
+
