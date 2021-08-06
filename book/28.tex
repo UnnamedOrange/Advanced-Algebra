@@ -276,3 +276,125 @@ $$
 	$$
 \end{solve}
 
+\begin{exercise}
+	设数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的特征多项式为：
+	$$
+	|\lambda I - A| = (\lambda - \lambda_1)^{l_1} \cdots (\lambda - \lambda_s)^{l_s}
+	$$
+
+	求证：对于 $k \in \mathbb K \backslash \set{0}$，矩阵 $kA$ 的特征多项式为 $|\lambda I - kA| = (\lambda - k \lambda_1)^{l_1} \cdots (\lambda - k \lambda_s)^{l_s}$。（不妨假设 $\lambda_i \in \mathbb K$）
+\end{exercise}
+
+\begin{proof}
+	计算 $|\lambda I - A|$：
+	$$
+	\begin{aligned}
+		|\lambda I - A| &=
+		\begin{vmatrix}
+			\lambda - a_{11} & -a_{12} & \cdots & -a_{1n}
+			\\
+			-a_{21} & \lambda - a_{22} & \cdots & -a_{2n}
+			\\
+			\vdots & \vdots && \vdots
+			\\
+			-a_{n1} & -a_{n2} & \cdots & \lambda - a_{nn}
+		\end{vmatrix}
+		\\&=
+		\sum\limits_{j_1 j_2 \cdots j_n} (-1)^{\tau(j_1 j_2 \cdots j_n)} (\lambda \delta_{1 j_1} - a_{1 j_1}) \cdots (\lambda \delta_{n j_n} - a_{n j_n})
+		\\&=
+		(\lambda - \lambda_1)^{l_1} \cdots (\lambda - \lambda_s)^{l_s}
+	\end{aligned}
+	$$
+	其中 $\delta_{ij}$ 是 Kronecker 记号。
+
+	注意到：
+	$$
+	\sum\limits_{j_1 j_2 \cdots j_n} (-1)^{\tau(j_1 j_2 \cdots j_n)} (\lambda \delta_{1 j_1} - a_{1 j_1}) \cdots (\lambda \delta_{n j_n} - a_{n j_n}) \in \mathbb K[\lambda]
+	$$$$
+	(\lambda - \lambda_1)^{l_1} \cdots (\lambda - \lambda_s)^{l_s} \in \mathbb K[\lambda]
+	$$
+
+	又因为 $\dfrac{\lambda}{k} \in \mathbb K[\lambda]$，而 $\mathbb K[\lambda]$ 是 $\mathbb K$ 的扩环，所以可以把不定元 $\lambda$ 用 $\dfrac{\lambda}{k}$ 代入以上等式，得：
+	$$
+	\begin{aligned}&
+		\sum\limits_{j_1 j_2 \cdots j_n} (-1)^{\tau(j_1 j_2 \cdots j_n)} \biggl( \dfrac{\lambda}{k} \delta_{1 j_1} - a_{1 j_1} \biggr) \cdots \biggl( \dfrac{\lambda}{k} \delta_{n j_n} - a_{n j_n} \biggr)
+		\\=~&
+		\biggl( \dfrac{\lambda}{k} - \lambda_1 \biggr)^{l_1} \cdots \biggl( \dfrac{\lambda}{k} - \lambda_s \biggr)^{l_s}
+	\end{aligned}
+	$$
+
+	根据行列式的定义，$\qty|\dfrac{\lambda}{k} I - A|$ 等于：
+	$$
+	\begin{aligned}&
+		\qty|\dfrac{\lambda}{k} I - A|
+		\\=~&
+		\sum\limits_{j_1 j_2 \cdots j_n} (-1)^{\tau(j_1 j_2 \cdots j_n)} \biggl( \dfrac{\lambda}{k} \delta_{1 j_1} - a_{1 j_1} \biggr) \cdots \biggl( \dfrac{\lambda}{k} \delta_{n j_n} - a_{n j_n} \biggr)
+	\end{aligned}
+	$$
+
+	所以：
+	$$
+	\qty|\dfrac{\lambda}{k} I - A| = \biggl( \dfrac{\lambda}{k} - \lambda_1 \biggr)^{l_1} \cdots \biggl( \dfrac{\lambda}{k} - \lambda_s \biggr)^{l_s}
+	$$
+
+	等式两边同时乘以 $k^n$，即可得：
+	$$
+	|\lambda I - kA| = (\lambda - k \lambda_1)^{l_1} \cdots (\lambda - k \lambda_s)^{l_s}
+	$$
+\end{proof}
+
+需要注意的是，我们不能直接说 $|\lambda I - A| \in \mathbb K[\lambda]$，需要写出行列式的完全展开式后才能如此断言，因为 $|\lambda I - A|$ 本身只是一个记号。而应用代入时，必须代入到一个关于多项式的等式中，否则无法应用。
+
+\begin{exercise}
+	设数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的特征多项式为：
+	$$
+	|\lambda I - A| = (\lambda - \lambda_1)^{l_1} \cdots (\lambda - \lambda_s)^{l_s}
+	$$
+
+	求证：$A^2$ 的特征多项式为 $|\lambda I - A^2| = (\lambda - \lambda_1^2)^{l_1} \cdots (\lambda - \lambda_s^2)^{l_s}$。（不妨假设 $\lambda_i \in \mathbb K$）
+\end{exercise}
+
+\begin{proof}
+	由上例，已知：
+	$$
+	|\lambda I - kA| = (\lambda - k \lambda_1)^{l_1} \cdots (\lambda - k \lambda_s)^{l_s}
+	$$
+
+	取 $k = -1$，然后与原式相乘得：
+	$$
+	|\lambda^2 I - A^2| = (\lambda^2 - \lambda_1^2)^{l_1} \cdots (\lambda^2 - \lambda_s^2)^{l_s}
+	$$
+
+	同上例，将以上等式中的 $|\lambda^2 I - A^2|$ 展开，得到一个关于 $\lambda^2$ 的多项式，则以上等式被化为一个 $\mathbb K[\lambda^2]$ 上的等式。由于 $\mathbb K[\lambda]$ 是 $\mathbb K$ 的一个扩环，所以可以把等式中的 $\lambda^2$ 用 $\lambda$ 代入，最后根据行列式的完全展开式得：
+	$$
+	|\lambda I - A^2| = (\lambda - \lambda_1^2)^{l_1} \cdots (\lambda - \lambda_s^2)^{l_s}
+	$$
+\end{proof}
+
+\begin{exercise}
+	设数域 $\mathbb K$ 上 $n$ 级矩阵 $A$ 的特征多项式为：
+	$$
+	|\lambda I - A| = (\lambda - \lambda_1)^{l_1} \cdots (\lambda - \lambda_s)^{l_s}
+	$$
+
+	求证：对于任一正整数 $m$，$A^m$ 的特征多项式为 $|\lambda I - A^m| = (\lambda - \lambda_1^m)^{l_1} \cdots (\lambda - \lambda_s^m)^{l_s}$。（不妨假设 $\lambda_i \in \mathbb K$）
+\end{exercise}
+
+\begin{proof}
+	设 $\xi = \mathrm e^{\mathrm i \frac{2\pi}{m}}$，则 $1, \xi, \ldots, \xi^{m - 1}$ 是所有的 $m$ 次单位根，根据因式分解可得：
+	$$
+	(\lambda I - A)(\lambda I - \xi A)(\lambda I - \xi^2 A) \cdots (\lambda I - \xi^{m - 1} A) = \lambda^m I - A^m
+	$$$$
+	(\lambda - \lambda_i)(\lambda - \xi \lambda_i)(\lambda - \xi^2 \lambda_i) \cdots (\lambda - \xi^{m - 1} \lambda_i) = \lambda^m - \lambda_i^m
+	$$
+
+	同上例，相乘可得：
+	$$
+	|\lambda^m I - A^m| = (\lambda^m - \lambda_1^m) \cdots (\lambda^m - \lambda_s^m)
+	$$
+
+	同上例，代入可得：
+	$$
+	|\lambda I - A^m| = (\lambda - \lambda_1^m) \cdots (\lambda - \lambda_s^m)
+	$$
+\end{proof}
