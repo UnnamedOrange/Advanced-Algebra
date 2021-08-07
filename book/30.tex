@@ -1,0 +1,278 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{最大公因式}
+
+\subsection{公因式的概念}
+
+\begin{definition}{公因式}
+	在 $\mathbb K[x]$ 中，若 $c(x) \mid f(x)$ 且 $c(x) \mid g(x)$，则称 $c(x)$ 是 $f(x)$ 与 $g(x)$ 的\emph{公因式}。
+\end{definition}
+
+\begin{definition}{最大公因式}
+	$\mathbb K[x]$ 中多项式 $f(x)$ 与 $g(x)$ 的一个公因式 $d(x)$ 如果满足下述条件：对于 $f(x)$ 与 $g(x)$ 的任一公因式 $c(x)$，都有 $c(x) \mid d(x)$，那么称 $d(x)$ 是 $f(x)$ 与 $g(x)$ 的一个\emph{最大公因式}。
+\end{definition}
+
+根据以上定义可知，$f(x)$ 是 $f(x)$ 与 $0$ 的一个最大公因式。特别地，$0$ 是 $0$ 与 $0$ 的最大公因式。对于不全为 $0$ 的两个多项式，它们的最大公因式是次数最高的公因式。注意不能直接把最大公因式定义为次数最高的公因式，否则无法确定 $0$ 与 $0$ 的最大公因式，因为任一多项式都是 $0$ 与 $0$ 的公因式。
+
+容易看出，如果 $f(x)$ 与 $g(x)$ 的最大公因式存在，那么 $f(x)$ 与 $g(x)$ 的任意两个最大公因式 $d_1(x)$ 与 $d_2(x)$ 是相伴的。如果 $f(x)$ 与 $g(x)$ 不全为 $0$，那么它们的最大公因式不是 $0$，于是用 $(f(x), g(x))$ 或者 $\gcd(f(x), g(x))$ 表示首项系数为 $1$ 的最大公因式，简称为 $f(x)$ 和 $g(x)$ 的\emph{\idx{首一最大公因式}}。
+
+\subsection{求最大公因式}
+
+首先给出一个引理。
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，如果等式 $f(x) = h(x) g(x) + r(x)$ 成立，那么有：
+	$$
+	\set{\text{$f(x)$ 与 $g(x)$ 的最大公因式}} = \set{\text{$g(x)$ 与 $r(x)$ 的最大公因式}}
+	$$
+\end{proposition}
+
+\begin{proof}
+	设 $c(x)$ 是 $f(x)$ 与 $g(x)$ 的公因式，则 $c(x) \mid f(x) - h(x) g(x)$，从而 $c(x) \mid r(x)$。于是 $c(x)$ 是 $g(x)$ 与 $r(x)$ 的公因式。
+
+	设 $u(x)$ 是 $g(x)$ 与 $r(x)$ 的公因式，则 $u(x) \mid h(x) g(x) + r(x)$，从而 $u(x) \mid f(x)$。于是 $u(x)$ 是 $f(x)$ 与 $g(x)$ 的公因式。
+
+	根据集合相等的常用证明方法，易知它们的公因式集合相等，从而它们的最大公因式集合相等。
+\end{proof}
+
+由于 $\mathbb K[x]$ 中有除法算式，所以由以上引理，可以使用\emph{\idx{辗转相除法}}求最大公因式。由辗转相除法，我们可以得到以下定理。
+
+\begin{proposition}
+	对于 $\mathbb K[x]$ 中任意两个多项式 $f(x)$ 与 $g(x)$，一定存在它们的一个最大公因式 $d(x)$，并且存在 $u(x), v(x) \in \mathbb K[x]$，使得：
+	$$
+	d(x) = u(x) f(x) + v(x) g(x)
+	$$
+\end{proposition}
+
+\begin{proof}
+	如果 $g(x) = 0$，那么 $f(x)$ 就是 $f(x)$ 与 $g(x)$ 的一个最大公因式，并且 $f(x) = 1 \cdot f(x) + 1 \cdot 0$。下面设 $f(x) \ne 0$ 且 $g(x) \ne 0$。设 $n = \min \{ \deg f(x), \deg g(x) \}$，对 $n$ 作数学归纳法。当 $n = 0$ 时，显然有 $f(x)$ 是它们的最大公因式，并且 $f(x) = 1 \cdot f(x) + 0 \cdot g(x)$。假设 $n \le k$ 时正确，下面证明 $n = k + 1$ 时正确。不妨设 $\deg f(x) \ge \deg g(x)$，作带余除法，有：
+	$$
+	f(x) = q(x) g(x) + r(x)
+	$$
+
+	由引理可知，$(f(x), g(x)) = (g(x), r(x))$，又有 $\min\{\deg g(x), \deg r(x)\} < k + 1$，于是由归纳假设，存在性得证。由归纳假设，有：
+	$$
+	\begin{aligned}
+		(g(x), r(x)) &= g(x) u_1(x) + r(x) v_1(x)
+		\\&=
+		g(x) u_1(x) + (f(x) - q(x) g(x)) v_1(x)
+		\\&=
+		v_1(x)f(x) + (u_1(x) - q(x) v_1(x)) g(x)
+		\\&=
+		(f(x), g(x))
+	\end{aligned}
+	$$
+
+	故命题对 $n = k + 1$ 成立。
+\end{proof}
+
+\subsection{互素和有限个多项式的最大公因式}
+
+\begin{definition}{互素}
+	设 $f(x), g(x) \in \mathbb K[x]$，如果 $(f(x), g(x)) = 1$，那么称 $f(x)$ 与 $g(x)$ \emph{互素}。
+\end{definition}
+
+\begin{theorem}[互素的充分必要条件]
+	$\mathbb K[x]$ 中两个多项式 $f(x)$ 与 $g(x)$ 互素的充分必要条件是：存在 $u(x), v(x) \in \mathbb K[x]$，使得 $u(x) f(x) + v(x) g(x) = 1$。
+\end{theorem}
+
+\begin{proof}
+	必要性显然，下面证充分性。对于 $f(x)$ 和 $g(x)$ 的任意公因式 $c(x)$，可以由该式推出 $c(x) \mid 1$，从而 $c(x)$ 是 $\mathbb K$ 中的非零数。因此 $f(x)$ 与 $g(x)$ 互素。
+\end{proof}
+
+在互素定义的基础上，可以得到以下性质。
+
+\begin{proposition}
+	设 $f(x), g(x) \in \mathbb K[x]$，数域 $\mathbb F \supseteq \mathbb K$，则 $f(x)$ 与 $g(x)$ 在 $\mathbb K[x]$ 中的首一最大公因式等于它们在 $\mathbb F[x]$ 中的首一最大公因式。即 $f(x)$ 与 $g(x)$ 的首一最大公因式不随数域的扩大而改变。
+\end{proposition}
+
+\begin{proof}
+	由于 $\mathbb K \subseteq \mathbb F$，所以 $f(x)$ 与 $g(x)$ 在 $\mathbb K[x]$ 中作辗转相除法可看成它们在 $\mathbb F[x]$ 中作辗转相除法，从而它们的首一最大公因式相等。
+\end{proof}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，如果 $f(x) \mid g(x) h(x)$，且 $(f(x), g(x)) = 1$，那么 $f(x) \mid h(x)$。
+\end{proposition}
+
+\begin{proof}
+	由于 $(f(x), g(x)) = 1$，因而存在 $u(x), v(x) \in \mathbb K[x]$，使得 $u(x) f(x) + v(x) g(x) = 1$，从而：
+	$$
+	u(x) f(x) h(x) + v(x) g(x) h(x) = h(x)
+	$$
+
+	由于 $f(x) \mid g(x) h(x)$，所以 $f(x)$ 整除左式，进而 $f(x) \mid h(x)$。
+\end{proof}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，如果 $f(x) \mid h(x)$，$g(x) \mid h(x)$，且 $(f(x), g(x)) = 1$，那么 $f(x) g(x) \mid h(x)$。
+\end{proposition}
+
+\begin{proof}
+	由于 $f(x) \mid h(x)$，所以存在 $p(x) \in \mathbb K[x]$，使得 $h(x) = p(x) f(x)$，从而 $g(x) \mid p(x) f(x)$。由于 $(g(x), f(x)) = 1$，所以 $g(x) \mid p(x)$。从而存在 $q(x) \in \mathbb K[x]$，使得 $p(x) = q(x) g(x)$。所以 $h(x) = q(x) g(x) f(x)$，因此 $f(x) g(x) \mid h(x)$。
+\end{proof}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，如果 $(f(x), h(x))= 1, (g(x), h(x)) = 1$，那么 $(f(x) g(x), h(x)) = 1$。
+\end{proposition}
+
+\begin{proof}
+	已知存在 $u(x), v(x), w(x), p(x) \in \mathbb K[x]$，使得：
+	$$
+	u(x) f(x) + v(x) h(x) = 1
+	$$$$
+	w(x) g(x) + p(x) h(x) = 1
+	$$
+
+	两式相乘后整理得：
+	$$
+	\begin{aligned}&
+		\bigl( u(x) w(x) \bigr) f(x) g(x)
+		\\+~&
+		\bigl( u(x) f(x) p(x) + v(x) w(x) g(x) + v(x) h(x) p(x) \bigr) h(x) = 1
+	\end{aligned}
+	$$
+
+	从而\footnote{互素的充分必要条件：$\mathbb K[x]$ 中两个多项式 $f(x)$ 与 $g(x)$ 互素的充分必要条件是：存在 $u(x), v(x) \in \mathbb K[x]$，使得 $u(x) f(x) + v(x) g(x) = 1$。} $(f(x) g(x), h(x)) = 1$。
+\end{proof}
+
+不断运用该性质，可以推广得到下面这个性质。
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，若 $\forall i \in \set{1, \ldots, n}, j \in \set{1, \ldots, m}, (f_i(x), g_j(x)) = 1$，则：
+	$$
+	\biggl( \prod\limits_{i = 1}^n f_i(x), \prod\limits_{j = 1}^n g_j(x) \biggr) = 1
+	$$
+\end{proposition}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，若 $f(x) \ne 0, g(x) \ne 0, d(x) = (f(x), g(x))$，则：
+	$$
+	\biggl( \dfrac{f(x)}{d(x)}, \dfrac{g(x)}{d(x)} \biggr) = 1
+	$$
+\end{proposition}
+
+\begin{proof}
+	设 $f(x) = d(x) f_1(x)$，$g(x) = d(x) g_1(x)$，则有：
+	$$
+	d(x) = u(x) d(x) f_1(x) + v(x) d(x) g_1(x)
+	$$
+
+	消去即得 $u(x) f_1(x) + v(x) g_1(x) = 1$，则 $(f_1(x), g_1(x)) = 1$。
+\end{proof}
+
+当多项式多于两个时，我们也可以为它们定义最大公因式、互素。
+
+\begin{definition}{最大公因式}
+	设 $f_1(x), \ldots, f_s(x) \in \mathbb K[x]$，若 $d(x) \mid f_i(x) \pod{i = 1, \ldots, s}$，且 $\forall h(x) \mid f_i(x) \pod{i = 1, \ldots, s}$，都有 $h(x) \mid d(x)$，则称 $d(x)$ 为 $f_1, \ldots, f_s$ 的\emph{最大公因式}。
+\end{definition}
+
+记 $(f_1(x), \ldots, f_s(x))$ 为 $f_1(x), \ldots, f_s(x)$ 的\emph{\idx{首一最大公因式}}。
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，$(f_1, \ldots, f_s) = \bigl( (f_1, \ldots, f_{s - 1}), f_s \bigr)$。
+\end{proposition}
+
+\begin{proof}[只证明 $s = 3$ 的情况，其他情况可将其改为数学归纳法证明]
+	设 $d(x) = \bigl( (f_1, f_2), f_3 \bigr)$，$d_1(x) = (f_1, f_2)$，则要证 $d(x) = (f_1, f_2, f_3)$。
+
+	可知 $d(x) \mid f_1(x)$ 且 $d(x) \mid f_2(x)$，因此 $d(x)$ 是 $f_1, f_2, f_3$ 的公因式，有 $d(x) \mid (f_1, f_2, f_3)$。任取 $f_1, f_2, f_3$ 的一个公因式 $c(x)$，则 $c(x) \mid d_1(x)$ 且 $c(x) \mid f_3(x)$，于是 $c(x)$ 是 $d_1(x)$ 和 $f_3(x)$ 的公因式，有 $c(x) \mid d(x)$，从而 $d(x)$ 是 $f_1, f_2, f_3$ 的一个最大公因式。
+\end{proof}
+
+于是可得以下定理。
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中存在多项式 $u_i(x) \pod{i = 1, \ldots, s}$，使得：
+	$$
+	\sum\limits_{i = 1}^s u_i(x) f_i(x) = (f_1, \ldots, f_s)
+	$$
+\end{proposition}
+
+\begin{definition}{互素}
+	$\mathbb K[x]$ 中，$s$ 个多项式 $f_1(x), f_2(x), \ldots, f_s(x)$ 如果满足：
+	$$
+	\bigl( f_1(x), f_2(x), \ldots, f_s(x) \bigr) = 1
+	$$
+
+	那么称 $f_1(x), \ldots, f_s(x)$ \emph{互素}。
+\end{definition}
+
+多个多项式互素的充分必要条件与两个多项式的类似。
+
+\begin{proposition}[互素的充分必要条件]
+	在 $\mathbb K[x]$ 中，$f_1(x), \ldots, f_s(x)$ 互素的充分必要条件是：存在 $u_1(x), u_2(x), \ldots, u_s(x) \in \mathbb K[x]$，使得：
+	$$
+	\sum\limits_{i = 1}^s u_i(x) f_i(x) = 1
+	$$
+\end{proposition}
+
+需要注意，大于两个的多项式互素时，它们不一定两两互素。
+
+\subsection{在整数环 $\Z$ 上讨论最大公因数和互素}
+
+在整数环 $\Z$ 中，也可以类似地讨论最大公因数和互素的概念，以及相关的性质。下面不加证明地给出这些概念和性质。
+
+\begin{definition}{最大公因数}
+	设整数 $a$ 与 $b$ 的一个公因数为 $d$。如果 $a$ 与 $b$ 的任一公因数 $c$ 都能整除 $d$，那么称 $d$ 是 $a$ 与 $b$ 的一个\emph{最大公因数}，\textbf{其绝对值}记作 $(a, b)$ 或 $\gcd(a, b)$。
+\end{definition}
+
+若 $d_1, d_2$ 都是整数 $a$ 与 $b$ 的最大公因数，则 $d_1 = \pm d_2$。若 $a$ 与 $b$ 不全为 $0$，则 $a$ 与 $b$ 的最大公因数恰有两个，它们互为相反数。
+
+\begin{proposition}
+	任给两个整数 $a$ 与 $b$，都存在它们的一个最大公因数 $d$，并且存在整数 $u, v$，使得：
+	$$
+	ua + vb = d
+	$$
+\end{proposition}
+
+\begin{definition}{互素}
+	设 $a, b \in \Z$，如果 $(a, b) = 1$，那么称 $a$ 与 $b$ \emph{互素}。
+\end{definition}
+
+\begin{proposition}[互素的充分必要条件]
+	两个整数 $a$ 与 $b$ 互素当且仅当存在 $u, v \in \Z$，使得：
+	$$
+	ua + vb = 1
+	$$
+\end{proposition}
+
+\begin{proposition}
+	在 $\Z$ 中：
+	\begin{enumerate}
+		\item 若 $a \mid bc$ 且 $(a, b) = 1$，则 $a \mid c$。
+		\item 若 $a \mid c$，$b \mid c$ 且 $(a, b) = 1$，则 $ab \mid c$。
+		\item 若 $(a, c) = 1, (b, c) = 1$，则 $(ab, c) = 1$。
+		\item 若 $(a_i, c) = 1 \pod{i = 1, 2, \ldots, s}$，则 $(a_1 a_2 \cdots a_i, c) = 1$。
+	\end{enumerate}
+\end{proposition}
+
+\begin{definition}{最大公因数}
+	在 $\Z$ 中，设 $a_1, a_2, \ldots, a_s$ 的一个公因数为 $d$。如果 $a_1, a_2, \ldots, a_s$ 的任一公因数 $c$ 都能整除 $d$，那么称 $d$ 是 $a_1, a_2, \ldots, a_s$ 的一个最大公因数。\textbf{其绝对值}记为 $(a_1, a_2, \ldots, a_s)$ 或 $\gcd(a_1, a_2, \ldots, a_s)$。
+\end{definition}
+
+同样，不全为 $0$ 的整数 $a_1, a_2, \ldots, a_s$ 的最大公因数恰有两个，它们互为相反数。
+
+\begin{proposition}
+	对于不全为 $0$ 的整数 $a_1, a_2, \ldots, a_s$，有：
+	$$
+	(a_1, a_2, \ldots, a_s) = \bigl( (a_1, a_2, \ldots, a_{s - 1}), a_s \bigr)
+	$$
+\end{proposition}
+
+\begin{proposition}
+	对于不全为 $0$ 的整数 $a_1, a_2, \ldots, a_s$，存在 $u_1, u_2, \ldots, u_s \in \Z$，使得：
+	$$
+	u_1 a_1 + u_2 a_2 + \cdots + u_s a_s = (a_1, a_2, \ldots, a_s)
+	$$
+\end{proposition}
+
+\begin{definition}{互素}
+	对于 $s$ 个整数 $a_1, a_2, \ldots, a_s$，如果 $(a_1, a_2, \ldots, a_s) = 1$，那么称 $a_1, a_2, \ldots, a_s$ 互素。
+\end{definition}
+
+\begin{proposition}[互素的充分必要条件]
+	$a_1, a_2, \ldots, a_s$ 互素当且仅当存在 $u_1, u_2, \ldots, u_s \in \Z$，使得：
+	$$
+	u_1 a_1 + u_2 a_2 + \cdots + u_s a_s = 1
+	$$
+\end{proposition}
