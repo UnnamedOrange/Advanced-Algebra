@@ -119,3 +119,63 @@
 
 \subsection{例题}
 
+\begin{exercise}
+	设 $d, n \in \mathbb N$，求证：在 $\mathbb K[x]$ 中：
+	$$
+	x^d - 1 \mid x^n - 1 \Longleftrightarrow d \mid n
+	$$
+\end{exercise}
+
+\begin{proof}
+	从左到右，用反证法。若 $d \nmid n$，则设 $n = dq + r \pod{r \ne 0}$，有：
+	$$
+	\begin{aligned}
+		x^n - 1 &= x^{dq + r} - 1
+		\\&=
+		x^{dq} x^r - 1
+		\\&=
+		x^r(x^{dq} - 1) + x^r - 1
+	\end{aligned}
+	$$
+
+	由于已知：
+	$$
+	x^{dq} - 1 = (x^d - 1)(x^{d(q - 1)} + x^{d(q - 2)} + \cdots + 1)
+	$$
+
+	所以 $x^d - 1 \mid x^{dq} - 1$，从而 $x^d - 1 \mid x^r(x^{dq} - 1)$。又已知 $x^d - 1 \mid x^n - 1$，从而 $x^d - 1 \mid x^r - 1$（因为 $x^n - 1 = x^r (x^{dq} - 1) + x^r - 1$），但这与 $d > r$​ 矛盾。
+
+	\bigskip
+
+	从右到左。若 $d \mid n$，则设 $n = dq$，直接计算有：
+	$$
+	\begin{aligned}
+		x^n - 1 &= x^{dq} - 1
+		\\&=
+		(x^d - 1) \bigl( x^{d(q - 1)} + x^{d(q - 2)} + \cdots + 1 \bigr)
+	\end{aligned}
+	$$
+
+	于是可知 $x^d - 1 \mid x^n - 1$。
+\end{proof}
+
+\begin{exercise}
+	把 $f(x) = 5x^3 - 3x + 4$ 表示成 $x + 2$ 的幂和。
+\end{exercise}
+
+\begin{solve}
+	\begin{enumerate}
+		\item $f(x) = (x - 2)(5x^2 - 10x + 17) + 30$
+		\item $5x^2 - 10x + 17 = 5x(x - 2) + 17$
+		\item $5x = 5(x - 2) + 10$
+	\end{enumerate}
+
+	所以：
+	$$
+	\begin{aligned}
+		f(x) &= (x - 2)((5(x - 2) + 10)(x - 2) + 17) + 30
+		\\&=
+		5(x - 2)^3 + 10(x - 2)^2 + 17(x - 2) + 30
+	\end{aligned}
+	$$
+\end{solve}
