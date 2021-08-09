@@ -1,0 +1,229 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{不可约多项式}
+
+\subsection{不可约多项式的定义与等价命题}
+
+\begin{definition}{不可约多项式,可约的}
+	对于 $\mathbb K[x]$ 中一个次数大于 $0$ 的多项式 $f(x)$，如果它在 $\mathbb K[x]$ 中的因式只有 $\mathbb K$ 中的非零数和 $f(x)$ 的相伴元，那么称 $f(x)$ 是数域 $K$ 上的一个\emph{不可约多项式}；否则称 $f(x)$ 是\emph{可约的}。
+\end{definition}
+
+研究不可约多项式的动力是，不可约多项式的因式最少，是最简单的多项式，在研究 $\mathbb K[x]$ 的结构中将起到基本建筑块的作用。
+
+\begin{proposition}
+	设 $p(x)$ 是 $\mathbb K[x]$ 中一个次数大于 $0$ 的多项式，则下列命题等价：
+
+	\begin{enumerate}
+		\item $p(x)$ 是不可约多项式。
+		\item $\forall f(x) \in \mathbb K[x]$，有 $p(x) \mid f(x)$ 或 $(p(x), f(x)) = 1$。
+		\item 在 $\mathbb K[x]$ 中，从 $p(x) \mid f(x) g(x)$ 可推出 $p(x) \mid f(x)$ 或 $p(x) \mid g(x)$。
+		\item $p(x)$ 不能分解成两个次数较低的多项式的乘积。
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}[1 $\Longrightarrow$ 2 $\Longrightarrow$ 3 $\Longrightarrow$ 4 $\Longrightarrow$ 1]
+	\begin{enumerate}
+		\item 设 $p(x)$ 不可约。任取 $f(x) \in \mathbb K[x]$，由不可约多项式的定义，若 $f(x)$ 的因式中含有 $p(x)$ 的相伴元，则 $(p(x), f(x)) \sim p(x)$，否则 $f(x)$ 与 $p(x)$ 的公因式是 $\mathbb K$ 中的非零数，$(p(x), f(x)) = 1$。从而 $p(x) \mid (p(x), f(x))$（即 $p(x) \mid f(x)$）或 $p(x)$ 与 $f(x)$ 互素。
+
+		\item 若 $p(x) \mid f(x)$ 则命题成立。若 $p(x) \nmid f(x)$，则据已知条件知，$p(x)$ 与 $f(x)$ 互素。于是\footnote{在 $\mathbb K[x]$ 中，如果 $f(x) \mid g(x) h(x)$，且 $(f(x), g(x)) = 1$，那么 $f(x) \mid h(x)$。} $p(x) \mid g(x)$。
+
+		\item 假如 $p(x) = p_1(x) p_2(x)$，其中 $\deg p_i(x) < \deg p(x) \pod{i = 1, 2}$。则 $p(x) \mid p_1(x) p_2(x)$。由已知条件得，$p(x) \mid p_1(x)$ 或 $p(x) \mid p_2(x)$。从而 $\deg p(x) \le \deg p_1(x)$ 或 $\deg p(x) \le \deg p_2(x)$，这与所设矛盾。因此 $p(x)$ 不能分解成两个次数较低的多项式的乘积。
+
+		\item 任取 $p(x)$ 的一个次数大于 $0$ 的因式 $g(x)$，则存在 $h(x) \in \mathbb K[x]$，使得 $p(x) = h(x) g(x)$。于是 $\deg p(x) = \deg h(x) + \deg g(x)$。由已知条件得 $\deg g(x) = \deg p(x)$。从而 $\deg h(x) = 0$，即 $h(x) = c \in \mathbb K \backslash \set{0}$。于是 $p(x) = c g(x)$。因此 $g(x) \sim p(x)$，这证明了 $p(x)$ 不可约。
+	\end{enumerate}
+\end{proof}
+
+在 $\mathbb K[x]$ 中，一次多项式都是不可约的。特别地，$\C[x]$ 中不可约多项式都形如 $ax + b \pod{a \ne 0}$（代数学基本定理）；$\R[x]$ 中不可约多项式都形如 $ax + b \pod{a \ne 0}$ 或 $x^2 + px + q \pod{p^2 - 4q < 0}$。
+
+\subsection{唯一因式分解定理}
+
+\begin{theorem}[唯一因式分解定理]
+	$\mathbb K[x]$ 中任一次数大于 $0$ 的多项式 $f(x)$ 能够唯一地分解成数域 $\mathbb K$ 上有限个不可约多项式的乘积。所谓唯一性是指，如果 $f(x)$ 有两个这样的分解式：
+	$$
+	\begin{aligned}
+		f(x) &= p_1(x) p_2(x) \cdots p_s(x)
+		\\&=
+		q_1(x) q_2(x) \cdots q_t(x)
+	\end{aligned}
+	$$
+
+	那么一定有 $s = t$，且适当排列因式的次序后有 $p_i(x) \sim q_i(x) \pod{i = 1, 2, \ldots, s}$。
+\end{theorem}
+
+\begin{proof}
+	先证存在性。若 $f(x)$ 不可约，则命题显然成立。反之，若 $f(x)$ 可约，则设 $f(x) = f_1(x) f_2(x)$，且 $\deg f_1 < \deg f$。对 $\deg f(x) = n$ 进行归纳，有 $f_1(x) = p_1(x) \cdots p_m(x)$，$f_2(x) = p_{m + 1}(x) \cdots p_s(x)$，于是 $f(x) = p_1(x) \cdots p_s(x)$。
+
+	\bigskip
+
+	下证唯一性。假设 $f(x)$ 有两个这样的分解式：
+	$$
+	\begin{aligned}
+		f(x) &= p_1(x) p_2(x) \cdots p_s(x)
+		\\&=
+		q_1(x) q_2(x) \cdots q_t(x)
+	\end{aligned}
+	$$
+
+	对 $s$ 作数学归纳法。当 $s = 1$ 时，$f(x) = p_1(x)$，则 $f(x)$ 不可约，从而可推出 $q_1(x) \sim f(x)$，且 $t = 1$。当 $s > 1$ 时，可知 $p_1(x) \mid q_1(x) q_2(x) \cdots q_t(x)$。由于 $p_1(x)$ 不可约，因此 $p_1(x)$ 必能整除某个 $q_j(x)$，不妨设 $p_1(x) \mid q_1(x)$。由于 $q_1(x)$ 不可约，因此 $p_1(x) \sim q_1(x)$，从而 $q_1(x) = a p_1(x)$，其中 $a \in \mathbb K \backslash \set{0}$。等式两边消去 $p_1(x)$，得 $p_2(x) \cdots p_s(x) = a q_2(x) \cdots q_t(x)$。根据归纳假设，可得 $s = t$ 且 $p_i(x) \sim q_i(x) \pod{i = 1, 2, \ldots, s}$。
+\end{proof}
+
+规定 $\mathbb K[x]$ 中次数大于 $0$ 的多项式 $f(x)$ 的\emph{\idx{标准分解式}}为：
+$$
+f(x) = a p_1^{l_1}(x) p_2^{l_2}(x) \cdots p_s^{l_s}(x)
+$$
+
+其中 $a$ 是 $f(x)$ 的首项系数，$p_1(x), p_2(x), \cdots, p_s(x)$ 是 $\mathbb K$ 上两两不等的首一不可约多项式，$l_i > 0 \pod{i = 1, 2, \ldots, s}$。
+
+\subsection{最小公倍式}
+
+由唯一因式分解定理，我们可以得到一个关于最大公因式的结论，还能定义出最小公倍式的概念。
+
+\begin{proposition}
+	设 $f(x)$ 的标准分解式为：
+	$$
+	a p_1^{l_1}(x) \cdots p_s^{l_s}(x)
+	$$
+
+	$g(x)$ 的标准分解式为：
+	$$
+	b p_1^{r_1}(x) \cdots p_m^{r_m}(x) q_1^{t_1}(x) \cdots q_n^{t_n}(x) \pod{m \le s}
+	$$
+
+	那么：
+	$$
+	(f(x), g(x)) = p_1^{\min\{ l_1, r_1 \}}(x) \cdots p_m^{\min\{ l_m, r_m \}}(x)
+	$$
+\end{proposition}
+
+\begin{proof}
+	显然 $\mathrm{R.H.S.} \mid (f(x), g(x))$，下证 $(f(x), g(x)) \mid \mathrm{R.H.S.}$。设 $q(x)$ 为 $(f(x), g(x))$ 的任一首一不可约因式，则 $q(x)$ 仅可以为 $p_i(x) \pod{i = 1, 2, \ldots, m}$，所以由唯一因式分解定理，设：
+	$$
+	(f(x), g(x)) = \prod\limits_{i = 1}^s p_i^{k_i}(x)
+	$$
+
+	$k_i$ 显然不会超过 $\min\{ l_i, r_i \}$，否则 $p_i^{k_i}$ 不会是 $f(x)$ 和 $g(x)$ 的公因式。故 $(f(x), g(x)) \mid \mathrm{R.H.S.}$。
+\end{proof}
+
+\begin{definition}{最小公倍式}
+	设 $f(x), g(x) \in \mathbb K[x]$，如果 $\mathbb K[x]$ 中一个多项式 $m(x)$ 满足：
+
+	\begin{enumerate}
+		\item $f(x) \mid m(x), g(x) \mid m(x)$
+		\item $f(x) \mid u(x), g(x) \mid u(x) \Longrightarrow m(x) \mid u(x)$
+	\end{enumerate}
+
+	则称 $m(x)$ 为 $f(x)$ 与 $g(x)$ 的一个\emph{最小公倍式}。用 $[f(x), g(x)]$ 表示 $f(x)$ 和 $g(x)$ 的\emph{\idx{首一最小公倍式}}。
+\end{definition}
+
+\begin{proposition}
+	设 $f(x), g(x) \in K[x]$，如果 $f(x)$、$g(x)$ 的首项系数都是 $1$，那么 $[f(x), g(x)] = \dfrac{f(x) g(x)}{(f(x), g(x))}$。
+\end{proposition}
+
+\begin{proof}
+	设 $(f(x), g(x)) = d(x)$，$f(x) = d(x) f_1(x)$，$g(x) = d(x) g_1(x)$，则 $(f_1(x), g_1(x)) = 1$，下证 $\dfrac{f(x) g(x)}{d(x)} = d(x) f_1(x) g_1(x)$ 为 $f(x)$ 与 $g(x)$ 的最小公倍式。
+
+	\begin{enumerate}
+		\item 显然 $f(x) \mid d(x) f_1(x) g_1(x)$，$g(x) \mid d(x) f_1(x) g_1(x)$。
+		\item 若 $f(x) \mid u(x)$，$g(x) \mid u(x)$，要证 $d(x) f_1(x) g_1(x) \mid u(x)$。由于 $(f_1(x), g_1(x)) = 1$，所以存在 $u_1, v_1$ 使得 $f_1(x) u_1(x) + g_1(x) v_1(x) = 1$，两侧同时乘以 $u$ 得 $u = u f_1 u_1 + u g_1 v_1$。由于有 $\textcolor{red}{d g_1} \textcolor{blue}{f_1} \mid \textcolor{red}{u} \textcolor{blue}{f_1} u_1$ 且 $\textcolor{red}{d f_1} \textcolor{blue}{g_1} \mid \textcolor{red}{u} \textcolor{blue}{g_1} v_1$，故 $d f_1 g_1 \mid (u f_1 u_1 + u g_1 v_1) = u$。
+	\end{enumerate}
+\end{proof}
+
+由以上命题易得以下结论。
+
+\begin{proposition}
+	设 $f(x)$ 的标准分解式为：
+	$$
+	a p_1^{l_1}(x) \cdots p_s^{l_s}(x)
+	$$
+
+	$g(x)$ 的标准分解式为：
+	$$
+	b p_1^{r_1}(x) \cdots p_m^{r_m}(x) q_1^{t_1}(x) \cdots q_n^{t_n}(x) \pod{m \le s}
+	$$
+
+	那么：
+	$$
+	\begin{aligned}\relax
+		[f(x), g(x)] &= p_1^{\max\{ l_1, r_1 \}}(x) \cdots p_m^{\max\{ l_m, r_m \}}(x) \cdot
+		\\&~~~~
+		p_{m + 1}^{l_{m + 1}}(x) \cdots p_s^{l_s}(x) q_1^{t_1}(x) \cdots q_n^{t_n}(x)
+	\end{aligned}
+	$$
+\end{proposition}
+
+\subsection{在整数环 $\Z$ 上讨论素数和唯一分解定理}
+
+\begin{definition}{素数,合数}
+	对于一个大于 $1$ 的整数 $m$，如果其正因数只有 $1$ 和它自身，那么称 $m$ 是一个\emph{素数}。否则称 $m$ 是\emph{合数}。
+\end{definition}
+
+\begin{proposition}
+	设 $p$ 是一个大于 $1$ 的整数，则下列命题等价：
+	\begin{enumerate}
+		\item $p$ 是素数。
+		\item 对任意整数 $a$，都有 $p \mid a$ 或 $(p, a) = 1$。
+		\item 在 $\Z$ 中，从 $p \mid ab$ 可推出 $p \mid a$ 或 $p \mid b$。
+		\item $p$ 不能分解成两个较小正整数的乘积。
+	\end{enumerate}
+\end{proposition}
+
+\begin{theorem}[算数基本定理]
+	任一大于 $1$ 的整数 $a$ 都能唯一地分解成有限多个素数的乘积。所谓唯一性是指，如果 $a$ 有两个这样的分解式：
+	$$
+	a = p_1 p_2 \cdots p_s  = q_1 q_2 \cdots q_t
+	$$
+
+	那么 $s = t$，且适当排列因数的次序后，有：
+	$$
+	p_i = q_i \pod{i = 1, 2, \ldots, s}
+	$$
+\end{theorem}
+
+任意大于 $1$ 的整数的\emph{\idx{标准分解式}}为：
+$$
+a = p_1^{r_1} p_2^{r_2} \cdots p_m^{r_m}
+$$
+其中 $p_1, p_2, \ldots, p_m$ 是两两不等的素数，$r_i$ 是正整数，$i = 1, 2, \ldots, m$。
+
+在 $\Z$ 中，设：
+$$
+a = p_1^{r_1} p_2^{r_2} \cdots p_t^{r_t} p_{t + 1}^{r_{t + 1}} \cdots p_m^{r_m}
+$$$$
+b = p_1^{k_1} p_2^{r_2} \cdots p_t^{k_t} q_{t + 1}^{k_{t + 1}} \cdots q_s^{k_s}
+$$
+
+则：
+$$
+(a, b) = p_1^{\min\{ r_1, k_1 \}} p_2^{\min\{ r_2, k_2 \}} \cdots p_t^{\min\{ r_t, k_t \}}
+$$$$
+[a, b] = p_1^{\max\{ r_1, k_1 \}} p_2^{\max\{ r_2, k_2 \}} \cdots p_t^{\max\{ r_t, k_t \}} p_{t + 1}^{r_{t + 1}} \cdots p_m^{r_m} q_{t + 1}^{k_{t + 1}} \cdots q_s^{k_s}
+$$
+
+\subsection{例题}
+
+\begin{exercise}
+	设 $f(x), g(x) \in \mathbb K[x]$，其中 $g(x)$ 不可约，求证：对任意给定的正整数 $m$，有 $g(x) \mid f^m(x) \Longleftrightarrow g(x) \mid f(x)$。
+\end{exercise}
+
+\begin{proof}
+	从右到左显然，下面证从左到右。对 $m$ 进行归纳假设。由 $g(x)$ 不可约，可知\footnote{在 $\mathbb K[x]$ 中，若 $p(x)$ 是不可约多项式，则从 $p(x) \mid f(x) g(x)$ 可推出：$p(x) \mid f(x)$ 或 $p(x) \mid g(x)$。} $g(x) \mid f(x)$ 或 $g(x) \mid f^{m - 1}(x)$。若 $g(x) \nmid f(x)$，则 $g(x) \mid f^{m - 1}(x)$，由归纳假设，$g(x) \mid f(x)$，矛盾，故 $g(x) \mid f(x)$。
+\end{proof}
+
+\begin{exercise}
+	在 $\mathbb K[x]$ 中，设 $(f, g_i) = 1 \pod{i = 1, 2}$，求证：$(f g_1, g_2) = (g_1, g_2)$。
+\end{exercise}
+
+\begin{proof}[可以直接写出标准分解式进行证明，下面用公因式集合相等来证明]
+	要证：
+	$$
+	\set{\text{$fg_1, g_2$ 的公因式}} = \set{\text{$g_1, g_2$ 的公因式}}
+	$$
+
+	显然 $\mathrm{R.H.S.} \subseteq \mathrm{L.H.S}$，下证 $\mathrm{L.H.S.} \subseteq \mathrm{R.H.S}$。设 $h(x) \mid f(x) g_1(x)$ 且 $h(x) \mid g_2(x)$。由于 $(f, g_i) = 1$，所以\footnote{在 $\mathbb K[x]$ 中，如果 $(f(x), h(x))= 1, (g(x), h(x)) = 1$，那么 $(f(x) g(x), h(x)) = 1$。} $(f, g_1 g_2) = 1$，即存在 $u(x), v(x) \in \mathbb K[x]$，使得 $u(x) f(x) + v(x) g_1(x) g_2(x) = 1$，从而：
+	$$
+	u(x) \textcolor{red}{f(x) g_1(x)} + v(x) g_1^2 (x) \textcolor{red}{g_2(x)} = g_1(x)
+	$$
+
+	因此 $h(x) \mid g_1(x)$。又已知 $h(x) \mid g_2(x)$，即证得 $\mathrm{L.H.S.} \subseteq \mathrm{R.H.S}$。
+\end{proof}
