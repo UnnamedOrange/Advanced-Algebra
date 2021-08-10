@@ -1,0 +1,126 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{重因式}
+
+设多项式 $f(x)$ 为：
+$$
+f(x) = a p_1^{l_1}(x) p_2^{l_2}(x) \cdots p_s^{l_s}(x) \pod{l_i \ge 0, i = 1, 2, \ldots, s}
+$$
+其中 $p_1, \ldots, p_s$ 为不可约多项式。
+
+我们自然想要研究 $l_i$。当 $l_i = 0$ 时，$p_i$ 不是 $f(x)$ 的因式。当 $l_i = 1$ 时，我们可以称 $p_i$ 为 $f(x)$ 的\emph{\idx{单因式}}。而当 $l_i > 1$ 时，我们则可以称 $p_i$ 为 $f(x)$ 的重因式。下面给出重因式的形式化定义。
+
+\begin{definition}{重因式}
+	设 $f(x) \in \mathbb K[x]$。如果不可约多项式 $p(x)$ 满足 $p^k(x) \mid f(x)$，但 $p^{k + 1}(x) \nmid f(x)$，则称不可约多项式 $p(x)$ 为 $f(x)$ 的 \emph{$k$ 重因式}。
+\end{definition}
+
+目前我们没有一个较好的判断多项式的重因式的方法。我们可以借用导数来解决这一问题。下面我们在形式上定义多项式 $f(x)$ 的导数。
+
+\begin{definition}{导数,一阶导数}
+	对于 $\mathbb K[x]$ 中的多项式：
+	$$
+	f(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_1 x + a_0
+	$$
+
+	我们把以下多项式：
+	$$
+	n a_n x^{n - 1} + (n - 1) a_{n - 1} x^{n - 2} + \cdots + a_1
+	$$
+	称为 $f(x)$ 的\emph{导数}（或\emph{一阶导数}），记作 $f'(x)$。
+\end{definition}
+
+$f(x)$ 的 $k$ 阶导数一般记作 $f^{(k)}(x)$。显然，若 $f(x)$ 是 $n$ 次多项式，则 $f'(x)$ 是 $n - 1$ 次多项式。特别地，非零数和零多项式的导数是零多项式。
+
+可以验证，按以上形式定义多项式的导数，与数学分析中定义导数的结果一致，满足一系列导数运算的法则。于是我们自然地想到用连续求导的方式来求解多项式的重因式，下面的定理及推论说明了具体的方法。
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，如果不可约多项式 $p(x)$ 是 $f(x)$ 的一个 $k \pod{k \ge 1}$ 重因式，那么 $p(x)$ 是 $f'(x)$ 的一个 $k - 1$ 重因式。特别地，$f(x)$ 的单因式不是 $f'(x)$ 的因式。
+\end{proposition}
+
+\begin{proof}
+	由 $p(x)$ 是 $f(x)$ 的 $k$ 重因式，可知存在 $g(x) \in \mathbb K[x]$，使得：
+	$$
+	f(x) = p^k(x) g(x) \pod{p(x) \nmid g(x)}
+	$$
+
+	于是：
+	$$
+	\begin{aligned}
+		f(x) &= k p^{k - 1} p'(x) g(x) + p^k(x) g'(x)
+		\\&=
+		p^{k - 1}(x) \bigl( k p'(x) g(x) + p(x) g'(x) \bigr)
+	\end{aligned}
+	$$
+
+	下面只需说明 $p(x) \nmid \bigl( k p'(x) g(x) + p(x) g'(x) \bigr)$。因为 $k \ne 0$，$p(x) \nmid p'(x)$，$p(x) \nmid g(x)$，又因为 $p(x)$ 不可约，所以\footnote{在 $\mathbb K[x]$ 中，从 $p(x) \mid f(x) g(x)$ 可推出 $p(x) \mid f(x)$ 或 $p(x) \mid g(x)$。}：
+	$$
+	p(x) \nmid k p'(x) g(x)
+	$$
+
+	从而：
+	$$
+	p(x) \nmid \bigl( k p'(x) g(x) + p(x) g'(x) \bigr)
+	$$
+\end{proof}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，不可约多项式 $p(x)$ 是 $f(x)$ 的一个重因式，当且仅当 $p(x)$ 是 $f(x)$ 与 $f'(x)$ 的一个公因式。
+\end{proposition}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，次数大于 $0$ 的多项式 $f(x)$ 有重因式的充分必要条件是 $f(x)$ 与 $f'(x)$ 有次数大于 $0$ 的公因式。次数大于 $0$ 的多项式没有重因式的充分必要条件是 $f(x)$ 与 $f'(x)$ 互素。
+\end{proposition}
+
+如果 $\mathbb K[x]$ 中次数大于 $0$ 的多项式 $f(x)$ 有重因式，我们如何求出一个多项式 $g(x)$，使得 $g(x)$ 与 $f(x)$ 含有完全相同的不可约因式（不计重数），但 $g(x)$ 不含重因式？
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，若设 $f(x)$ 的唯一因式分解为：
+	$$
+	f(x) = a p_1^{l_1}(x) p_2^{l_2}(x) \cdots p_s^{l_s}(x) \pod{s \ge 1}
+	$$
+
+	则 $\dfrac{f(x)}{(f(x), f'(x))}$ 为：
+	$$
+	\dfrac{f(x)}{(f(x), f'(x))} = a p_1(x) \cdots p_s(x)
+	$$
+\end{proposition}
+
+\begin{proof}
+	对 $f(x)$ 求导得：
+	$$
+	f'(x) = p_1^{l_1 - 1}(x) p_2^{l_2 - 1}(x) \cdots p_s^{l_s - 1}(x) h(x)
+	$$
+
+	其中 $h(x)$ 不能被任何 $p_i(x) \pod{i = 1, 2, \ldots, s}$ 整除，于是：
+	$$
+	(f(x), f'(x)) = p_1^{l_1 - 1}(x) p_2^{l_2 - 1}(x) \cdots p_s^{l_s - 1}(x)
+	$$
+
+	相除即证得原命题。
+\end{proof}
+
+\subsection{例题}
+
+\begin{exercise}
+	设 $\Q[x]$ 中的一个多项式为：
+	$$
+	f(x) = 1 + x + \dfrac{x^2}{2!} + \cdots + \dfrac{x^n}{n!}
+	$$
+
+	求证 $f(x)$ 没有重因式。
+\end{exercise}
+
+\begin{proof}
+	求导得：
+	$$
+	f'(x) = 1 + x + \dfrac{x^2}{2!} + \cdots + \dfrac{x^{n - 1}}{(n - 1)!}
+	$$
+
+	所以有：
+	$$
+	(f(x), f'(x)) = \biggl( f'(x), \dfrac{x^n}{n!} \biggr)
+	$$
+
+	由于 $\dfrac{x^n}{n!}$ 的不可约因式只有 $x$（不计重数），而 $x \nmid f'(x)$，所以 $(f(x), f'(x)) = 1$，因此 $f(x)$ 没有重因式\footnote{次数大于 $0$ 的多项式没有重因式的充分必要条件是 $f(x)$ 与 $f'(x)$ 互素。}。
+\end{proof}
