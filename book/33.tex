@@ -211,3 +211,246 @@ $$
 
 还可以使用待定系数法进行插值。由于系数矩阵是一个范德蒙德行列式，所以方程组一定有唯一解。
 
+\subsection{实数域上的不可约多项式}
+
+\subsubsection{实系数多项式唯一因式分解定理}
+
+我们开门见山地给出实系数多项式唯一分解定理，以便于和复系数多项式唯一分解定理进行对比。
+
+\begin{theorem}[实系数多项式唯一分解定理]
+	每一个次数大于 $0$ 的实系数多项式 $f(x)$ 在实数域上都可以唯一地分解成一次因式与判别式小于 $0$ 的二次因式的乘积。即：
+	$$
+	f(x) = a (x - c_1)^r_1 \cdots (x - c_s)^{r_s} (x^2 + p_1 x + q_1)^{k_1} \cdots (x^2 + p_t x + q_t)^{k_t}
+	$$
+
+	其中 $a$ 是 $f(x)$ 的首项系数，$c_1, \ldots, c_s$ 是两两不等的实数，$(p_i, q_i) \pod{i = 1, 2, \ldots, t}$ 是不同的实数对，且满足 $p_i^2 - 4 q_i < 0$，$r_1, \ldots, r_s, k_1, \ldots, k_t$ 都是非负整数。
+\end{theorem}
+
+证明实系数多项式唯一因式分解定理的关键是以下命题。
+
+\begin{proposition}
+	设 $f(x)$ 是实系数多项式，如果 $c$ 是 $f(x)$ 的一个复根，那么 $\overline c$ 也是 $f(x)$ 的一个复根。
+\end{proposition}
+
+\begin{proof}
+	设 $f(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_1 x + a_0 \pod{a_i \in \R, i = 0, 1, \ldots, n}$。由于 $c$ 是 $f(x)$ 的复根，所以有：
+	$$
+	a_n c^n + a_{n - 1} c^{n - 1} + \cdots + a_1 c + a_0 = 0
+	$$
+
+	等式两侧取共轭复数，得：
+	$$
+	a_n \overline c^n + a_{n - 1} \overline c^{n - 1} + \cdots + a_1 \overline c + a_0 = 0
+	$$
+
+	即 $f(\overline c) = 0$。
+\end{proof}
+
+上面的命题说明，实系数多项式的虚根共轭成对出现，且它们的重数相同。下面我们证明实系数多项式唯一分解定理。
+
+\begin{proof}[数学归纳法]
+	设 $f(x) \in \R[x] \backslash \set{0}$，$\deg f(x) = n$，对 $n$ 进行归纳。
+
+	当 $n = 1$ 时，$f(x) = a(x - c) \pod{a, c \in \R}$，显然成立。
+
+	下面假设当 $\deg f(x) < n$ 时假设成立。设实系数多项式 $f(x)$ 有一复根 $c$，则 $f(c) = 0$。
+	\begin{enumerate}
+		\item 如果 $c \in \R$，则 $f(x) = (x - c) f_1(x)$。对 $f_1(x)$ 应用归纳假设，则在 $\deg f(x) = n$ 的前提下原命题对于该情况也成立。
+
+		\item 如果 $c \not \in \R, c \in \C$，则可知：
+		$$
+		(x - c) \mid f(x), \quad (x - \overline c) \mid f(x)
+		$$
+
+		又因为 $(x - c, x - \overline c) = 1$，所以\footnote{在 $\mathbb K[x]$ 中，如果 $f(x) \mid h(x)$，$g(x) \mid h(x)$，且 $(f(x), g(x)) = 1$，那么 $f(x) g(x) \mid h(x)$。} $\bigl( (x - c) (x - \overline c) \bigr) \mid f(x)$，于是可以设：
+		$$
+		f(x) = (x^2 - (c + \overline c) x + c \cdot \overline c) \cdot f_2(x)
+		$$
+
+		对 $f_2(x)$ 应用归纳假设，则在 $\deg f(x) = n$ 的前提下原命题对于该情况也成立。
+	\end{enumerate}
+\end{proof}
+
+由实系数多项式唯一因式分解定理，我们易得以下结论。
+
+\begin{proposition}
+	实系数的奇次多项式至少有一个实根。
+\end{proposition}
+
+\subsubsection{实系数多项式根的范围}
+
+\begin{proposition}
+	设 $f(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_1 x + a_0$ 是一个复系数多项式，其次数 $n \ge 1$。令：
+	$$
+	M = \max \{ \abs{a_{n - 1}}, \abs{a_{n - 2}}, \ldots, \abs{a_0} \}
+	$$
+
+	则当 $\abs{z} \ge 1 + \dfrac{M}{\abs{a_n}}$ 时，有：
+	$$
+	\abs{f(z)} \ge \abs{a_n z^n} - \abs{a_{n - 1} z^{n - 1} + \cdots + a_1 z + a_0} > 0
+	$$
+\end{proposition}
+
+\begin{proof}
+	首先有：
+	$$
+	\begin{aligned}
+		\abs{f(z)} &= \abs{a_n z^n + a_{n - 1} z^{n - 1} + \cdots + a_1 z + a_0}
+		\\&\ge
+		\abs{a_n z^n} - \abs{a_{n - 1} z^{n - 1} + \cdots + a_1 z + a_0}
+	\end{aligned}
+	$$
+
+	令 $M = \max \{ \abs{a_{n - 1}}, \ldots, \abs{a_1}, \abs{a_0} \}$，则：
+	$$
+	\begin{aligned}
+		\abs{a_{n - 1} z^{n - 1} + \cdots + a_1 z + a_0} &\le \abs{a_{n - 1}} \abs{z}^{n - 1} + \cdots + \abs{a_1} \abs{z} + \abs{a_0}
+		\\&\le
+		M \bigl( \abs{z}^{n - 1} + \cdots + \abs{z} + 1 \bigr)
+		\\&=
+		M \dfrac{\abs{z}^n - 1}{\abs{z} - 1}
+	\end{aligned}
+	$$
+
+	当 $\abs{z} > 1$ 时，可得：
+	$$
+	M \dfrac{\abs{z}^n - 1}{\abs{z} - 1} < M \dfrac{\abs{z}^n}{\abs{z} - 1}
+	$$
+
+	于是此时，$\abs{f(z)}$ 满足：
+	$$
+	\abs{f(z)} > \abs{a_n z^n} - M \dfrac{\abs{z}^n}{\abs{z} - 1}
+	$$
+
+	解关于 $\abs{z}$ 的不等式：
+	$$
+	\abs{a_n z^n} - M \dfrac{\abs{z}^n}{\abs{z} - 1} \ge 0
+	$$
+	得：
+	$$
+	\abs{z} \ge 1 + \dfrac{M}{\abs{a_n}}
+	$$
+
+	从而，当 $\abs{z} \ge 1 + \dfrac{M}{\abs{a_n}}$ 时，有原命题成立。
+\end{proof}
+
+以上定理表明，$f(x)$ 的复根全部在以原点为圆心，以 $1 + \dfrac{M}{\abs{a_n}}$ 为半径的圆内。把这一结论用到实系数多项式上，便可得到以下推论。
+
+\begin{theorem}
+	设 $f(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots + a_1 x + a_0$ 是一个实系数多项式，其次数 $n \ge 1$。令：
+	$$
+	M = \max \{ \abs{a_{n - 1}}, \abs{a_{n - 2}}, \ldots, \abs{a_1}, \abs{a_0} \}
+	$$
+
+	则 $f(x)$ 的实根全部在区间 $\biggl( -1 - \dfrac{M}{\abs{a_n}}, 1 + \dfrac{M}{\abs{a_n}} \biggr)$ 内。
+\end{theorem}
+
+\begin{example*}
+	设 $f(x) = x^3 - x + 1$，则 $M = 1$，$1 + \dfrac{M}{\abs{a_n}} = 2$，因此 $f(x)$ 的实根全都在区间 $(-2, 2)$ 内。
+\end{example*}
+
+需要注意，以上定理只能得到 $f(x)$ 有实根时实根的范围，并没有说明 $f(x)$ 一定有实根。
+
+\subsubsection{实系数多项式实根的数量：Sturm 定理}
+
+\begin{definition}{变号,变号数}
+	设 $c_1, c_2, \ldots, c_m$ 是一个非零实数的有限序列。如果 $c_i c_{i + 1} < 0$，那么我们说在第 $i + 1$ 项有一个\emph{变号}。这个序列中变号的总数称为它的\emph{变号数}。一个有限的实数序列的变号数定义为去掉这个序列中的 $0$ 以后得到的序列的变号数。
+\end{definition}
+
+\begin{example*}
+	序列 $-2, 0, 1, 0, 0, 3, -4, 5$ 的变号数是 3。
+\end{example*}
+
+\begin{theorem}[Sturm 定理]
+	设 $f(x)$ 是一个次数大于 $0$ 的实系数多项式。令 $f_0(x) = f(x)$，$f_1(x) = f'(x)$，不断做下述略微修改的辗转相除法：
+	$$
+	\begin{aligned}
+		f_0(x) &= q_1(x) f_1(x) \mathbin{\textcolor{red}{-}} f_2(x) \pod{\deg f_2(x) < \deg f_1(x)}
+		\\
+		f_1(x) &= q_2(x) f_2(x) \mathbin{\textcolor{red}{-}} f_3(x) \pod{\deg f_3(x) < \deg f_2(x)}
+		\\
+		\vdots
+		\\
+		f_{s - 1}(x) &= q_s(x) f_s(x)
+	\end{aligned}
+	$$
+
+	由此得到一个多项式序列 $f_0, f_1, f_2, \ldots, f_s$，称该序列是 $f(x)$ 的\emph{\idx{标准序列}}。设 $V_c$ 表示序列 $f_0(c), f_1(c), \ldots, f_s(c)$ 的变号数。若区间 $[a, b]$ 使得 $f(a) \ne 0, f(b) \ne 0$，则 $f(x)$ 在区间 $(a, b)$ 内的不同实根的个数等于 $V_a - V_b$。
+\end{theorem}
+
+Sturm 定理的证明比较复杂，此处略去。我们下面只看它的应用举例。
+
+\begin{example}
+	$f(x) = x^3 - x + 1$，前面已经说明它的实根全部在区间 $(-2, 2)$ 内，$f(-2) f(2) \ne 0$。由 Sturm 定理，其标准序列为：
+	$$
+	f_0(x) = x^3 - x + 1, \quad f_1(x) = 3x^2 - 1, \quad f_2(x) = \dfrac{2}{3} x - 1, \quad f_3 = -\dfrac{23}{4}
+	$$
+
+	分别求解 $V_a, V_b$：
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|cccc}\toprule
+			& $f_0$ & $f_1$ & $f_2$ & $f_3$
+			\\\hline
+			$-2$ & $-$ & $+$ & $-$ & $-$
+			\\
+			$2$ & $+$ & $+$ & $+$ & $-$
+			\\\bottomrule
+		\end{tabular}
+	\end{table}
+
+	得 $V(-2) = 2, V(2) = 1$。所以 $f(x)$ 在 $[-2, 2]$ 里的实根个数为 $1$。
+\end{example}
+
+利用 Sturm 定理，我们可以得到一类特殊的三次多项式的根的判别公式。
+
+\begin{proposition}
+	设 $f(x) = x^3 + px + q \pod{p, q \in \R}$。令 $\Delta = \dfrac{q^2}{4} + \dfrac{p^3}{27}$，则 $\Delta$ 与 $f(x)$ 的根的关系为：
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|c}\toprule
+			$\Delta$ & $f(x)$
+			\\\hline
+			$> 0$ & 有一个实根，有一对复根。
+			\\
+			$= 0$ & 有三个实根，但有一个根是 2 重根或 3 重根。
+			\\
+			$< 0$ & 有三个不同实根。
+			\\\bottomrule
+		\end{tabular}
+	\end{table}
+\end{proposition}
+
+\begin{proof}
+	$f(x)$ 的标准序列为：
+	$$
+	\begin{aligned}
+		&f_0(x) = x^3 + px + q, \quad f_1(x) = 3x^2 + p,
+		\\
+		&f_2(x) = -2px - q, \quad f_3(x) = -(4p^3 + 27 q^2)
+	\end{aligned}
+	$$
+
+	\begin{enumerate}
+		\item 若 $\Delta < 0$，则 $p < 0$。当 $x \to -\infty$ 时，有：
+		$$
+		f_0(-\infty) < 0, \quad f_1(-\infty) > 0, \quad f_2(-\infty) < 0, \quad f_3(-\infty) > 0
+		$$
+
+		当 $x \to +\infty$ 时，标准序列的取值都大于 $0$，变号数等于 $0$。由 Sturm 定理，此时 $f(x)$ 有三个不同的实根。
+
+		\item 若 $\Delta = 0$，$q = 0$，则 $f(x)$ 有一个 3 重根 $0$。若 $\Delta = 0$，$q \ne 0$，则 $p < 0$，同理，可得 $V(-\infty) = 2, V(+\infty) = 0$。由 Sturm 定理，此时 $f(x)$ 有两个不同的实根，则必然有一个 2 重根。
+
+		\item 若 $\Delta > 0$，则根据 $p$ 的取值进行分类讨论：
+		\begin{enumerate}
+			\item 若 $p < 0$，则 $V(-\infty) = 2, V(+\infty) = 1$。
+			\item 若 $p = 0$，则无论 $q$ 是否大于 $0$，都有 $V(-\infty) = 2, V(+\infty) = 1$。
+			\item 若 $p > 0$，则 $V(-\infty) = 2, V(+\infty) = 1$。
+		\end{enumerate}
+
+		此时 $f(x)$ 有一个实根，则另两个根必然是共轭复根。
+	\end{enumerate}
+\end{proof}
+
+% TODO: 补充书上例 10。
+
