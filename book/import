@@ -12,6 +12,9 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{xifthen}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
 \usepackage{braket} % Import braket before physics.
 \usepackage{physics}
 \usepackage[normalem]{ulem}
