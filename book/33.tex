@@ -1,0 +1,213 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENCE file in the repository root for full licence text.
+
+\section{各数域上的不可约多项式}
+
+\subsection{多项式的根的概念}
+
+研究各数域的不可约多项式的动力是，我们已经知道了次数大于 $1$ 的多项式不可约的必要条件是它没有一次因式，但我们不知道它的充分条件。为此，我们需要提出多项式的根的概念。
+
+\begin{theorem}[余数定理]
+	在 $\mathbb K[x]$ 中，$f(x)$ 除以 $x - a$ 的余式是 $f(a)$。
+\end{theorem}
+
+\begin{proof}
+	作带余除法，得：
+	$$
+	f(x) = h(x) (x - a) + r(x) \pod{\deg r(x) < \deg (x - a)}
+	$$
+
+	可知 $\deg r(x) \le 0$，设 $r(x) = r \pod{r \in \mathbb K}$。用 $\mathbb K$ 中的元素 $a$ 代入上面带余除法的等式，即可得：
+	$$
+	f(a) = r = r(x)
+	$$
+\end{proof}
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，$x - a \mid f(x) \Longleftrightarrow f(a) = 0$。
+\end{proposition}
+
+由以上命题，我们可以引出多项式的根的概念。
+
+\begin{definition}{根,复根,实根,有理根}
+	设 $\mathbb K$ 是数域，环 $R$ 可看成是 $\mathbb K$ 的一个扩环。对于 $f(x) \in \mathbb K[x]$，如果有 $c \in R$，使得 $f(c) = 0$，那么称 $c$ 是 $f(x)$ 在 $R$ 中的一个\emph{根}。
+
+	$f(x)$ 在复数域、实数域、有理数域中的根分别被称为\emph{复根}、\emph{实根}、\emph{有理根}。
+\end{definition}
+
+利用多项式的根可以如下描述以上命题。
+
+\begin{proposition}[裴蜀定理]
+	在 $\mathbb K[x]$ 中，$x - a$ 是 $f(x)$ 的一次因式当且仅当 $a$ 是 $f(x)$ 在 $\mathbb K$ 中的一个根。
+\end{proposition}
+
+\begin{definition}{重根,单根}
+	如果 $x - a$ 是 $f(x)$ 的 $k$ 重因式（$k \ge 0$），则称 $a$ 是 $f(x)$ 的 \emph{$k$ 重根}。当 $ k \ge 2$ 时，$a$ 被称为\emph{重根}。当 $k = 1$ 时，$a$ 被称为\emph{单根}。当 $k = 0$ 时，$a$ 不是根。
+\end{definition}
+
+\subsection{复数域上的不可约多项式}
+
+\begin{theorem}[代数基本定理]
+	每一个次数大于 $0$ 的复系数多项式至少有一个复根。
+\end{theorem}
+
+代数基本定理的证明比较复杂，此处省略。由代数基本定理可知，每一个次数大于 $1$ 的复系数多项式都是可约的。
+
+\begin{proposition}
+	复数域上的不可约多项式只有一次多项式。
+\end{proposition}
+
+\begin{theorem}[复系数多项式唯一因式分解定理]
+	每一个次数大于 $0$ 的复系数多项式在复数域上都可以唯一地分解成一次因式的乘积。次数大于 $0$ 的复系数多项式 $f(x)$ 的标准分解式记为：
+	$$
+	f(x) = a (x - c_1)^[l_1] (x - c_2)^{l_2} \cdots (x - c_s)^{l_s}
+	$$
+\end{theorem}
+
+\begin{proposition}
+	每一个 $n \pod{n \ge 0}$ 次复系数多项式恰有 $n$ 个复根（重根按重数计算）。
+\end{proposition}
+
+我们特别关注复数域上的多项式 $x^n - 1$ 的根。设它的根为 $\xi$，则有：
+$$
+\xi = \mathrm e^{\mathrm i \frac{2 \pi}{n}} \pod{i = 0, 1, \ldots, n - 1}
+$$
+
+称 $\xi$ 是一个\emph{\idx{本原 $n$ 次单位根}}。
+
+\subsection{多项式插值}
+
+由唯一因式分解定理，不难得到以下命题。
+
+\begin{proposition}
+	$\mathbb K[x]$ 中 $n \pod{n \ge 0}$ 次多项式 $f(x)$ 在 $\mathbb K$ 中至多有 $n$ 个根（重根按重数计算）。
+\end{proposition}
+
+利用该命题，可以证得多项式插值所依赖的基本命题。
+
+\begin{proposition}
+	在 $\mathbb K[x]$ 中，设 $f(x)$ 和 $g(x)$ 的次数都不超过 $n$。如果 $\mathbb K$ 中有 $n + 1$ 个不同的数 $c_1, c_2, \ldots, c_{n + 1}$，使得：
+	$$
+	f(c_i) = g(c_i) \pod{i = 1, 2, \ldots, n + 1}
+	$$
+
+	那么 $f(x) = g(x)$。
+\end{proposition}
+
+\begin{proof}
+	设 $h(x) = f(x) - g(x)$，则 $\deg h \le \max\{ \deg f, \deg g \} \le n$。由于 $h(x)$ 在 $\mathbb K$ 中至少有 $n + 1$ 个不同的根，而 $\deg h(x) \le n$，所以 $h(x) = 0$，从而 $f(x) = g(x)$。
+\end{proof}
+
+由此可知，如果变量 $y$ 与变量 $x$ 之间满足函数关系，并且我们知道当 $x$ 取 $n + 1$ 个不同的值 $c_0, c_1, \ldots, c_n$ 时 $y$ 的对应值为 $d_0, d_1, \ldots, d_n$，那么我们可以找一个次数不超过 $n$ 的多项式 $f(x)$，满足 $f(c_i) = d_i$。这时把这个\textbf{多项式函数} $y = f(x)$ 称为原来函数的\emph{\idx{插值函数}}，或\emph{\idx{插值多项式}}。
+
+\subsubsection{多项式函数}
+
+前文提到了多项式函数。注意，我们在定义多项式时，提到 $x$ 是一个不定元，$x \not \in \mathbb K$，这说明\textbf{$\mathbb K[x]$ 中的元素本身并不是一个映射}。但我们总是可以把 $\mathbb K$ 中的元素代入多项式，为此我们特别提出多项式函数的概念。
+
+\begin{definition}{多项式函数, 一元多项式函数}
+	任意给定 $f(x) \in \mathbb K[x]$，可以得到 $\mathbb K$ 到自身的一个映射：
+	$$
+	\begin{aligned}
+		f \colon & \mathbb K \to \mathbb K
+		\\&
+		a \mapsto f(a)
+	\end{aligned}
+	$$
+
+	其中 $f(a)$ 表示把 $\mathbb K$ 中的元素 $a$ 代入多项式 $f(x)$。则映射 $f$ 被称为由多项式 $f(x)$ 诱导的\emph{多项式函数}，也称为 \emph{$\mathbb K$ 上的一元多项式函数}。$\mathbb K[x]$ 中的多项式诱导得出的多项式函数组成的集合记为 $\mathbb K_\mathrm{pol}$。
+\end{definition}
+
+可以在 $\mathbb K_\mathrm{pol}$ 上定义朴素的加法和乘法，则 $\mathbb K_\mathrm{pol}$ 构成一个环。称之为 $\mathbb K$ 上的\emph{\idx{一元多项式函数环}}。
+
+一元多项式环和一元多项式函数环有什么关系？我们首先证明以下命题。
+
+\begin{proposition}
+	如果数域 $\mathbb K$ 上的两个多项式 $f(x)$ 和 $g(x)$ 不相等，那么它们诱导的多项式函数 $f$ 与 $g$ 也不相等。
+\end{proposition}
+
+\begin{proof}
+	设 $f(x) \ne g(x)$。假如 $f = g$，则 $\forall a \in \mathbb K$，有 $f(a) = g(a)$。由于 $\mathbb K$ 是数域，它有无穷多个元素，于是\footnote{在 $\mathbb K[x]$ 中，设 $f(x)$ 和 $g(x)$ 的次数都不超过 $n$。如果 $\mathbb K$ 中有 $n + 1$ 个不同的数 $c_1, c_2, \ldots, c_{n + 1}$，使得 $f(c_i) = g(c_i) \pod{i = 1, 2, \ldots, n + 1}$，那么 $f(x) = g(x)$。} $f(x) = g(x)$，矛盾。因此 $f \ne g$。
+\end{proof}
+
+显然，一元多项式环和一元多项式函数环之间存在一个双射。但事实上它们之间有更强的联系。
+
+\begin{definition}{同构,同构映射}
+	设 $R$ 和 $R'$ 是两个环，如果存在从 $R$ 到 $R'$ 的一个双射 $\sigma$，它保持加法和乘法运算，即 $\forall a, b \in \R$，有：
+	$$
+	\sigma(a + b) = \sigma(a) + \sigma(b)
+	$$$$
+	\sigma(ab) = \sigma(a) \sigma(b)
+	$$
+
+	那么称 $\sigma$ 是环 $R$ 到 $\R'$ 的一个\emph{同构映射}，此时称环 $R$ 与 $R'$ 是\emph{同构}的，记作 $R \cong R'$。
+\end{definition}
+
+所以有：
+$$
+\mathbb K[x] \cong \mathbb K_\mathrm{pol}
+$$
+
+这意味着可以把数域 $\mathbb K$ 上的一元多项式 $f(x)$（一个表达式） 与数域 $\mathbb K$ 上的一元多项式函数 $f$（一个映射）等同起来。
+
+\subsubsection{拉格朗日插值公式}
+
+我们首先证明插值多项式的存在性。
+
+\begin{theorem}
+	设 $c_0, c_1, \ldots, c_n$ 是数域 $\mathbb K$ 中 $n + 1$ 个不同的数 $d_0, d_1, \ldots, d_n \in \mathbb K$，则 $\mathbb K[x]$ 中存在唯一的一个次数不超过 $n$ 的多项式 $f(x)$，使得：
+	$$
+	f(c_i) = d_i \pod{i = 0, 1, 2, \ldots, n}
+	$$
+\end{theorem}
+
+\begin{proof}
+	根据前文的定理，如果存在这样的多项式，那它一定是唯一的。下面证明存在性。
+
+	构造函数 $f_i$，使得：
+	$$
+	f_i(c_j) = 0 \pod{j \ne i}
+	$$$$
+	f_i(c_i) = d_i
+	$$
+
+	于是令：
+	$$
+	f_i(x) = a_i (x - c_0) \cdots (x - c_{i - 1}) (x - c_{i + 1}) \cdots (x - c_n)
+	$$
+
+	则 $f_i(x)$ 是 $n$ 次多项式。为了满足 $f_i(c_i) = d_i$，$a_i$ 应等于：
+	$$
+	a_i = \dfrac{d_i}{(c_i - c_0) \cdots (c_i - c_{i - 1}) (c_i - c_{i + 1}) \cdots (c_i - c_n)}
+	$$
+
+	即有：
+	$$
+	f_i(x) = d_i \dfrac{(x - c_0) \cdots (x - c_{i - 1}) (x - c_{i + 1}) \cdots (x - c_n)}{(c_i - c_0) \cdots (c_i - c_{i - 1}) (c_i - c_{i + 1}) \cdots (c_i - c_n)}
+	$$
+
+	令 $f(x) = \sum\limits_{i = 0}^n f_i(x)$，则 $\deg f(x) \le n$，且满足 $f(c_j) = d_j$。
+\end{proof}
+
+以上证明过程得到的公式：
+$$
+f(x) = \sum\limits_{i = 0}^n d_i \dfrac{(x - c_0) \cdots (x - c_{i - 1}) (x - c_{i + 1}) \cdots (x - c_n)}{(c_i - c_0) \cdots (c_i - c_{i - 1}) (c_i - c_{i + 1}) \cdots (c_i - c_n)}
+$$
+被称为\emph{\idx{拉格朗日插值公式}}。
+
+\subsubsection{其他插值方法}
+
+设：
+$$
+\begin{aligned}
+	f(x) &= u_0 + u_1 (x - c_0) + u_2 (x - c_0) (x - c_1) + \cdots +
+	\\&~~~~
+	u_n (x - c_0) (x - c_1) \cdots (x - c_{n - 1})
+\end{aligned}
+$$
+
+依次用 $c_0, c_1, \ldots, c_n$ 代入 $x$，即可求解出 $u_0, u_1, \ldots, u_n$。以上公式被称为\emph{\idx{牛顿插值公式}}。
+
+\bigskip
+
+还可以使用待定系数法进行插值。由于系数矩阵是一个范德蒙德行列式，所以方程组一定有唯一解。
+
