@@ -152,6 +152,14 @@
 {%
 	\end{examplebox}%
 }
+\newenvironment{example*}
+{%
+	\setlength{\saveparindent}{\parindent}%
+	\begin{examplebox}{例}%
+}
+{%
+	\end{examplebox}%
+}
 
 % exercise
 \newcounter{exercise}[section]
