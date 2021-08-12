@@ -454,3 +454,76 @@ Sturm 定理的证明比较复杂，此处略去。我们下面只看它的应�
 
 % TODO: 补充书上例 10。
 
+\subsection{有理数域上的不可约多项式}
+
+\subsubsection{整系数多项式与本原多项式}
+
+我们知道，有理数总是可以表示成 $p / q \pod{p, q \in \Z}$ 的形式，所以可以很自然地想到把一个有理数域上的多项式化为一个整系数多项式乘一个有理数。为此我们首先形式化地定义整系数多项式组成的集合。
+
+\begin{definition}{整系数多项式环}
+	记 $\Z[x]$ 表示所有整系数多项式组成的集合。可以证明 $\Z[x]$ 是一个环，且是一个有单位元的无零因子的交换环。
+\end{definition}
+
+注意，$\Z$ 不是一个数域，因此前面给出的有关 $\mathbb K[x]$ 的定义和性质对 $\Z[x]$ 不一定适用。我们强调 $\Z[x]$ 中可分解的概念。
+
+\begin{definition}{可分解,不可分解的整系数多项式}
+	设 $f(x) \in \Z[x]$。若存在 $g(x), h(x) \in \mathbb Z[x]$，使得 $f(x) = g(x) h(x)$ 且 $\deg g(x) < \deg f(x), \deg h(x) < \deg f(x)$，则称 $f(x)$ 在 $\Z[x]$ 中\emph{可分解}，否则称 $f(x)$ 是\emph{不可分解的整系数多项式}。
+\end{definition}
+
+特别注意，$\Z[x]$ 中可分解的概念不是可约的概念。作为扩展，我们仍然形式化地给出可约的概念。
+
+\begin{definition}{不可约多项式,可约的}
+	设 $f(x) \in \Z[x]$。如果 $f(x)$ 在 $\Z[x]$ 中的因式只有 $\pm 1$（即 $\Z[x]$ 的可逆元）和 $\pm f(x)$（即 $f(x)$ 的相伴元），那么称 $f(x)$ 是 $\Z$ 上的\emph{不可约多项式}，否则称它是在 $\Z$ 上\emph{可约的}。
+\end{definition}
+
+事实上，一般而言，在整环\footnote{一个有单位元的无零因子的交换环被称为\emph{\idx{整环}}。} $R$ 中，如果一个元素 $a$（$a \ne 0$，且 $a$ 不是可逆元）的因子只有可逆元和 $a$ 的相伴元，那么称 $a$ 是不可约的，否则称 $a$ 是可约的。
+
+\bigskip
+
+\begin{definition}{容度}
+	设 $g(x) = b_m x^m + \cdots + b_1 x + b_0 \in \Z[x]$，称：
+	$$
+	\gcd(b_0, b_1, \ldots, b_m)
+	$$
+	为 $g(x)$ 的\emph{容度}。
+\end{definition}
+
+\begin{definition}{本原多项式}
+	非零的容度为 $1$ 的整系数多项式被称为\emph{本原多项式}。
+\end{definition}
+
+\begin{proposition}
+	与非零的有理系数多项式 $f(x)$ 相伴的本原多项式在相差一个正负号下是唯一的。
+\end{proposition}
+
+\begin{proof}
+	充分性显然，下面证必要性。设 $f(x) = r g(x) = s h(x)$，其中 $g(x), h(x)$ 都是本原多项式，$r, s \in \Q^*$，则 $g(x) = \dfrac{s}{r} h(x)$。设 $\dfrac{s}{r} = \dfrac{q}{p}$，其中 $p, q \in \Z$，且 $(p, q) = 1$，则有：
+	$$
+	p g(x) = q h(x)
+	$$
+
+	设 $g(x) = \sum\limits_{i = 0}^ n b_i x^i$，$h(x) = \sum\limits_{i = 0}^n c_i x^i$，则：
+	$$
+	p \sum\limits_{i = 0}^n b_i x^i = q \sum\limits_{i = 0}^n c_i x^i
+	$$
+
+	从而 $p b_i = q c_i \pod{i = 0, 1, \ldots, n}$，于是：
+	$$
+	q \mid p b_i \pod{i = 0, 1, \ldots, n}
+	$$
+
+	由于 $(q, p) = 1$，所以 $q \mid b_i \pod{i = 0, 1, \ldots, n}$。由于 $g(x)$ 是本原多项式，所以 $q	 = \pm 1$。同理可证 $p = \pm 1$。于是 $g(x) = \pm h(x)$。
+\end{proof}
+
+我们立即可得以下命题。
+
+\begin{proposition}
+	两个本原多项式 $g(x)$ 与 $h(x)$ 在 $\Q[x]$ 中相伴当且仅当 $g(x) = \pm h(x)$。
+\end{proposition}
+
+要继续研究本原多项式在 $\Q[x]$ 中是否可约的问题，我们需要用到下面的高斯引理。
+
+\begin{proposition}[高斯引理]
+	两个本原多项式的乘积还是本原多项式。
+\end{proposition}
+
