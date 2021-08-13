@@ -1,0 +1,31 @@
+% Licensed under the Creative Commons Attribution Share Alike 4.0 International.
+% See the LICENSE file in the repository root for full license text.
+
+\section{商集构成的环，域上的一元多项式环}
+
+前面我们已经研究了数域 $\mathbb K$ 上的一元多项式环 $\mathbb K[x]$，但我们时常需要面对更一般的情况。例如，前面研究了整系数多项式组成的集合 $\mathbb Z[x]$，已经说明，它构成一个环，所以它是整环 $\Z$ 上的一元多项式环。
+
+本节中，我们将使用商集构造出一些常见的环，并说明它们是域，然后通过研究域上的一元多项式环来得出一些实用结论。
+
+\subsection{商集和域的概念}
+
+商集与等价关系有关。如果集合 $S$ 中的两个元素存在某种等价关系，那么它们属于同一个等价类。我们想要研究不同等价类之间的性质，就需要先弄清楚到底有哪些等价类。商集就是所有这些等价类组成的集合。
+
+\begin{definition}{商集}
+	设 $\sim$ 是非空集合 $A$ 的一个等价关系，若把以 $A$ 关于 $\sim$ 的全部等价类作为元素组成一个新的集合 $B$，则称集合 $B$ 为 $A$ 关于 $\sim$ 的\emph{商集}，记作 $B = A / {\sim}$。
+\end{definition}
+
+\bigskip
+
+前面我们定义了环。环有加法、乘法，由负元还可以推导出减法，但环上不存在除法。域弥补了环的这一缺陷。
+
+\begin{definition}{可逆的,逆元}
+	设 $R$ 是有单位元的环，若 $a \in R$ 且 $a \ne 0$，且存在 $b \in R$ 使得 $ab = ba = 1$，则称 $a$ 是\emph{可逆的}，称 $b$ 是 $a$ 的\emph{逆元}。
+\end{definition}
+
+\begin{definition}{域}
+	设 $R$ 是有单位元的交换环，若 $R$ 中任意非零元素都可逆，则称 $R$ 是\emph{域}。
+\end{definition}
+
+\subsection{模 $p$（$p$ 是素数）剩余类域与模 $m$ 剩余类环}
+
