@@ -23,9 +23,182 @@
 	设 $R$ 是有单位元的环，若 $a \in R$ 且 $a \ne 0$，且存在 $b \in R$ 使得 $ab = ba = 1$，则称 $a$ 是\emph{可逆的}，称 $b$ 是 $a$ 的\emph{逆元}。
 \end{definition}
 
+\begin{proposition}
+	若环 $R$ 中的元素 $a$ 存在逆元，则这个逆元是唯一的。
+\end{proposition}
+
+\begin{proof}
+	若 $a$ 存在两个不同的逆元 $b, b'$，则有：
+	$$
+	ab = ba = ab' = ba' = 1
+	$$
+
+	在 $ab = ab'$ 的两侧同时左乘以 $b$，得：
+	$$
+	(ba) b = (ba) b' \Longrightarrow b = b'
+	$$
+
+	这说明 $a$ 的逆元若存在，则是唯一的。
+\end{proof}
+
 \begin{definition}{域}
-	设 $R$ 是有单位元的交换环，若 $R$ 中任意非零元素都可逆，则称 $R$ 是\emph{域}。
+	设 $R$ 是有单位元的无非平凡零因子的交换环（即 $R$ 是整环），若 $R$ 中的任一非零元素都可逆，则称 $R$ 是\emph{域}。
+\end{definition}
+
+\begin{proposition}
+	如果已知 $R$ 是有单位元的交换环，且 $R$ 中的任一非零元素都可逆，则 $R$ 一定是域。
+\end{proposition}
+
+\begin{proof}
+	假设 $R$ 存在非平凡的零因子 $a$（不妨假设 $a$ 是左零因子），则存在非零元素 $b$ 使得：
+	$$
+	a b = 0
+	$$
+
+	由于 $a$ 可逆，所以存在非零元素 $a^{-1}$ 使得 $a^{-1} a = a a^{-1} = 1$，于是等式两侧左乘 $a^{-1}$ 得：
+	$$
+	b = (a^{-1} a) b = 0
+	$$
+
+	这与 $b \ne 0$ 矛盾，故不存在非平凡的零因子，从而根据已知条件可以推出 $R$ 是域。
+\end{proof}
+
+\begin{definition}{有限域,无限域}
+	只含有限多个元素的域被称为\emph{有限域}，否则称为\emph{无限域}。
 \end{definition}
 
 \subsection{模 $p$（$p$ 是素数）剩余类域与模 $m$ 剩余类环}
+
+\begin{definition}{同余关系,剩余类}
+	在整数集 $\Z$ 上规定一个二元关系 $\sim$ 为：设 $a, b \in \Z$，若 $a$ 与 $b$ 被 $m$ 除所得余数相同，即 $m \mid (a - b)$，则有 $a \sim b$。容易发现 $\sim$ 是一个等价关系，称这个关系为\emph{模 $m$ 同余关系}，记作：
+	$$
+	a \equiv b \pmod{m}
+	$$
+
+	在模 $m$ 同余关系下的等价类称为\emph{模 $m$ 剩余类}，它们被记作：
+	$$
+	\overline i = \set{a \in \Z \colon a \equiv i \pmod{m}} = \set{mk + i \colon k \in \Z} \pod{i = 0, 1, \ldots, m - 1}
+	$$
+
+	并且规定 $\overline i$ 中的任一元素都可以作为代表，例如，$\overline{i + m}$ 也可用于表示 $\overline i$。
+\end{definition}
+
+\begin{proposition}
+	若 $a \equiv b \pmod{m}, c \equiv d \pmod{m}$，则：
+	$$
+	a + c \equiv b + d \pmod{m}
+	$$$$
+	ac \equiv bd \pmod{m}
+	$$
+\end{proposition}
+
+\begin{proof}
+	已知 $m \mid (a - b), m \mid (c - d)$，则显然有：
+	$$
+	m \mid (a - b) + (c - d) \Longrightarrow m \mid (a + c) - (b + d)
+	$$
+
+	即证得了 $a + c \equiv b + d \pmod{m}$。
+
+	由于有：
+	$$
+	ac - bd = ac - bc + bc - bd = (a - b) c + b (c - d)
+	$$
+
+	所以 $bc \equiv bd \pmod{m}$。
+\end{proof}
+
+\begin{definition}{同余关系的商集}
+	由模 $m$ 剩余类组成的集合称为\emph{模 $m$ 同余关系的商集}，记作 $\Z_m$ 或 $\Z / (7)$。
+\end{definition}
+
+在 $\Z_m$ 中可以规定加法和乘法：
+\begin{enumerate}
+	\item $\overline i + \overline j \triangleq \overline{i + j}$
+	\item $\overline i \cdot \overline j \triangleq \overline {ij}$
+\end{enumerate}
+
+下面首先证明以上定理的合理性，即定义式的成立与代表的选取无关。
+
+\begin{proof}
+	设 $\overline i = \overline a$，$\overline j = \overline b$，则：
+	$$
+	i \equiv a \pmod{m}, \quad j \equiv b \pmod{m}
+	$$
+
+	于是有：
+	\begin{enumerate}
+		\item $i + j \equiv a + b \pmod{m}$
+		\item $ij \equiv ab \pod{m}$
+	\end{enumerate}
+\end{proof}
+
+显然，$\overline 0$ 是 $\Z_m$ 的零元素，$\overline i$ 有负元素 $\overline{-i}$，$\overline 1$ 是 $\Z_m$ 的单位元，所以 $\Z_m$ 是一个有单位元的环。进一步验证得，\textbf{$\Z_m$ 是一个有单位元的交换环}，称它为\emph{模 $m$ \idx{剩余类环}}。
+
+当且仅当 $m$ 是素数时（不妨认为 $\abs{m} \ge 2$，一般把素数 $m$ 记作 $p$），$\Z_p$ 中的每个非零元素都存在逆元，从而 \textbf{$\Z_p$ 构成一个域}，称它为\emph{模 $p$ \idx{剩余类域}}，它是一个有限域。
+
+\begin{proof}
+	必要性。设 $\Z_p$ 中的任一非零元为 $\overline a \pod{0 < a < p}$。由于 $p$ 是素数，且 $p \nmid a$，所以\footnote{若 $p$ 是素数，则对任意整数 $a$，都有 $p \mid a$ 或 $(p, a) = 1$。} $(p, a) = 1$。从而存在 $u, v \in \Z$，使得：
+	$$
+	ua + vp = 1
+	$$
+
+	于是：
+	$$
+	\overline 1 = \overline{ua + vp} = \overline u \cdot \overline a + \overline v \cdot \overline p = \overline u \cdot \overline a
+	$$
+
+	因此 $\overline a$ 可逆，从而 $\Z_p$ 是一个域。
+
+	\bigskip
+
+	充分性，证明逆否命题。若 $p$ 是合数，记它为 $m$，则 $m = m_1 m_2 \pod{0 < m_i < m, i = 1, 2}$，于是：
+	$$
+	\overline{m_1} \cdot \overline{m_2} = \overline{m_1 m_2} = \overline m = \overline 0
+	$$
+
+	从而 $Z_m$ 有非平凡的零因子 $\overline{m_1}$，因此 $\Z_p$ 不是一个域。
+\end{proof}
+
+\subsection{$\Q$ 与 $\Z_p$ 上的不可约多项式之间的关系}
+
+\subsubsection{域上的一元多项式环}
+
+
+
+\subsubsection{判断 $\Q$ 上的多项式不可约的又一充分条件}
+
+前面已经说明：
+$$
+\begin{aligned}&
+	\text{有理系数多项式在 $\Q$ 上不可约}
+	\\\Longleftrightarrow~&
+	\text{与其相伴的本原多项式在 $\Z$ 上不可分解（往上时乘以任一有理数）}
+	\\\Longleftrightarrow~&
+	\text{与该本原多项式在 $\Q[x]$ 中相伴的任一整系数多项式在 $\Q$ 上不可约}
+	\\\Longleftarrow~&
+	\text{Eisenstein 判别法}
+\end{aligned}
+$$
+
+下面的定理给出了判断整系数多项式在 $\Q$ 上不可约的又一充分条件。
+
+\begin{proposition}
+
+\end{proposition}
+
+这意味着我们还可以用以下方法来说明有理系数多项式在 $\Q$ 上不可约：
+$$
+\begin{aligned}&
+	\text{有理系数多项式在 $\Q$ 上不可约}
+	\\\Longleftrightarrow~&
+	\text{与其相伴的本原多项式在 $\Z$ 上不可分解（往上时乘以任一有理数）}
+	\\\Longleftrightarrow~&
+	\text{与该本原多项式在 $\Q[x]$ 中相伴的任一整系数多项式在 $\Q$ 上不可约}
+	\\\Longleftarrow~&
+	\text{与其对应的 $\Z_p[x]$ 中的多项式在 $\Z_p$ 上不可约}
+\end{aligned}
+$$
+
+但需要注意，以上两条路线在最后一个箭头处都是单向的。如果 $\tilde f(x)$ 在 $\Z_p$ 上可约，那么 $f(x)$ 在 $\Q$ 上可能不可约，也可能可约。
 
