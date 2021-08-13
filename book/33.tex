@@ -467,7 +467,7 @@ Sturm 定理的证明比较复杂，此处略去。我们下面只看它的应�
 注意，$\Z$ 不是一个数域，因此前面给出的有关 $\mathbb K[x]$ 的定义和性质对 $\Z[x]$ 不一定适用。我们强调 $\Z[x]$ 中可分解的概念。
 
 \begin{definition}{可分解,不可分解的整系数多项式}
-	设 $f(x) \in \Z[x]$。若存在 $g(x), h(x) \in \mathbb Z[x]$，使得 $f(x) = g(x) h(x)$ 且 $\deg g(x) < \deg f(x), \deg h(x) < \deg f(x)$，则称 $f(x)$ 在 $\Z[x]$ 中\emph{可分解}，否则称 $f(x)$ 是\emph{不可分解的整系数多项式}。
+	设 $f(x) \in \Z[x]$。若存在 $g(x), h(x) \in \Z[x]$，使得 $f(x) = g(x) h(x)$ 且 $\deg g(x) < \deg f(x), \deg h(x) < \deg f(x)$，则称 $f(x)$ 在 $\Z[x]$ 中\emph{可分解}，否则称 $f(x)$ 是\emph{不可分解的整系数多项式}。
 \end{definition}
 
 特别注意，$\Z[x]$ 中可分解的概念不是可约的概念。作为扩展，我们仍然形式化地给出可约的概念。
@@ -615,3 +615,30 @@ Sturm 定理的证明比较复杂，此处略去。我们下面只看它的应�
 	那么 $f(x)$ 在 $\Q$ 上不可约。
 \end{theorem}
 
+\begin{proof}
+	假设 $f(x)$ 在 $\Q$ 上可约，设：
+	$$
+	f(x) = \biggl( \sum\limits_{i = 0}^m b_i x^i \biggr) \biggl( \sum\limits_{j = 0}^l c_j x^j \biggr)
+	$$
+
+	于是有 $a_0 = b_0 c_0$，$a_n = b_m c_l$。由 $p \mid a_0$ 且 $p^2 \nmid a_0$ 知，$p \mid b_0$ 或 $p \mid c_0$ 但 $p$ 并不同时整除 $b_0, c_0$。不妨假设 $p \mid b_0$ 但 $p \nmid c_0$。
+
+	由于 $p \nmid a_n$，所以 $p \nmid b_m$ 且 $p \nmid c_l$，并且一定存在一个 $k \pod{1 \le k \le m}$，使得 $p \mid b_i \pod{0 \le i < k}$，但 $p \nmid b_k$。由于 $k < n$，所以 $p \mid a_k$，于是：
+	$$
+	a_k = \underset{\text{均能被 $p$ 整除}}{\underbrace{b_0 c_k + b_1 c_{k - 1} + \cdots + b_{k - 1} c_1}} + b_k c_0
+	$$
+
+	所以 $p \mid b_k c_0$，但这与 $p \nmid b_k$ 且 $b \nmid c_0$ 矛盾。
+\end{proof}
+
+利用 Eisenstein 判别法，我们可以通过构造多项式来得到以下结论。
+
+\begin{proposition}
+	在 $\Q[x]$ 中存在任意次数的不可约多项式。
+\end{proposition}
+
+\begin{proof}
+	对于任意的正整数 $n$，设 $f(x) = x^n + 3$。取 $p = 3$，则由 Eisenstein 判别法，$f(x)$ 在 $\Q$ 上不可约。
+\end{proof}
+
+要注意 Eisenstein 判别法只是判断 $f(x)$ 在 $\Q$ 上不可约的充分条件。有时直接用 Eisenstein 判别法找不到一个满足条件的素数，这时可以尝试使用 Eisenstein 判别法判断 $g(x) = f(x + b) \pod{b \in \Q}$ 是否在 $\Q$ 上可约。可以证明，$g(x) \triangleq f(x + b) \pod{b \in \mathbb K}$ 在 $\mathbb K$ 上可约的充分必要条件是 $f(x)$ 在 $\mathbb K$ 上可约。
