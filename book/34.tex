@@ -118,7 +118,7 @@
 	\item $\overline i \cdot \overline j \triangleq \overline {ij}$
 \end{enumerate}
 
-下面首先证明以上定理的合理性，即定义式的成立与代表的选取无关。
+下面首先证明以上定义的合理性，即定义式的成立与代表的选取无关。
 
 \begin{proof}
 	设 $\overline i = \overline a$，$\overline j = \overline b$，则：
@@ -164,7 +164,30 @@
 
 \subsubsection{域上的一元多项式环}
 
+我们可以完全仿照 $\mathbb K[x]$ 的概念定义出域上的一元多项式环 $\mathbb F[x]$。问题是，哪些 $\mathbb K[x]$ 中的结论对于 $\mathbb F[x]$ 同样适用？
 
+事实上，只要 $\mathbb K[x]$ 的结论在证明中没有用到这个域含有无穷多个元素这一条件，并且注意识别域中的零元素，那么这些结论对于任一域 $\mathbb F$ 上的一元多项式环 $\mathbb F[x]$ 仍然成立。下面给出两个反例：
+\begin{enumerate}
+	\item 在有限域 $\mathbb F$ 上的一元多项式环 $\mathbb F[x]$ 中，如果两个多项式不相等，那么它们诱导的多项式函数可能相等。这与在数域 $\mathbb K$ 中的情况不同。
+
+	\begin{example}
+		在 $\Z_3[x]$ 中，设：
+		$$
+		f(x) = x^3 + \overline 2 x^2 + \overline 2, \quad g(x) = \overline 2 x^2 + x + \overline 2
+		$$
+
+		由于：
+		$$
+		f(\overline 0) = \overline 2, \quad f(\overline 1) = \overline 2, \quad f(\overline 2) = \overline 0
+		$$$$
+		g(\overline 0) = \overline 2, \quad g(\overline 1) = \overline 2, \quad g(\overline 2) = \overline 0
+		$$
+
+		所以 $f(x)$ 和 $g(x)$ 诱导的多项式函数是相等的，但 $f(x) \ne g(x)$。
+	\end{example}
+
+	\item 在数域 $\mathbb K$ 上的一元多项式环 $\mathbb K[x]$ 中，如果不可约多项式 $p(x)$ 是 $f(x)$ 的一个 $k \pod{k \ge 1}$ 重因式，那么 $p(x)$ 是 $f'(x)$ 的 $k - 1$ 重因式。而对于某些域 $\mathbb F$ 来说，可以证明：在 $\mathbb F[x]$ 中，若 $(f(x), f'(x)) = 1$，则 $f(x)$ 没有重因式；若 $f(x)$ 没有重因式，则 $(f(x), f'(x)) = 1$ 或者 $f(x)$ 有一个单因式 $p(x)$，使得 $p'(x) = 0$。
+\end{enumerate}
 
 \subsubsection{判断 $\Q$ 上的多项式不可约的又一充分条件}
 
@@ -184,8 +207,32 @@ $$
 下面的定理给出了判断整系数多项式在 $\Q$ 上不可约的又一充分条件。
 
 \begin{proposition}
+	设 $f(x) = a_n x^n + a_{n - 1} x^{n - 1} + \cdots a_1 x + a_0$ 是一个整系数多项式，$p$ 是一个素数，$p \nmid a_n$。把 $f(x)$ 的各项系数模 $p$ 变成 $\Z_p$ 的元素，得到 $\Z_p$ 上的一个多项式，记作 $\tilde f(x)$，即：
+	$$
+	\tilde f(x) = \overline{a_n} x^n + \overline{a_{n - 1}} x^{n - 1} + \cdots + \overline{a_1} x + \overline{a_0}
+	$$
 
+	如果 $\tilde f(x)$ 在 $\Z_p$ 上不可约，那么 $f(x)$ 在 $\Q$ 上不可约。
 \end{proposition}
+
+\begin{proof}
+	假设 $f(x)$ 在 $\Q$ 上可约，那么存在次数较低的两个整系数多项式 $f_1(x), f_2(x)$，使得 $f(x) = f_1(x) + f_2(x)$。设：
+	$$
+	f_1(x) = \sum\limits_{i = 0}^m b_i x^i, \quad f_2(x) = \sum\limits_{j = 0}^{n - m} c_j x^j
+	$$
+
+	显然有：
+	$$
+	\tilde f(x) = \tilde f_1(x) \tilde f_2(x)
+	$$
+
+	由于 $p \nmid a_n$，$a_n = b_m c_{n - m}$，所以 $p \nmid b_m$ 且 $p \nmid c_{n - m}$，从而 $\deg \tilde f_1(x) = \deg f_1(x)$，$\deg \tilde f_2(x) = \deg f_2(x)$。又因为 $\deg \tilde f(x) = \deg f(x)$，所以：
+	$$
+	\deg \tilde f_i(x) = \deg f_i(x) < \deg f(x) = \deg \tilde f(x) \pod{i = 1, 2}
+	$$
+
+	这意味着 $\tilde f(x)$ 在 $\Z_p$ 上可约，矛盾。
+\end{proof}
 
 这意味着我们还可以用以下方法来说明有理系数多项式在 $\Q$ 上不可约：
 $$
@@ -201,4 +248,6 @@ $$
 $$
 
 但需要注意，以上两条路线在最后一个箭头处都是单向的。如果 $\tilde f(x)$ 在 $\Z_p$ 上可约，那么 $f(x)$ 在 $\Q$ 上可能不可约，也可能可约。
+
+\subsection{模 $f(x)$ 剩余类域}
 
