@@ -3,7 +3,7 @@
 
 \section{商集构成的环，域上的一元多项式环}
 
-前面我们已经研究了数域 $\mathbb K$ 上的一元多项式环 $\mathbb K[x]$，但我们时常需要面对更一般的情况。例如，前面研究了整系数多项式组成的集合 $\mathbb Z[x]$，已经说明，它构成一个环，所以它是整环 $\Z$ 上的一元多项式环。
+前面我们已经研究了数域 $\mathbb K$ 上的一元多项式环 $\mathbb K[x]$，但我们时常需要面对更一般的情况。例如，前面研究了整系数多项式组成的集合 $\Z[x]$，已经说明，它构成一个环，所以它是整环 $\Z$ 上的一元多项式环。
 
 本节中，我们将使用商集构造出一些常见的环，并说明它们是域，然后通过研究域上的一元多项式环来得出一些实用结论。
 
@@ -249,5 +249,65 @@ $$
 
 但需要注意，以上两条路线在最后一个箭头处都是单向的。如果 $\tilde f(x)$ 在 $\Z_p$ 上可约，那么 $f(x)$ 在 $\Q$ 上可能不可约，也可能可约。
 
-\subsection{模 $f(x)$ 剩余类域}
+\subsection{模 $p(x)$（$p(x)$ 是 $\mathbb K[x]$ 中的不可约多项式）剩余类域}
 
+设 $p(x)$ 是 $\mathbb K[x]$ 中的不可约多项式，定义同余关系：
+$$
+f(x) \sim g(x) \Longleftrightarrow p(x) \mid (f(x) - g(x))
+$$
+
+其等价类记为：
+$$
+\overline{g(x)} = \set{g(x) + k(x) p(x) \colon k(x) \in \mathbb K[x]}
+$$
+
+同余关系的商集记为 $\mathbb K[x] / \langle p(x) \rangle = \set{\overline{f(x)} \colon f(x) \in \mathbb K[x]}$。
+
+类似于整数环上的同余关系的商集，在 $\mathbb K[x] / \langle p(x) \rangle$ 上可以良好地定义加法和乘法：
+\begin{enumerate}
+	\item $\overline{f(x)} + \overline{g(x)} = \overline{f(x) + g(x)}$
+	\item $\overline{f(x)} \cdot \overline{g(x)} = \overline{f(x) \cdot g(x)}$
+\end{enumerate}
+
+并且显然，$\overline 0$ 是零元素，$\overline 1$ 是单位元，$\overline{f(x)}$ 的负元为 $\overline{-f(x)}$。由于多项式乘法具有交换律，所以 $\mathbb K[x] / \langle p(x) \rangle$ 是有单位元的交换环。
+
+下面证明，对于任意非零的 $\overline{f(x)}$，$\overline{f(x)}$ 存在逆元。
+
+\begin{proof}
+	由于 $p(x)$ 不可约 且 $p(x) \nmid g(x)$，所以 $(p(x), f(x)) = 1$。进而存在 $u, v \in \mathbb K[x]$，使得：
+	$$
+	p(x) u(x) + f(x) v(x) = 1
+	$$
+
+	所以 $\overline{f(x)} \cdot \overline{v(x)} = \overline 1$。
+\end{proof}
+
+可见，$\mathbb K[x] / \langle p(x) \rangle$ 是一个域。
+
+\begin{example}
+	由于 $x^2 + 1 = 0$ 在 $\R[x]$ 无实根，所以 $x^2 + 1$ 在 $\R[x]$ 中不可约，于是 $\R[x] / \langle x^2 + 1 \rangle$ 是一个域。
+
+	\bigskip
+
+	可以构造同构映射：
+	$$
+	\begin{aligned}
+		\sigma \colon & \R \to \R[x] / \langle x^2 + 1 \rangle
+		\\&
+		x \mapsto \overline x
+	\end{aligned}
+	$$
+
+	显然 $\sigma$ 是双射，并且加法和乘法运算得到了保持，因此 $\sigma$ 是同构映射，$\R[x] / \langle x^2 + 1 \rangle$ 的一个子环与 $\R$ 同构。由于这个子环本身还是一个域，所以称其为\emph{\idx{子域}}。
+
+	$\R[x] / \langle x^2 + 1 \rangle$ 上关于 $x$ 的方程：
+	$$
+	x^2 + \overline 1 = \overline 0
+	$$
+	有解，因为：
+	$$
+	\overline x \cdot \overline x + \overline 1 = \overline 0
+	$$
+
+	从而 $\overline x^2 = \overline{-1}$。容易发现，$\R[x] / \langle x^2 + 1 \rangle$ 与 $\C$ 同构。
+\end{example}
